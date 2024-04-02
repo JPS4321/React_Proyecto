@@ -1,0 +1,33 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center content */
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-image {
+    width: 100%;
+    max-height: 200px; /* Adjust as needed */
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .card-content {
+    text-align: center;
+  }
+  
+  .card-title {
+    margin: 10px 0;
+    font-size: 1.2rem;
+  }
+  
+  .card-price {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #333;
+  }
+  

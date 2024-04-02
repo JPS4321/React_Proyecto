@@ -3,7 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #fff;
+    background: #f6f4f1;
     padding: 15px 7%;
 }
 .logo{
@@ -19,15 +19,16 @@ ul li{
     display: inline-block;
     margin: 10px 20px;
     font-size: 17px;
+    color: #847c74;
     cursor: pointer;
 }
 .search-box{
     display: flex;
     align-items: center;
-    background: white;
+    background: #f6f4f1;
     padding: 7px 10px;
     border-radius: 50px;
-    outline: 2px solid #000;
+    outline: 2px solid #847c74;
 
 }
 .search-box input{
@@ -35,12 +36,12 @@ ul li{
     background: transparent;
     border: 0;
     outline: 0;
-    color: #fff;
+    color: #847c74;
     font-size: 18px;
     max-width: 200px ;
 }
 .search-box input::placeholder{
-    color: #000;
+    color: #847c74;
 }
 .search-box img{
     width: 20px;

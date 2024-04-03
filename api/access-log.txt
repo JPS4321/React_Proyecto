@@ -1,0 +1,78 @@
+
+        Timestamp: 2024-04-03T09:11:42.589Z
+        URL: /
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: API de Productos Bikini
+        ------------------------------
+    
+        Timestamp: 2024-04-03T09:11:42.756Z
+        URL: /favicon.ico
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: {"message":"No encontrado: El endpoint no existe"}
+        ------------------------------
+    
+        Timestamp: 2024-04-03T09:12:03.332Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: []
+        ------------------------------
+    
+        Timestamp: 2024-04-03T09:12:18.455Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: []
+        ------------------------------
+    
+        Timestamp: 2024-04-03T09:12:25.084Z
+        URL: /
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: API de Productos Bikini
+        ------------------------------
+    
+        Timestamp: 2024-04-03T09:12:55.714Z
+        URL: /productos
+        HTTP Method: POST
+        Request Body: {}
+        Response Body: {"error":"Faltan o son inválidos el nombre, la descripción o las existencias."}
+        ------------------------------
+    
+        Timestamp: 2024-04-03T09:15:05.370Z
+        URL: /productos
+        HTTP Method: POST
+        Request Body: {"nombre":"Producto Test","descripcion":"Esta es una descripción detallada del producto.","picture":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA...","existencias":10}
+        Response Body: {"success":true,"message":"Producto creado con éxito","productId":1}
+        ------------------------------
+    
+        Timestamp: 2024-04-03T09:15:12.409Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {"nombre":"Producto Test","descripcion":"Esta es una descripción detallada del producto.","picture":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA...","existencias":10}
+        Response Body: [{"id":1,"nombre":"Producto Test","descripcion":"Esta es una descripción detallada del producto.","picture":{"type":"Buffer","data":[100,97,116,97,58,105,109,97,103,101,47,112,110,103,59,98,97,115,101,54,52,44,105,86,66,79,82,119,48,75,71,103,111,65,65,65,65,78,83,85,104,69,85,103,65,65,65,65,85,65,46,46,46]},"existencias":10}]
+        ------------------------------
+    
+        Timestamp: 2024-04-03T09:17:24.274Z
+        URL: /productos
+        HTTP Method: PUT
+        Request Body: {"nombre":"Producto Test editao","descripcion":"Esta es una descripción detallada del producto.","picture":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA...","existencias":10}
+        Response Body: {"message":"No encontrado: El endpoint no existe"}
+        ------------------------------
+    
+        Timestamp: 2024-04-03T09:18:17.261Z
+        URL: /productos/1
+        HTTP Method: PUT
+        Request Body: {"nombre":"Producto Test editao","descripcion":"Esta es una descripción detallada del producto.","picture":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA...","existencias":10}
+        Response Body: {"success":true,"message":"Producto actualizado con éxito","productId":"1"}
+        ------------------------------
+    
+        Timestamp: 2024-04-03T09:18:24.918Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {"nombre":"Producto Test editao","descripcion":"Esta es una descripción detallada del producto.","picture":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA...","existencias":10}
+        Response Body: [{"id":1,"nombre":"Producto Test editao","descripcion":"Esta es una descripción detallada del producto.","picture":{"type":"Buffer","data":[100,97,116,97,58,105,109,97,103,101,47,112,110,103,59,98,97,115,101,54,52,44,105,86,66,79,82,119,48,75,71,103,111,65,65,65,65,78,83,85,104,69,85,103,65,65,65,65,85,65,46,46,46]},"existencias":10}]
+        ------------------------------
+    

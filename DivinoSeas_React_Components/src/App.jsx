@@ -14,8 +14,12 @@ const App = () => {
         <ProductCard imageSrc={place} title="Place Holder 1" price="100" />
         <ProductCard imageSrc={place} title="Place Holder 2" price="100" />
         <ProductCard imageSrc={place} title="Place Holder 3" price="100" />
-        <ProductCard imageSrc={place} title="Place Holder 3" price="100" />
-        <ProductCard imageSrc={place} title="Place Holder 3" price="100" />
+        <ProductCard imageSrc={place} title="Place Holder 4" price="100" />
+        <ProductCard imageSrc={place} title="Place Holder 5" price="100" />
+        <ProductCard imageSrc={place} title="Place Holder 6" price="100" />
+        <ProductCard imageSrc={place} title="Place Holder 7" price="100" />
+        <ProductCard imageSrc={place} title="Place Holder 8" price="100" />
+        <ProductCard imageSrc={place} title="Place Holder 9" price="100" />
 
       </div>
       

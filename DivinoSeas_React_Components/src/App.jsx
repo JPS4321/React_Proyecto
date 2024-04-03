@@ -3,6 +3,7 @@ import Navbar from './Components/NavBar/Navbar'
 import Marquee from './Components/Marquee/Marquee'
 import ProductCard from './Components/ProductCard/ProductCard'
 import HeroSection0 from './Components/HeroSections/HeroSection0/HeroSection0'
+import Footer from './Components/Footer/Footer'
 import place from './assets/placeholder0.png'
 import bg from './assets/bg-placeholder0.jpg'
 
@@ -10,8 +11,10 @@ const App = () => {
   return (
     
     <div className='container'>
-      <Marquee text='Welcome to DivinoSeas'/>
+      <Marquee text='Welcome to Divino Seas'/>y
+      <div className='subheader'>
       <Navbar/>
+      </div>
       <HeroSection0 backgroundImage={bg} buttonText="Shop Now"/>
 
       <div className='grid-container'>
@@ -24,12 +27,10 @@ const App = () => {
         <ProductCard imageSrc={place} title="Place Holder 7" price="100" />
         <ProductCard imageSrc={place} title="Place Holder 8" price="100" />
         <ProductCard imageSrc={place} title="Place Holder 9" price="100" />
-
       </div>
-      
 
+      <Footer/>
     </div>
-    
   )
 }
 

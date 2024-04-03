@@ -3,7 +3,9 @@ import React from 'react';
 const HeroSection0 = ({ backgroundImage, buttonText }) => {
   return (
     <div style={{ 
-      backgroundImage: `url(${backgroundImage})`, 
+      backgroundImage: `url(${backgroundImage})`,
+      maxWidth: '100%',
+      overflow: 'hidden',
       backgroundSize: 'cover', 
       backgroundPosition: 'center', 
       height: '400px', 

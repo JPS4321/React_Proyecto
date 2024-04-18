@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProductPage from './pages/Productpage';
 
 
-
 const App = () => {
   return (
     <Router>

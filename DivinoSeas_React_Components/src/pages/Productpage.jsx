@@ -12,12 +12,10 @@ function ProductPage() {
             </div>
             <div className='content'>
                 <div className='left-column'>
-                    {/* Aquí irían tus imágenes */}
                     <img src= {image} alt='Product Image 1' />
                     <img src='AnadeBreatanaBlueAtoll_Bottom01.png' alt='Product Image 2' />
                 </div>
                 <div className='right-column'>
-                    {/* Aquí iría tu texto */}
                     <p>Here is some text that can be styled and placed as needed.</p>
                 </div>
             </div>

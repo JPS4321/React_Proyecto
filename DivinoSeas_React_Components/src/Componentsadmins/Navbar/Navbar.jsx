@@ -9,7 +9,6 @@ const Navbar = () => {
 
   return (
     <div className='navbar'>
-        <img src={logo} alt="DivinoSeas Logo" className='logo'/>
         <ul>
             <li>Inicio</li>
             <li>Inventario</li>

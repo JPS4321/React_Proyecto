@@ -1,10 +1,14 @@
 import React from 'react';
+import Navbar from '../Components/NavBar/Navbar';
+import Marquee from '../Components/Marquee/Marquee'
 
 function AboutUs() {
     return (
-        <div>
-            <h1>About Us</h1>
-            <p>Welcome to our website!</p>
+        <div className='container'>
+      <Marquee text='Welcome to Divino Seas'/>
+      <div className='subheader'>
+      <Navbar/>
+      </div>
         </div>
     );
 }

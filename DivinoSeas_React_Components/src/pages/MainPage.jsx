@@ -10,7 +10,7 @@ import bg from '../assets/bg-placeholder0.jpg'
 const Home = () => {
     return (
         <div className='container'>
-      <Marquee text='Welcome to Divino Seas'/>y
+      <Marquee text='Welcome to Divino Seas'/>
       <div className='subheader'>
       <Navbar/>
       </div>

@@ -1,0 +1,2 @@
+Ejecutar el siguiente comando en la carpeta DivinoSeas_React_Components
+npm install react-router-dom

@@ -1,7 +1,6 @@
 import React from 'react';
 import Navbar from '../Components/NavBar/Navbar';
 import Marquee from '../Components/Marquee/Marquee';
-import './pages css/Collections.css';
 
 
 function Collections() {

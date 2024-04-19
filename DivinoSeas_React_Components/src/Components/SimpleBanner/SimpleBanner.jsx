@@ -4,7 +4,7 @@ const SimpleBanner = ({ backgroundImage, }) => {
   return (
     <div style={{ 
       backgroundImage: `url(${backgroundImage})`,
-      maxWidth: '100%',
+      width: 'calc(100% - 10px)', // 20px space on each side
       overflow: 'hidden',
       backgroundSize: 'contain', 
       backgroundRepeat: 'no-repeat', 

@@ -1,0 +1,45 @@
+.HeroSectionContainer {
+    display: grid;
+    padding: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 20px;
+}
+
+.HeroSectionItem {
+    position: relative;
+    overflow: hidden;
+}
+
+.HeroImage {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.BlackBox {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+.WhiteBox {
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+.BoxContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    text-align: center;
+}
+
+.WhiteText {
+    color: #FFFFFF;
+}
+
+.BlackText {
+    color: #000000;
+}

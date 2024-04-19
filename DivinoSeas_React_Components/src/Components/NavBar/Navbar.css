@@ -5,7 +5,11 @@
     justify-content: space-between;
     background: white;
     padding: 7px 7%;
-    position: fixed;
+    position: relative;
+    z-index: 5; 
+    margin-bottom: 20px; 
+
+
 }
 .logo{
     width: 140px;
@@ -48,3 +52,29 @@ ul li{
     width: 20px;
     cursor: pointer;
 }
+
+.navbar ul li {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+   
+  }
+  
+  .navbar ul li::after {
+    content: '';
+    display: block;
+    margin-top: 5px;
+    width: 0;
+    height: 2px;
+    background: black;
+    transition: width 0.2s ease-in-out;
+  }
+  
+  .navbar ul li:hover::after {
+    width: 100%;
+  }
+  .navbar ul li a {
+    text-decoration: none;
+    color: inherit;
+  }
+  

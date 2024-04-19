@@ -8,7 +8,7 @@ import ex_1 from '../assets/exchange_1.png';
 import ex_2 from '../assets/exchange_2.png';
 import ex_3 from '../assets/exchange_3.png';
 import ex_4 from '../assets/exchange_4.png';
-import './pages_css/AboutUs.css'
+import './pages_css/AboutUs.css';
 import Footer from '../Components/Footer/Footer'
 
 

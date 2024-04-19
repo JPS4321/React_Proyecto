@@ -6,6 +6,7 @@ import HeroSection0 from '../Components/HeroSections/HeroSection0/HeroSection0'
 import Footer from '../Components/Footer/Footer'
 import place from '../assets/placeholder0.png'
 import bg from '../assets/bg-placeholder0.jpg'
+import HeroSection1 from '../Components/HeroSections/HeroSection0/HeroSection1';
 
 const Home = () => {
     return (
@@ -16,6 +17,7 @@ const Home = () => {
       <Navbar/>
       </div>
       <HeroSection0 backgroundImage={bg} buttonText="Shop Now"/>
+      <HeroSection1></HeroSection1>
 
       <div className='grid-container'>
         <ProductCard imageSrc={place} title="Place Holder 1" price="100" />

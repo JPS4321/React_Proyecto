@@ -3,6 +3,7 @@ import Navbar from '../Components/NavBar/Navbar';
 import Marquee from '../Components/Marquee/Marquee';
 import image from '../assets/bottom01.png';
 import Footer from '../Components/Footer/Footer';
+import './pages_css/ProductPage.css';
 
 function ProductPage() {
     const [amount, setAmount] = useState(1);

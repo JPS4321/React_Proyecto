@@ -9,6 +9,9 @@ function AboutUs() {
       <div className='subheader'>
       <Navbar/>
       </div>
+      <div className='content'>
+        
+        </div>
         </div>
     );
 }

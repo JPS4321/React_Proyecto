@@ -10,8 +10,9 @@ import bg from '../assets/bg-placeholder0.jpg'
 const Home = () => {
     return (
         <div className='container'>
-      <Marquee text='Welcome to Divino Seas'/>
+      
       <div className='subheader'>
+      <Marquee text='Welcome to Divino Seas'/>
       <Navbar/>
       </div>
       <HeroSection0 backgroundImage={bg} buttonText="Shop Now"/>

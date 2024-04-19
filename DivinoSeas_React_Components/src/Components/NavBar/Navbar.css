@@ -5,7 +5,11 @@
     justify-content: space-between;
     background: white;
     padding: 7px 7%;
-    position: fixed;
+    position: relative;
+    z-index: 5; 
+    margin-bottom: 20px; 
+
+
 }
 .logo{
     width: 140px;

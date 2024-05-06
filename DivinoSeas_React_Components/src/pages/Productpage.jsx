@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from '../Components/NavBar/Navbar';
 import Marquee from '../Components/Marquee/Marquee';
 import image from '../assets/bottom01.png';
+import image2 from '../assets/bottom02.png';
 import Footer from '../Components/Footer/Footer';
 import './pages_css/ProductPage.css';
 
@@ -31,7 +32,7 @@ function ProductPage() {
             <div className='ProductPageContent'>
                 <div className='left-column'>
                     <img src={image} alt='Product Image 1' />
-                    <img src={image} alt='Product Image 2' />
+                    <img src={image2} alt='Product Image 2' />
                 </div>
                 <div className='right-column'>
                     <h1 className='Title'>Product Title</h1>

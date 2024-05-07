@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
-import "./Navbar.css"
-import logo from "../../assets/Logo.png"
-import search_Icon from "../../assets/search-b.png"
+import React, {useState} from 'react';
+import "./Navbar.css";
+import logo from '../../../assets/Logo.png';
+import search_Icon from '../../../assets/search-b.png';
 
 
 const Navbar = () => {

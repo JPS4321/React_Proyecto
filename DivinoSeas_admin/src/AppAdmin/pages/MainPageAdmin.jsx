@@ -1,15 +1,16 @@
 import React from 'react';
-import Navbar from '../Componentsadmin/Navbar/Navbar'
-import Statbar from '../Componentsadmin/Statbar/Statbar'
+import Navbar from '../Componentsadmins/Navbar/Navbar';
+import Statbar from '../Componentsadmins/Statbar/Statbar';
+
 
 
 const Home = () => {
     return (
     <div className='container'>
       <div>
-        <Navbar/>
+        <Navbar />
       </div>
-        <Statbar/>
+        <Statbar />
     </div>
     );
 }

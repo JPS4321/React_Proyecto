@@ -11,7 +11,7 @@ const Navbar = () => {
     const [val, setVal] = useState('Search');
 
   return (
-    <div className='navbar'>
+    <div className='navbar2'>
         <img src={logo} alt="DivinoSeas Logo" className='logo'/>
         <ul>
         <li><Link to="/">Home</Link></li>

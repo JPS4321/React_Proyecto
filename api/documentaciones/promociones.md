@@ -34,7 +34,7 @@ Endpoints
             "fechaFin": "2024-09-15"
           }
         ]
-        ```
+    ```
 
 ### Obtener una promoción por ID
 
@@ -54,7 +54,7 @@ Endpoints
           "fechaInicio": "2024-06-01",
           "fechaFin": "2024-08-31"
         }
-        ```
+    ```
 
     -   404 Not Found: Promoción no encontrada.
 
@@ -62,7 +62,7 @@ Endpoints
         {
           "error": "Promoción no encontrada"
         }
-        ```
+    ```
 
 ### Crear una nueva promoción
 
@@ -82,7 +82,7 @@ Endpoints
           "message": "Promoción creada con éxito",
           "id_promocion": "ID de la nueva promoción"
         }
-        ```
+    ```
 
     -   500 Internal Server Error: Error al crear la promoción.
 
@@ -90,7 +90,7 @@ Endpoints
         {
           "error": "Descripción del error"
         }
-        ```
+    ```
 
 ### Actualizar una promoción existente
 
@@ -111,7 +111,7 @@ Endpoints
         {
           "message": "Promoción actualizada con éxito"
         }
-        ```
+    ```
 
     -   404 Not Found: Promoción no encontrada para actualizar.
 
@@ -119,7 +119,7 @@ Endpoints
         {
           "error": "Promoción no encontrada para actualizar"
         }
-        ```
+    ```
 
 ### Eliminar una promoción
 

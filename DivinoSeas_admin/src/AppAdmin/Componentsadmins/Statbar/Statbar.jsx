@@ -1,6 +1,7 @@
-import "./Statbar.css"
-import React, {useState} from 'react'
-import search_Icon from "../../assets/filtro.png"
+import "./Statbar.css"; 
+import React, { useState } from 'react';
+import filtroS from '../../../assets/filtro.png'; 
+
 
 
 const Statbar = () => {
@@ -17,7 +18,7 @@ const Statbar = () => {
         </div>
         
         <div>
-            <img src= {search_Icon} alt="" className='filtro'/>
+            <img src= {filtroS} alt="" className='filtro'/>
         </div>
         <div className="statbar">
             <ul>

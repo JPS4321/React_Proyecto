@@ -1,0 +1,18 @@
+/* MainPageAdmin.css */
+
+/* Establecer el color de fondo para mantenerse */
+body {
+    background-color: #000000; 
+  }
+  
+  .MainPageAdmin {
+    width: 100vw; 
+    height: 100vh; 
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .MainPageAdmin {
+    flex: 1;
+  }
+  

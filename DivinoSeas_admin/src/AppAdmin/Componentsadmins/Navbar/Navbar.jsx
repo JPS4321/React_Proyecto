@@ -8,7 +8,7 @@ const Navbar = () => {
     const [val, setVal] = useState('Search');
 
   return (
-    <div className='navbar'>
+    <div className='navbar2'>
         <ul>
             <li>Inicio</li>
             <li>Inventario</li>

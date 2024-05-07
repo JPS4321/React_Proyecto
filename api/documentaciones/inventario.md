@@ -15,7 +15,7 @@ Esta API proporciona una interfaz para gestionar el inventario de bikinis, permi
 
   - 200 OK: Solicitud exitosa.
 
-  ````json
+  ```json
       [
         {
           "id_inventario": 1,
@@ -30,7 +30,7 @@ Esta API proporciona una interfaz para gestionar el inventario de bikinis, permi
           "nombre_producto": "Bikini Clásico"
         }
       ]
-      ```
+    ```
 
 ### Obtener un inventario por ID
 

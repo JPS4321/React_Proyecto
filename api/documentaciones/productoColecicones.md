@@ -25,7 +25,7 @@ Esta API permite la gestión de la relación entre productos y colecciones, faci
         "id_producto": 2,
         "id_coleccion": 15
       }
-    ]```
+    ]
     ````
 
 ### Obtener una relación Producto-Colección por ID
@@ -45,7 +45,8 @@ Esta API permite la gestión de la relación entre productos y colecciones, faci
     {
         "id_producto": 1,
         "id_coleccion": 10
-    }```
+    }
+    ```
 
 ### Crear una nueva relación Producto-Colección
 
@@ -65,7 +66,8 @@ Esta API permite la gestión de la relación entre productos y colecciones, faci
         "message": "Relación Producto-Coleccion creada con éxito",
         "id_producto": "ID del producto",
         "id_coleccion": "ID de la colección"
-    }```
+    }
+    ```
 
   - 500 Internal Server Error: Error al crear la relación.
 
@@ -74,7 +76,8 @@ Esta API permite la gestión de la relación entre productos y colecciones, faci
         "success": false,
         "message": "Error al crear la relación",
         "error": "Descripción del error"
-    }```
+    }
+    ```
 
 ### Eliminar una relación Producto-Colección
 

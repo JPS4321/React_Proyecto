@@ -15,8 +15,8 @@ Esta API permite la gestión de la relación entre productos y colecciones, faci
 
   - 200 OK: Solicitud exitosa.
 
-    ````json
-    `[
+    ```json
+    [
       {
         "id_producto": 1,
         "id_coleccion": 10
@@ -26,7 +26,7 @@ Esta API permite la gestión de la relación entre productos y colecciones, faci
         "id_coleccion": 15
       }
     ]
-    ````
+    ```
 
 ### Obtener una relación Producto-Colección por ID
 

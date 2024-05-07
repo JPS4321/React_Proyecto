@@ -7,6 +7,9 @@ import colorRouter from "./routes/colorRoute.js";
 import productColorRouter from "./routes/productColorRoute.js";
 import collectionRouter from "./routes/collectionRoute.js";
 import clientRouter from "./routes/clientRoute.js";
+import productCollectionRouter from "./routes/productCollectionRoute.js";
+import inventoryRouter from "./routes/inventoryRoute.js";
+import promotionRouter from "./routes/promotionRoute.js";
 
 const app = express();
 const port = 3000;
@@ -26,6 +29,12 @@ app.use("/productos", productColorRouter);
 app.use("/colecciones", collectionRouter);
 
 app.use("/clientes", clientRouter);
+
+app.use("/producto-colecciones", productCollectionRouter);
+
+app.use("/inventarios", inventoryRouter);
+
+app.use("/promociones", promotionRouter);
 
 app.get("/", (req, res) => {
   res.send("API de Productos Bikini");

@@ -5,7 +5,7 @@ import './pages_css/Contact.css';
 
 function Contact() {
     return (
-        <div className='page-container'>
+        <div className='container'>
             <Marquee text='Welcome to Divino Seas'/>
             <div className='navigation-bar'>
                 <Navbar/>

@@ -12,7 +12,9 @@ const Home = () => {
         <div>
           <Navbar />
         </div>
+        <div>
           <Statbar />
+        </div>
       </div>
     );
 }

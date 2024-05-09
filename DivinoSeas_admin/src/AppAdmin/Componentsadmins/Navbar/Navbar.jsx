@@ -15,7 +15,7 @@ const Navbar = () => {
             <li>Ventas</li>
             <li>Ajustes</li>
         </ul>
-        <div>
+        <div className='logo-container'>
             <img src={logo} alt="DivinoSeas Logo" className='logo'/>
         </div>
         <div>

@@ -1,49 +1,46 @@
-.navbar{
-    width: 100%;
+.statbar{
+    max-width: 100% ;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #f6f4f1;
+    background: #000000;
     padding: 7px 7%;
 }
-.logo{
-    width: 140px;
+.statbar h4 {
+    color: white; 
+    transition: color 0.5s ease;
+    white-space: nowrap;
+    width: 100%; 
+}
+
+
+.statbar h4:hover {
+    color: #16d8e8; /* Cambia el color al hacer hover */
     cursor: pointer;
 }
-ul{
-    flex: 1;
-    list-style: none;
-    text-align: center;
-}
-ul li{
-    display: inline-block;
-    margin: 10px 20px;
-    font-size: 17px;
-    color: #847c74;
-    cursor: pointer;
-}
-.search-box{
+
+.search-box2{
     display: flex;
     align-items: center;
-    background: #f6f4f1;
+    background: #000000;
     padding: 2px 10px;
     border-radius: 90px;
-    outline: 2px solid #847c74;
-
+    outline: 2px solid #FFFFFF;
 }
-.search-box input{
+.search-box2 input{
     padding: 6px;
     background: transparent;
     border: 0;
     outline: 0;
-    color: #847c74;
+    color: #ffffff;
     font-size: 18px;
-    max-width: 200px ;
+    max-width: 150px ;
+    max-height: 10px ;
+
 }
-.search-box input::placeholder{
+.search-box2 input::placeholder{
     color: #847c74;
 }
-.search-box img{
+.search-box2 img{
     width: 20px;
-    cursor: pointer;
 }

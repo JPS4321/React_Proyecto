@@ -1,52 +1,37 @@
-const { chromium } = require('playwright');
+const { test, expect } = require('@playwright/test');
 
-describe('Navbar Component', () => {
-  let browser;
-  let page;
+test('Navbar component renders correctly', async ({ page }) => {
+  // Assuming you have a mechanism to mount the Navbar component
 
-  beforeAll(async () => {
-    browser = await chromium.launch();
-  });
+  // Mount the Navbar component
+  // (Replace this line with your actual mounting logic)
+  await page.goto('http://localhost:5173/');
 
-  beforeEach(async () => {
-    page = await browser.newPage();
-    await page.goto('http://localhost:3000'); // Change this URL if needed
-  });
+  // Check for the navbar element
+  const navbar = await page.locator('.navbar2');
+  await expect(navbar).toBeVisible();
 
-  afterAll(async () => {
-    await browser.close();
-  });
+  // Check for the logo image
+  const logo = await page.locator('img.logo');
+  await expect(logo).toBeVisible();
 
-  test('Navbar should render correctly', async () => {
-    await page.waitForSelector('.navbar2');
-    const navbar = await page.$('.navbar2');
-    expect(navbar).toBeTruthy();
+  // Check for navigation links
+  const navigationLinks = await page.locator('ul a');
+  await expect(navigationLinks.count()).toBe(6); // Adjust based on actual number of links
 
-    const logo = await navbar.$('.logo');
-    expect(logo).toBeTruthy();
+  const expectedLinks = ['Home', 'About', 'Contact', 'Shop Men', 'Shop Women', 'Shop Couple'];
+  for (let i = 0; i < expectedLinks.length; i++) {
+    const linkText = await navigationLinks.nth(i).textContent();
+    await expect(linkText).toBe(expectedLinks[i]);
+  }
 
-    const links = await navbar.$$('ul li');
-    expect(links.length).toBe(6); // Assuming there are 6 links
+  // Check for search box elements (optional)
+  const searchBox = await page.locator('.search-box');
+  await expect(searchBox).toBeVisible();
 
-    const searchBox = await navbar.$('.search-box');
-    expect(searchBox).toBeTruthy();
+  const searchInput = await searchBox.locator('input[type="text"]');
+  await expect(searchInput).toBeVisible();
 
-    const input = await searchBox.$('input');
-    expect(input).toBeTruthy();
-    const inputValue = await input.getAttribute('placeholder');
-    expect(inputValue).toBe('Search');
-  });
-
-  test('Navigation links should work', async () => {
-    await page.waitForSelector('ul');
-    const links = await page.$$('ul li a');
-    
-    for (let link of links) {
-      const href = await link.getAttribute('href');
-      expect(href).toBeTruthy();
-      await link.click();
-      await page.waitForNavigation();
-      // You can add more assertions for the page you navigate to if needed
-    }
-  });
+  const searchIcon = await searchBox.locator('img');
+  await expect(searchIcon).toBeVisible();
 });

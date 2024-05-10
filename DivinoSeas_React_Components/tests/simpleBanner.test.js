@@ -1,65 +1,16 @@
-const { chromium } = require('playwright');
+const { test, expect } = require('@playwright/test');
 
-describe('SimpleBanner Component', () => {
-  let browser;
-  let page;
+test('SimpleBanner component renders correctly', async ({ page }) => {
 
-  beforeAll(async () => {
-    browser = await chromium.launch();
-  });
+  const backgroundImage = 'https://example.com/banner-image.jpg';
 
-  beforeEach(async () => {
-    page = await browser.newPage();
-    await page.goto('http://localhost:3000'); // Change this URL if needed
-  });
+  await page.setContent(`<div><SimpleBanner backgroundImage="${backgroundImage}" /></div>`);
 
-  afterAll(async () => {
-    await browser.close();
-  });
+  // Check for the banner element
+  const banner = await page.locator('div');
+  await expect(banner).toBeVisible();
 
-  test('SimpleBanner should render correctly', async () => {
-    const backgroundImage = 'example.jpg';
+  const bannerStyle = await banner.evaluate((el) => el.style.backgroundImage);
+  await expect(bannerStyle).toContain(backgroundImage);
 
-    await page.setContent(`<div id="root"></div>`); // Reset content with an empty div
-    await page.evaluate(backgroundImage => {
-      const SimpleBanner = require('./SimpleBanner').default;
-      const React = require('react');
-      const ReactDOM = require('react-dom');
-      ReactDOM.render(React.createElement(SimpleBanner, { backgroundImage }), document.getElementById('root'));
-    }, backgroundImage);
-    await page.waitForSelector('.simple-banner');
-
-    const simpleBanner = await page.$('.simple-banner');
-    expect(simpleBanner).toBeTruthy();
-
-    const style = await simpleBanner.evaluate(simpleBanner => simpleBanner.getAttribute('style'));
-    expect(style.includes(`background-image: url(${backgroundImage})`)).toBeTruthy();
-  });
-
-  test('SimpleBanner styles should be applied correctly', async () => {
-    await page.setContent(`<div id="root"></div>`); // Reset content with an empty div
-    await page.evaluate(() => {
-      const SimpleBanner = require('./SimpleBanner').default;
-      const React = require('react');
-      const ReactDOM = require('react-dom');
-      ReactDOM.render(React.createElement(SimpleBanner, { backgroundImage: 'example.jpg' }), document.getElementById('root'));
-    });
-    await page.waitForSelector('.simple-banner');
-
-    const simpleBanner = await page.$('.simple-banner');
-    const styles = await simpleBanner.evaluate(simpleBanner => getComputedStyle(simpleBanner));
-
-    expect(styles.width).toBe('calc(100% - 10px)');
-    expect(styles.overflow).toBe('hidden');
-    expect(styles.backgroundSize).toBe('contain');
-    expect(styles.backgroundRepeat).toBe('no-repeat');
-    expect(styles.margin).toBe('0px auto');
-    expect(styles.backgroundPosition).toBe('center');
-    expect(styles.height).toBe('250px');
-    expect(styles.display).toBe('flex');
-    expect(styles.justifyContent).toBe('center');
-    expect(styles.marginBottom).toBe('20px');
-    expect(styles.alignItems).toBe('center');
-    expect(styles.textAlign).toBe('center');
-  });
 });

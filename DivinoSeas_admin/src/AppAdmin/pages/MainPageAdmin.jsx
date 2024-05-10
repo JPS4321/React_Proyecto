@@ -3,18 +3,16 @@ import "./MainPageAdmin.css";
 
 import Navbar from '../Componentsadmins/Navbar/Navbar';
 import Statbar from '../Componentsadmins/Statbar/Statbar';
+import Contenido from '../Componentsadmins/Contenido/Contenido';
 
 
 
 const Home = () => {
     return (
       <div className='MainPageAdmin'>
-        <div>
           <Navbar />
-        </div>
-        <div>
           <Statbar />
-        </div>
+          <Contenido />
       </div>
     );
 }

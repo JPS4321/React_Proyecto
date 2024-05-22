@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import styles from './FilterToggle.module.css'; // Asegúrate de que la importación es correcta
+import styles from './FilterToggle.module.css'; 
+import upArrow from '../../assets/uparrow.png'; 
+import downArrow from '../../assets/downarrow.png';
 
 const FilterToggle = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -10,9 +12,11 @@ const FilterToggle = () => {
 
     return (
         <div className={styles.container}>
+            <p>Filtros</p>
+
             <div className={`${styles.header} ${isOpen ? styles.expanded : ''}`} onClick={toggleVisibility}>
                 Disponibilidad
-                <span className={styles.arrow}>{isOpen ? '▲' : '▼'}</span>
+                <img src={isOpen ? upArrow : downArrow} alt="Arrow" className={styles.arrow} />
             </div>
             {isOpen && (
                 <div className={styles.content}>

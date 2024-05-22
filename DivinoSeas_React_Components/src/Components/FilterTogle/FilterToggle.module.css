@@ -1,9 +1,15 @@
-/* FilterToggle.module.css */
+
 .container {
     padding: 10px;
     border-radius: 5px;
-    box-shadow: none; /* Eliminamos cualquier sombra si existe */
-    border: none; /* Eliminamos bordes visibles */
+    box-shadow: none;
+    border: none;
+}
+
+.container p {
+    font-size: 30px;
+    margin-top: 5px;
+    margin-bottom: 30px;
 }
 
 .header {
@@ -13,24 +19,26 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 5px; /* Añade un pequeño margen si es necesario */
+    margin-bottom: 5px;
+    width: 100%;
 }
 
 .arrow {
-    display: inline-block;
-    font-size: 18px;
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
 }
 
 .content {
     margin-top: 10px;
-    padding-left: 0; /* Ajustamos el padding para alinear correctamente */
+    padding-left: 0;
 }
 
 label {
     display: flex;
     align-items: center;
-    margin: 10px 0; /* Aumentamos el espacio entre cada checkbox */
-    font-size: 16px; /* Asegúrate de que el tamaño de fuente es adecuado */
+    margin: 10px 0;
+    font-size: 16px;
     cursor: pointer;
     flex-grow: 1;
     line-height: 24px;
@@ -44,7 +52,7 @@ label {
 }
 
 input[type="checkbox"] {
-    margin-right: 10px;
+    margin-right: 20px;
     position: relative;
-    top: -2px; /* Ajusta la posición para alinear exactamente con el texto */
+    top: -2px;
 }

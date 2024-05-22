@@ -3,10 +3,10 @@ import Navbar from '../Components/NavBar/Navbar';
 import Marquee from '../Components/Marquee/Marquee';
 import ProductCard from '../Components/ProductCard/ProductCard';
 import FilterToggle from '../Components/FilterTogle/FilterToggle';
-import styles from './pages_css/Collections.module.css'; // Importa el archivo CSS
+import styles from './pages_css/Collections.module.css'; 
 
 function Collections() {
-    // Datos simulados de productos
+    
     const products = [
         { id: 1, imageSrc: 'path/to/image1.jpg', title: 'Product 1', price: '20.00' },
         { id: 2, imageSrc: 'path/to/image2.jpg', title: 'Product 2', price: '30.00' },
@@ -19,7 +19,7 @@ function Collections() {
         { id: 2, imageSrc: 'path/to/image2.jpg', title: 'Product 2', price: '30.00' },
         { id: 2, imageSrc: 'path/to/image2.jpg', title: 'Product 2', price: '30.00' },
 
-        // Más productos...
+        
     ];
 
     return (
@@ -31,7 +31,6 @@ function Collections() {
             <div className={styles.layout}>
                 <div className={styles.filters}>
                     {/* Contenido de filtros */}
-                    <p>Filtros</p>
                     <div>
                     <FilterToggle />
                     </div>

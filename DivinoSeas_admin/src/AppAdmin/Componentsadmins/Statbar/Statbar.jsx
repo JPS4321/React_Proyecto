@@ -1,6 +1,5 @@
 import "./Statbar.css"; 
 import React, { useState } from 'react';
-import filtroS from '../../../assets/filtro.png'; 
 import search_Icon from '../../../assets/search-b.png';
 
 

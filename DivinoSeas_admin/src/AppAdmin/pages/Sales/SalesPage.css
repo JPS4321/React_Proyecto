@@ -1,0 +1,16 @@
+/* MainPageAdmin.css */
+body {
+    background-color: #ffffff; 
+  }
+  
+  .SalesPage {
+    width: 100vw; 
+    height: 100vh; 
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .SalesPage {
+    flex: 1;
+  }
+  

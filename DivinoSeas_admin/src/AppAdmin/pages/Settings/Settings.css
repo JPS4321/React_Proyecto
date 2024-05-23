@@ -2,14 +2,14 @@ body {
     background-color: #ffffff; 
   }
   
-  .SalesPage {
+  .SettingsPage {
     width: 100vw; 
     height: 100vh; 
     display: flex;
     flex-direction: column;
   }
   
-  .SalesPage {
+  .SettingsPage {
     flex: 1;
   }
   

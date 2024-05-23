@@ -1,3 +1,14 @@
+/* FilterToggle.module.css */
+@font-face {
+    font-family: 'GodshineSans';
+    src: url('/fonts/GodshineSans.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.container, .header, .content, label {
+    font-family: 'GodshineSans', sans-serif;
+}
 
 .container {
     padding: 10px;
@@ -24,8 +35,8 @@
 }
 
 .arrow {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 15px;
     margin-left: 10px;
 }
 
@@ -48,7 +59,6 @@ label {
     box-sizing: border-box;
     list-style: none;
     color: rgb(0, 0, 0);
-    font-family: "Work Sans", sans-serif;
 }
 
 input[type="checkbox"] {

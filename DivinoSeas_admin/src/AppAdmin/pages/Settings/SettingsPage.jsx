@@ -1,14 +1,14 @@
 import React from 'react';
 import Navbar from '../../Componentsadmins/Navbar/Navbar';
-import Contenido from '../../Componentsadmins/Contenido/Contenido';
+import ContentHome from '../../Componentsadmins/ContentHome/ContentHome';
 import "./SettingsPage.css"; 
 
 const Settings = () => {
     return (
       <div className='SettingsPage'>
           <Navbar />
-          <Contenido />
+          <ContentHome />
       </div>
     );
 }
-export default Sales;
+export default Settings;

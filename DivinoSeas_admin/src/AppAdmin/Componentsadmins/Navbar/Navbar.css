@@ -48,8 +48,10 @@ ul li{
     color: #ffffff;
     cursor: pointer;
     white-space: nowrap;
-    transition: color 0.2s ease;
+    transition: transform 0.5s ease, color 0.2s ease;
 }
 ul li:hover {
     color: #16d8e8;
+    transform: scale(1.1);
+
   }

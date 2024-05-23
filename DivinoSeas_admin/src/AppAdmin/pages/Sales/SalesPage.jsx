@@ -1,13 +1,13 @@
 import React from 'react';
 import Navbar from '../../Componentsadmins/Navbar/Navbar';
-import Contenido from '../../Componentsadmins/Contenido/Contenido';
+import ContentHome from '../../Componentsadmins/ContentHome/ContentHome';
 import "./SalesPage.css"; 
 
 const Sales = () => {
     return (
       <div className='SalesPage'>
           <Navbar />
-          <Contenido />
+          <ContentHome />
       </div>
     );
 }

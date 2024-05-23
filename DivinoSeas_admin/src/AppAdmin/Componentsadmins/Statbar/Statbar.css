@@ -7,15 +7,17 @@
     padding: 7px 7%;
 }
 .statbar h4 {
-    color: white; 
-    transition: color 0.5s ease;
+    color: #ffffff; 
+    transition: transform 0.5s ease, color 0.5s ease;
     white-space: nowrap;
 }
 
 
 .statbar h4:hover {
-    color: #16d8e8; /* Cambia el color al hacer hover */
+    color: #16d8e8; 
     cursor: pointer;
+    transform: scale(1.1); 
+
 }
 
 .search-box2{

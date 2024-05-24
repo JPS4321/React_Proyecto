@@ -4,7 +4,14 @@
   align-items: center;
   justify-content: space-between;
   background: #000000;
-  padding: 7px 250px;
+  padding: 7px 50px;
+  flex-wrap: wrap;
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .statbar header h4,
@@ -12,7 +19,7 @@
   color: #ffffff;
   transition: transform 0.5s ease, color 0.5s ease;
   white-space: nowrap;
-  font-size: 14px;
+  font-size: 30px;
 }
 
 .statbar header h4:hover,
@@ -20,6 +27,12 @@
   color: #16d8e8;
   cursor: pointer;
   transform: scale(1.1);
+}
+
+.statbar main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .statbar main h1 {
@@ -53,4 +66,21 @@
 .search-box2 img {
   width: 20px;
   margin-left: 10px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .statbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .statbar main {
+    justify-content: flex-start;
+    margin: 10px 0;
+  }
+
+  .search-box2 {
+    align-self: flex-end;
+  }
 }

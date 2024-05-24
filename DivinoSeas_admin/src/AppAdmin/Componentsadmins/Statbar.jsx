@@ -7,18 +7,20 @@ const Statbar = () => {
 
   return (
     <nav className="statbar">
-      <header>
-        <h4>AGREGAR NUEVO ESTILO</h4>
-      </header>
-      <section className="search-box2">
-        <input type="text" placeholder={val} className="input" />
-        <img src={search_Icon} alt="Buscar" className="img" />
-      </section>
+      <div className="left-section">
+        <header>
+          <h4>+</h4>
+        </header>
+        <section>
+          <h4>REPORTE</h4>
+        </section>
+      </div>
       <main>
         <h1>INVENTARIO</h1>
       </main>
-      <section>
-        <h4>REPORTE DE ENTRADAS Y SALIDAS</h4>
+      <section className="search-box2">
+        <input type="text" placeholder={val} className="input" />
+        <img src={search_Icon} alt="Buscar" className="img" />
       </section>
     </nav>
   );

@@ -1,12 +1,13 @@
-import React from 'react';
+import "./SalesPage.css"
 import Navbar from '../../Componentsadmins/Navbar';
 import ContentHome from '../../Componentsadmins/ContentHome';
-import "./SalesPage.css"; 
+import Salesbar from "../../Componentsadmins/Salesbar" 
 
 const Sales = () => {
     return (
       <div className='SalesPage'>
           <Navbar />
+          <Salesbar />
           <ContentHome />
       </div>
     );

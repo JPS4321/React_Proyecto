@@ -80,7 +80,6 @@
   margin-left: 10px;
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
   .top-section {
     flex-direction: column;

@@ -7,6 +7,7 @@
     background: #000000;
     position: relative;
     border-bottom: 5px solid #ffffff;
+    z-index: 10;
 }
 
 .nav-section {
@@ -18,13 +19,11 @@
     flex: 1;
     gap: 50px;
     padding-left: 250px;
-    row-gap: 50px;
 }
 
 .nav-section.right {
     flex: 1;
     justify-content: flex-end;
-    row-gap: 50px;
     padding-right: 250px;
 }
 
@@ -76,17 +75,21 @@
         cursor: pointer;
         font-size: 24px;
         color: #ffffff;
+        z-index: 11;
     }
 
     .nav-items.active .nav-list {
         display: flex;
         flex-direction: column;
-        position: absolute;
-        top: 100%;
+        position: fixed;
+        top: 0;
         left: 0;
         width: 100%;
-        background: #000000;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9); 
         padding: 10px 0;
+        z-index: 20; 
+        overflow-y: auto; 
     }
 
     .nav-items.active .nav-list li {
@@ -96,10 +99,16 @@
 
     .logo-container {
         position: absolute;
-        top: 0px;
+        top: 10px;
         left: 50%;
-        margin-bottom: auto;
         transform: translateX(-50%);
+        z-index: 12; 
+    }
+
+    .nav-section.left,
+    .nav-section.right {
+        padding-left: 10px;
+        padding-right: 10px;
     }
 }
 

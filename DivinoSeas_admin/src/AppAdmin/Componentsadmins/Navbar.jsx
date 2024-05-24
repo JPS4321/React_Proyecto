@@ -3,7 +3,6 @@ import "../styles/Navbar.css";
 import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/logoadmin.png';
 
-
 const Navbar = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);

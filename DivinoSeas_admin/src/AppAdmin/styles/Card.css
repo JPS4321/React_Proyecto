@@ -5,9 +5,8 @@
   align-items: center;
   justify-content: space-between;
   color: white;
-  margin-bottom: 20px; 
+  margin-bottom: 16px; 
 }
-
 
 .product-info {
   display: flex;
@@ -76,11 +75,17 @@
   background-color: black;
 }
 
+.lineapues {
+  border-bottom: 1px solid #ffffff;
+  width: 80%;
+  margin: 16px auto; 
+}
+
 
 @media (max-width: 600px) {
   .product-item {
     padding: 8px 10px;
-    margin-bottom: 16px;
+    margin-bottom: 16px; 
     flex-wrap: wrap; 
   }
 
@@ -103,8 +108,8 @@
   }
 
   .product-sizes {
-    gap: 10px; 
-    position: static; 
+    gap: 10px;
+    position: static;
     transform: none; 
     justify-content: flex-start; 
   }
@@ -114,7 +119,7 @@
   }
 
   .add-button {
-    font-size: 18px; 
+    font-size: 18px;
     padding-top: 16px; 
   }
 }
@@ -141,8 +146,6 @@
 
   .product-sizes-container {
     padding-top: 20px;
-    position: absolute;
-    left: 50%;
   }
 
   .product-sizes {

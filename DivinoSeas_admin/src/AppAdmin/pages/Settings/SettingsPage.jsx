@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from '../../Componentsadmins/Navbar/Navbar';
-import ContentHome from '../../Componentsadmins/ContentHome/ContentHome';
+import Navbar from '../../Componentsadmins/Navbar';
+import ContentHome from '../../Componentsadmins/ContentHome';
 import "./SettingsPage.css"; 
 
 const Settings = () => {

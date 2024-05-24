@@ -1,8 +1,8 @@
 import React from 'react';
 import "./StockPage.css"; 
-import Navbar from '../../Componentsadmins/Navbar/Navbar';
-import Contenido from '../../Componentsadmins/Contenido/Contenido';
-import Statbar from '../../Componentsadmins/Statbar/Statbar';
+import Navbar from '../../Componentsadmins/Navbar';
+import Contenido from "../../Componentsadmins/Contenido"
+import Statbar from '../../Componentsadmins/Statbar';
 
 const Stock = () => {
     return (

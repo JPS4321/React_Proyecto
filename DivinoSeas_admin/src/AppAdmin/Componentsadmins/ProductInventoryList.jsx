@@ -20,7 +20,7 @@ function ProductItem({ imageSrc, title, sizes }) {
         </div>
         <button className="add-button">+</button>
       </div>
-      <div className="lineapues"></div> 
+      <div className="lineapuessfek"></div> 
     </>
   );
 }

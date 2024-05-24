@@ -18,6 +18,9 @@ const Statbar = () => {
           <img src={search_Icon} alt="Buscar" className="img" />
         </div>
       </div>
+      
+        <div className="lineapues"></div>
+      
     </nav>
   );
 };

@@ -7,6 +7,11 @@
   padding: 7px 50px;
 }
 
+.lineapues{
+  border-bottom: 1px solid #ffffff;
+  width: 80%;
+}
+
 .top-section {
   width: 100%;
   display: flex;

@@ -31,7 +31,7 @@
   background: none;
   border: none;
   color: #ffffff;
-  font-size: 30px;
+  font-size: 26px;
   cursor: pointer;
   margin-right: 10px;
   outline: none;
@@ -49,7 +49,7 @@
 }
 
 .inventory-title {
-  font-size: 30px;
+  font-size: 26px;
   color: #16d8e8;
   position: absolute;
   left: 50%;

@@ -1,0 +1,56 @@
+.statbar {
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #000000;
+  padding: 7px 250px;
+}
+
+.statbar header h4,
+.statbar section h4 {
+  color: #ffffff;
+  transition: transform 0.5s ease, color 0.5s ease;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.statbar header h4:hover,
+.statbar section h4:hover {
+  color: #16d8e8;
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.statbar main h1 {
+  font-size: 30px;
+  color: #16d8e8;
+}
+
+.search-box2 {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border: 1px solid #ffffff;
+  padding: 2px 10px;
+  border-radius: 90px;
+}
+
+.search-box2 input {
+  padding: 6px;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: #ffffff;
+  font-size: 14px;
+  max-width: 150px;
+}
+
+.search-box2 input::placeholder {
+  color: #847c74;
+}
+
+.search-box2 img {
+  width: 20px;
+  margin-left: 10px;
+}

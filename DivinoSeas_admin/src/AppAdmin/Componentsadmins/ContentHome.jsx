@@ -1,10 +1,11 @@
-import "../styles/Contenido.css";
+import "../styles/Contenthome.css";
+import OrdersList from "./Orderslist";
 
 const ContenidoHome = () => {
 
   return (
-    <div className="contenido">
-      
+    <div className="contenidos">
+       <OrdersList />
     </div>
   )
 }

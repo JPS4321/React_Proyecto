@@ -7,21 +7,17 @@ const Statbar = () => {
 
   return (
     <nav className="statbar">
-      <div className="left-section">
-        <header>
-          <h4>+</h4>
-        </header>
-        <section>
-          <h4>REPORTE</h4>
-        </section>
+      <div className="top-section">
+        <div className="left-section">
+          <button className="plus-button">+</button>
+          <button className="report-button">REPORTE</button>
+        </div>
+        <h1 className="inventory-title">INVENTARIO</h1>
+        <div className="search-box2">
+          <input type="text" placeholder={val} className="input" />
+          <img src={search_Icon} alt="Buscar" className="img" />
+        </div>
       </div>
-      <main>
-        <h1>INVENTARIO</h1>
-      </main>
-      <section className="search-box2">
-        <input type="text" placeholder={val} className="input" />
-        <img src={search_Icon} alt="Buscar" className="img" />
-      </section>
     </nav>
   );
 };

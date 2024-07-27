@@ -11,7 +11,7 @@ const Salesbar = () => {
         </div>
         <h1 className="ventas-title">VENTAS</h1>
         <div className="right-sections">
-          <button className="custom-report-button">REPORTE PERSONALIZADO</button>
+          <a href="" className="custom-report-button">REPORTE PERSONALIZADO</a>
         </div>
       </div>
       <div className="lineapues"></div>

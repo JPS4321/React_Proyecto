@@ -10,7 +10,9 @@ import clientRouter from "./routes/clientRoute.js";
 import productCollectionRouter from "./routes/productCollectionRoute.js";
 import inventoryRouter from "./routes/inventoryRoute.js";
 import promotionRouter from "./routes/promotionRoute.js";
-import shippingRouter from  "./routes/shippingRoute.js"
+import shippingRouter from  "./routes/shippingRoute.js";
+import paymentRouter from "./routes/paymentRoute.js"
+
 
 const app = express();
 const port = 3000;
@@ -38,6 +40,8 @@ app.use("/inventarios", inventoryRouter);
 app.use("/promociones", promotionRouter);
 
 app.use("/envios", shippingRouter);
+
+app.use("/pagos", paymentRouter);
 
 
 app.get("/", (req, res) => {

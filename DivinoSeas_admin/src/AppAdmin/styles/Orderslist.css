@@ -13,6 +13,7 @@
 }
 
 .order-id,
+.order-status,
 .order-name,
 .order-amount,
 .order-date {
@@ -23,6 +24,14 @@
 .order-id {
   text-align: left;
 }
+.order-status.pending {
+  color: rgb(243, 76, 76);
+}
+
+.order-status.delivered {
+  color: rgb(34, 180, 34);
+}
+
 
 .order-date {
   text-align: right;

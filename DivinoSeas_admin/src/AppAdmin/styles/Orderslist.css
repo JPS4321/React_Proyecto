@@ -24,7 +24,7 @@
 .order-id {
   text-align: left;
 }
-.order-status.pending {
+.order-status.canceled {
   color: rgb(243, 76, 76);
 }
 

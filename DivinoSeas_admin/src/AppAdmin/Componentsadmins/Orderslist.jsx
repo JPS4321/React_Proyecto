@@ -1,17 +1,17 @@
 import "../styles/Orderslist.css";
 
 const orders = [
-  { id: "#1320", status: "DELIVERED",name: "MARIA SOSA", amount: "Q. 1052", date: "13/03/24" },
-  { id: "#1320", status: "PENDING",name: "MARIA SOSA", amount: "Q. 1052", date: "13/03/24" },
-  { id: "#1320", status: "PENDING",name: "MARIA SOSA", amount: "Q. 1052", date: "13/03/24" },
-  { id: "#1320", status: "DELIVERED",name: "MARIA SOSA", amount: "Q. 1052", date: "13/03/24" },
+  { id: "#1320", status: "ENTREGADO",name: "MARIA SOSA", amount: "Q. 1052", date: "13/03/24" },
+  { id: "#1320", status: "PENDIENTE",name: "MARIA SOSA", amount: "Q. 1052", date: "13/03/24" },
+  { id: "#1320", status: "CANCELADO",name: "MARIA SOSA", amount: "Q. 1052", date: "13/03/24" },
+  { id: "#1320", status: "ENTREGADO",name: "MARIA SOSA", amount: "Q. 1052", date: "13/03/24" },
 ];
 const OrderStatus = ({ status }) => {
   const getStatusClass = (status) => {
-    if (status === 'DELIVERED') {
+    if (status === 'ENTREGADO') {
       return 'order-status delivered';
-    } else if (status === 'PENDING') {
-      return 'order-status pending';
+    } else if (status === 'CANCELADO') {
+      return 'order-status canceled';
     } else {
       return 'order-status';
     }

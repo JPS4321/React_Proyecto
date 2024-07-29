@@ -1,11 +1,13 @@
+import React from 'react';
 import "../styles/Orderslist.css";
 
 const orders = [
-  { id: "#1320", status: "ENTREGADO",name: "MARIA SOSA", amount: "Q. 1052", date: "13/03/24" },
-  { id: "#1320", status: "PENDIENTE",name: "MARIA SOSA", amount: "Q. 1052", date: "13/03/24" },
-  { id: "#1320", status: "CANCELADO",name: "MARIA SOSA", amount: "Q. 1052", date: "13/03/24" },
-  { id: "#1320", status: "ENTREGADO",name: "MARIA SOSA", amount: "Q. 1052", date: "13/03/24" },
+  { id: "#1320", status: "ENTREGADO", name: "MARIA SOSA", amount: "Q. 1052", date: "13/03/24" },
+  { id: "#1320", status: "PENDIENTE", name: "MARIA SOSA", amount: "Q. 1052", date: "13/03/24" },
+  { id: "#1320", status: "CANCELADO", name: "MARIA SOSA", amount: "Q. 1052", date: "13/03/24" },
+  { id: "#1320", status: "ENTREGADO", name: "MARIA SOSA", amount: "Q. 1052", date: "13/03/24" },
 ];
+
 const OrderStatus = ({ status }) => {
   const getStatusClass = (status) => {
     if (status === 'ENTREGADO') {
@@ -17,16 +19,17 @@ const OrderStatus = ({ status }) => {
     }
   };
 
-  return (
-    <div className={getStatusClass(status)}>
-      {status}
-    </div>
-  );
+  return <div className={getStatusClass(status)}>{status}</div>;
 };
-const OrdersList = () => {
+
+const OrdersList = ({ filter }) => {
+  const filteredOrders = orders.filter((order) =>
+    filter === 'TODO' ? true : order.status === filter
+  );
+
   return (
     <div className="orders-container">
-      {orders.map((order, index) => (
+      {filteredOrders.map((order, index) => (
         <div key={index} className="order-item">
           <div className="order-id">{order.id}</div>
           <div className="order-status">

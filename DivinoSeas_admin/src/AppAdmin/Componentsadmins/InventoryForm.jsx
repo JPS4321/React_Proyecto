@@ -59,9 +59,11 @@ const formStyles = {
     transform: 'translate(-50%, -50%)',
     backgroundColor: 'white',
     padding: '20px',
-    border: '1px solid #ccc',
+    border: '3px solid #000000',
     borderRadius: '5px',
     boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
+    zIndex: '1001',
+
   },
   form: {
     display: 'flex',
@@ -81,6 +83,7 @@ const formStyles = {
     border: '1px solid #ccc',
     borderRadius: '4px',
     textAlign: 'center',
+    color: 'black'
   },
   buttonContainer: {
     display: 'flex',

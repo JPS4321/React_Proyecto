@@ -1,5 +1,5 @@
 import React from 'react';
-import './pages_css/PaymentScreen.css'; // Assuming CSS is in a separate file
+import './pages_css/PaymentScreen.css';
 import PaymentHeader from '../Components/PaymentScreen/PaymentHeader';
 import ContactForm from '../Components/PaymentScreen/ContactForm';
 import ShippingForm from '../Components/PaymentScreen/ShippingForm';
@@ -12,12 +12,14 @@ const PaymentScreen = () => {
   return (
     <div className="payment-screen">
       <PaymentHeader />
-      <PaymentOptions />
-      <ContactForm />
-      <ShippingForm />
-      <OrderSummary />
-      <PromoCodeInput />
-      <SubmitButton />
+      <div className="payment-content">
+        <PaymentOptions />
+        <ContactForm />
+        <ShippingForm />
+        <OrderSummary />
+        <PromoCodeInput />
+        <SubmitButton />
+      </div>
     </div>
   );
 };

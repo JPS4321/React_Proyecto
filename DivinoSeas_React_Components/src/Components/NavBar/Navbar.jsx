@@ -18,8 +18,8 @@ const Navbar = () => {
         <li><Link to="/">Home</Link></li>
         <li><Link to="/about-us">About</Link></li>
         <li><Link to="/contact">Contact</Link></li>
-        <li><Link to="/collections">Shop Women</Link></li>
-        <li><Link to="/collections">Shop Couple</Link></li>
+        <li><Link to="/collections/women">Shop Women</Link></li>
+        <li><Link to="/collections/couple">Shop Couple</Link></li>
         </ul>
 
         <div className='search-box'>

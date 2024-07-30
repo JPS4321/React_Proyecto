@@ -20,7 +20,6 @@ function ProductPage() {
     };
 
     const addToCart = () => {
-        // Add logic to add item to cart
     };
 
     return (

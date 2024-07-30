@@ -10,7 +10,6 @@ const InventoryForm = ({ onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí puedes manejar el envío de datos, como enviarlos a una API o actualizar el estado
     console.log({ name, image, xs, s, m, l });
     onClose();
   };

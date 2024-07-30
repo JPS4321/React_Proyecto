@@ -1,15 +1,22 @@
 .orders-container {
   background-color: black;
   color: white;
-  padding: 20px 100px;  
+  padding: 20px 10px;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
-
+.order-header,
 .order-item {
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
   border-bottom: 1px solid #333;
+}
+
+.order-header {
+  font-weight: bold;
+  border-bottom: 2px solid #fff;
 }
 
 .order-id,
@@ -19,11 +26,13 @@
 .order-date {
   flex: 1;
   text-align: center;
+  padding: 0 5px;
 }
 
 .order-id {
   text-align: left;
 }
+
 .order-status.canceled {
   color: rgb(243, 76, 76);
 }
@@ -32,7 +41,23 @@
   color: rgb(34, 180, 34);
 }
 
-
 .order-date {
   text-align: right;
+}
+
+@media (max-width: 768px) {
+  .order-header,
+  .order-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .order-id,
+  .order-status,
+  .order-name,
+  .order-amount,
+  .order-date {
+    text-align: left;
+    padding: 5px 0;
+  }
 }

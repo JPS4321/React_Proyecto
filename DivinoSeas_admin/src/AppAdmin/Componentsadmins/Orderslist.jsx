@@ -29,6 +29,13 @@ const OrdersList = ({ filter }) => {
 
   return (
     <div className="orders-container">
+      <div className="order-header">
+        <div className="order-id">Order ID</div>
+        <div className="order-status">Status</div>
+        <div className="order-name">Client Name</div>
+        <div className="order-amount">$</div>
+        <div className="order-date">Date</div>
+      </div>
       {filteredOrders.map((order, index) => (
         <div key={index} className="order-item">
           <div className="order-id">{order.id}</div>

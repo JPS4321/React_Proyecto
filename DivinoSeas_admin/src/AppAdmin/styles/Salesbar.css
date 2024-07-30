@@ -1,95 +1,88 @@
 .salesbar {
-    max-width: 100%;
-    display: flex;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.top-sections {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1280px;
+  box-sizing: border-box;
+}
+
+.left-sections,
+.right-sections {
+  display: flex;
+  align-items: center;
+}
+
+.nav-buttons {
+  background: none;
+  border: none;
+  color: white;
+  margin: 0 10px;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.nav-buttons:hover {
+  color: #61dafb;
+}
+
+.ventas-title {
+  font-size: 24px;
+  margin: 0 20px;
+}
+
+.custom-report-button {
+  color: #61dafb;
+  text-decoration: none;
+  padding: 10px;
+  border: 1px solid #61dafb;
+  border-radius: 5px;
+}
+
+.custom-report-button:hover {
+  background-color: #61dafb;
+  color: #333;
+}
+
+.lineapues {
+  width: 100%;
+  height: 1px;
+  background-color: #555;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .top-sections {
     flex-direction: column;
     align-items: center;
-    background: #000000;
-    padding: 7px 50px;
   }
-  
-  .lineapues {
-    border-bottom: 1px solid #ffffff;
-    width: 100%;
-  }
-  
-  .top-sections {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    position: relative;
-    margin: 18px;
-  }
-  
-  .left-sections {
-    display: flex;
-    align-items: center;
-    padding-left: 250px;
-  }
-  
-  .nav-buttons {
-    background: none;
-    border: none;
-    color: #ffffff;
-    font-size: 16px;
-    margin-right: 10px;
-    cursor: pointer;
-    outline: none;
-    box-shadow: none;
-  }
-  
-  .nav-buttons:hover {
-    color: #16d8e8;
-    transform: scale(1.1);
-  }
-  
+
   .ventas-title {
-    font-size: 26px;
-    color: #16d8e8;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    margin: 10px 0;
   }
-  
+
+  .left-sections,
   .right-sections {
-    display: flex;
-    align-items: center;
-    padding-right: 250px;
+    margin: 5px 0;
   }
-  
+
+  .nav-buttons {
+    font-size: 14px;
+    padding: 5px;
+  }
+
   .custom-report-button {
-    background: none;
-    border: none;
-    color: #ffffff;
-    font-size: 16px;
-    cursor: pointer;
-    outline: none;
-    box-shadow: none;
+    padding: 5px;
+    font-size: 14px;
   }
-  
-  .custom-report-button:hover {
-    color: #16d8e8;
-  }
-  
-  @media (max-width: 768px) {
-    .top-sections {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .left-sections, .right-sections {
-      margin-bottom: 10px;
-    }
-  
-    .ventas-title {
-      margin-top: 10px;
-      position: static;
-      transform: none;
-    }
-  
-    .nav-buttons, .custom-report-buttons {
-      font-size: 14px;
-    }
-  }
-  
+}

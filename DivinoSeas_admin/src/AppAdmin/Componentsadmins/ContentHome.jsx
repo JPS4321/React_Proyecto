@@ -5,7 +5,7 @@ const ContenidoHome = () => {
 
   return (
     <div className="contenidos">
-       <OrdersList />
+       
     </div>
   )
 }

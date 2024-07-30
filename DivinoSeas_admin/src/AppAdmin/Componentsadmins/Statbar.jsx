@@ -1,12 +1,12 @@
-import "../styles/Statbar.css";
+// Statbar.js
 import React, { useState } from "react";
+import "../styles/Statbar.css";
 import search_Icon from "../../assets/search-b.png";
 import InventoryForm from './InventoryForm';
 
-
-const Statbar = () => {
-  const [val, setVal] = useState("Search");
+const Statbar = ({ onSearch }) => {
   const [showForm, setShowForm] = useState(false);
+
   const handleAddButtonClick = () => {
     setShowForm(true);
   };
@@ -14,6 +14,11 @@ const Statbar = () => {
   const handleFormClose = () => {
     setShowForm(false);
   };
+
+  const handleInputChange = (e) => {
+    onSearch(e.target.value);
+  };
+
   return (
     <div>
       <nav className="statbar">
@@ -24,13 +29,16 @@ const Statbar = () => {
           </div>
           <h1 className="inventory-title">INVENTARIO</h1>
           <div className="search-box2">
-            <input type="text" placeholder={val} className="input" />
+            <input
+              type="text"
+              onChange={handleInputChange}
+              placeholder="Search"
+              className="input"
+            />
             <img src={search_Icon} alt="Buscar" className="img" />
           </div>
         </div>
-        
-          <div className="lineapues"></div>
-        
+        <div className="lineapues"></div>
       </nav>
       {showForm && <InventoryForm onClose={handleFormClose} />}
     </div>

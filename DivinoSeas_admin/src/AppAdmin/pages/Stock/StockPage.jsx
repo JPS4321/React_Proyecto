@@ -8,7 +8,6 @@ const Stock = () => {
     return (
       <div className='StockPage'>
           <Navbar />
-          <Statbar />
           <Contenido />
 
       </div>

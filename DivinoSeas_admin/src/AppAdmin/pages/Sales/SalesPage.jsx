@@ -8,7 +8,6 @@ const Sales = () => {
       <div className='SalesPage'>
           <Navbar />
           <Salesbar />
-          <ContentHome />
       </div>
     );
 }

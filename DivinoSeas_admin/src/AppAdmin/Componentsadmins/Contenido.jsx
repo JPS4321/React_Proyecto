@@ -1,7 +1,11 @@
+import React, { useState } from "react";
 import "../styles/Contenido.css";
-import ProductItem from "./ProductInventoryList.jsx"
+import ProductItem from "./ProductInventoryList.jsx";
+import Statbar from "./Statbar";
 
 const Contenido = () => {
+  const [searchText, setSearchText] = useState("");
+
   const items = [
     {
       imageSrc: "https://placehold.co/150x150",
@@ -25,16 +29,27 @@ const Contenido = () => {
     },
   ];
 
+  const filteredItems = items.filter(item =>
+    item.title.toLowerCase().includes(searchText.toLowerCase())
+  );
+
   return (
-    <div className="container mx-auto p-4">
-      {items.map((item, index) => (
-        <ProductItem
-          key={index}
-          imageSrc={item.imageSrc}
-          title={item.title}
-          sizes={item.sizes}
-        />
-      ))}
+    <div>
+      <Statbar onSearch={setSearchText} />
+      <div className="container mx-auto p-4">
+        {filteredItems.length > 0 ? (
+          filteredItems.map((item, index) => (
+            <ProductItem
+              key={index}
+              imageSrc={item.imageSrc}
+              title={item.title}
+              sizes={item.sizes}
+            />
+          ))
+        ) : (
+          <h1 style={{ textAlign: 'center' }}>No se encontraron productos</h1>
+        )}
+      </div>
     </div>
   );
 };

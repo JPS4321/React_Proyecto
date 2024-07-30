@@ -1,12 +1,24 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Navbar from '../Components/NavBar/Navbar';
 import Marquee from '../Components/Marquee/Marquee';
+import Footer from '../Components/Footer/Footer';
 import image from '../assets/bottom01.png';
 import image2 from '../assets/bottom02.png';
-import Footer from '../Components/Footer/Footer';
 import './pages_css/ProductPage.css';
 
+const products = {
+    'product-1': { title: 'Product 1', price: '20.00', description: 'Description for Product 1' },
+    'product-2': { title: 'Product 2', price: '20.00', description: 'Description for Product 2' },
+    'product-3': { title: 'Product 3', price: '20.00', description: 'Description for Product 3' },
+    'product-4': { title: 'Product 4', price: '20.00', description: 'Description for Product 4' },
+};
+
 function ProductPage() {
+    const { productName } = useParams();
+    const productKey = productName.replace(/\s+/g, '-').toLowerCase();
+    const product = products[productKey];
+
     const [amount, setAmount] = useState(1);
 
     const increaseAmount = () => {
@@ -20,7 +32,6 @@ function ProductPage() {
     };
 
     const addToCart = () => {
-        // Add logic to add item to cart
     };
 
     return (
@@ -35,8 +46,8 @@ function ProductPage() {
                     <img src={image2} alt='Product Image 2' />
                 </div>
                 <div className='right-column'>
-                    <h1 className='Title'>Product Title</h1>
-                    <p className='Price'>Price</p>
+                    <h1 className='Title'>{product.title}</h1>
+                    <p className='Price'>${product.price}</p>
                     <p className='Size'>Size: size</p>
                     <div className='SizesButtonRow'>
                         <button className="sizeButton">XS</button>
@@ -53,16 +64,12 @@ function ProductPage() {
                         </div>
                         <button className="addToCartButton" onClick={addToCart}>Add to Cart</button>
                     </div>
-                    
-                    <p>Description</p>
+                    <p>{product.description}</p>
                     <hr />
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent elit augue, ullamcorper nec nunc a, bibendum pulvinar turpis. Vivamus interdum lectus non blandit tincidunt. In laoreet magna purus, varius viverra velit faucibus sed. Nullam suscipit tincidunt sem. Curabitur quis semper ex, eget ultrices quam. Proin sit amet nisl consectetur, porttitor ex quis, tempor elit. Suspendisse eleifend risus sed enim convallis finibus.</p>
                 </div>
-                
             </div>
-            <Footer></Footer>
+            <Footer />
         </div>
-        
     );
 }
 

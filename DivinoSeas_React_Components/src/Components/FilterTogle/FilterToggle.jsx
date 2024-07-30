@@ -16,25 +16,16 @@ const FilterToggle = () => {
 
             <div className={`${styles.header} ${isOpen ? styles.expanded : ''}`} onClick={toggleVisibility}>
                 Disponibilidad
-                <img src={isOpen ? upArrow : downArrow} alt="Arrow" className={styles.arrow} />
+                <img src={downArrow} alt="Arrow" className={`${styles.arrow} ${isOpen ? styles.expanded : ''}`} />
             </div>
-            {isOpen && (
-                <div className={styles.content}>
-                    <label>
-                        <input type="checkbox" /> En existencia
-                    </label>
-                    <label>
-                        <input type="checkbox" /> Agotado
-                    </label>
-                </div>
-            )}
-            
-
-
-
-
-
-
+            <div className={`${styles.content} ${isOpen ? styles.expanded : ''}`}>
+                <label>
+                    <input type="checkbox" /> En existencia
+                </label>
+                <label>
+                    <input type="checkbox" /> Agotado
+                </label>
+            </div>
         </div>
     );
 };

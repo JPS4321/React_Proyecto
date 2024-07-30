@@ -76,10 +76,6 @@
   max-width: 150px;
 }
 
-.search-box2 input::placeholder {
-  color: #847c74;
-}
-
 .search-box2 img {
   width: 20px;
   margin-left: 10px;

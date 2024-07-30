@@ -3,9 +3,9 @@ import "../styles/Orderslist.css";
 
 const orders = [
   { id: "#1320", status: "ENTREGADO", name: "MARIA SOSA", amount: "Q. 1052", date: "13/03/24" },
-  { id: "#1320", status: "PENDIENTE", name: "MARIA SOSA", amount: "Q. 1052", date: "13/03/24" },
-  { id: "#1320", status: "CANCELADO", name: "MARIA SOSA", amount: "Q. 1052", date: "13/03/24" },
-  { id: "#1320", status: "ENTREGADO", name: "MARIA SOSA", amount: "Q. 1052", date: "13/03/24" },
+  { id: "#1321", status: "PENDIENTE", name: "JUAN PEREZ", amount: "Q. 752", date: "14/03/24" },
+  { id: "#1322", status: "CANCELADO", name: "ANA LOPEZ", amount: "Q. 1252", date: "15/03/24" },
+  { id: "#1323", status: "ENTREGADO", name: "CARLOS DIAZ", amount: "Q. 1050", date: "16/03/24" },
 ];
 
 const OrderStatus = ({ status }) => {

@@ -1,15 +1,20 @@
 .orders-container {
   background-color: black;
   color: white;
-  padding: 20px 100px;  
+  padding: 20px 100px;
 }
 
-
+.order-header,
 .order-item {
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
   border-bottom: 1px solid #333;
+}
+
+.order-header {
+  font-weight: bold;
+  border-bottom: 2px solid #fff;
 }
 
 .order-id,
@@ -24,6 +29,7 @@
 .order-id {
   text-align: left;
 }
+
 .order-status.canceled {
   color: rgb(243, 76, 76);
 }
@@ -31,7 +37,6 @@
 .order-status.delivered {
   color: rgb(34, 180, 34);
 }
-
 
 .order-date {
   text-align: right;

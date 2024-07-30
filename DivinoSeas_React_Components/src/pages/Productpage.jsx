@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from '../Components/NavBar/Navbar';
 import Marquee from '../Components/Marquee/Marquee';
 import Footer from '../Components/Footer/Footer';
@@ -16,6 +16,7 @@ const products = {
 
 function ProductPage() {
     const { productName } = useParams();
+    const navigate = useNavigate(); // useNavigate hook to programmatically navigate
     const productKey = productName.replace(/\s+/g, '-').toLowerCase();
     const product = products[productKey];
 
@@ -32,6 +33,9 @@ function ProductPage() {
     };
 
     const addToCart = () => {
+        // Logic to add the product to the cart can be added here
+        // Navigate to the PaymentScreen route
+        navigate('/PaymentScreen');
     };
 
     return (

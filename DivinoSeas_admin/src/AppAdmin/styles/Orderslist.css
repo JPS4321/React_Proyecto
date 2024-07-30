@@ -1,9 +1,7 @@
 .orders-container {
   background-color: black;
   color: white;
-  padding: 20px 10px;
-  max-width: 100%;
-  box-sizing: border-box;
+  padding: 20px 100px;
 }
 
 .order-header,
@@ -26,7 +24,6 @@
 .order-date {
   flex: 1;
   text-align: center;
-  padding: 0 5px;
 }
 
 .order-id {
@@ -46,18 +43,46 @@
 }
 
 @media (max-width: 768px) {
-  .order-header,
+  .order-header {
+    display: none;
+  }
+
   .order-item {
     flex-direction: column;
     align-items: flex-start;
+    padding: 10px;
   }
 
-  .order-id,
-  .order-status,
-  .order-name,
-  .order-amount,
-  .order-date {
+  .order-id, .order-status, .order-name, .order-amount, .order-date {
     text-align: left;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
     padding: 5px 0;
+  }
+
+  .order-id::before {
+    content: "Order ID: ";
+    font-weight: bold;
+  }
+
+  .order-status::before {
+    content: "Status: ";
+    font-weight: bold;
+  }
+
+  .order-name::before {
+    content: "Client Name: ";
+    font-weight: bold;
+  }
+
+  .order-amount::before {
+    content: "Amount: ";
+    font-weight: bold;
+  }
+
+  .order-date::before {
+    content: "Date: ";
+    font-weight: bold;
   }
 }

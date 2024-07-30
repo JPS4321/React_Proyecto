@@ -57,7 +57,7 @@
     text-align: left;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: 5px 0;
   }
 
@@ -67,9 +67,10 @@
   }
 
   .order-status::before {
-    content: "Status: ";
     font-weight: bold;
   }
+
+
 
   .order-name::before {
     content: "Client Name: ";

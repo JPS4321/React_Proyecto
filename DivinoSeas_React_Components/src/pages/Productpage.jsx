@@ -16,11 +16,12 @@ const products = {
 
 function ProductPage() {
     const { productName } = useParams();
-    const navigate = useNavigate(); // useNavigate hook to programmatically navigate
+    const navigate = useNavigate();
     const productKey = productName.replace(/\s+/g, '-').toLowerCase();
     const product = products[productKey];
 
     const [amount, setAmount] = useState(1);
+    const [selectedSize, setSelectedSize] = useState('M'); // Tamaño por defecto 'M'
 
     const increaseAmount = () => {
         setAmount(amount + 1);
@@ -32,11 +33,18 @@ function ProductPage() {
         }
     };
 
+    const handleSizeClick = (size) => {
+        setSelectedSize(size);
+    };
+
     const addToCart = () => {
-        // Logic to add the product to the cart can be added here
-        // Navigate to the PaymentScreen route
+        // Lógica para añadir el producto al carrito
         navigate('/PaymentScreen');
     };
+
+    if (!product) {
+        return <div>Product not found</div>;
+    }
 
     return (
         <div className='ProductPageContainer'>
@@ -52,12 +60,28 @@ function ProductPage() {
                 <div className='right-column'>
                     <h1 className='Title'>{product.title}</h1>
                     <p className='Price'>${product.price}</p>
-                    <p className='Size'>Size: size</p>
+                    <p className='Size'>Size: {selectedSize}</p>
                     <div className='SizesButtonRow'>
-                        <button className="sizeButton">XS</button>
-                        <button className="sizeButton">S</button>
-                        <button className="sizeButton selected">M</button>
-                        <button className="sizeButton">L</button>
+                        <button 
+                            className={`sizeButton ${selectedSize === 'XS' ? 'selected' : ''}`} 
+                            onClick={() => handleSizeClick('XS')}>
+                            XS
+                        </button>
+                        <button 
+                            className={`sizeButton ${selectedSize === 'S' ? 'selected' : ''}`} 
+                            onClick={() => handleSizeClick('S')}>
+                            S
+                        </button>
+                        <button 
+                            className={`sizeButton ${selectedSize === 'M' ? 'selected' : ''}`} 
+                            onClick={() => handleSizeClick('M')}>
+                            M
+                        </button>
+                        <button 
+                            className={`sizeButton ${selectedSize === 'L' ? 'selected' : ''}`} 
+                            onClick={() => handleSizeClick('L')}>
+                            L
+                        </button>
                     </div>
                     <div className="CounterContainer">
                         <p className="CounterLabel">Amount:</p>

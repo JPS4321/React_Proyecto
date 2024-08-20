@@ -76,3 +76,101 @@
         Response Body: [{"id":1,"nombre":"Producto Test editao","descripcion":"Esta es una descripción detallada del producto.","picture":{"type":"Buffer","data":[100,97,116,97,58,105,109,97,103,101,47,112,110,103,59,98,97,115,101,54,52,44,105,86,66,79,82,119,48,75,71,103,111,65,65,65,65,78,83,85,104,69,85,103,65,65,65,65,85,65,46,46,46]},"existencias":10}]
         ------------------------------
     
+        Timestamp: 2024-08-20T01:07:45.383Z
+        URL: /categorias
+        HTTP Method: POST
+        Request Body: {"nombre":"Swimwear","descripcion":"Bikini collections"}
+        Response Body: {"message":"Categoría creada con éxito","id_categoria":21}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T01:07:45.441Z
+        URL: /categorias
+        HTTP Method: POST
+        Request Body: {"nombre":"Swimwear","descripcion":"Bikini collections"}
+        Response Body: {"message":"Categoría creada con éxito","id_categoria":22}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T01:07:45.461Z
+        URL: /productos
+        HTTP Method: POST
+        Request Body: {"nombre":"Tropical Bikini","descripcion":"A vibrant tropical bikini set","precio":59.99,"id_categoria":22}
+        Response Body: {"error":"Faltan o son inválidos el nombre, la descripción o las existencias."}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T01:07:45.509Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_producto":1,"nombre":"Tropical Bikini","descripcion":"A vibrant tropical bikini set","precio":"59.99","id_categoria":20}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T01:11:45.113Z
+        URL: /categorias
+        HTTP Method: POST
+        Request Body: {"nombre":"Swimwear","descripcion":"Bikini collections"}
+        Response Body: {"message":"Categoría creada con éxito","id_categoria":23}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T01:11:45.168Z
+        URL: /categorias
+        HTTP Method: POST
+        Request Body: {"nombre":"Swimwear","descripcion":"Bikini collections"}
+        Response Body: {"message":"Categoría creada con éxito","id_categoria":24}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T01:11:45.192Z
+        URL: /productos
+        HTTP Method: POST
+        Request Body: {"nombre":"Tropical Bikini","descripcion":"A vibrant tropical bikini set","precio":59.99,"id_categoria":24}
+        Response Body: {"error":"Faltan o son inválidos el nombre, la descripción o las existencias."}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T01:11:45.230Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_producto":1,"nombre":"Tropical Bikini","descripcion":"A vibrant tropical bikini set","precio":"59.99","id_categoria":20}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T01:11:45.862Z
+        URL: /categorias
+        HTTP Method: POST
+        Request Body: {"nombre":"Swimwear","descripcion":"Bikini collections"}
+        Response Body: {"message":"Categoría creada con éxito","id_categoria":25}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T01:11:45.888Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_categoria":25,"nombre":"Swimwear","descripcion":"Bikini collections"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T01:11:45.923Z
+        URL: /categorias
+        HTTP Method: POST
+        Request Body: {"nombre":"Underwear","descripcion":"Underwear collections"}
+        Response Body: {"message":"Categoría creada con éxito","id_categoria":26}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T01:11:45.950Z
+        URL: /categorias/26
+        HTTP Method: PUT
+        Request Body: {"nombre":"Lingerie","descripcion":"Lingerie collections"}
+        Response Body: {"message":"Categoría actualizada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T01:11:45.979Z
+        URL: /categorias
+        HTTP Method: POST
+        Request Body: {"nombre":"Activewear","descripcion":"Activewear collections"}
+        Response Body: {"message":"Categoría creada con éxito","id_categoria":27}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T01:11:46.001Z
+        URL: /categorias/27
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: {"message":"Categoría eliminada con éxito"}
+        ------------------------------
+    

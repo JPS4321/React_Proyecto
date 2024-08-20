@@ -3,11 +3,24 @@ import styles from './FilterToggle.module.css';
 import upArrow from '../../assets/uparrow.png'; 
 import downArrow from '../../assets/downarrow.png';
 
-const FilterToggle = () => {
+const FilterToggle = ({ onAvailabilityChange }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [inStock, setInStock] = useState(false);
+    const [outOfStock, setOutOfStock] = useState(false);
 
     const toggleVisibility = () => {
         setIsOpen(!isOpen);
+    };
+
+    const handleCheckboxChange = (event) => {
+        const { name, checked } = event.target;
+        if (name === 'inStock') {
+            setInStock(checked);
+            onAvailabilityChange(checked, outOfStock);
+        } else if (name === 'outOfStock') {
+            setOutOfStock(checked);
+            onAvailabilityChange(inStock, checked);
+        }
     };
 
     return (
@@ -20,10 +33,20 @@ const FilterToggle = () => {
             </div>
             <div className={`${styles.content} ${isOpen ? styles.expanded : ''}`}>
                 <label>
-                    <input type="checkbox" /> En existencia
+                    <input 
+                        type="checkbox" 
+                        name="inStock"
+                        checked={inStock}
+                        onChange={handleCheckboxChange}
+                    /> En existencia
                 </label>
                 <label>
-                    <input type="checkbox" /> Agotado
+                    <input 
+                        type="checkbox" 
+                        name="outOfStock"
+                        checked={outOfStock}
+                        onChange={handleCheckboxChange}
+                    /> Agotado
                 </label>
             </div>
         </div>

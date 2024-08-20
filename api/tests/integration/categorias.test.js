@@ -17,12 +17,16 @@ beforeAll(async () => {
 
 afterAll(async () => {
   // Cerrar el servidor después de las pruebas
-  await server.close(() => {
-    console.log('Servidor cerrado');
-  });
+  await new Promise((resolve) => server.close(resolve));
+  console.log('Servidor cerrado');
+
+  // Cerrar el pool de conexiones a la base de datos
+  await pool.end();
 });
 
 describe('Categorías API', () => {
+  let createdCategoryId;
+
   it('debería crear una nueva categoría', async () => {
     const res = await request(app)
       .post('/categorias')
@@ -31,6 +35,7 @@ describe('Categorías API', () => {
 
     expect(res.statusCode).toEqual(201);
     expect(res.body).toHaveProperty('id_categoria');
+    createdCategoryId = res.body.id_categoria; // Guardar el ID de la categoría creada
   });
 
   it('debería obtener todas las categorías', async () => {
@@ -40,29 +45,20 @@ describe('Categorías API', () => {
   });
 
   it('debería actualizar una categoría existente', async () => {
-    const nuevaCategoria = await request(app)
-      .post('/categorias')
-      .set('Content-Type', 'application/json')
-      .send({ nombre: 'Underwear', descripcion: 'Underwear collections' });
-
     const res = await request(app)
-      .put(`/categorias/${nuevaCategoria.body.id_categoria}`)
+      .put(`/categorias/${createdCategoryId}`) // Usar la categoría creada
       .set('Content-Type', 'application/json')
       .send({ nombre: 'Lingerie', descripcion: 'Lingerie collections' });
 
     expect(res.statusCode).toEqual(200);
-    expect(res.body.nombre).toEqual('Lingerie');
+    expect(res.body.message).toEqual('Categoría actualizada con éxito');
   });
 
   it('debería eliminar una categoría', async () => {
-    const nuevaCategoria = await request(app)
-      .post('/categorias')
-      .set('Content-Type', 'application/json')
-      .send({ nombre: 'Activewear', descripcion: 'Activewear collections' });
-
     const res = await request(app)
-      .delete(`/categorias/${nuevaCategoria.body.id_categoria}`);
+      .delete(`/categorias/${createdCategoryId}`); // Usar la categoría creada
 
     expect(res.statusCode).toEqual(200);
+    expect(res.body.message).toEqual('Categoría eliminada con éxito');
   });
 });

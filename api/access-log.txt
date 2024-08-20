@@ -356,3 +356,227 @@
         Response Body: {"message":"Categoría eliminada con éxito"}
         ------------------------------
     
+        Timestamp: 2024-08-20T02:44:44.801Z
+        URL: /categorias
+        HTTP Method: POST
+        Request Body: {"nombre":"Swimwear","descripcion":"Bikini collections"}
+        Response Body: {"message":"Categoría creada con éxito","id_categoria":38}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:44:44.885Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_categoria":38,"nombre":"Swimwear","descripcion":"Bikini collections"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:44:44.968Z
+        URL: /categorias/38
+        HTTP Method: PUT
+        Request Body: {"nombre":"Lingerie","descripcion":"Lingerie collections"}
+        Response Body: {"message":"Categoría actualizada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:44:45.038Z
+        URL: /categorias/38
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: {"message":"Categoría eliminada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:44:46.058Z
+        URL: /categorias
+        HTTP Method: POST
+        Request Body: {"nombre":"Swimwear","descripcion":"Bikini collections"}
+        Response Body: {"message":"Categoría creada con éxito","id_categoria":39}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:44:46.111Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_categoria":39,"nombre":"Swimwear","descripcion":"Bikini collections"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:44:46.167Z
+        URL: /categorias/39
+        HTTP Method: PUT
+        Request Body: {"nombre":"Lingerie","descripcion":"Lingerie collections"}
+        Response Body: {"message":"Categoría actualizada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:44:46.228Z
+        URL: /categorias/39
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: {"message":"Categoría eliminada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:47:27.081Z
+        URL: /categorias
+        HTTP Method: POST
+        Request Body: {"nombre":"Swimwear","descripcion":"Bikini collections"}
+        Response Body: {"message":"Categoría creada con éxito","id_categoria":40}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:47:27.133Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_categoria":40,"nombre":"Swimwear","descripcion":"Bikini collections"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:47:27.196Z
+        URL: /categorias/40
+        HTTP Method: PUT
+        Request Body: {"nombre":"Lingerie","descripcion":"Lingerie collections"}
+        Response Body: {"message":"Categoría actualizada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:47:27.230Z
+        URL: /categorias/40
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: {"message":"Categoría eliminada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:47:27.860Z
+        URL: /categorias
+        HTTP Method: POST
+        Request Body: {"nombre":"Swimwear","descripcion":"Bikini collections"}
+        Response Body: {"message":"Categoría creada con éxito","id_categoria":41}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:47:27.885Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_categoria":41,"nombre":"Swimwear","descripcion":"Bikini collections"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:47:27.919Z
+        URL: /categorias/41
+        HTTP Method: PUT
+        Request Body: {"nombre":"Lingerie","descripcion":"Lingerie collections"}
+        Response Body: {"message":"Categoría actualizada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:47:27.948Z
+        URL: /categorias/41
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: {"message":"Categoría eliminada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:48:34.319Z
+        URL: /categorias
+        HTTP Method: POST
+        Request Body: {"nombre":"Swimwear","descripcion":"Bikini collections"}
+        Response Body: {"message":"Categoría creada con éxito","id_categoria":42}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:48:34.371Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_categoria":42,"nombre":"Swimwear","descripcion":"Bikini collections"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:48:34.455Z
+        URL: /categorias/42
+        HTTP Method: PUT
+        Request Body: {"nombre":"Lingerie","descripcion":"Lingerie collections"}
+        Response Body: {"message":"Categoría actualizada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:48:34.512Z
+        URL: /categorias/42
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: {"message":"Categoría eliminada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:48:35.112Z
+        URL: /categorias
+        HTTP Method: POST
+        Request Body: {"nombre":"Swimwear","descripcion":"Bikini collections"}
+        Response Body: {"message":"Categoría creada con éxito","id_categoria":43}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:48:35.135Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_categoria":43,"nombre":"Swimwear","descripcion":"Bikini collections"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:48:35.171Z
+        URL: /categorias/43
+        HTTP Method: PUT
+        Request Body: {"nombre":"Lingerie","descripcion":"Lingerie collections"}
+        Response Body: {"message":"Categoría actualizada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:48:35.198Z
+        URL: /categorias/43
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: {"message":"Categoría eliminada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:51:04.343Z
+        URL: /categorias
+        HTTP Method: POST
+        Request Body: {"nombre":"Swimwear","descripcion":"Bikini collections"}
+        Response Body: {"message":"Categoría creada con éxito","id_categoria":44}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:51:04.379Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_categoria":44,"nombre":"Swimwear","descripcion":"Bikini collections"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:51:04.430Z
+        URL: /categorias/44
+        HTTP Method: PUT
+        Request Body: {"nombre":"Lingerie","descripcion":"Lingerie collections"}
+        Response Body: {"message":"Categoría actualizada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:51:04.468Z
+        URL: /categorias/44
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: {"message":"Categoría eliminada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:51:05.131Z
+        URL: /categorias
+        HTTP Method: POST
+        Request Body: {"nombre":"Swimwear","descripcion":"Bikini collections"}
+        Response Body: {"message":"Categoría creada con éxito","id_categoria":45}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:51:05.155Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_categoria":45,"nombre":"Swimwear","descripcion":"Bikini collections"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:51:05.191Z
+        URL: /categorias/45
+        HTTP Method: PUT
+        Request Body: {"nombre":"Lingerie","descripcion":"Lingerie collections"}
+        Response Body: {"message":"Categoría actualizada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T02:51:05.218Z
+        URL: /categorias/45
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: {"message":"Categoría eliminada con éxito"}
+        ------------------------------
+    

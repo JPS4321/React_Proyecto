@@ -6,8 +6,8 @@ let server;
 
 beforeAll(async () => {
   // Iniciar el servidor antes de las pruebas
-  server = app.listen(3000, () => {
-    console.log('Servidor escuchando en http://127.0.0.1:3000');
+  server = app.listen(0, () => { 
+    console.log(`Servidor escuchando en http://127.0.0.1:${server.address().port}`);
   });
 
   // Limpiar la base de datos antes de las pruebas

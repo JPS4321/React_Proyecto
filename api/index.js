@@ -12,6 +12,7 @@ import inventoryRouter from "./routes/inventoryRoute.js";
 import promotionRouter from "./routes/promotionRoute.js";
 import shippingRouter from "./routes/shippingRoute.js";
 import paymentRouter from "./routes/paymentRoute.js";
+import orderRouter from "./routes/orderRoute.js"; 
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use("/inventarios", inventoryRouter);
 app.use("/promociones", promotionRouter);
 app.use("/envios", shippingRouter);
 app.use("/pagos", paymentRouter);
+app.use("/ordenes", orderRouter)
 
 app.get("/", (req, res) => {
   res.send("API de Productos Bikini");

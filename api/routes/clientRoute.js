@@ -15,9 +15,7 @@ router.get("/", async (req, res) => {
     const clients = await getAllClients();
     res.status(200).json(clients);
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Error al obtener los clientes", error: error.message });
+    res.status(500).json({ message: "Error al obtener los clientes", error: error.message });
   }
 });
 
@@ -31,9 +29,7 @@ router.get("/:id", async (req, res) => {
       res.status(404).json({ message: "Cliente no encontrado" });
     }
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Error al obtener el cliente", error: error.message });
+    res.status(500).json({ message: "Error al obtener el cliente", error: error.message });
   }
 });
 
@@ -42,16 +38,12 @@ router.post("/", async (req, res) => {
   const { nombre, email, direccion, contra } = req.body;
   try {
     const result = await createClient(nombre, email, direccion, contra);
-    res
-      .status(201)
-      .json({
-        message: "Cliente creado con éxito",
-        id_cliente: result[0].insertId,
-      });
+    res.status(201).json({
+      message: "Cliente creado con éxito",
+      id_cliente: result.insertId,
+    });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Error al crear el cliente", error: error.message });
+    res.status(500).json({ message: "Error al crear el cliente", error: error.message });
   }
 });
 
@@ -59,25 +51,14 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   const { nombre, email, direccion, contra } = req.body;
   try {
-    const result = await updateClient(
-      req.params.id,
-      nombre,
-      email,
-      direccion,
-      contra
-    );
-    if (result[0].affectedRows > 0) {
+    const result = await updateClient(req.params.id, nombre, email, direccion, contra);
+    if (result.affectedRows > 0) {
       res.status(200).json({ message: "Cliente actualizado con éxito" });
     } else {
       res.status(404).json({ message: "Cliente no encontrado" });
     }
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: "Error al actualizar el cliente",
-        error: error.message,
-      });
+    res.status(500).json({ message: "Error al actualizar el cliente", error: error.message });
   }
 });
 
@@ -85,15 +66,13 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const result = await deleteClient(req.params.id);
-    if (result[0].affectedRows > 0) {
-      res.status(200).json({ message: "Cliente eliminado con éxito" });
+    if (result.affectedRows > 0) {
+      res.status(204).send();
     } else {
       res.status(404).json({ message: "Cliente no encontrado" });
     }
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Error al eliminar el cliente", error: error.message });
+    res.status(500).json({ message: "Error al eliminar el cliente", error: error.message });
   }
 });
 

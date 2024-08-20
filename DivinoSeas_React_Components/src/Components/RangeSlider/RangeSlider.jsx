@@ -1,20 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './RangeSlider.css';
 
 const RangeSlider = ({ minValue, maxValue, onMinChange, onMaxChange }) => {
+  const [tempMinValue, setTempMinValue] = useState(minValue);
+  const [tempMaxValue, setTempMaxValue] = useState(maxValue);
 
   const handleMinChange = (e) => {
-    const value = Math.min(Number(e.target.value), maxValue - 1);
-    onMinChange(value); 
+    const value = Math.min(Number(e.target.value), tempMaxValue - 1);
+    setTempMinValue(value);
   };
 
   const handleMaxChange = (e) => {
-    const value = Math.max(Number(e.target.value), minValue + 1);
-    onMaxChange(value); 
+    const value = Math.max(Number(e.target.value), tempMinValue + 1);
+    setTempMaxValue(value);
   };
 
-  const minPercent = (minValue / 10000) * 100;
-  const maxPercent = (maxValue / 10000) * 100;
+  const handleMinChangeEnd = () => {
+    onMinChange(tempMinValue); 
+  };
+
+  const handleMaxChangeEnd = () => {
+    onMaxChange(tempMaxValue); 
+  };
+
+  const minPercent = (tempMinValue / 10000) * 100;
+  const maxPercent = (tempMaxValue / 10000) * 100;
 
   return (
     <div className="range-slider-container">
@@ -24,7 +34,7 @@ const RangeSlider = ({ minValue, maxValue, onMinChange, onMaxChange }) => {
         <input
           type="number"
           className="range-input"
-          value={minValue}
+          value={tempMinValue}
           onChange={handleMinChange}
           min="0"
           max="10000"
@@ -33,7 +43,7 @@ const RangeSlider = ({ minValue, maxValue, onMinChange, onMaxChange }) => {
         <input
           type="number"
           className="range-input"
-          value={maxValue}
+          value={tempMaxValue}
           onChange={handleMaxChange}
           min="0"
           max="10000"
@@ -53,16 +63,20 @@ const RangeSlider = ({ minValue, maxValue, onMinChange, onMaxChange }) => {
           className="slider"
           min="0"
           max="10000"
-          value={minValue}
+          value={tempMinValue}
           onChange={handleMinChange}
+          onMouseUp={handleMinChangeEnd} 
+          onTouchEnd={handleMinChangeEnd} 
         />
         <input
           type="range"
           className="slider"
           min="0"
           max="10000"
-          value={maxValue}
+          value={tempMaxValue}
           onChange={handleMaxChange}
+          onMouseUp={handleMaxChangeEnd} 
+          onTouchEnd={handleMaxChangeEnd} 
         />
       </div>
     </div>

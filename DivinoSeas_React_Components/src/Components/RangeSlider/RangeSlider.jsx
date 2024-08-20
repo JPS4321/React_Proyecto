@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './RangeSlider.css';
 
-const RangeSlider = () => {
-  const [minValue, setMinValue] = useState(3000);
-  const [maxValue, setMaxValue] = useState(8000);
+const RangeSlider = ({ minValue, maxValue, onMinChange, onMaxChange }) => {
 
   const handleMinChange = (e) => {
     const value = Math.min(Number(e.target.value), maxValue - 1);
-    setMinValue(value);
+    onMinChange(value); 
   };
 
   const handleMaxChange = (e) => {
     const value = Math.max(Number(e.target.value), minValue + 1);
-    setMaxValue(value);
+    onMaxChange(value); 
   };
 
   const minPercent = (minValue / 10000) * 100;

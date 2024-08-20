@@ -81,19 +81,16 @@ router.put("/:id", async (req, res) => {
 // Ruta para eliminar un envío
 router.delete("/:id", async (req, res) => {
   try {
-    const result = await deleteShipping(req.params.id);
+    const result = await deleteEnvio(req.params.id);
     if (result[0].affectedRows > 0) {
-      res.status(200).json({ message: "Envío eliminado con éxito" });
+      res.status(204).send();  // Cambiado para devolver 204 sin contenido
     } else {
       res.status(404).json({ message: "Envío no encontrado" });
     }
   } catch (error) {
     res
       .status(500)
-      .json({
-        message: "Error al eliminar el envío",
-        error: error.message,
-      });
+      .json({ message: "Error al eliminar el envío", error: error.message });
   }
 });
 

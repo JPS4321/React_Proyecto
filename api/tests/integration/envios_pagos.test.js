@@ -4,32 +4,31 @@ import pool from '../../connection.js';
 
 let server;
 let createdOrderId;
-let createdShippingId;
-let createdPaymentId;
+let createdEnvioId;
+let createdPagoId;
 
 beforeAll(async () => {
   server = app.listen(0, () => {
     console.log(`Servidor escuchando en http://127.0.0.1:${server.address().port}`);
   });
 
-  // Limpiar la base de datos antes de las pruebas
-  await pool.query('DELETE FROM Envios;');
-  await pool.query('DELETE FROM Pagos;');
-  await pool.query('DELETE FROM Ordenes;');  // Asegúrate de que las órdenes se borren, ya que están relacionadas
+  // Crear un cliente para asociar con las órdenes
+  const clientResult = await pool.query(
+    "INSERT INTO Clientes (nombre, email, direccion, contra) VALUES ('John Doe', 'johndoe@example.com', '123 Main St', 'password123')"
+  );
+  const clientId = clientResult[0].insertId;
 
   // Crear una orden para asociar con envíos y pagos
   const orderResult = await pool.query(
-    "INSERT INTO Ordenes (id_cliente, fecha, total) VALUES (1, NOW(), 100.00)"
+    "INSERT INTO Ordenes (id_cliente, estado) VALUES (?, 'pendiente')",
+    [clientId]
   );
   createdOrderId = orderResult[0].insertId;
 });
 
 afterAll(async () => {
-  // Cerrar el servidor después de las pruebas
   await new Promise((resolve) => server.close(resolve));
   console.log('Servidor cerrado');
-
-  // Cerrar el pool de conexiones a la base de datos
   await pool.end();
 });
 
@@ -39,15 +38,14 @@ describe('Envios API', () => {
       .post('/envios')
       .set('Content-Type', 'application/json')
       .send({
-        id_orden: createdOrderId,
-        direccion_envio: '123 Main St',
-        fecha_envio: '2024-08-20',
-        estado_envio: 'En camino'
+        fechaEnvio: '2024-01-01',
+        estado: 'en camino',
+        id_orden: createdOrderId
       });
 
     expect(res.statusCode).toEqual(201);
     expect(res.body).toHaveProperty('id_envio');
-    createdShippingId = res.body.id_envio;
+    createdEnvioId = res.body.id_envio;
   });
 
   it('debería obtener todos los envíos', async () => {
@@ -58,12 +56,10 @@ describe('Envios API', () => {
 
   it('debería actualizar un envío existente', async () => {
     const res = await request(app)
-      .put(`/envios/${createdShippingId}`)
+      .put(`/envios/${createdEnvioId}`)
       .set('Content-Type', 'application/json')
       .send({
-        direccion_envio: '456 Elm St',
-        fecha_envio: '2024-08-21',
-        estado_envio: 'Entregado'
+        estado: 'entregado'
       });
 
     expect(res.statusCode).toEqual(200);
@@ -72,7 +68,7 @@ describe('Envios API', () => {
 
   it('debería eliminar un envío', async () => {
     const res = await request(app)
-      .delete(`/envios/${createdShippingId}`);
+      .delete(`/envios/${createdEnvioId}`);
 
     expect(res.statusCode).toEqual(204);
   });
@@ -84,15 +80,13 @@ describe('Pagos API', () => {
       .post('/pagos')
       .set('Content-Type', 'application/json')
       .send({
-        id_orden: createdOrderId,
-        metodo_pago: 'Tarjeta de Crédito',
         monto: 100.00,
-        fecha_pago: '2024-08-20'
+        id_orden: createdOrderId
       });
 
     expect(res.statusCode).toEqual(201);
     expect(res.body).toHaveProperty('id_pago');
-    createdPaymentId = res.body.id_pago;
+    createdPagoId = res.body.id_pago;
   });
 
   it('debería obtener todos los pagos', async () => {
@@ -103,12 +97,10 @@ describe('Pagos API', () => {
 
   it('debería actualizar un pago existente', async () => {
     const res = await request(app)
-      .put(`/pagos/${createdPaymentId}`)
+      .put(`/pagos/${createdPagoId}`)
       .set('Content-Type', 'application/json')
       .send({
-        metodo_pago: 'PayPal',
-        monto: 90.00,
-        fecha_pago: '2024-08-21'
+        monto: 150.00
       });
 
     expect(res.statusCode).toEqual(200);
@@ -117,7 +109,7 @@ describe('Pagos API', () => {
 
   it('debería eliminar un pago', async () => {
     const res = await request(app)
-      .delete(`/pagos/${createdPaymentId}`);
+      .delete(`/pagos/${createdPagoId}`);
 
     expect(res.statusCode).toEqual(204);
   });

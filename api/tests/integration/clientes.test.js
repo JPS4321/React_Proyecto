@@ -5,21 +5,15 @@ import pool from '../../connection.js';
 let server;
 
 beforeAll(async () => {
-  // Iniciar el servidor antes de las pruebas
-  server = app.listen(0, () => {
+  server = app.listen(0, () => { 
     console.log(`Servidor escuchando en http://127.0.0.1:${server.address().port}`);
   });
 
-  // Limpiar la base de datos antes de las pruebas
   await pool.query('DELETE FROM Clientes;');
 });
 
 afterAll(async () => {
-  // Cerrar el servidor después de las pruebas
   await new Promise((resolve) => server.close(resolve));
-  console.log('Servidor cerrado');
-
-  // Cerrar el pool de conexiones a la base de datos
   await pool.end();
 });
 
@@ -33,13 +27,13 @@ describe('Clientes API', () => {
       .send({
         nombre: 'John Doe',
         email: 'johndoe@example.com',
-        telefono: '555-1234',
         direccion: '123 Main St',
+        contra: 'password123',
       });
 
     expect(res.statusCode).toEqual(201);
     expect(res.body).toHaveProperty('id_cliente');
-    createdClientId = res.body.id_cliente; // Guardar el ID del cliente creado
+    createdClientId = res.body.id_cliente;
   });
 
   it('debería obtener todos los clientes', async () => {
@@ -50,13 +44,13 @@ describe('Clientes API', () => {
 
   it('debería actualizar un cliente existente', async () => {
     const res = await request(app)
-      .put(`/clientes/${createdClientId}`) // Usar el cliente creado
+      .put(`/clientes/${createdClientId}`)
       .set('Content-Type', 'application/json')
       .send({
         nombre: 'Jane Doe',
         email: 'janedoe@example.com',
-        telefono: '555-5678',
         direccion: '456 Elm St',
+        contra: 'newpassword456',
       });
 
     expect(res.statusCode).toEqual(200);
@@ -65,7 +59,7 @@ describe('Clientes API', () => {
 
   it('debería eliminar un cliente', async () => {
     const res = await request(app)
-      .delete(`/clientes/${createdClientId}`); // Usar el cliente creado
+      .delete(`/clientes/${createdClientId}`);
 
     expect(res.statusCode).toEqual(204);
   });

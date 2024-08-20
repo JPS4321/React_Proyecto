@@ -5,7 +5,7 @@ import ProductCard from '../Components/ProductCard/ProductCard';
 import FilterToggle from '../Components/FilterTogle/FilterToggle';
 import styles from './pages_css/Collections.module.css'; 
 import image from '../assets/bottom01.png';
-
+import RangeSlider from '../Components/RangeSlider/RangeSlider';
 function Collections() {
     
     const products = [
@@ -27,13 +27,14 @@ function Collections() {
             <div className='subheader'>
                 <Navbar/>
             </div>
+
             <div className={styles.layout}>
                 <div className={styles.filters}>
                     <div>
                     <FilterToggle />
-
-                
-
+                    <RangeSlider />
+        
+                    
                     </div>
                 </div>
                 <div className={styles.productsGrid}>

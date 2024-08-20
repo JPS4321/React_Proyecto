@@ -23,7 +23,7 @@
 .left-column img {
     width: 100%;
     max-width: 400px;
-    margin-right: 10px; /* Añadido un margen entre las imágenes */
+    margin-right: 10px; 
 }
 
 .right-column {

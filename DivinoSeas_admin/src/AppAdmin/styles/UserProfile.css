@@ -2,21 +2,23 @@
     display: flex;
     justify-content: center;
     padding: 20px;
+    background-color: #000000; /* Fondo negro */
   }
   
   .profile-card {
     display: flex;
     align-items: center;
-    background-color: #f5f5f5;
+    background-color: #000000; /* Fondo negro */
     padding: 15px;
     border-radius: 8px;
     width: 100%;
     max-width: 600px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
+    box-shadow: 0 2px 10px rgba(97, 218, 251, 0.4); /* Sombra con color #61dafb */
+    border: 1px solid #61dafb; /* Borde con color #61dafb */
   }
   
   .profile-image img {
+    border: 2px solid #FFFFFF; /* Borde en color #61dafb */
     border-radius: 50%;
     width: 80px;
     height: 80px;
@@ -25,29 +27,31 @@
   .profile-divider {
     height: 80px;
     width: 2px;
-    background-color: #ccc;
+    background-color: #61dafb; /* Línea vertical con color #61dafb */
     margin: 0 20px;
   }
   
   .profile-details p {
     margin: 5px 0;
+    color: #ffffff; /* Texto en blanco */
   }
   
   .logout-button {
     margin-left: auto;
-    background-color: #ffffff;
-    color: rgb(255, 0, 0);
-    border: 2px, solid,  rgb(255, 0, 0);
+    background-color: #000000; /* Fondo negro */
+    color: #ffffff; /* Texto blanco */
+    border: 2px solid #ff0000; /* Borde en color #61dafb */
     border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.4s ease, color 0.3s ease;
   }
   
   .logout-button:hover {
-    background-color: #c9302c;
-    color: rgb(255, 255, 255);
-    border: 2px, solid,  rgb(255, 255, 255);
+    background-color: #ff0000; /* Fondo en #61dafb al pasar el ratón */
+    color: #000000; /* Texto negro al pasar el ratón */
+    border: 2px solid #ff0000; /* Borde en color #61dafb */
+    border-radius: 8px;
 
 
   }

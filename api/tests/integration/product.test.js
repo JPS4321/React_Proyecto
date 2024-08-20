@@ -3,10 +3,11 @@ import app from '../../index.js';
 import pool from '../../connection.js';
 
 let server;
+let createdProductId;
 
 beforeAll(async () => {
   // Iniciar el servidor antes de las pruebas
-  server = app.listen(0, () => { 
+  server = app.listen(0, () => {
     console.log(`Servidor escuchando en http://127.0.0.1:${server.address().port}`);
   });
 
@@ -24,41 +25,81 @@ afterAll(async () => {
   await pool.end();
 });
 
-describe('Categorías API', () => {
+describe('Productos API', () => {
   let createdCategoryId;
 
-  it('debería crear una nueva categoría', async () => {
+  beforeAll(async () => {
+    // Crear una categoría para asociar productos
     const res = await request(app)
       .post('/categorias')
       .set('Content-Type', 'application/json')
       .send({ nombre: 'Swimwear', descripcion: 'Bikini collections' });
 
-    expect(res.statusCode).toEqual(201);
-    expect(res.body).toHaveProperty('id_categoria');
-    createdCategoryId = res.body.id_categoria; // Guardar el ID de la categoría creada
+    createdCategoryId = res.body.id_categoria;
   });
 
-  it('debería obtener todas las categorías', async () => {
-    const res = await request(app).get('/categorias');
+  afterAll(async () => {
+    // Eliminar la categoría creada
+    await request(app)
+      .delete(`/categorias/${createdCategoryId}`);
+  });
+
+  it('debería crear un nuevo producto', async () => {
+    const res = await request(app)
+      .post('/productos')
+      .set('Content-Type', 'application/json')
+      .send({
+        nombre: 'Bikini',
+        descripcion: 'Bikini rojo para la playa',
+        picture: 'bikini.jpg',
+        existencias: 100,
+        id_categoria: createdCategoryId // Asociación con la categoría creada
+      });
+
+    expect(res.statusCode).toEqual(201);
+    expect(res.body).toHaveProperty('productId');
+    createdProductId = res.body.productId; // Guardar el ID del producto creado
+  });
+
+  it('debería obtener todos los productos', async () => {
+    const res = await request(app).get('/productos');
     expect(res.statusCode).toEqual(200);
     expect(res.body.length).toBeGreaterThan(0);
   });
 
-  it('debería actualizar una categoría existente', async () => {
-    const res = await request(app)
-      .put(`/categorias/${createdCategoryId}`) // Usar la categoría creada
-      .set('Content-Type', 'application/json')
-      .send({ nombre: 'Lingerie', descripcion: 'Lingerie collections' });
-
+  it('debería obtener un producto por su ID', async () => {
+    const res = await request(app).get(`/productos/${createdProductId}`);
     expect(res.statusCode).toEqual(200);
-    expect(res.body.message).toEqual('Categoría actualizada con éxito');
+    expect(res.body).toHaveProperty('id');
+    expect(res.body.id).toEqual(createdProductId);
   });
 
-  it('debería eliminar una categoría', async () => {
+  it('debería actualizar un producto existente', async () => {
     const res = await request(app)
-      .delete(`/categorias/${createdCategoryId}`); // Usar la categoría creada
+      .put(`/productos/${createdProductId}`)
+      .set('Content-Type', 'application/json')
+      .send({
+        nombre: 'Bikini Actualizado',
+        descripcion: 'Bikini rojo actualizado',
+        picture: 'bikini_updated.jpg',
+        existencias: 50,
+        id_categoria: createdCategoryId
+      });
 
     expect(res.statusCode).toEqual(200);
-    expect(res.body.message).toEqual('Categoría eliminada con éxito');
+    expect(res.body.message).toEqual('Producto actualizado con éxito');
+  });
+
+  it('debería eliminar un producto', async () => {
+    const res = await request(app)
+      .delete(`/productos/${createdProductId}`);
+
+    expect(res.statusCode).toEqual(204);
+  });
+
+  it('debería devolver 404 al intentar obtener un producto eliminado', async () => {
+    const res = await request(app).get(`/productos/${createdProductId}`);
+    expect(res.statusCode).toEqual(404);
+    expect(res.body.message).toEqual('Producto no encontrado');
   });
 });

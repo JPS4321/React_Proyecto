@@ -54,23 +54,31 @@ describe('Envios API', () => {
     expect(res.body.length).toBeGreaterThan(0);
   });
 
-  it('debería actualizar un envío existente', async () => {
+  it('debería actualizar un envío existente con todos los campos necesarios', async () => {
     const res = await request(app)
       .put(`/envios/${createdEnvioId}`)
       .set('Content-Type', 'application/json')
       .send({
-        estado: 'entregado'
+        fechaEnvio: '2024-01-02',  // Actualizando también la fecha
+        estado: 'entregado',
+        id_orden: createdOrderId
       });
 
     expect(res.statusCode).toEqual(200);
     expect(res.body.message).toEqual('Envío actualizado con éxito');
   });
 
-  it('debería eliminar un envío', async () => {
-    const res = await request(app)
+  it('debería eliminar un envío y verificar que ya no existe', async () => {
+    const deleteRes = await request(app)
       .delete(`/envios/${createdEnvioId}`);
 
-    expect(res.statusCode).toEqual(204);
+    expect(deleteRes.statusCode).toEqual(204);
+
+    // Intentar obtener el envío eliminado
+    const getRes = await request(app)
+      .get(`/envios/${createdEnvioId}`);
+
+    expect(getRes.statusCode).toEqual(404);
   });
 });
 
@@ -100,17 +108,24 @@ describe('Pagos API', () => {
       .put(`/pagos/${createdPagoId}`)
       .set('Content-Type', 'application/json')
       .send({
-        monto: 150.00
+        monto: 150.00,
+        id_orden: createdOrderId
       });
 
     expect(res.statusCode).toEqual(200);
     expect(res.body.message).toEqual('Pago actualizado con éxito');
   });
 
-  it('debería eliminar un pago', async () => {
-    const res = await request(app)
+  it('debería eliminar un pago y verificar que ya no existe', async () => {
+    const deleteRes = await request(app)
       .delete(`/pagos/${createdPagoId}`);
 
-    expect(res.statusCode).toEqual(204);
+    expect(deleteRes.statusCode).toEqual(204);
+
+    // Intentar obtener el pago eliminado
+    const getRes = await request(app)
+      .get(`/pagos/${createdPagoId}`);
+
+    expect(getRes.statusCode).toEqual(404);
   });
 });

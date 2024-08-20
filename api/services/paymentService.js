@@ -34,8 +34,13 @@ async function updatePayment(id, monto, id_orden) {
 
 // Eliminar un pago
 async function deletePayment(id) {
-  const result = await conn.query("DELETE FROM Pagos WHERE id_pago = ?", [id]);
-  return result;
+  try {
+    const [result] = await conn.query("DELETE FROM Pagos WHERE id_pago = ?", [id]);
+    return result;
+  } catch (error) {
+    console.error(`Error al eliminar el pago con ID ${id}:`, error);
+    throw error;
+  }
 }
 
 export {

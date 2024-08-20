@@ -35,13 +35,14 @@ async function updateShipping(id, fechaEnvio, estado, id_orden) {
 
 // Eliminar un envío
 async function deleteShipping(id) {
-  const result = await conn.query(
-    "DELETE FROM Envios WHERE id_envio = ?",
-    [id]
-  );
-  return result;
+  try {
+    const [result] = await conn.query("DELETE FROM Envios WHERE id_envio = ?", [id]);
+    return result;
+  } catch (error) {
+    console.error(`Error al eliminar el envío con ID ${id}:`, error);
+    throw error;
+  }
 }
-
 export {
   getAllShippings,
   getShippingById,

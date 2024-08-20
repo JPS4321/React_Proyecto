@@ -4948,3 +4948,962 @@
         Response Body: {"message":"Categoría eliminada con éxito"}
         ------------------------------
     
+        Timestamp: 2024-08-20T03:49:08.131Z
+        URL: /ordenes-detalles
+        HTTP Method: POST
+        Request Body: {"cantidad":2,"precioPorUnidad":50,"id_orden":19,"id_producto":1}
+        Response Body: {"error":"Cannot add or update a child row: a foreign key constraint fails (`DivinoSeas_db`.`OrdenDetalles`, CONSTRAINT `OrdenDetalles_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `DivinoSeas_Productos` (`id_producto`) ON DELETE CASCADE)"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:08.177Z
+        URL: /ordenes-detalles
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: []
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:08.205Z
+        URL: /ordenes-detalles/undefined
+        HTTP Method: PUT
+        Request Body: {"cantidad":3,"precioPorUnidad":60}
+        Response Body: {"error":"Detalle de orden no encontrado para actualizar"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:08.258Z
+        URL: /ordenes-detalles/undefined
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:08.279Z
+        URL: /ordenes-detalles/undefined
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: {"error":"Detalle de orden no encontrado"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:09.521Z
+        URL: /categorias
+        HTTP Method: POST
+        Request Body: {"nombre":"Accesorios","descripcion":"Accesorios de moda"}
+        Response Body: {"message":"Categoría creada con éxito","id_categoria":101}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:09.536Z
+        URL: /productos
+        HTTP Method: POST
+        Request Body: {"nombre":"Sombrero de playa","descripcion":"Sombrero de playa hecho de paja","precio":19.99,"id_categoria":101}
+        Response Body: {"error":"Faltan o son inválidos el nombre, la descripción o las existencias."}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:09.567Z
+        URL: /inventarios
+        HTTP Method: POST
+        Request Body: {"cantidad":100}
+        Response Body: {"message":"Inventario creado con éxito","id_inventario":18}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:09.594Z
+        URL: /inventarios
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_inventario":18,"cantidad":100,"fechaActualizacion":"2024-08-20T09:49:09.000Z","id_producto":null}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:09.632Z
+        URL: /inventarios/18
+        HTTP Method: PUT
+        Request Body: {"cantidad":150}
+        Response Body: {"message":"Inventario actualizado con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:09.667Z
+        URL: /inventarios/18
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:10.227Z
+        URL: /categorias
+        HTTP Method: POST
+        Request Body: {"nombre":"Swimwear","descripcion":"Bikini collections"}
+        Response Body: {"message":"Categoría creada con éxito","id_categoria":102}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:10.262Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_categoria":102,"nombre":"Swimwear","descripcion":"Bikini collections"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:10.298Z
+        URL: /categorias/102
+        HTTP Method: PUT
+        Request Body: {"nombre":"Lingerie","descripcion":"Lingerie collections"}
+        Response Body: {"message":"Categoría actualizada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:10.329Z
+        URL: /categorias/102
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: {"message":"Categoría eliminada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:10.846Z
+        URL: /clientes
+        HTTP Method: POST
+        Request Body: {"nombre":"John Doe","email":"johndoe@example.com","direccion":"123 Main St","contra":"password123"}
+        Response Body: {"message":"Cliente creado con éxito","id_cliente":33}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:10.874Z
+        URL: /clientes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_cliente":33,"nombre":"John Doe","email":"johndoe@example.com","direccion":"123 Main St","contra":"password123"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:10.905Z
+        URL: /clientes/33
+        HTTP Method: PUT
+        Request Body: {"nombre":"Jane Doe","email":"janedoe@example.com","direccion":"456 Elm St","contra":"newpassword456"}
+        Response Body: {"message":"Cliente actualizado con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:10.930Z
+        URL: /clientes/33
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:11.482Z
+        URL: /categorias
+        HTTP Method: POST
+        Request Body: {"nombre":"Swimwear","descripcion":"Bikini collections"}
+        Response Body: {"message":"Categoría creada con éxito","id_categoria":103}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:11.507Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_categoria":103,"nombre":"Swimwear","descripcion":"Bikini collections"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:11.595Z
+        URL: /categorias/103
+        HTTP Method: PUT
+        Request Body: {"nombre":"Lingerie","descripcion":"Lingerie collections"}
+        Response Body: {"message":"Categoría actualizada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:11.618Z
+        URL: /categorias/103
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: {"message":"Categoría eliminada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:12.233Z
+        URL: /ordenes
+        HTTP Method: POST
+        Request Body: {"id_cliente":34,"fecha":"2023-08-25","total":100}
+        Response Body: {"message":"Orden creada con éxito","id_orden":20}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:12.268Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_orden":20,"fechaCreacion":"2024-08-20T09:49:12.000Z","estado":null,"id_cliente":34}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:12.291Z
+        URL: /ordenes/20
+        HTTP Method: PUT
+        Request Body: {"id_cliente":34,"fecha":"2023-08-26","total":150}
+        Response Body: {"message":"Orden actualizada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:12.317Z
+        URL: /ordenes/20
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:12.873Z
+        URL: /promociones
+        HTTP Method: POST
+        Request Body: {"descripcion":"Promoción de verano","descuento":10,"fechaInicio":"2024-08-01","fechaFin":"2024-08-31"}
+        Response Body: {"message":"Promoción creada con éxito","id_promocion":16}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:12.911Z
+        URL: /promociones/16
+        HTTP Method: PUT
+        Request Body: {"descripcion":"Promoción de verano extendida","descuento":15,"fechaInicio":"2024-08-01","fechaFin":"2024-08-31"}
+        Response Body: {"message":"Promoción actualizada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:12.934Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_promocion":16,"descripcion":"Promoción de verano extendida","descuento":"15.00","fechaInicio":"2024-08-01T06:00:00.000Z","fechaFin":"2024-08-31T06:00:00.000Z"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:12.965Z
+        URL: /promociones/16
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:13.497Z
+        URL: /colores
+        HTTP Method: POST
+        Request Body: {"nombre":"Rojo"}
+        Response Body: {"message":"Color creado con éxito","id_color":20}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:13.526Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_color":20,"nombre":"Rojo"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:13.558Z
+        URL: /colores/20
+        HTTP Method: PUT
+        Request Body: {"nombre":"Verde"}
+        Response Body: {"message":"Color actualizado con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:13.585Z
+        URL: /colores/20
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: {"message":"Color eliminado con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:14.066Z
+        URL: /colecciones
+        HTTP Method: POST
+        Request Body: {"nombre":"Verano 2024","descripcion":"Colección de verano para el año 2024"}
+        Response Body: {"message":"Colección creada con éxito","id_coleccion":19}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:14.095Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_coleccion":19,"nombre":"Verano 2024","descripcion":"Colección de verano para el año 2024"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:14.127Z
+        URL: /colecciones/19
+        HTTP Method: PUT
+        Request Body: {"nombre":"Primavera 2024","descripcion":"Colección de primavera para el año 2024"}
+        Response Body: {"message":"Colección actualizada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:49:14.155Z
+        URL: /colecciones/19
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: {"message":"Colección eliminada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:50.467Z
+        URL: /ordenes-detalles
+        HTTP Method: POST
+        Request Body: {"cantidad":2,"precioPorUnidad":50,"id_orden":21,"id_producto":4}
+        Response Body: {"message":"Detalle de orden creado con éxito","id_ordenDetalle":2}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:50.581Z
+        URL: /ordenes-detalles
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: []
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:50.636Z
+        URL: /ordenes-detalles/2
+        HTTP Method: PUT
+        Request Body: {"cantidad":3,"precioPorUnidad":60}
+        Response Body: {"error":"Detalle de orden no encontrado para actualizar"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:50.687Z
+        URL: /ordenes-detalles/2
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:50.726Z
+        URL: /ordenes-detalles/2
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: {"error":"Detalle de orden no encontrado"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:51.403Z
+        URL: /envios
+        HTTP Method: POST
+        Request Body: {"fechaEnvio":"2024-01-01","estado":"en camino","id_orden":22}
+        Response Body: {"message":"Envío creado con éxito","id_envio":8}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:51.453Z
+        URL: /envios
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_envio":8,"fechaEnvio":"2024-01-01T06:00:00.000Z","estado":"en camino","id_orden":22}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:51.501Z
+        URL: /envios/8
+        HTTP Method: PUT
+        Request Body: {"fechaEnvio":"2024-01-02","estado":"entregado","id_orden":22}
+        Response Body: {"message":"Envío actualizado con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:51.559Z
+        URL: /envios/8
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:51.585Z
+        URL: /envios/8
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: {"message":"Envío no encontrado"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:51.625Z
+        URL: /pagos
+        HTTP Method: POST
+        Request Body: {"monto":100,"id_orden":22}
+        Response Body: {"message":"Pago creado con éxito","id_pago":8}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:51.651Z
+        URL: /pagos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_pago":2,"fechaPago":"2024-08-20T09:33:10.000Z","monto":"150.00","id_orden":null},{"id_pago":3,"fechaPago":"2024-08-20T09:38:30.000Z","monto":"150.00","id_orden":null},{"id_pago":4,"fechaPago":"2024-08-20T09:42:35.000Z","monto":"150.00","id_orden":null},{"id_pago":8,"fechaPago":"2024-08-20T09:50:51.000Z","monto":"100.00","id_orden":22}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:51.695Z
+        URL: /pagos/8
+        HTTP Method: PUT
+        Request Body: {"monto":150,"id_orden":22}
+        Response Body: {"message":"Pago actualizado con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:51.721Z
+        URL: /pagos/8
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:51.742Z
+        URL: /pagos/8
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: {"message":"Pago no encontrado"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:52.325Z
+        URL: /categorias
+        HTTP Method: POST
+        Request Body: {"nombre":"Accesorios","descripcion":"Accesorios de moda"}
+        Response Body: {"message":"Categoría creada con éxito","id_categoria":104}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:52.345Z
+        URL: /productos
+        HTTP Method: POST
+        Request Body: {"nombre":"Sombrero de playa","descripcion":"Sombrero de playa hecho de paja","precio":19.99,"id_categoria":104}
+        Response Body: {"error":"Faltan o son inválidos el nombre, la descripción o las existencias."}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:52.391Z
+        URL: /inventarios
+        HTTP Method: POST
+        Request Body: {"cantidad":100}
+        Response Body: {"message":"Inventario creado con éxito","id_inventario":19}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:52.421Z
+        URL: /inventarios
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_inventario":19,"cantidad":100,"fechaActualizacion":"2024-08-20T09:50:52.000Z","id_producto":null}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:52.473Z
+        URL: /inventarios/19
+        HTTP Method: PUT
+        Request Body: {"cantidad":150}
+        Response Body: {"message":"Inventario actualizado con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:52.513Z
+        URL: /inventarios/19
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:53.052Z
+        URL: /ordenes
+        HTTP Method: POST
+        Request Body: {"id_cliente":37,"fecha":"2023-08-25","total":100}
+        Response Body: {"message":"Orden creada con éxito","id_orden":23}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:53.084Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_orden":23,"fechaCreacion":"2024-08-20T09:50:53.000Z","estado":null,"id_cliente":37}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:53.109Z
+        URL: /ordenes/23
+        HTTP Method: PUT
+        Request Body: {"id_cliente":37,"fecha":"2023-08-26","total":150}
+        Response Body: {"message":"Orden actualizada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:53.134Z
+        URL: /ordenes/23
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:53.668Z
+        URL: /categorias
+        HTTP Method: POST
+        Request Body: {"nombre":"Swimwear","descripcion":"Bikini collections"}
+        Response Body: {"message":"Categoría creada con éxito","id_categoria":105}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:53.694Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_categoria":105,"nombre":"Swimwear","descripcion":"Bikini collections"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:53.726Z
+        URL: /categorias/105
+        HTTP Method: PUT
+        Request Body: {"nombre":"Lingerie","descripcion":"Lingerie collections"}
+        Response Body: {"message":"Categoría actualizada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:53.758Z
+        URL: /categorias/105
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: {"message":"Categoría eliminada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:54.296Z
+        URL: /promociones
+        HTTP Method: POST
+        Request Body: {"descripcion":"Promoción de verano","descuento":10,"fechaInicio":"2024-08-01","fechaFin":"2024-08-31"}
+        Response Body: {"message":"Promoción creada con éxito","id_promocion":17}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:54.329Z
+        URL: /promociones/17
+        HTTP Method: PUT
+        Request Body: {"descripcion":"Promoción de verano extendida","descuento":15,"fechaInicio":"2024-08-01","fechaFin":"2024-08-31"}
+        Response Body: {"message":"Promoción actualizada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:54.354Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_promocion":17,"descripcion":"Promoción de verano extendida","descuento":"15.00","fechaInicio":"2024-08-01T06:00:00.000Z","fechaFin":"2024-08-31T06:00:00.000Z"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:54.385Z
+        URL: /promociones/17
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:54.944Z
+        URL: /categorias
+        HTTP Method: POST
+        Request Body: {"nombre":"Swimwear","descripcion":"Bikini collections"}
+        Response Body: {"message":"Categoría creada con éxito","id_categoria":106}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:54.976Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_categoria":106,"nombre":"Swimwear","descripcion":"Bikini collections"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:55.011Z
+        URL: /categorias/106
+        HTTP Method: PUT
+        Request Body: {"nombre":"Lingerie","descripcion":"Lingerie collections"}
+        Response Body: {"message":"Categoría actualizada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:55.038Z
+        URL: /categorias/106
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: {"message":"Categoría eliminada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:55.544Z
+        URL: /colores
+        HTTP Method: POST
+        Request Body: {"nombre":"Rojo"}
+        Response Body: {"message":"Color creado con éxito","id_color":21}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:55.568Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_color":21,"nombre":"Rojo"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:55.599Z
+        URL: /colores/21
+        HTTP Method: PUT
+        Request Body: {"nombre":"Verde"}
+        Response Body: {"message":"Color actualizado con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:55.629Z
+        URL: /colores/21
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: {"message":"Color eliminado con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:56.130Z
+        URL: /clientes
+        HTTP Method: POST
+        Request Body: {"nombre":"John Doe","email":"johndoe@example.com","direccion":"123 Main St","contra":"password123"}
+        Response Body: {"message":"Cliente creado con éxito","id_cliente":38}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:56.169Z
+        URL: /clientes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_cliente":38,"nombre":"John Doe","email":"johndoe@example.com","direccion":"123 Main St","contra":"password123"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:56.202Z
+        URL: /clientes/38
+        HTTP Method: PUT
+        Request Body: {"nombre":"Jane Doe","email":"janedoe@example.com","direccion":"456 Elm St","contra":"newpassword456"}
+        Response Body: {"message":"Cliente actualizado con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:56.231Z
+        URL: /clientes/38
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:56.699Z
+        URL: /colecciones
+        HTTP Method: POST
+        Request Body: {"nombre":"Verano 2024","descripcion":"Colección de verano para el año 2024"}
+        Response Body: {"message":"Colección creada con éxito","id_coleccion":20}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:56.728Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_coleccion":20,"nombre":"Verano 2024","descripcion":"Colección de verano para el año 2024"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:56.763Z
+        URL: /colecciones/20
+        HTTP Method: PUT
+        Request Body: {"nombre":"Primavera 2024","descripcion":"Colección de primavera para el año 2024"}
+        Response Body: {"message":"Colección actualizada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:50:56.798Z
+        URL: /colecciones/20
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: {"message":"Colección eliminada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:21.508Z
+        URL: /ordenes-detalles
+        HTTP Method: POST
+        Request Body: {"cantidad":2,"precioPorUnidad":50,"id_orden":24,"id_producto":5}
+        Response Body: {"message":"Detalle de orden creado con éxito","id_ordenDetalle":3}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:21.560Z
+        URL: /ordenes-detalles
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_ordenDetalle":3,"cantidad":2,"precioPorUnidad":"50.00","id_orden":24,"id_producto":5}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:21.607Z
+        URL: /ordenes-detalles/3
+        HTTP Method: PUT
+        Request Body: {"cantidad":3,"precioPorUnidad":60}
+        Response Body: {"message":"Detalle de orden actualizado con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:21.640Z
+        URL: /ordenes-detalles/3
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:21.659Z
+        URL: /ordenes-detalles/3
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: {"error":"Detalle de orden no encontrado"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:22.301Z
+        URL: /envios
+        HTTP Method: POST
+        Request Body: {"fechaEnvio":"2024-01-01","estado":"en camino","id_orden":25}
+        Response Body: {"message":"Envío creado con éxito","id_envio":9}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:22.333Z
+        URL: /envios
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_envio":9,"fechaEnvio":"2024-01-01T06:00:00.000Z","estado":"en camino","id_orden":25}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:22.374Z
+        URL: /envios/9
+        HTTP Method: PUT
+        Request Body: {"fechaEnvio":"2024-01-02","estado":"entregado","id_orden":25}
+        Response Body: {"message":"Envío actualizado con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:22.402Z
+        URL: /envios/9
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:22.423Z
+        URL: /envios/9
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: {"message":"Envío no encontrado"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:22.465Z
+        URL: /pagos
+        HTTP Method: POST
+        Request Body: {"monto":100,"id_orden":25}
+        Response Body: {"message":"Pago creado con éxito","id_pago":9}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:22.487Z
+        URL: /pagos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_pago":2,"fechaPago":"2024-08-20T09:33:10.000Z","monto":"150.00","id_orden":null},{"id_pago":3,"fechaPago":"2024-08-20T09:38:30.000Z","monto":"150.00","id_orden":null},{"id_pago":4,"fechaPago":"2024-08-20T09:42:35.000Z","monto":"150.00","id_orden":null},{"id_pago":9,"fechaPago":"2024-08-20T09:52:22.000Z","monto":"100.00","id_orden":25}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:22.521Z
+        URL: /pagos/9
+        HTTP Method: PUT
+        Request Body: {"monto":150,"id_orden":25}
+        Response Body: {"message":"Pago actualizado con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:22.549Z
+        URL: /pagos/9
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:22.570Z
+        URL: /pagos/9
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: {"message":"Pago no encontrado"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:23.086Z
+        URL: /categorias
+        HTTP Method: POST
+        Request Body: {"nombre":"Accesorios","descripcion":"Accesorios de moda"}
+        Response Body: {"message":"Categoría creada con éxito","id_categoria":107}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:23.105Z
+        URL: /productos
+        HTTP Method: POST
+        Request Body: {"nombre":"Sombrero de playa","descripcion":"Sombrero de playa hecho de paja","precio":19.99,"id_categoria":107}
+        Response Body: {"error":"Faltan o son inválidos el nombre, la descripción o las existencias."}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:23.133Z
+        URL: /inventarios
+        HTTP Method: POST
+        Request Body: {"cantidad":100}
+        Response Body: {"message":"Inventario creado con éxito","id_inventario":20}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:23.164Z
+        URL: /inventarios
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_inventario":20,"cantidad":100,"fechaActualizacion":"2024-08-20T09:52:23.000Z","id_producto":null}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:23.202Z
+        URL: /inventarios/20
+        HTTP Method: PUT
+        Request Body: {"cantidad":150}
+        Response Body: {"message":"Inventario actualizado con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:23.238Z
+        URL: /inventarios/20
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:23.769Z
+        URL: /categorias
+        HTTP Method: POST
+        Request Body: {"nombre":"Swimwear","descripcion":"Bikini collections"}
+        Response Body: {"message":"Categoría creada con éxito","id_categoria":108}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:23.797Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_categoria":108,"nombre":"Swimwear","descripcion":"Bikini collections"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:23.831Z
+        URL: /categorias/108
+        HTTP Method: PUT
+        Request Body: {"nombre":"Lingerie","descripcion":"Lingerie collections"}
+        Response Body: {"message":"Categoría actualizada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:23.859Z
+        URL: /categorias/108
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: {"message":"Categoría eliminada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:24.352Z
+        URL: /promociones
+        HTTP Method: POST
+        Request Body: {"descripcion":"Promoción de verano","descuento":10,"fechaInicio":"2024-08-01","fechaFin":"2024-08-31"}
+        Response Body: {"message":"Promoción creada con éxito","id_promocion":18}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:24.384Z
+        URL: /promociones/18
+        HTTP Method: PUT
+        Request Body: {"descripcion":"Promoción de verano extendida","descuento":15,"fechaInicio":"2024-08-01","fechaFin":"2024-08-31"}
+        Response Body: {"message":"Promoción actualizada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:24.411Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_promocion":18,"descripcion":"Promoción de verano extendida","descuento":"15.00","fechaInicio":"2024-08-01T06:00:00.000Z","fechaFin":"2024-08-31T06:00:00.000Z"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:24.446Z
+        URL: /promociones/18
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:24.979Z
+        URL: /categorias
+        HTTP Method: POST
+        Request Body: {"nombre":"Swimwear","descripcion":"Bikini collections"}
+        Response Body: {"message":"Categoría creada con éxito","id_categoria":109}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:25.003Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_categoria":109,"nombre":"Swimwear","descripcion":"Bikini collections"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:25.038Z
+        URL: /categorias/109
+        HTTP Method: PUT
+        Request Body: {"nombre":"Lingerie","descripcion":"Lingerie collections"}
+        Response Body: {"message":"Categoría actualizada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:25.067Z
+        URL: /categorias/109
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: {"message":"Categoría eliminada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:25.701Z
+        URL: /ordenes
+        HTTP Method: POST
+        Request Body: {"id_cliente":41,"fecha":"2023-08-25","total":100}
+        Response Body: {"message":"Orden creada con éxito","id_orden":26}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:25.735Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_orden":26,"fechaCreacion":"2024-08-20T09:52:25.000Z","estado":null,"id_cliente":41}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:25.786Z
+        URL: /ordenes/26
+        HTTP Method: PUT
+        Request Body: {"id_cliente":41,"fecha":"2023-08-26","total":150}
+        Response Body: {"message":"Orden actualizada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:25.817Z
+        URL: /ordenes/26
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:26.375Z
+        URL: /clientes
+        HTTP Method: POST
+        Request Body: {"nombre":"John Doe","email":"johndoe@example.com","direccion":"123 Main St","contra":"password123"}
+        Response Body: {"message":"Cliente creado con éxito","id_cliente":42}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:26.399Z
+        URL: /clientes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_cliente":42,"nombre":"John Doe","email":"johndoe@example.com","direccion":"123 Main St","contra":"password123"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:26.434Z
+        URL: /clientes/42
+        HTTP Method: PUT
+        Request Body: {"nombre":"Jane Doe","email":"janedoe@example.com","direccion":"456 Elm St","contra":"newpassword456"}
+        Response Body: {"message":"Cliente actualizado con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:26.459Z
+        URL: /clientes/42
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:27.014Z
+        URL: /colores
+        HTTP Method: POST
+        Request Body: {"nombre":"Rojo"}
+        Response Body: {"message":"Color creado con éxito","id_color":22}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:27.050Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_color":22,"nombre":"Rojo"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:27.082Z
+        URL: /colores/22
+        HTTP Method: PUT
+        Request Body: {"nombre":"Verde"}
+        Response Body: {"message":"Color actualizado con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:27.108Z
+        URL: /colores/22
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: {"message":"Color eliminado con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:27.757Z
+        URL: /colecciones
+        HTTP Method: POST
+        Request Body: {"nombre":"Verano 2024","descripcion":"Colección de verano para el año 2024"}
+        Response Body: {"message":"Colección creada con éxito","id_coleccion":21}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:27.787Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_coleccion":21,"nombre":"Verano 2024","descripcion":"Colección de verano para el año 2024"}]
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:27.816Z
+        URL: /colecciones/21
+        HTTP Method: PUT
+        Request Body: {"nombre":"Primavera 2024","descripcion":"Colección de primavera para el año 2024"}
+        Response Body: {"message":"Colección actualizada con éxito"}
+        ------------------------------
+    
+        Timestamp: 2024-08-20T03:52:27.845Z
+        URL: /colecciones/21
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: {"message":"Colección eliminada con éxito"}
+        ------------------------------
+    

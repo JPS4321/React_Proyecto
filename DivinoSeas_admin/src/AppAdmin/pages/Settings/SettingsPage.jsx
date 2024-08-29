@@ -9,7 +9,6 @@ const Settings = () => {
       <div className='SettingsPage'>
           <Navbar />
           <UserProfile />
-          <CardSetContainer />
       </div>
     );
 }

@@ -1,4 +1,5 @@
 import express from "express";
+import multer from "multer";
 import {
   getAllProductos,
   createProducto,
@@ -8,6 +9,10 @@ import {
 } from "../services/productService.js";
 
 const router = express.Router();
+
+// Configuración de multer para manejar la subida de imágenes en memoria
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 function validacionProducto(req, res, next) {
   const { nombre, descripcion, precio, id_categoria } = req.body;
@@ -37,7 +42,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // Crear un nuevo producto
-router.post("/", validacionProducto, async (req, res) => {
+router.post("/", upload.single('imagen'), validacionProducto, async (req, res) => {
   const { nombre, descripcion, precio, id_categoria } = req.body;
   const imagen = req.file ? req.file.buffer : null; // Obtener la imagen si está disponible
   try {
@@ -73,7 +78,7 @@ router.post("/", validacionProducto, async (req, res) => {
 });
 
 // Actualizar un producto existente
-router.put("/:id", validacionProducto, async (req, res) => {
+router.put("/:id", upload.single('imagen'), validacionProducto, async (req, res) => {
   const { id } = req.params;
   const { nombre, descripcion, precio, id_categoria } = req.body;
   const imagen = req.file ? req.file.buffer : null; // Obtener la imagen si está disponible

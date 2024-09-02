@@ -126,5 +126,6 @@ CREATE TABLE IF NOT EXISTS Pagos (
     fechaPago TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     monto DECIMAL(10,2) NOT NULL,
     id_orden INT,
-    FOREIGN KEY (id_orden) REFERENCES Ordenes (id_orden) ON DELETE SET NULL
+    FOREIGN KEY (id_orden) REFERENCES Ordenes (id_orden) ON DELETE SET NULL,
+    imagen LONGBLOB
 );

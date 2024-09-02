@@ -1,45 +1,56 @@
-import conn from "../connection.js";
+import conn from '../connection.js';
 
-// Obtener todos los usuarios
-async function getAllUsers() {
-  const [rows] = await conn.query("SELECT * FROM Users");
-  return rows;
+export async function getAllUsers() {
+    try {
+        const [rows] = await conn.query('SELECT * FROM Users');
+        return rows;
+    } catch (e) {
+        console.log(e);
+        return e;
+    }
 }
 
-// Obtener un usuario por ID
-async function getUserById(id) {
-  const [rows] = await conn.query("SELECT * FROM Users WHERE id_user = ?", [id]);
-  return rows[0];
+export async function getUserById(id_user) {
+    try {
+        const [rows] = await conn.query('SELECT * FROM Users WHERE id_user = ?', [id_user]);
+        return rows[0] || null;
+    } catch (e) {
+        console.log(e);
+        return e;
+    }
 }
 
-// Crear un nuevo usuario
-async function createUser(username, password_hashed, is_admin, role, imagen) {
-  const result = await conn.query(
-    "INSERT INTO Users (username, password_hashed, is_admin, role, imagen) VALUES (?, ?, ?, ?, ?)",
-    [username, password_hashed, is_admin, role, imagen]
-  );
-  return result;
+export async function createUser(username, password_hashed, is_admin, role, imagen) {
+    try {
+        const [result] = await conn.query(
+            'INSERT INTO Users (username, password_hashed, is_admin, role, imagen) VALUES (?, ?, ?, ?, ?)', 
+            [username, password_hashed, is_admin, role, imagen]
+        );
+        return { success: true, result };
+    } catch (e) {
+        console.log(e);
+        return { success: false, error: e };
+    }
 }
 
-// Actualizar un usuario existente
-async function updateUser(id, username, password_hashed, is_admin, role, imagen) {
-  const result = await conn.query(
-    "UPDATE Users SET username = ?, password_hashed = ?, is_admin = ?, role = ?, imagen = ? WHERE id_user = ?",
-    [username, password_hashed, is_admin, role, imagen, id]
-  );
-  return result;
+export async function updateUser(id_user, username, password_hashed, is_admin, role, imagen) {
+    try {
+        const [result] = await conn.query(
+            'UPDATE Users SET username = ?, password_hashed = ?, is_admin = ?, role = ?, imagen = ? WHERE id_user = ?',
+            [username, password_hashed, is_admin, role, imagen, id_user]
+        );
+        return result;
+    } catch (e) {
+        console.log(e);
+        return e;
+    }
 }
 
-// Eliminar un usuario
-async function deleteUser(id) {
-  const result = await conn.query("DELETE FROM Users WHERE id_user = ?", [id]);
-  return result;
+export async function deleteUser(id_user) {
+    try {
+        await conn.query('DELETE FROM Users WHERE id_user = ?', [id_user]);
+    } catch (e) {
+        console.log(e);
+        return e;
+    }
 }
-
-export {
-  getAllUsers,
-  getUserById,
-  createUser,
-  updateUser,
-  deleteUser,
-};

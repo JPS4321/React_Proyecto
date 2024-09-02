@@ -87,7 +87,8 @@ CREATE TABLE IF NOT EXISTS Users (
     username VARCHAR(255) NOT NULL UNIQUE,
     password_hashed VARCHAR(255) NOT NULL,
     is_admin BOOLEAN NOT NULL DEFAULT FALSE,
-    role VARCHAR(50) NOT NULL
+    role VARCHAR(50) NOT NULL,
+    imagen LONGBLOB
 );
 
 
@@ -126,6 +127,5 @@ CREATE TABLE IF NOT EXISTS Pagos (
     fechaPago TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     monto DECIMAL(10,2) NOT NULL,
     id_orden INT,
-    FOREIGN KEY (id_orden) REFERENCES Ordenes (id_orden) ON DELETE SET NULL,
-    imagen LONGBLOB
+    FOREIGN KEY (id_orden) REFERENCES Ordenes (id_orden) ON DELETE SET NULL
 );

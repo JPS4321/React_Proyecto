@@ -39,12 +39,14 @@ router.get("/:id", async (req, res) => {
 // Crear un nuevo producto
 router.post("/", validacionProducto, async (req, res) => {
   const { nombre, descripcion, precio, id_categoria } = req.body;
+  const imagen = req.file ? req.file.buffer : null; // Obtener la imagen si está disponible
   try {
     const { success, result, error } = await createProducto(
       nombre,
       descripcion,
       precio,
-      id_categoria
+      id_categoria,
+      imagen
     );
     if (success && result.affectedRows && result.affectedRows > 0) {
       return res.status(201).json({
@@ -74,6 +76,7 @@ router.post("/", validacionProducto, async (req, res) => {
 router.put("/:id", validacionProducto, async (req, res) => {
   const { id } = req.params;
   const { nombre, descripcion, precio, id_categoria } = req.body;
+  const imagen = req.file ? req.file.buffer : null; // Obtener la imagen si está disponible
 
   try {
     const result = await updateProducto(
@@ -81,7 +84,8 @@ router.put("/:id", validacionProducto, async (req, res) => {
       nombre,
       descripcion,
       precio,
-      id_categoria
+      id_categoria,
+      imagen
     );
     if (result.affectedRows && result.affectedRows > 0) {
       return res.status(200).json({

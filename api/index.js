@@ -6,14 +6,14 @@ import categoryRouter from "./routes/categoryRoute.js";
 import colorRouter from "./routes/colorRoute.js";
 import productColorRouter from "./routes/productColorRoute.js";
 import collectionRouter from "./routes/collectionRoute.js";
-import clientRouter from "./routes/clientRoute.js";
 import productCollectionRouter from "./routes/productCollectionRoute.js";
 import inventoryRouter from "./routes/inventoryRoute.js";
 import promotionRouter from "./routes/promotionRoute.js";
 import shippingRouter from "./routes/shippingRoute.js";
 import paymentRouter from "./routes/paymentRoute.js";
 import orderRouter from "./routes/orderRoute.js"; 
-import orderDetailRouter from "./routes/orderDetailRoute.js"
+import orderDetailRouter from "./routes/orderDetailRoute.js";
+import userRouter from "./routes/userRoutes.js";
 
 const app = express();
 
@@ -29,7 +29,6 @@ app.use("/categorias", categoryRouter);
 app.use("/colores", colorRouter);
 app.use("/productos", productColorRouter);
 app.use("/colecciones", collectionRouter);
-app.use("/clientes", clientRouter);
 app.use("/producto-colecciones", productCollectionRouter);
 app.use("/inventarios", inventoryRouter);
 app.use("/promociones", promotionRouter);
@@ -37,6 +36,7 @@ app.use("/envios", shippingRouter);
 app.use("/pagos", paymentRouter);
 app.use("/ordenes", orderRouter)
 app.use("/ordenes-detalles", orderDetailRouter)
+app.use("/usuarios", userRouter);
 
 app.get("/", (req, res) => {
   res.send("API de Productos Bikini");

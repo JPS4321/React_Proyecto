@@ -36,7 +36,7 @@ const InventoryForm = ({ onClose }) => {
 
   return (
     <div className="form-container">
-      <h2 className="form-title">Añadir Producto</h2>
+      <h2 className="form-title">AÑADIR PRODUCTO</h2>
       <form onSubmit={handleSubmit} className="form">
         <label className="label">
           Nombre del producto:

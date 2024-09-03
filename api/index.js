@@ -14,6 +14,7 @@ import paymentRouter from "./routes/paymentRoute.js";
 import orderRouter from "./routes/orderRoute.js"; 
 import orderDetailRouter from "./routes/orderDetailRoute.js";
 import userRouter from "./routes/userRoutes.js";
+import clientRouter from "./routes/clientRoute.js"
 
 const app = express();
 
@@ -37,6 +38,7 @@ app.use("/pagos", paymentRouter);
 app.use("/ordenes", orderRouter)
 app.use("/ordenes-detalles", orderDetailRouter)
 app.use("/usuarios", userRouter);
+app.use("/clientes", clientRouter)
 
 app.get("/", (req, res) => {
   res.send("API de Productos Bikini");

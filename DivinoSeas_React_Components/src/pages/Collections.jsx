@@ -5,7 +5,9 @@ import ProductCard from '../Components/ProductCard/ProductCard';
 import FilterToggle from '../Components/FilterTogle/FilterToggle';
 import styles from './pages_css/Collections.module.css'; 
 import image from '../assets/bottom01.png';
+import hoverImage from '../assets/bottom02.png'; // Imagen de hover
 import RangeSlider from '../Components/RangeSlider/RangeSlider';
+import Footer from '../Components/Footer/Footer'
 
 function Collections() {
     const [minPrice, setMinPrice] = useState(0); 
@@ -14,14 +16,13 @@ function Collections() {
     const [outOfStockFilter, setOutOfStockFilter] = useState(false);
 
     const products = [
-        { id: 1, imageSrc: image, title: 'Product 1', price: 20.00, Existencia: false },
-        { id: 2, imageSrc: image, title: 'Product 2', price: 40.00, Existencia: true },
-        { id: 3, imageSrc: image, title: 'Product 3', price: 60.00, Existencia: false },
-        { id: 4, imageSrc: image, title: 'Product 4', price: 80.00, Existencia: true },
-        { id: 5, imageSrc: image, title: 'Product 4', price: 80.00, Existencia: true },
-
+        { id: 1, imageSrc: image, hoverImageSrc: hoverImage, title: 'Product 1', price: 20.00, Existencia: false },
+        { id: 2, imageSrc: image, hoverImageSrc: hoverImage, title: 'Product 2', price: 40.00, Existencia: true },
+        { id: 3, imageSrc: image, hoverImageSrc: hoverImage, title: 'Product 3', price: 60.00, Existencia: false },
+        { id: 4, imageSrc: image, hoverImageSrc: hoverImage, title: 'Product 4', price: 80.00, Existencia: true },
+        { id: 5, imageSrc: image, hoverImageSrc: hoverImage, title: 'Product 5', price: 80.00, Existencia: true },
     ];
-
+    
     const handleAvailabilityChange = (inStock, outOfStock) => {
         setInStockFilter(inStock);
         setOutOfStockFilter(outOfStock);
@@ -56,16 +57,21 @@ function Collections() {
                     </div>
                 </div>
                 <div className={styles.productsGrid}>
-                    {filteredProducts.map(product => (
-                        <ProductCard 
-                            key={product.id} 
-                            imageSrc={product.imageSrc} 
-                            title={product.title} 
-                            price={product.price.toFixed(2)} 
-                        />
-                    ))}
+                    {filteredProducts.map(product => {
+                        const price = typeof product.price === 'number' ? product.price.toFixed(2) : 'N/A';
+                        return (
+                            <ProductCard 
+                                key={product.id} 
+                                imageSrc={product.imageSrc} 
+                                hoverImageSrc={product.hoverImageSrc} 
+                                title={product.title} 
+                                price={price} 
+                            />
+                        );
+                    })}
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 }

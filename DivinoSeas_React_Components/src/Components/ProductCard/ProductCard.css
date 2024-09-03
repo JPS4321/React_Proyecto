@@ -10,6 +10,12 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer; 
   max-width: 190px;
+  transition: transform 0.3s ease; /* Transición para agrandar la tarjeta */
+  position: relative; /* Necesario para superponer la imagen hover */
+}
+
+.card:hover {
+  transform: scale(1.05); /* Efecto de agrandamiento al hacer hover */
 }
 
 .card-image {
@@ -18,6 +24,29 @@
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 2px;
+  transition: opacity 0.3s ease; /* Transición para el cambio de imagen */
+}
+
+.hover-image {
+  position: absolute;
+  top: 10%; /* Ajusta la posición para centrar la imagen más pequeña */
+  left: 5%; /* Ajusta la posición para centrar la imagen más pequeña */
+  width: 90%; /* Haz la imagen un poco más pequeña */
+  max-height: 117px; /* Ajusta la altura para mantener proporciones */
+  object-fit: cover;
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Transición para la aparición de la segunda imagen y el cambio de tamaño */
+}
+
+.card:hover .card-image {
+  opacity: 0; /* Esconde la primera imagen */
+}
+
+.card:hover .hover-image {
+  opacity: 1; /* Muestra la segunda imagen */
+  transform: scale(0.95); /* Escala la imagen para hacerla más pequeña */
+
 }
 
 .card-content {

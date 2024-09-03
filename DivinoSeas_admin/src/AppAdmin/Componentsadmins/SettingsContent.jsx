@@ -10,7 +10,7 @@ const users = [
 ];
 
 const UserProfile = () => {
-  const userId = "#1";
+  const userId = "#4"; 
   const user = users.find(u => u.id === userId); 
   const [permissions, setPermissions] = useState({
     canEditInventory: false,
@@ -29,6 +29,8 @@ const UserProfile = () => {
     });
   };
 
+  const isEditable = user.role === "Administrador" || user.role === "Supervisora de Tienda";
+
   return (
     <div className="user-profile-container">
       <div className="profile-card">
@@ -40,38 +42,39 @@ const UserProfile = () => {
           <p><strong>Usuario:</strong> {user.user}</p>
           <p><strong>Rol:</strong> {user.role}</p>
         </div>
-        {user.role === "Administrador" && (
-          <div className="permissions-section">
-            <h3>Permisos:</h3>
-            <label>
-              <input 
-                type="checkbox" 
-                name="canEditInventory" 
-                checked={permissions.canEditInventory} 
-                onChange={handlePermissionChange} 
-              />
-              Editar Inventario
-            </label>
-            <label>
-              <input 
-                type="checkbox" 
-                name="canViewReports" 
-                checked={permissions.canViewReports} 
-                onChange={handlePermissionChange} 
-              />
-              Ver Reportes
-            </label>
-            <label>
-              <input 
-                type="checkbox" 
-                name="canManageUsers" 
-                checked={permissions.canManageUsers} 
-                onChange={handlePermissionChange} 
-              />
-              Gestionar Usuarios
-            </label>
-          </div>
-        )}
+        <div className="permissions-section">
+          <h3>Permisos:</h3>
+          <label>
+            <input 
+              type="checkbox" 
+              name="canEditInventory" 
+              checked={permissions.canEditInventory} 
+              onChange={handlePermissionChange} 
+              disabled={!isEditable} 
+            />
+            Editar Inventario
+          </label>
+          <label>
+            <input 
+              type="checkbox" 
+              name="canViewReports" 
+              checked={permissions.canViewReports} 
+              onChange={handlePermissionChange} 
+              disabled={!isEditable} 
+            />
+            Ver Reportes
+          </label>
+          <label>
+            <input 
+              type="checkbox" 
+              name="canManageUsers" 
+              checked={permissions.canManageUsers} 
+              onChange={handlePermissionChange} 
+              disabled={!isEditable} 
+            />
+            Gestionar Usuarios
+          </label>
+        </div>
         <button className="logout-button" onClick={handleLogout}>Cerrar Sesión</button>
       </div>
     </div>

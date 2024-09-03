@@ -4,6 +4,9 @@ import '../styles/InventoryForm.css';
 
 const InventoryForm = ({ onClose }) => {
   const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [price, setPrice] = useState('');
+  const [category, setCategory] = useState('');
   const [image, setImage] = useState(null);
   const [xs, setXs] = useState(0);
   const [s, setS] = useState(0);
@@ -13,10 +16,10 @@ const InventoryForm = ({ onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (name && image && xs >= 0 && s >= 0 && m >= 0 && l >= 0) {
-      console.log({ name, image, xs, s, m, l });
-      onClose();  
-      navigate('/Stock');  
+    if (name && description && price && category && image && xs >= 0 && s >= 0 && m >= 0 && l >= 0) {
+      console.log({ name, description, price, category, image, xs, s, m, l });
+      onClose(); 
+      navigate('/Stock'); 
     } else {
       alert('Por favor completa todos los campos antes de agregar el producto.');
     }
@@ -38,6 +41,18 @@ const InventoryForm = ({ onClose }) => {
         <label className="label">
           Nombre del producto:
           <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="input" required />
+        </label>
+        <label className="label">
+          Descripción:
+          <textarea value={description} onChange={(e) => setDescription(e.target.value)} className="input textarea" required />
+        </label>
+        <label className="label">
+          Precio:
+          <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} className="input" required />
+        </label>
+        <label className="label">
+          Categoría:
+          <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} className="input" required />
         </label>
         <label className="label">
           Imagen:

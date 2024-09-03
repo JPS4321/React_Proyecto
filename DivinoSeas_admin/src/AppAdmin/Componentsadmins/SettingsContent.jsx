@@ -1,35 +1,77 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/UserProfile.css'; 
 
 const users = [
   { id: "#1", image: "", user: "Fernando", mail: "Fernando@gmail.com", role: "Administrador" },
   { id: "#2", image: "", user: "Pablo", mail: "Pablo@gmail.com", role: "Gerente de Inventario" },
-  { id: "#3", image: "", user: "Julio", mail: "Julio@gmail.com", role: "Encargado de Almacén" },
-  { id: "#4", image: "", user: "Sofia", mail: "Sofia@gmail.com", role: "Supervisora de Tienda" },
-  { id: "#5", image: "", user: "Joaquin", mail: "Joaquin@gmail.com", role: "Planificador de Compras" }
+  { id: "#3", image: "https://via.placeholder.com/80", user: "Julio", mail: "Julio@gmail.com", role: "Encargado de Almacén" },
+  { id: "#4", image: "https://via.placeholder.com/80", user: "Sofia", mail: "Sofia@gmail.com", role: "Supervisora de Tienda" },
+  { id: "#5", image: "https://via.placeholder.com/80", user: "Joaquin", mail: "Joaquin@gmail.com", role: "Planificador de Compras" }
 ];
 
 const UserProfile = () => {
-  const userId = "#4"; // ID del usuario actual
-  const user = users.find(u => u.id === userId); // Filtramos el usuario con el ID 4
+  const userId = "#1";
+  const user = users.find(u => u.id === userId); 
+  const [permissions, setPermissions] = useState({
+    canEditInventory: false,
+    canViewReports: true,
+    canManageUsers: false,
+  });
 
   const handleLogout = () => {
-    // Cerrar sesion
     console.log("Cerrando sesión...");
+  };
+
+  const handlePermissionChange = (e) => {
+    setPermissions({
+      ...permissions,
+      [e.target.name]: e.target.checked
+    });
   };
 
   return (
     <div className="user-profile-container">
       <div className="profile-card">
         <div className="profile-image">
-          <img src={user.image || "path_to_default_profile_image.jpg"} alt="Perfil" />
+          <img src={user.image || "https://via.placeholder.com/80"} alt="Perfil" />
         </div>
-        <div className="profile-divider"></div>
         <div className="profile-details">
           <p><strong>Correo:</strong> {user.mail}</p>
           <p><strong>Usuario:</strong> {user.user}</p>
           <p><strong>Rol:</strong> {user.role}</p>
         </div>
+        {user.role === "Administrador" && (
+          <div className="permissions-section">
+            <h3>Permisos:</h3>
+            <label>
+              <input 
+                type="checkbox" 
+                name="canEditInventory" 
+                checked={permissions.canEditInventory} 
+                onChange={handlePermissionChange} 
+              />
+              Editar Inventario
+            </label>
+            <label>
+              <input 
+                type="checkbox" 
+                name="canViewReports" 
+                checked={permissions.canViewReports} 
+                onChange={handlePermissionChange} 
+              />
+              Ver Reportes
+            </label>
+            <label>
+              <input 
+                type="checkbox" 
+                name="canManageUsers" 
+                checked={permissions.canManageUsers} 
+                onChange={handlePermissionChange} 
+              />
+              Gestionar Usuarios
+            </label>
+          </div>
+        )}
         <button className="logout-button" onClick={handleLogout}>Cerrar Sesión</button>
       </div>
     </div>

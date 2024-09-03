@@ -130,3 +130,14 @@
   opacity: 0.9;
   transform: scale(1.02);
 }
+
+/* Error message styling */
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+/* Error input styling */
+.error {
+  border-color: red;
+}

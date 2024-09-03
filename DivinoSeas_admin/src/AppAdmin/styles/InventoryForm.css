@@ -3,61 +3,91 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border: 3px solid #000000;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    background-color: #1c1c1e; 
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
     z-index: 1001;
+    width: 500px;
+  }
+  
+  .form-title {
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+    font-size: 24px;
   }
   
   .form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
   }
   
   .label {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     font-size: 14px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    color: white;
   }
   
-  .input {
-    padding: 8px;
-    margin-bottom: 10px;
+  .input, .input-file, .input-size {
+    padding: 10px;
+    margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    background-color: #333;
+    color: white;
+  }
+  
+  .drag-drop-area {
+    border: 2px dashed #ccc;
+    padding: 20px;
     text-align: center;
-    color: black;
+    margin-top: 10px;
+    border-radius: 4px;
+    color: #ccc;
+    cursor: pointer;
+  }
+  
+  .sizes-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .size-label {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+  }
+  
+  .size-label:last-child {
+    margin-right: 0;
   }
   
   .button-container {
     display: flex;
-    justify-content: center;
-    width: 100%;
+    justify-content: space-between;
   }
   
   .submit-button {
-    padding: 10px;
+    padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin-top: 10px;
     background-color: #4CAF50;
     color: white;
-    margin-right: 10px;
+    font-size: 16px;
   }
   
   .cancel-button {
-    padding: 10px;
+    padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin-top: 10px;
     background-color: #f44336;
     color: white;
+    font-size: 16px;
   }
   

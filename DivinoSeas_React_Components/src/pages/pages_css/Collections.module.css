@@ -1,8 +1,19 @@
+.container {
+    min-height: calc(100vh - 100px); 
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .footer {
+    margin-top: auto; 
+  }
+  
+
 .layout {
     display: flex;
     margin-top: 20px;
-    height: auto;  /* Cambia de height: 53vh a auto si es necesario */
-    overflow-y: auto;  /* Asegura que el contenido adicional sea scrollable */
+    height: auto;  
+    overflow-y: auto;  
 }
 
 .filters {
@@ -16,13 +27,13 @@
 }
 
 .productsGrid {
-    flex: 3;  /* Cambia flex: 3 a flex: 1 */
+    flex: 3;  
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
     gap: 20px;
     padding: 20px;
-    justify-content: center;  /* Centra los elementos dentro del grid */
-    align-items: stretch;    /* Asegura que las tarjetas ocupen toda la altura disponible */
+    justify-content: center;  
+    align-items: stretch;    
     overflow-y: auto;
 
 }

@@ -1,24 +1,20 @@
 import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom'; // Cambiar useParams por useLocation
 import Navbar from '../Components/NavBar/Navbar';
 import Marquee from '../Components/Marquee/Marquee';
 import Footer from '../Components/Footer/Footer';
-import image from '../assets/bottom01.png';
-import image2 from '../assets/bottom02.png';
 import './pages_css/ProductPage.css';
 
-const products = {
-    'product-1': { title: 'Product 1', price: '20.00', description: 'Description for Product 1' },
-    'product-2': { title: 'Product 2', price: '20.00', description: 'Description for Product 2' },
-    'product-3': { title: 'Product 3', price: '20.00', description: 'Description for Product 3' },
-    'product-4': { title: 'Product 4', price: '20.00', description: 'Description for Product 4' },
-};
-
 function ProductPage() {
-    const { productName } = useParams();
+    const { state } = useLocation(); // Obtén el estado de la navegación
     const navigate = useNavigate();
-    const productKey = productName.replace(/\s+/g, '-').toLowerCase();
-    const product = products[productKey];
+
+    // Si no hay estado, mostrar un mensaje de error
+    if (!state) {
+        return <div>Product not found</div>;
+    }
+
+    const { title, imageSrc, hoverImageSrc, price, discount } = state;
 
     const [amount, setAmount] = useState(1);
     const [selectedSize, setSelectedSize] = useState('M'); // Tamaño por defecto 'M'
@@ -42,9 +38,7 @@ function ProductPage() {
         navigate('/PaymentScreen');
     };
 
-    if (!product) {
-        return <div>Product not found</div>;
-    }
+    const discountedPrice = discount > 0 ? price - (price * discount) / 100 : price;
 
     return (
         <div className='ProductPageContainer'>
@@ -54,12 +48,21 @@ function ProductPage() {
             </div>
             <div className='ProductPageContent'>
                 <div className='left-column'>
-                    <img src={image} alt='Product Image 1' />
-                    <img src={image2} alt='Product Image 2' />
+                    <img src={imageSrc} alt='Product Image 1' />
+                    <img src={hoverImageSrc} alt='Product Image 2' />
                 </div>
                 <div className='right-column'>
-                    <h1 className='Title'>{product.title}</h1>
-                    <p className='Price'>${product.price}</p>
+                    <h1 className='Title'>{title}</h1>
+                    <p className='Price'>
+                        {discount > 0 ? (
+                            <>
+                                <span className='OriginalPrice'>Q{price.toFixed(2)}</span>
+                                <span className='DiscountedPrice'>Q{discountedPrice.toFixed(2)}</span>
+                            </>
+                        ) : (
+                            <>Q{price.toFixed(2)}</>
+                        )}
+                    </p>
                     <p className='Size'>Size: {selectedSize}</p>
                     <div className='SizesButtonRow'>
                         <button 
@@ -92,7 +95,6 @@ function ProductPage() {
                         </div>
                         <button className="addToCartButton" onClick={addToCart}>Add to Cart</button>
                     </div>
-                    <p>{product.description}</p>
                     <hr />
                 </div>
             </div>

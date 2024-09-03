@@ -14,6 +14,17 @@ const router = express.Router();
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
+// Middleware de validación para los datos del usuario
+function validacionUsuario(req, res, next) {
+  const { username, password_hashed, is_admin, role } = req.body;
+  if (!username || !password_hashed || typeof is_admin === 'undefined' || !role) {
+    return res.status(400).json({
+      error: "Faltan o son inválidos el nombre de usuario, la contraseña, el estado de administrador o el rol.",
+    });
+  }
+  next();
+}
+
 // Obtener todos los usuarios
 router.get("/", async (req, res) => {
   const users = await getAllUsers();
@@ -32,14 +43,16 @@ router.get("/:id", async (req, res) => {
 });
 
 // Crear un nuevo usuario
-router.post("/", upload.single('imagen'), async (req, res) => {
+router.post("/", upload.single('imagen'), validacionUsuario, async (req, res) => {
   const { username, password_hashed, is_admin, role } = req.body;
   const imagen = req.file ? req.file.buffer : null; // Obtener la imagen si está disponible
+
   try {
+    const isAdminValue = is_admin ? 1 : 0; // Convertir el valor booleano a 1 o 0
     const { success, result, error } = await createUser(
       username,
       password_hashed,
-      is_admin,
+      isAdminValue,  // Aquí se pasa el valor convertido
       role,
       imagen
     );
@@ -68,17 +81,18 @@ router.post("/", upload.single('imagen'), async (req, res) => {
 });
 
 // Actualizar un usuario existente
-router.put("/:id", upload.single('imagen'), async (req, res) => {
+router.put("/:id", upload.single('imagen'), validacionUsuario, async (req, res) => {
   const { id } = req.params;
   const { username, password_hashed, is_admin, role } = req.body;
   const imagen = req.file ? req.file.buffer : null; // Obtener la imagen si está disponible
 
   try {
+    const isAdminValue = is_admin ? 1 : 0; // Convertir el valor booleano a 1 o 0
     const result = await updateUser(
       id,
       username,
       password_hashed,
-      is_admin,
+      isAdminValue,
       role,
       imagen
     );

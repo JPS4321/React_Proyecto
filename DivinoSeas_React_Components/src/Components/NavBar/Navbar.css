@@ -37,12 +37,12 @@ ul li{
 
 }
 .search-box input{
-    padding: 6px;
+    padding: 4px;
     background: transparent;
     border: 0;
     outline: 0;
     color: #847c74;
-    font-size: 18px;
+    font-size: 15px;
     max-width: 200px ;
 }
 .search-box input::placeholder{

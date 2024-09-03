@@ -31,6 +31,9 @@ function Collections() {
                 <div className={styles.filters}>
                     <div>
                     <FilterToggle />
+
+                
+
                     </div>
                 </div>
                 <div className={styles.productsGrid}>

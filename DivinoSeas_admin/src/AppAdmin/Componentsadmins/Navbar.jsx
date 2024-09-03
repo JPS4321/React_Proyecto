@@ -35,7 +35,7 @@ const Navbar = () => {
           <li onClick={handleSales}>Ventas</li>
         </ul>
       </div>
-      <div className='logo-container'>
+      <div className='logo-container' onClick={handleHome}>
         <img src={logo} alt="DivinoSeas Logo" className='logo' />
       </div>
       <div className='nav-section right'>

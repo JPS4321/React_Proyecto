@@ -1,4 +1,5 @@
 import express from "express";
+import multer from "multer";
 import {
   getAllProductos,
   createProducto,
@@ -9,12 +10,15 @@ import {
 
 const router = express.Router();
 
+// Configuración de multer para manejar la subida de imágenes en memoria
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
 function validacionProducto(req, res, next) {
-  const { nombre, descripcion, picture, existencias } = req.body;
-  if (!nombre || !descripcion || !existencias) {
+  const { nombre, descripcion, precio, id_categoria } = req.body;
+  if (!nombre || !descripcion || precio === undefined || precio === null) {
     return res.status(400).json({
-      error:
-        "Faltan o son inválidos el nombre, la descripción o las existencias.",
+      error: "Faltan o son inválidos el nombre, la descripción o el precio.",
     });
   }
   next();
@@ -30,18 +34,24 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   const producto = await getProductoById(id);
-  res.status(200).json(producto);
+  if (producto) {
+    res.status(200).json(producto);
+  } else {
+    res.status(404).json({ message: "Producto no encontrado" });
+  }
 });
 
 // Crear un nuevo producto
-router.post("/", validacionProducto, async (req, res) => {
-  const { nombre, descripcion, picture, existencias } = req.body;
+router.post("/", upload.single('imagen'), validacionProducto, async (req, res) => {
+  const { nombre, descripcion, precio, id_categoria } = req.body;
+  const imagen = req.file ? req.file.buffer : null; // Obtener la imagen si está disponible
   try {
     const { success, result, error } = await createProducto(
       nombre,
       descripcion,
-      picture,
-      existencias
+      precio,
+      id_categoria,
+      imagen
     );
     if (success && result.affectedRows && result.affectedRows > 0) {
       return res.status(201).json({
@@ -68,17 +78,19 @@ router.post("/", validacionProducto, async (req, res) => {
 });
 
 // Actualizar un producto existente
-router.put("/:id", validacionProducto, async (req, res) => {
+router.put("/:id", upload.single('imagen'), validacionProducto, async (req, res) => {
   const { id } = req.params;
-  const { nombre, descripcion, picture, existencias } = req.body;
+  const { nombre, descripcion, precio, id_categoria } = req.body;
+  const imagen = req.file ? req.file.buffer : null; // Obtener la imagen si está disponible
 
   try {
     const result = await updateProducto(
       id,
       nombre,
       descripcion,
-      picture,
-      existencias
+      precio,
+      id_categoria,
+      imagen
     );
     if (result.affectedRows && result.affectedRows > 0) {
       return res.status(200).json({
@@ -98,8 +110,13 @@ router.put("/:id", validacionProducto, async (req, res) => {
 // Eliminar un producto
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
-  await deleteProducto(id);
-  res.status(204).send();
+  try {
+    await deleteProducto(id);
+    res.status(204).send();
+  } catch (error) {
+    console.error("Error al eliminar el producto:", error);
+    res.status(500).json({ message: "Error Interno del Servidor" });
+  }
 });
 
 export default router;

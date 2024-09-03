@@ -76,16 +76,14 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const result = await deletePayment(req.params.id);
-    if (result[0].affectedRows > 0) {
-      res.status(200).json({ message: "Pago eliminado con éxito" });
+    if (result.affectedRows > 0) {
+      res.status(204).send(); // No Content
     } else {
       res.status(404).json({ message: "Pago no encontrado" });
     }
   } catch (error) {
-    res.status(500).json({
-      message: "Error al eliminar el pago",
-      error: error.message,
-    });
+    console.error("Error al eliminar el pago:", error);
+    res.status(500).json({ message: "Error al eliminar el pago", error: error.message });
   }
 });
 

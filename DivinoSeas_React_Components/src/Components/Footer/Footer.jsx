@@ -4,21 +4,21 @@ const Footer = () => {
   return (
     <footer style={styles.footer}>
       <div style={styles.column}>
-        <h3 style={styles.title}>Contact</h3>
-        <p>Address: 123 Street, City, Country</p>
-        <p>Phone: +502 12345678</p>
-        <p>Email: example@example.com</p>
+        <h3 style={styles.title}>Contacto</h3>
+        <p>Dirección: 123 Street, City, Country</p>
+        <p>Teléfono: +502 12345678</p>
+        <p>Correo: example@example.com</p>
       </div>
       <div style={styles.column}>
-        <h3 style={styles.title}>Company</h3>
-        <p>About Us</p>
-        <p>Our Services</p>
-        <p>Privacy Policy</p>
+        <h3 style={styles.title}>Dvino Seas</h3>
+        <p>Sobre Nostros</p>
+        <p>Nuestros Servicios</p>
+        <p>Politica de Privacidad</p>
       </div>
       <div style={styles.column}>
-        <h3 style={styles.title}>Follow Us</h3>
+        <h3 style={styles.title}>¡Siguenos!</h3>
         <p>Facebook</p>
-        <p>Twitter</p>
+        <p>X</p>
         <p>Instagram</p>
       </div>
     </footer>

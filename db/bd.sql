@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS DivinoSeas_Productos (
     nombre VARCHAR(255) NOT NULL,
     descripcion TEXT NOT NULL,
     precio DECIMAL(10,2) NOT NULL,
+    imagen LONGBLOB, 
     id_categoria INT,
     FOREIGN KEY (id_categoria) REFERENCES Categorias (id_categoria) ON DELETE SET NULL
 );
@@ -89,6 +90,15 @@ CREATE TABLE IF NOT EXISTS Clientes (
     contra VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS Users (
+    id_user INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    password_hashed VARCHAR(255) NOT NULL,
+    is_admin BOOLEAN NOT NULL DEFAULT FALSE,
+    role VARCHAR(50) NOT NULL,
+    imagen LONGBLOB
+);
+
 -- Tabla de Ordenes
 CREATE TABLE IF NOT EXISTS Ordenes (
     id_orden INT AUTO_INCREMENT PRIMARY KEY,
@@ -126,3 +136,4 @@ CREATE TABLE IF NOT EXISTS Pagos (
     id_orden INT,
     FOREIGN KEY (id_orden) REFERENCES Ordenes (id_orden) ON DELETE SET NULL
 );
+

@@ -12,13 +12,14 @@ const Navbar = () => {
 
   return (
     <div className='navbar2'>
-        <img src={logo} alt="DivinoSeas Logo" className='logo'/>
-        <ul>
+      <Link to="/">
+        <img src={logo} alt="DivinoSeas Logo" className='logo' />
+      </Link>        <ul>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/about-us">About</Link></li>
         <li><Link to="/contact">Contact</Link></li>
-        <li><Link to="/collections">Shop Women</Link></li>
-        <li><Link to="/collections">Shop Couple</Link></li>
+        <li><Link to="/collections/women">Shop Women</Link></li>
+        <li><Link to="/collections/couple">Shop Couple</Link></li>
         </ul>
 
         <div className='search-box'>

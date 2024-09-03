@@ -10,7 +10,7 @@ const users = [
 ];
 
 const UserProfile = () => {
-  const userId = "#4"; 
+  const userId = "#5"; 
   const user = users.find(u => u.id === userId); 
   const [permissions, setPermissions] = useState({
     canEditInventory: false,
@@ -23,10 +23,12 @@ const UserProfile = () => {
   };
 
   const handlePermissionChange = (e) => {
-    setPermissions({
-      ...permissions,
-      [e.target.name]: e.target.checked
-    });
+    if (user.role === "Administrador" || user.role === "Supervisora de Tienda") {
+      setPermissions({
+        ...permissions,
+        [e.target.name]: e.target.checked
+      });
+    }
   };
 
   const isEditable = user.role === "Administrador" || user.role === "Supervisora de Tienda";
@@ -50,7 +52,7 @@ const UserProfile = () => {
               name="canEditInventory" 
               checked={permissions.canEditInventory} 
               onChange={handlePermissionChange} 
-              disabled={!isEditable} 
+              disabled={!isEditable}
             />
             Editar Inventario
           </label>
@@ -60,7 +62,7 @@ const UserProfile = () => {
               name="canViewReports" 
               checked={permissions.canViewReports} 
               onChange={handlePermissionChange} 
-              disabled={!isEditable} 
+              disabled={!isEditable}
             />
             Ver Reportes
           </label>
@@ -70,7 +72,7 @@ const UserProfile = () => {
               name="canManageUsers" 
               checked={permissions.canManageUsers} 
               onChange={handlePermissionChange} 
-              disabled={!isEditable} 
+              disabled={!isEditable}
             />
             Gestionar Usuarios
           </label>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../styles/InventoryForm.css';
 
 const InventoryForm = ({ onClose }) => {
@@ -9,16 +9,16 @@ const InventoryForm = ({ onClose }) => {
   const [s, setS] = useState(0);
   const [m, setM] = useState(0);
   const [l, setL] = useState(0);
-  const history = useHistory();
+  const navigate = useNavigate();  
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log({ name, image, xs, s, m, l });
-    history.push('/Stock');  
+    navigate('/Stock'); 
   };
 
   const handleCancel = () => {
-    history.push('/Stock');  
+    navigate('/Stock'); 
   };
 
   const handleImageChange = (e) => {

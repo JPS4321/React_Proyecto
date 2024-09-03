@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const ShippingForm = () => {
   const [formData, setFormData] = useState({
@@ -43,6 +43,21 @@ const ShippingForm = () => {
       console.log('Form is valid, continue to shipping method');
     }
   };
+
+  // Customize the native validation messages
+  useEffect(() => {
+    const inputs = document.querySelectorAll('input, select');
+
+    inputs.forEach((input) => {
+      input.oninvalid = function (e) {
+        e.target.setCustomValidity('Este espacio debe ser llenado');
+      };
+
+      input.oninput = function (e) {
+        e.target.setCustomValidity('');
+      };
+    });
+  }, []);
 
   return (
     <form className="shipping-form" onSubmit={handleSubmit}>

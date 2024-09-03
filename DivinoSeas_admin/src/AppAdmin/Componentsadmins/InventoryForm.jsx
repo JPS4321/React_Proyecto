@@ -13,13 +13,18 @@ const InventoryForm = ({ onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ name, image, xs, s, m, l });
-    navigate('/Stock');
+    if (name && image && xs >= 0 && s >= 0 && m >= 0 && l >= 0) {
+      console.log({ name, image, xs, s, m, l });
+      onClose();  
+      navigate('/Stock');  
+    } else {
+      alert('Por favor completa todos los campos antes de agregar el producto.');
+    }
   };
 
   const handleCancel = () => {
     onClose();  
-    navigate('/Stock'); 
+    navigate('/Stock');  
   };
 
   const handleImageChange = (e) => {
@@ -32,11 +37,11 @@ const InventoryForm = ({ onClose }) => {
       <form onSubmit={handleSubmit} className="form">
         <label className="label">
           Nombre del producto:
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="input" />
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="input" required />
         </label>
         <label className="label">
           Imagen:
-          <input type="file" onChange={handleImageChange} className="input-file" />
+          <input type="file" onChange={handleImageChange} className="input-file" required />
           <div className="drag-drop-area">
             Arrastra una imagen aquí o haz clic para seleccionar.
           </div>
@@ -44,19 +49,19 @@ const InventoryForm = ({ onClose }) => {
         <div className="sizes-container">
           <label className="size-label">
             XS:
-            <input type="number" value={xs} onChange={(e) => setXs(e.target.value)} className="input-size" />
+            <input type="number" value={xs} onChange={(e) => setXs(e.target.value)} className="input-size" min="0" required />
           </label>
           <label className="size-label">
             S:
-            <input type="number" value={s} onChange={(e) => setS(e.target.value)} className="input-size" />
+            <input type="number" value={s} onChange={(e) => setS(e.target.value)} className="input-size" min="0" required />
           </label>
           <label className="size-label">
             M:
-            <input type="number" value={m} onChange={(e) => setM(e.target.value)} className="input-size" />
+            <input type="number" value={m} onChange={(e) => setM(e.target.value)} className="input-size" min="0" required />
           </label>
           <label className="size-label">
             L:
-            <input type="number" value={l} onChange={(e) => setL(e.target.value)} className="input-size" />
+            <input type="number" value={l} onChange={(e) => setL(e.target.value)} className="input-size" min="0" required />
           </label>
         </div>
         <div className="button-container">

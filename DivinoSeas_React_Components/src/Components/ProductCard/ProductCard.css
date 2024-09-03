@@ -29,23 +29,23 @@
 
 .hover-image {
   position: absolute;
-  top: 10%; /* Ajusta la posición para centrar la imagen más pequeña */
-  left: 5%; /* Ajusta la posición para centrar la imagen más pequeña */
-  width: 90%; /* Haz la imagen un poco más pequeña */
-  max-height: 117px; /* Ajusta la altura para mantener proporciones */
+  top: 10%; 
+  left: 5%; 
+  width: 90%; 
+  max-height: 117px; 
   object-fit: cover;
   border-radius: 8px;
   opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease; /* Transición para la aparición de la segunda imagen y el cambio de tamaño */
+  transition: opacity 0.3s ease, transform 0.3s ease; 
 }
 
 .card:hover .card-image {
-  opacity: 0; /* Esconde la primera imagen */
+  opacity: 0; 
 }
 
 .card:hover .hover-image {
-  opacity: 1; /* Muestra la segunda imagen */
-  transform: scale(0.95); /* Escala la imagen para hacerla más pequeña */
+  opacity: 1; 
+  transform: scale(0.95); 
 
 }
 
@@ -59,8 +59,13 @@
   font-weight: bold;
 }
 
-.card-price {
-  margin: 5px 0;
-  font-size: 1rem;
-  color: #333;
+.original-price {
+  text-decoration: line-through;
+  color: #888; 
+  margin-right: 10px;
+}
+
+.discounted-price {
+  color: #333; 
+  font-weight: bold;
 }

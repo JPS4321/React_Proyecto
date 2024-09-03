@@ -82,6 +82,14 @@ CREATE TABLE IF NOT EXISTS ProductoPromocion (
     FOREIGN KEY (id_promocion) REFERENCES Promociones (id_promocion) ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS Clientes (
+    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    direccion TEXT NOT NULL,
+    contra VARCHAR(255) NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS Users (
     id_user INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL UNIQUE,
@@ -90,7 +98,6 @@ CREATE TABLE IF NOT EXISTS Users (
     role VARCHAR(50) NOT NULL,
     imagen LONGBLOB
 );
-
 
 -- Tabla de Ordenes
 CREATE TABLE IF NOT EXISTS Ordenes (
@@ -129,3 +136,4 @@ CREATE TABLE IF NOT EXISTS Pagos (
     id_orden INT,
     FOREIGN KEY (id_orden) REFERENCES Ordenes (id_orden) ON DELETE SET NULL
 );
+

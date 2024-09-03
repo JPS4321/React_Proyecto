@@ -9,15 +9,16 @@ const InventoryForm = ({ onClose }) => {
   const [s, setS] = useState(0);
   const [m, setM] = useState(0);
   const [l, setL] = useState(0);
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log({ name, image, xs, s, m, l });
-    navigate('/Stock'); 
+    navigate('/Stock');
   };
 
   const handleCancel = () => {
+    onClose();  
     navigate('/Stock'); 
   };
 
@@ -42,19 +43,19 @@ const InventoryForm = ({ onClose }) => {
         </label>
         <div className="sizes-container">
           <label className="size-label">
-            Cantidad XS:
+            XS:
             <input type="number" value={xs} onChange={(e) => setXs(e.target.value)} className="input-size" />
           </label>
           <label className="size-label">
-            Cantidad S:
+            S:
             <input type="number" value={s} onChange={(e) => setS(e.target.value)} className="input-size" />
           </label>
           <label className="size-label">
-            Cantidad M:
+            M:
             <input type="number" value={m} onChange={(e) => setM(e.target.value)} className="input-size" />
           </label>
           <label className="size-label">
-            Cantidad L:
+            L:
             <input type="number" value={l} onChange={(e) => setL(e.target.value)} className="input-size" />
           </label>
         </div>

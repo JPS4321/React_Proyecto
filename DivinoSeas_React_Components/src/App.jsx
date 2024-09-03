@@ -5,6 +5,7 @@ import AboutUs from './pages/AboutUs';
 import Collections from './pages/Collections';
 import Contact from './pages/Contact';
 import PaymentScreen from './pages/PaymentScreen';
+import ShoppingCart from './pages/ShoppingCart';
 import { Link } from 'react-router-dom';
 
 
@@ -24,6 +25,8 @@ const App = () => {
         <Route path="/products/:productName" element={<ProductPage />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/PaymentScreen" element={<PaymentScreen />} />
+        <Route path="/ShoppingCart" element={<ShoppingCart />} />
+
 
       </Routes>
     </Router>

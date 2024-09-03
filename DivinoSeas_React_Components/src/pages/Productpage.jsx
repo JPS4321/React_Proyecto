@@ -49,7 +49,7 @@ function ProductPage() {
     return (
         <div className='ProductPageContainer'>
             <Marquee text='Welcome to Divino Seas' />
-            <div className='subheader'>
+            <div className='navigation-bar'>
                 <Navbar />
             </div>
             <div className='ProductPageContent'>

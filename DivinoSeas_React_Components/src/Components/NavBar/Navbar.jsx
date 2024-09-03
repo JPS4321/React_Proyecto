@@ -1,34 +1,42 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import "./Navbar.css"
-import logo from "../../assets/Logo.png"
-import search_Icon from "../../assets/search-b.png"
-
-
+import './Navbar.css';
+import logo from '../../assets/Logo.png';
+import search_Icon from '../../assets/search-b.png';
 
 const Navbar = () => {
-    const [val, setVal] = useState('Search');
+  const [val, setVal] = useState('Search');
+  const [cartCount, setCartCount] = useState(0);
 
   return (
     <div className='navbar2'>
-      <Link to="/">
-        <img src={logo} alt="DivinoSeas Logo" className='logo' />
-      </Link>        <ul>
+      <img src={logo} alt="DivinoSeas Logo" className='logo' />
+      <ul>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/about-us">About</Link></li>
         <li><Link to="/contact">Contact</Link></li>
         <li><Link to="/collections/women">Shop Women</Link></li>
         <li><Link to="/collections/couple">Shop Couple</Link></li>
-        </ul>
+        <li>
+          <Link to="/ShoppingCart" className='cart-link'>
+            <span className="material-icons cart-icon">shopping_cart</span>
+            {cartCount > 0 && <span className='cart-count'>{cartCount}</span>}
+          </Link>
+        </li>
+      </ul>
 
-        <div className='search-box'>
-            <input type="text" placeholder={val}/>
-            <img src= {search_Icon} alt="" />
-        </div>
-
+      <div className='search-box'>
+        <input
+          type="text"
+          placeholder={val}
+          onFocus={() => setVal('')}
+          onBlur={() => setVal('Search')}
+        />
+        <img src={search_Icon} alt="Search" />
+      </div>
     </div>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

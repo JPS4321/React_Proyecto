@@ -13,7 +13,7 @@ const Home = () => {
     return (
         <div className='container'>
       
-      <div className='subheader'>
+      <div className='navigation-bar'>
       <Marquee text='Welcome to Divino Seas'/>
       <Navbar/>
       </div>

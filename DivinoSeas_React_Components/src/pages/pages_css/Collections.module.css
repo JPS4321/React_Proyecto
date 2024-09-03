@@ -1,7 +1,8 @@
 .layout {
     display: flex;
     margin-top: 20px;
-    height: 53vh; 
+    height: auto;  /* Cambia de height: 53vh a auto si es necesario */
+    overflow-y: auto;  /* Asegura que el contenido adicional sea scrollable */
 }
 
 .filters {
@@ -15,10 +16,13 @@
 }
 
 .productsGrid {
-    flex: 3;
+    flex: 3;  /* Cambia flex: 3 a flex: 1 */
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
     gap: 20px;
     padding: 20px;
+    justify-content: center;  /* Centra los elementos dentro del grid */
+    align-items: stretch;    /* Asegura que las tarjetas ocupen toda la altura disponible */
     overflow-y: auto;
+
 }

@@ -18,6 +18,8 @@ function Collections() {
         { id: 2, imageSrc: image, title: 'Product 2', price: 40.00, Existencia: true },
         { id: 3, imageSrc: image, title: 'Product 3', price: 60.00, Existencia: false },
         { id: 4, imageSrc: image, title: 'Product 4', price: 80.00, Existencia: true },
+        { id: 5, imageSrc: image, title: 'Product 4', price: 80.00, Existencia: true },
+
     ];
 
     const handleAvailabilityChange = (inStock, outOfStock) => {

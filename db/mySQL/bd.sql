@@ -19,7 +19,6 @@ CREATE TABLE IF NOT EXISTS Colores (
     nombre VARCHAR(50) NOT NULL
 );
 
--- Tabla de DivinoSeas_Productos
 CREATE TABLE IF NOT EXISTS DivinoSeas_Productos (
     id_producto INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
@@ -27,6 +26,10 @@ CREATE TABLE IF NOT EXISTS DivinoSeas_Productos (
     precio DECIMAL(10,2) NOT NULL,
     imagen LONGBLOB, 
     id_categoria INT,
+    cantidad_xs INT DEFAULT 0,
+    cantidad_s INT DEFAULT 0,
+    cantidad_m INT DEFAULT 0,
+    cantidad_l INT DEFAULT 0,
     FOREIGN KEY (id_categoria) REFERENCES Categorias (id_categoria) ON DELETE SET NULL
 );
 
@@ -55,14 +58,6 @@ CREATE TABLE IF NOT EXISTS ProductoColecciones (
     FOREIGN KEY (id_coleccion) REFERENCES Colecciones (id_coleccion) ON DELETE CASCADE
 );
 
--- Tabla de Inventarios
-CREATE TABLE IF NOT EXISTS Inventarios (
-    id_inventario INT AUTO_INCREMENT PRIMARY KEY,
-    cantidad INT NOT NULL,
-    fechaActualizacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    id_producto INT,
-    FOREIGN KEY (id_producto) REFERENCES DivinoSeas_Productos (id_producto) ON DELETE CASCADE
-);
 
 -- Tabla de Promociones
 CREATE TABLE IF NOT EXISTS Promociones (
@@ -93,11 +88,13 @@ CREATE TABLE IF NOT EXISTS Clientes (
 CREATE TABLE IF NOT EXISTS Users (
     id_user INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL UNIQUE,
     password_hashed VARCHAR(255) NOT NULL,
     is_admin BOOLEAN NOT NULL DEFAULT FALSE,
     role VARCHAR(50) NOT NULL,
     imagen LONGBLOB
 );
+
 
 -- Tabla de Ordenes
 CREATE TABLE IF NOT EXISTS Ordenes (

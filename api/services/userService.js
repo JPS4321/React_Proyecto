@@ -20,11 +20,11 @@ export async function getUserById(id_user) {
     }
 }
 
-export async function createUser(username, password_hashed, is_admin, role, imagen) {
+export async function createUser(username, email, password_hashed, is_admin, role, imagen) {
     try {
         const [result] = await conn.query(
-            'INSERT INTO Users (username, password_hashed, is_admin, role, imagen) VALUES (?, ?, ?, ?, ?)', 
-            [username, password_hashed, is_admin, role, imagen]
+            'INSERT INTO Users (username, email, password_hashed, is_admin, role, imagen) VALUES (?, ?, ?, ?, ?, ?)', 
+            [username, email, password_hashed, is_admin, role, imagen]
         );
         return { success: true, result };
     } catch (e) {
@@ -33,11 +33,11 @@ export async function createUser(username, password_hashed, is_admin, role, imag
     }
 }
 
-export async function updateUser(id_user, username, password_hashed, is_admin, role, imagen) {
+export async function updateUser(id_user, username, email, password_hashed, is_admin, role, imagen) {
     try {
         const [result] = await conn.query(
-            'UPDATE Users SET username = ?, password_hashed = ?, is_admin = ?, role = ?, imagen = ? WHERE id_user = ?',
-            [username, password_hashed, is_admin, role, imagen, id_user]
+            'UPDATE Users SET username = ?, email = ?, password_hashed = ?, is_admin = ?, role = ?, imagen = ? WHERE id_user = ?',
+            [username, email, password_hashed, is_admin, role, imagen, id_user]
         );
         return result;
     } catch (e) {

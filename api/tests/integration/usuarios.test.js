@@ -28,11 +28,12 @@ afterAll(async () => {
 describe('Usuarios API', () => {
     let createdUserId;
 
-    it('debería crear un nuevo usuario con imagen de perfil', async () => {
+    it('debería crear un nuevo usuario con imagen de perfil y correo', async () => {
         const res = await request(app)
             .post('/usuarios')
             .set('Content-Type', 'multipart/form-data')
             .field('username', 'usuario_prueba')
+            .field('email', 'usuario_prueba@example.com') // Añadido campo de email
             .field('password_hashed', 'password123')
             .field('is_admin', '0')  // Se pasa '0' como string para MySQL
             .field('role', 'user')
@@ -60,9 +61,10 @@ describe('Usuarios API', () => {
         expect(res.statusCode).toEqual(200);
         expect(res.body).toHaveProperty('id_user');
         expect(res.body.id_user).toEqual(createdUserId);
+        expect(res.body).toHaveProperty('email', 'usuario_prueba@example.com'); // Verificar el campo email
     });
 
-    it('debería actualizar un usuario existente con una nueva imagen', async () => {
+    it('debería actualizar un usuario existente con una nueva imagen y correo', async () => {
         if (!createdUserId) {
             throw new Error('El usuario no fue creado correctamente en la prueba anterior.');
         }
@@ -71,6 +73,7 @@ describe('Usuarios API', () => {
             .put(`/usuarios/${createdUserId}`)
             .set('Content-Type', 'multipart/form-data')
             .field('username', 'usuario_prueba_actualizado')
+            .field('email', 'usuario_actualizado@example.com') // Actualización del campo email
             .field('password_hashed', 'password1234')
             .field('is_admin', '1')  // Se pasa '1' como string para MySQL
             .field('role', 'admin')

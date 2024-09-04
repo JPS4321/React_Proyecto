@@ -17,7 +17,7 @@ function AboutUs() {
     return (
         <div className='container'>
           <Marquee text='Welcome to Divino Seas'/>
-          <div className='subheader'>
+          <div className='navigation-bar'>
             <Navbar/>
           </div>
       <div className='content'>

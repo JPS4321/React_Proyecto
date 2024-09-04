@@ -1,7 +1,19 @@
+.container {
+    min-height: calc(100vh - 100px); 
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .footer {
+    margin-top: auto; 
+  }
+  
+
 .layout {
     display: flex;
     margin-top: 20px;
-    height: 53vh; 
+    height: auto;  
+    overflow-y: auto;  
 }
 
 .filters {
@@ -15,10 +27,13 @@
 }
 
 .productsGrid {
-    flex: 3;
+    flex: 3;  
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
     gap: 20px;
     padding: 20px;
+    justify-content: center;  
+    align-items: stretch;    
     overflow-y: auto;
+
 }

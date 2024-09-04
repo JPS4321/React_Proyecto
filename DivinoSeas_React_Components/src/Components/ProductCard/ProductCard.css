@@ -10,6 +10,12 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer; 
   max-width: 190px;
+  transition: transform 0.3s ease; /* Transición para agrandar la tarjeta */
+  position: relative; /* Necesario para superponer la imagen hover */
+}
+
+.card:hover {
+  transform: scale(1.05); /* Efecto de agrandamiento al hacer hover */
 }
 
 .card-image {
@@ -18,6 +24,29 @@
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 2px;
+  transition: opacity 0.3s ease; /* Transición para el cambio de imagen */
+}
+
+.hover-image {
+  position: absolute;
+  top: 10%; 
+  left: 5%; 
+  width: 90%; 
+  max-height: 117px; 
+  object-fit: cover;
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease; 
+}
+
+.card:hover .card-image {
+  opacity: 0; 
+}
+
+.card:hover .hover-image {
+  opacity: 1; 
+  transform: scale(0.95); 
+
 }
 
 .card-content {
@@ -30,8 +59,13 @@
   font-weight: bold;
 }
 
-.card-price {
-  margin: 5px 0;
-  font-size: 1rem;
-  color: #333;
+.original-price {
+  text-decoration: line-through;
+  color: #888; 
+  margin-right: 10px;
+}
+
+.discounted-price {
+  color: #333; 
+  font-weight: bold;
 }

@@ -39,7 +39,7 @@ afterAll(async () => {
 describe('Productos API', () => {
     let createdProductId;
 
-    it('debería crear un nuevo producto con imagen', async () => {
+    it('debería crear un nuevo producto con imagen y cantidades por talla', async () => {
         const res = await request(app)
             .post('/productos')
             .set('Content-Type', 'multipart/form-data')
@@ -47,6 +47,10 @@ describe('Productos API', () => {
             .field('descripcion', 'Bikini rojo para la playa')
             .field('precio', 29.99)
             .field('id_categoria', global.testCategoriaId)  // Usar un id_categoria válido
+            .field('cantidad_xs', 10)  // Añadir campo de cantidad para XS
+            .field('cantidad_s', 20)   // Añadir campo de cantidad para S
+            .field('cantidad_m', 15)   // Añadir campo de cantidad para M
+            .field('cantidad_l', 5)    // Añadir campo de cantidad para L
             .attach('imagen', path.resolve(__dirname, '../fixtures/panda.jpg'));  // Ruta a una imagen de prueba
 
         console.log(res.body);  // Log para depuración
@@ -71,9 +75,13 @@ describe('Productos API', () => {
         expect(res.statusCode).toEqual(200);
         expect(res.body).toHaveProperty('id_producto');
         expect(res.body.id_producto).toEqual(createdProductId);
+        expect(res.body).toHaveProperty('cantidad_xs', 10);
+        expect(res.body).toHaveProperty('cantidad_s', 20);
+        expect(res.body).toHaveProperty('cantidad_m', 15);
+        expect(res.body).toHaveProperty('cantidad_l', 5);
     });
 
-    it('debería actualizar un producto existente con una nueva imagen', async () => {
+    it('debería actualizar un producto existente con una nueva imagen y cantidades por talla', async () => {
         if (!createdProductId) {
             throw new Error('El producto no fue creado correctamente en la prueba anterior.');
         }
@@ -85,6 +93,10 @@ describe('Productos API', () => {
             .field('descripcion', 'Bikini rojo actualizado')
             .field('precio', 34.99)
             .field('id_categoria', global.testCategoriaId)  // Usar un id_categoria válido
+            .field('cantidad_xs', 8)   // Actualizar cantidad para XS
+            .field('cantidad_s', 18)   // Actualizar cantidad para S
+            .field('cantidad_m', 12)   // Actualizar cantidad para M
+            .field('cantidad_l', 4)    // Actualizar cantidad para L
             .attach('imagen', path.resolve(__dirname, '../fixtures/hola.jpg'));  // Ruta a una imagen actualizada
 
         console.log(res.body);  // Log para depuración

@@ -20,11 +20,11 @@ export async function getProductoById(id_producto) {
     }
 }
 
-export async function createProducto(nombre, descripcion, precio, id_categoria, imagen) {
+export async function createProducto(nombre, descripcion, precio, id_categoria, imagen, cantidad_xs, cantidad_s, cantidad_m, cantidad_l) {
     try {
         const [result] = await conn.query(
-            'INSERT INTO DivinoSeas_Productos (nombre, descripcion, precio, id_categoria, imagen) VALUES (?, ?, ?, ?, ?)', 
-            [nombre, descripcion, precio, id_categoria, imagen]
+            'INSERT INTO DivinoSeas_Productos (nombre, descripcion, precio, id_categoria, imagen, cantidad_xs, cantidad_s, cantidad_m, cantidad_l) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', 
+            [nombre, descripcion, precio, id_categoria, imagen, cantidad_xs, cantidad_s, cantidad_m, cantidad_l]
         );
         return { success: true, result };
     } catch (e) {
@@ -33,11 +33,11 @@ export async function createProducto(nombre, descripcion, precio, id_categoria, 
     }
 }
 
-export async function updateProducto(id_producto, nombre, descripcion, precio, id_categoria, imagen) {
+export async function updateProducto(id_producto, nombre, descripcion, precio, id_categoria, imagen, cantidad_xs, cantidad_s, cantidad_m, cantidad_l) {
     try {
         const [result] = await conn.query(
-            'UPDATE DivinoSeas_Productos SET nombre = ?, descripcion = ?, precio = ?, id_categoria = ?, imagen = ? WHERE id_producto = ?',
-            [nombre, descripcion, precio, id_categoria, imagen, id_producto]
+            'UPDATE DivinoSeas_Productos SET nombre = ?, descripcion = ?, precio = ?, id_categoria = ?, imagen = ?, cantidad_xs = ?, cantidad_s = ?, cantidad_m = ?, cantidad_l = ? WHERE id_producto = ?',
+            [nombre, descripcion, precio, id_categoria, imagen, cantidad_xs, cantidad_s, cantidad_m, cantidad_l, id_producto]
         );
         return result;
     } catch (e) {

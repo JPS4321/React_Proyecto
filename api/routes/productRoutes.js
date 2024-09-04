@@ -15,10 +15,10 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 function validacionProducto(req, res, next) {
-  const { nombre, descripcion, precio, id_categoria } = req.body;
-  if (!nombre || !descripcion || precio === undefined || precio === null) {
+  const { nombre, descripcion, precio, id_categoria, cantidad_xs, cantidad_s, cantidad_m, cantidad_l } = req.body;
+  if (!nombre || !descripcion || precio === undefined || precio === null || cantidad_xs === undefined || cantidad_s === undefined || cantidad_m === undefined || cantidad_l === undefined) {
     return res.status(400).json({
-      error: "Faltan o son inválidos el nombre, la descripción o el precio.",
+      error: "Faltan o son inválidos el nombre, la descripción, el precio o alguna cantidad.",
     });
   }
   next();
@@ -43,7 +43,7 @@ router.get("/:id", async (req, res) => {
 
 // Crear un nuevo producto
 router.post("/", upload.single('imagen'), validacionProducto, async (req, res) => {
-  const { nombre, descripcion, precio, id_categoria } = req.body;
+  const { nombre, descripcion, precio, id_categoria, cantidad_xs, cantidad_s, cantidad_m, cantidad_l } = req.body;
   const imagen = req.file ? req.file.buffer : null; // Obtener la imagen si está disponible
   try {
     const { success, result, error } = await createProducto(
@@ -51,7 +51,11 @@ router.post("/", upload.single('imagen'), validacionProducto, async (req, res) =
       descripcion,
       precio,
       id_categoria,
-      imagen
+      imagen,
+      cantidad_xs,
+      cantidad_s,
+      cantidad_m,
+      cantidad_l
     );
     if (success && result.affectedRows && result.affectedRows > 0) {
       return res.status(201).json({
@@ -80,7 +84,7 @@ router.post("/", upload.single('imagen'), validacionProducto, async (req, res) =
 // Actualizar un producto existente
 router.put("/:id", upload.single('imagen'), validacionProducto, async (req, res) => {
   const { id } = req.params;
-  const { nombre, descripcion, precio, id_categoria } = req.body;
+  const { nombre, descripcion, precio, id_categoria, cantidad_xs, cantidad_s, cantidad_m, cantidad_l } = req.body;
   const imagen = req.file ? req.file.buffer : null; // Obtener la imagen si está disponible
 
   try {
@@ -90,7 +94,11 @@ router.put("/:id", upload.single('imagen'), validacionProducto, async (req, res)
       descripcion,
       precio,
       id_categoria,
-      imagen
+      imagen,
+      cantidad_xs,
+      cantidad_s,
+      cantidad_m,
+      cantidad_l
     );
     if (result.affectedRows && result.affectedRows > 0) {
       return res.status(200).json({

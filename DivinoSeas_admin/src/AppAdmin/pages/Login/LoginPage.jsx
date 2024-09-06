@@ -24,7 +24,7 @@ const LoginPage = () => {
 
     
     const user = users.find(u => u.mail === email && u.password === password);
-
+ 
     if (user) {
       login(); // Cambiar el estado a autenticado
       navigate('/Home'); // Redirigir a la página de inicio o donde desees

@@ -1,5 +1,7 @@
-import React from 'react';
+import React,{useState, useContext } from 'react';
 import '../styles/UserProfile.css'; 
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../AuthContext';
 
 const users = [
   { id: "#1", image: "", user: "Fernando", mail: "Fernando@gmail.com", role: "Administrador" },
@@ -12,12 +14,13 @@ const users = [
 const UserProfile = () => {
   const userId = "#4"; // ID del usuario actual
   const user = users.find(u => u.id === userId); // Filtramos el usuario con el ID 4
-
+  const navigate = useNavigate();
+  const { logout } = useContext(AuthContext);
   const handleLogout = () => {
-    // Cerrar sesion
+    logout()
     console.log("Cerrando sesión...");
+    navigate('/');
   };
-
   return (
     <div className="user-profile-container">
       <div className="profile-card">

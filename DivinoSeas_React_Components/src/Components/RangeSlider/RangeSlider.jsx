@@ -23,8 +23,8 @@ const RangeSlider = ({ minValue, maxValue, onMinChange, onMaxChange }) => {
     onMaxChange(tempMaxValue); 
   };
 
-  const minPercent = (tempMinValue / 10000) * 100;
-  const maxPercent = (tempMaxValue / 10000) * 100;
+  const minPercent = (tempMinValue / 1000) * 100;
+  const maxPercent = (tempMaxValue / 1000) * 100;
 
   return (
     <div className="range-slider-container">
@@ -37,7 +37,7 @@ const RangeSlider = ({ minValue, maxValue, onMinChange, onMaxChange }) => {
           value={tempMinValue}
           onChange={handleMinChange}
           min="0"
-          max="10000"
+          max="1000"
         />
         <span className="range-separator">Para</span>
         <input
@@ -46,7 +46,7 @@ const RangeSlider = ({ minValue, maxValue, onMinChange, onMaxChange }) => {
           value={tempMaxValue}
           onChange={handleMaxChange}
           min="0"
-          max="10000"
+          max="1000"
         />
       </div>
       <div className="slider-container">
@@ -62,7 +62,7 @@ const RangeSlider = ({ minValue, maxValue, onMinChange, onMaxChange }) => {
           type="range"
           className="slider"
           min="0"
-          max="10000"
+          max="1000"
           value={tempMinValue}
           onChange={handleMinChange}
           onMouseUp={handleMinChangeEnd} 
@@ -72,7 +72,7 @@ const RangeSlider = ({ minValue, maxValue, onMinChange, onMaxChange }) => {
           type="range"
           className="slider"
           min="0"
-          max="10000"
+          max="1000"
           value={tempMaxValue}
           onChange={handleMaxChange}
           onMouseUp={handleMaxChangeEnd} 

@@ -5,13 +5,13 @@ import ProductCard from '../Components/ProductCard/ProductCard';
 import FilterToggle from '../Components/FilterTogle/FilterToggle';
 import styles from './pages_css/Collections.module.css'; 
 import image from '../assets/bottom01.png';
-import hoverImage from '../assets/bottom02.png'; // Imagen de hover
+import hoverImage from '../assets/bottom02.png'; 
 import RangeSlider from '../Components/RangeSlider/RangeSlider';
 import Footer from '../Components/Footer/Footer'
 
 function Collections() {
     const [minPrice, setMinPrice] = useState(0); 
-    const [maxPrice, setMaxPrice] = useState(10000); 
+    const [maxPrice, setMaxPrice] = useState(1000); 
     const [inStockFilter, setInStockFilter] = useState(false);
     const [outOfStockFilter, setOutOfStockFilter] = useState(false);
 
@@ -66,7 +66,7 @@ function Collections() {
                                 hoverImageSrc={product.hoverImageSrc} 
                                 title={product.title} 
                                 price={product.price} 
-                                discount={product.discount}  // Se pasa el valor de descuento aquí
+                                discount={product.discount}  
                             />
                         );
                     })}

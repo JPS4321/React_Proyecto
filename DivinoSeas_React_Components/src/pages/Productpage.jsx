@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom'; // Cambiar useParams por useLocation
+import { useLocation, useNavigate } from 'react-router-dom'; 
 import Navbar from '../Components/NavBar/Navbar';
 import Marquee from '../Components/Marquee/Marquee';
 import Footer from '../Components/Footer/Footer';
 import './pages_css/ProductPage.css';
 
 function ProductPage() {
-    const { state } = useLocation(); // Obtén el estado de la navegación
+    const { state } = useLocation(); 
     const navigate = useNavigate();
 
-    // Si no hay estado, mostrar un mensaje de error
     if (!state) {
         return <div>Product not found</div>;
     }
@@ -17,7 +16,7 @@ function ProductPage() {
     const { title, imageSrc, hoverImageSrc, price, discount } = state;
 
     const [amount, setAmount] = useState(1);
-    const [selectedSize, setSelectedSize] = useState('M'); // Tamaño por defecto 'M'
+    const [selectedSize, setSelectedSize] = useState('M'); 
 
     const increaseAmount = () => {
         setAmount(amount + 1);
@@ -34,7 +33,6 @@ function ProductPage() {
     };
 
     const addToCart = () => {
-        // Lógica para añadir el producto al carrito
         navigate('/PaymentScreen');
     };
 
@@ -56,8 +54,12 @@ function ProductPage() {
                     <p className='Price'>
                         {discount > 0 ? (
                             <>
-                                <span className='OriginalPrice'>Q{price.toFixed(2)}</span>
-                                <span className='DiscountedPrice'>Q{discountedPrice.toFixed(2)}</span>
+                                <span className='OriginalPrice' style={{ textDecoration: 'line-through', marginRight: '10px' }}>
+                                    Q{price.toFixed(2)}
+                                </span>
+                                <span className='DiscountedPrice' style={{fontWeight: 'bold',color:'black' }}>
+                                    Q{discountedPrice.toFixed(2)}
+                                </span>
                             </>
                         ) : (
                             <>Q{price.toFixed(2)}</>

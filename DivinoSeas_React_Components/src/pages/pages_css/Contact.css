@@ -1,10 +1,98 @@
 .page-container {
-    width: 100%;
-    padding: 20px;
-  }
-  
-  .navigation-bar {
-    margin-bottom: 20px;
-  }
-  
-  
+  width: 100%;
+  padding: 20px;
+}
+
+.navigation-bar {
+  margin-bottom: 20px;
+}
+
+/* Ajustes para el formulario y el checkbox en la página */
+.contact-section {
+  width: 70%;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.contact-section h2, .contact-section p {
+  margin-bottom: 20px;
+}
+
+.input-flex-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10%;
+  margin-bottom: 20px;
+}
+
+.input-flex-container input {
+  flex: 1;
+  max-width: 600px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+}
+
+textarea {
+  width: 100%;
+  max-width: 1000px;
+  height: 150px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+}
+
+/* Estilos para inputs con errores */
+.input-error {
+  border-color: red;
+}
+
+/* Estilos para mensajes de error */
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 5px;
+  text-align: left;
+}
+
+/* Ajustes en el checkbox */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.checkbox-container input[type="checkbox"] {
+  margin-right: 10px;
+  z-index: 1;
+  width: 20px; /* Asegura que el checkbox tenga suficiente área para clic */
+  height: 20px;
+  cursor: pointer; /* Asegura que el cursor sea el correcto cuando pasa sobre el checkbox */
+}
+
+.checkbox-container label {
+  z-index: 1;
+  cursor: default; /* Evita que el texto sea clickeable */
+}
+
+/* Botón de envío */
+.submit-button {
+  width: 100%;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #333;
+}

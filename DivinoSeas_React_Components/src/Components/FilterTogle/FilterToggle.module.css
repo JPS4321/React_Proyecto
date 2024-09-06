@@ -76,5 +76,5 @@ input[type="checkbox"] {
 }
 
 .expanded .arrow {
-    transform: rotate(180deg);
+    transform: rotate(180deg); /* La flecha se rota hacia arriba */
 }

@@ -1,56 +1,75 @@
 .contact-section {
-    width: 70%;
-    margin: 0 auto;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    text-align: center;
-  }
-  
-  .contact-section h2, .contact-section p {
-    margin-bottom: 20px;
-  }
-  
-  .input-flex-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 10%;
-    margin-bottom: 20px;
-  }
-  
-  .input-flex-container input {
-    flex: 1;
-    max-width: 600px;
-    padding: 10px;
-  }
-  
-  textarea {
-    width: 100%;
-    max-width: 1000px;
-    height: 150px;
-    padding: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .checkbox-container {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .checkbox-container input[type="checkbox"] {
-    margin-right: 10px;
-  }
-  
-  .submit-button {
-    width: 100%;
-    padding: 10px;
-    background-color: black;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .submit-button:hover {
-    background-color: #333;
-  }
+  width: 70%;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.contact-section h2, .contact-section p {
+  margin-bottom: 20px;
+}
+
+.input-flex-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10%;
+  margin-bottom: 20px;
+}
+
+.input-flex-container input {
+  flex: 1;
+  max-width: 600px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+}
+
+/* Asegurar que los inputs con error reciban borde rojo */
+.input-flex-container input.input-error {
+  border-color: red;
+}
+
+textarea {
+  width: 100%;
+  max-width: 1000px;
+  height: 150px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+}
+
+/* Asegurar que el textarea con error reciba borde rojo */
+textarea.input-error {
+  border-color: red;
+}
+
+/* Color del texto placeholder para inputs con errores */
+.input-error::placeholder {
+  color: red;
+}
+
+/* Estilos para mensajes de error */
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 5px;
+  text-align: left;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #333;
+}

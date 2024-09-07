@@ -3,7 +3,7 @@ const { test, expect } = require('@playwright/test');
 test.describe('ShoppingCart component', () => {
   test.beforeEach(async ({ page }) => {
     // Navega a la página donde se renderiza el carrito de compras
-    await page.goto('http://localhost:5173/ShoppingCart'); // Asegúrate de que esta URL sea correcta
+    await page.goto('http://localhost:5173/ShoppingCart'); 
   });
 
   test('should render cart items with correct details', async ({ page }) => {
@@ -41,12 +41,10 @@ test.describe('ShoppingCart component', () => {
     const incrementButton = page.locator('.quantity-button', { hasText: '+' }).nth(0);
     const decrementButton = page.locator('.quantity-button', { hasText: '-' }).nth(0);
 
-    // Haz clic en el botón de incremento y verifica si la cantidad ha aumentado
     await incrementButton.click();
     const quantityValue = page.locator('.quantity-value').nth(0);
     await expect(quantityValue).toHaveText('2'); // Supone que se incrementa en 1
 
-    // Haz clic en el botón de decremento y verifica si la cantidad ha disminuido
     await decrementButton.click();
     await expect(quantityValue).toHaveText('1'); // Supone que regresa al valor inicial
   });
@@ -58,7 +56,6 @@ test.describe('ShoppingCart component', () => {
     // Haz clic en el botón de eliminar
     await removeButton.click();
 
-    // Verifica que el primer item fue eliminado (ya no debería estar visible)
     const item1 = page.locator('.cart-item-name:has-text("Item 1")');
     await expect(item1).not.toBeVisible();
   });

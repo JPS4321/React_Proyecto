@@ -35,15 +35,12 @@ test.describe('Navbar component', () => {
     test('should change search placeholder on focus and blur', async ({ page }) => {
       await page.goto('http://localhost:5173');
   
-      // Verifica que el placeholder inicial es "Search"
       const searchInput = await page.locator('.search-box input');
       await expect(searchInput).toHaveAttribute('placeholder', 'Search');
   
-      // Simular el foco en el input
       await searchInput.focus();
       await expect(searchInput).toHaveAttribute('placeholder', '');
   
-      // Simular la pérdida de foco
       await searchInput.blur();
       await expect(searchInput).toHaveAttribute('placeholder', 'Search');
     });

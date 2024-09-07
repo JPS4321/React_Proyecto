@@ -6,9 +6,12 @@ import ShippingForm from '../Components/PaymentScreen/ShippingForm';
 import OrderSummary from '../Components/PaymentScreen/OrderSummary';
 import PromoCodeInput from '../Components/PaymentScreen/PromoCodeInput';
 import PaymentOptions from '../Components/PaymentScreen/PaymentOptions';
+import Navbar from '../Components/NavBar/Navbar';
 
 const PaymentScreen = () => {
   return (
+    <div className="container">
+<Navbar/>
     <div className="payment-screen">
       <PaymentHeader />
       <div className="payment-content">
@@ -18,6 +21,7 @@ const PaymentScreen = () => {
         <OrderSummary />
         <PromoCodeInput />
       </div>
+    </div>
     </div>
   );
 };

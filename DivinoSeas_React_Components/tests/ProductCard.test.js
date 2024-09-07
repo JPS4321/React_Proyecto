@@ -17,7 +17,6 @@ test.describe('ProductCard component', () => {
     test('should navigate to product details page when product card is clicked', async ({ page }) => {
         await page.goto('http://localhost:5173/collections/women');
       
-        // Haz clic en la tarjeta del producto
         await page.locator('.card:has-text("Product 2")').click();
       
         // Verificar que la URL cambie a la página de detalles del producto

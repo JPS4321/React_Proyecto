@@ -2,10 +2,8 @@ const { test, expect } = require('@playwright/test');
 
 test.describe('Marquee component', () => {
   test('should render the marquee text correctly', async ({ page }) => {
-    // Navega a la página donde está el componente Marquee
     await page.goto('http://localhost:5173');
 
-    // Verifica que el texto se renderiza correctamente
     const marqueeText = await page.locator('.marquee-text');
     await expect(marqueeText).toHaveText('Welcome to Divino Seas'); 
   });

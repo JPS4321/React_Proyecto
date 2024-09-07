@@ -1,4 +1,9 @@
-/* General Styles for the Payment Screen */
+.container {
+  min-height: calc(100vh - 100px); 
+  display: flex;
+  flex-direction: column;
+}
+
 .payment-screen {
   font-family: 'Helvetica Neue', Arial, sans-serif;
   color: #000;

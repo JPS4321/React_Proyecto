@@ -33,7 +33,7 @@ function ProductPage() {
     };
 
     const addToCart = () => {
-        navigate('/PaymentScreen');
+        navigate('/ShoppingCart');
     };
 
     const discountedPrice = discount > 0 ? price - (price * discount) / 100 : price;

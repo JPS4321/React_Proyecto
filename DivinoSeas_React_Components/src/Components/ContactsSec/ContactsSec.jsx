@@ -19,14 +19,12 @@ function ContactSec() {
             [name]: value,
         });
 
-        // Si el usuario comienza a escribir, quitamos el error
         setErrors({
             ...errors,
             [name]: '',
         });
     };
 
-    // Validación del formulario
     const validateForm = () => {
         const newErrors = {};
         if (!formData.name) {

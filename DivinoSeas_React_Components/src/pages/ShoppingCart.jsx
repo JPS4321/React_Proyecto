@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../Components/NavBar/Navbar';
 import Marquee from '../Components/Marquee/Marquee';
 import CartItem from '../Components/CartItem/CartItem';
@@ -11,6 +12,8 @@ function ShoppingCart() {
         { id: 2, name: 'Item 2', price: 75, quantity: 1 },
         { id: 3, name: 'Item 3', price: 75, quantity: 1 },
     ]);
+
+    const navigate = useNavigate();  // Hook para redirigir
 
     const handleIncrement = (id) => {
         setCartItems(cartItems.map(item => 
@@ -29,6 +32,10 @@ function ShoppingCart() {
     };
 
     const totalAmount = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
+    const handleCheckout = () => {
+        navigate('/PaymentScreen');  
+    };
 
     return (
         <div className='container'>
@@ -53,7 +60,11 @@ function ShoppingCart() {
                     <div className="total-section" style={{ padding: '20px', marginTop: '20px', width: '100%', maxWidth: '800px', textAlign: 'right', fontSize: '1.5em', fontWeight: 'bold' }}>
                         Total: ${totalAmount.toFixed(2)}
                     </div>
-                    <button className="checkout-button" style={{ padding: '10px 20px', backgroundColor: 'black', color: 'white', border: 'none', cursor: 'pointer', fontSize: '1.2em' }}>
+                    <button 
+                        className="checkout-button" 
+                        style={{ padding: '10px 20px', backgroundColor: 'black', color: 'white', border: 'none', cursor: 'pointer', fontSize: '1.2em' }}
+                        onClick={handleCheckout} 
+                    >
                         Proceed to Checkout
                     </button>
                 </div>

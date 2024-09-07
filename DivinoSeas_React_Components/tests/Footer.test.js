@@ -2,7 +2,6 @@ const { test, expect } = require('@playwright/test');
 
 test.describe('Footer component', () => {
   test('should render the footer with correct sections and content', async ({ page }) => {
-    // Navega a la página donde está el componente Footer
     await page.goto('http://localhost:5173');
 
     // Verifica que el título "Contacto" esté visible
@@ -35,10 +34,10 @@ test.describe('Footer component', () => {
 
     // Verifica el contenido de la sección "¡Siguenos!"
     const facebook = await page.locator('text=Facebook');
-    const twitter = await page.locator('text="X"', { exact: true }); // Más específico para evitar conflictos
+    const twitter = await page.locator('text="X"', { exact: true }); 
     const instagram = await page.locator('text=Instagram');
     await expect(facebook).toBeVisible();
-    await expect(twitter).toBeVisible(); // Este es el elemento exacto "X"
+    await expect(twitter).toBeVisible(); 
     await expect(instagram).toBeVisible();
   });
 
@@ -48,9 +47,8 @@ test.describe('Footer component', () => {
     test('should display the correct social media links', async ({ page }) => {
       await page.goto('http://localhost:5173');
   
-      // Verificar los enlaces de redes sociales
       const facebook = await page.locator('text=Facebook');
-      const twitter = await page.locator('text="X"', { exact: true }); // Seleccionar el texto exacto "X"
+      const twitter = await page.locator('text="X"', { exact: true }); 
       const instagram = await page.locator('text=Instagram');
       
       await expect(facebook).toBeVisible();

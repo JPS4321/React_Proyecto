@@ -25,7 +25,7 @@ test.describe('ScrollToTopButton Component', () => {
     await scrollButton.click();
 
     // Verificar que la página ha hecho scroll hacia la parte superior
-    await page.waitForTimeout(1000); // Espera un poco para la animación de scroll
+    await page.waitForTimeout(1000); 
     const scrollPosition = await page.evaluate(() => window.scrollY);
     expect(scrollPosition).toBe(0); // Verificar que la página está en el tope
   });

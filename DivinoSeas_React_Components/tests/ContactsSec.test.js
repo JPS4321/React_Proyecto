@@ -74,7 +74,6 @@ test.describe('ContactSec component', () => {
     await page.click('button:has-text("ENVIAR AHORA")');
 
     // Verifica en la consola que el formulario se ha enviado correctamente
-    // Playwright no puede acceder a `console.log` directamente, pero puedes verificar que no hay errores visibles en la página tras el envío.
     await expect(page.locator('input[name="name"]')).toHaveValue('Juan');
     await expect(page.locator('input[name="email"]')).toHaveValue('juan@example.com');
     await expect(page.locator('textarea[name="message"]')).toHaveValue('Este es un mensaje de prueba');

@@ -20,7 +20,7 @@ function Collections() {
         { id: 2, imageSrc: image, hoverImageSrc: hoverImage, title: 'Product 2', price: 40.00, discount: 10, Existencia: true },
         { id: 3, imageSrc: image, hoverImageSrc: hoverImage, title: 'Product 3', price: 60.00, discount: 10, Existencia: false },
         { id: 4, imageSrc: image, hoverImageSrc: hoverImage, title: 'Product 4', price: 80.00, discount: 0, Existencia: true },
-        { id: 5, imageSrc: image, hoverImageSrc: hoverImage, title: 'Product 5', price: 100.00, discount: 20, Existencia: true },
+        { id: 5, imageSrc: image, hoverImageSrc: hoverImage, title: 'Product 5', price: 400.00, discount: 20, Existencia: true },
         { id: 6, imageSrc: image, hoverImageSrc: hoverImage, title: 'Product 6', price: 120.00, discount: 25, Existencia: true },
     ];
     

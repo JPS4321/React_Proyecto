@@ -10,10 +10,8 @@ function ContactSec() {
 
     const [errors, setErrors] = useState({});
 
-    // Manejo de cambios en los inputs
     const handleChange = (e) => {
         const { name, value } = e.target;
-        // Actualizar el estado del formulario
         setFormData({
             ...formData,
             [name]: value,
@@ -42,11 +40,15 @@ function ContactSec() {
         return Object.keys(newErrors).length === 0;
     };
 
-    // Manejo del envío del formulario
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validateForm()) {
-            console.log('Formulario enviado:', formData); // Verificación en la consola
+            alert('Mensaje enviado'); 
+            setFormData({
+                name: '',
+                email: '',
+                message: '',
+            });
         }
     };
 
@@ -59,7 +61,7 @@ function ContactSec() {
                     <input 
                         type="text" 
                         name="name" 
-                        placeholder={errors.name ? errors.name : "Nombre"} // Mensaje de error como placeholder
+                        placeholder={errors.name ? errors.name : "Nombre"} 
                         aria-label="Nombre"
                         value={formData.name}
                         onChange={handleChange}
@@ -69,7 +71,7 @@ function ContactSec() {
                     <input 
                         type="email" 
                         name="email" 
-                        placeholder={errors.email ? errors.email : "Correo electrónico"} // Mensaje de error como placeholder
+                        placeholder={errors.email ? errors.email : "Correo electrónico"} 
                         aria-label="Correo electrónico"
                         value={formData.email}
                         onChange={handleChange}
@@ -79,7 +81,7 @@ function ContactSec() {
 
                 <textarea 
                     name="message" 
-                    placeholder={errors.message ? errors.message : "Mensaje"} // Mensaje de error como placeholder
+                    placeholder={errors.message ? errors.message : "Mensaje"} 
                     aria-label="Mensaje"
                     value={formData.message}
                     onChange={handleChange}

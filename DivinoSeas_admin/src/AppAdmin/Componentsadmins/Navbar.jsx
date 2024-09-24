@@ -8,7 +8,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleHome = () => {
-    navigate('/');
+    navigate('/Home');
   };
 
   const handleStock = () => {

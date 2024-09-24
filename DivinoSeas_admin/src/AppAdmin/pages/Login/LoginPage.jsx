@@ -1,35 +1,38 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../AuthContext';
+import axios from 'axios'; // Importar axios para hacer las llamadas a la API
 import "./LoginPage.css"; 
-
-
-const users = [
-  { id: "#1", image: "", user: "Fernando", mail: "Fernando@gmail.com", password: "1234", role: "Administrador" },
-  { id: "#2", image: "", user: "Pablo", mail: "Pablo@gmail.com", password: "2345", role: "Gerente de Inventario" },
-  { id: "#3", image: "", user: "Julio", mail: "Julio@gmail.com", password: "3456", role: "Encargado de Almacén" },
-  { id: "#4", image: "", user: "Sofia", mail: "Sofia@gmail.com", password: "4567", role: "Supervisora de Tienda" },
-  { id: "#5", image: "", user: "Joaquin", mail: "Joaquin@gmail.com", password: "5678", role: "Planificador de Compras" }
-];
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-  const { login } = useContext(AuthContext);
+  const { login } = useContext(AuthContext); // Usamos el AuthContext para manejar la autenticación
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    
-    const user = users.find(u => u.mail === email && u.password === password);
+    try {
+      const response = await axios.post('http://localhost:3000/usuarios/login', {
+        email,
+        password,
+      });
 
-    if (user) {
-      login(); // Cambiar el estado a autenticado
-      navigate('/Home'); // Redirigir a la página de inicio o donde desees
-    } else {
+      // Guarda el usuario autenticado en el AuthContext
+      login({
+        id: response.data.id,
+        username: response.data.username,
+        email: response.data.email,
+        role: response.data.role,
+      });
+
+      // Redirigir a la página de inicio o a donde sea necesario
+      navigate('/Home');
+    } catch (err) {
       setError('Credenciales incorrectas. Intente de nuevo.');
+      console.error("Error en el login:", err.response?.data || err.message);
     }
   };
 

@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
-import useUser from '../hooks/useUser'; // Importa el hook
-import '../styles/UserProfile.css'; 
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../../AuthContext';
+import useUser from '../hooks/useUser';
+import '../styles/UserProfile.css';
 
 const UserProfile = () => {
-  const userId = "#5";  // Aquí puedes usar un ID dinámico si lo necesitas
-  const { user, loading, error } = useUser(userId); // Usa el hook para obtener los datos del usuario
+  const { user } = useContext(AuthContext); // Obtener los datos del usuario autenticado desde el contexto
+  const { user: userData, loading, error } = useUser(user?.id); // Usar el hook para obtener los datos del usuario
+  const { logout } = useContext(AuthContext);
+
   const [permissions, setPermissions] = useState({
     canEditInventory: false,
     canViewReports: true,
@@ -12,11 +15,12 @@ const UserProfile = () => {
   });
 
   const handleLogout = () => {
-    console.log("Cerrando sesión...");
+    logout();
+    navigate('/login');
   };
 
   const handlePermissionChange = (e) => {
-    if (user?.role === "Administrador" || user?.role === "Supervisora de Tienda") {
+    if (userData?.role === "Administrador" || userData?.role === "Supervisora de Tienda") {
       setPermissions({
         ...permissions,
         [e.target.name]: e.target.checked
@@ -24,7 +28,7 @@ const UserProfile = () => {
     }
   };
 
-  const isEditable = user?.role === "Administrador" || user?.role === "Supervisora de Tienda";
+  const isEditable = userData?.role === "Administrador" || userData?.role === "Supervisora de Tienda";
 
   if (loading) {
     return <div>Cargando...</div>;
@@ -38,12 +42,12 @@ const UserProfile = () => {
     <div className="user-profile-container">
       <div className="profile-card">
         <div className="profile-image">
-          <img src={user?.imagen || "https://via.placeholder.com/80"} alt="Perfil" />
+          <img src={userData?.imagen || "https://via.placeholder.com/80"} alt="Perfil" />
         </div>
         <div className="profile-details">
-          <p><strong>Correo:</strong> {user?.email}</p>
-          <p><strong>Usuario:</strong> {user?.username}</p>
-          <p><strong>Rol:</strong> {user?.role}</p>
+          <p><strong>Correo:</strong> {userData?.email}</p>
+          <p><strong>Usuario:</strong> {userData?.username}</p>
+          <p><strong>Rol:</strong> {userData?.role}</p>
         </div>
         <div className="permissions-section">
           <h3>Permisos:</h3>

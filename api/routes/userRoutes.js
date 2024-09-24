@@ -7,6 +7,9 @@ import {
   updateUser,
   deleteUser,
 } from "../services/userService.js";
+import jwt from "jsonwebtoken";
+import { getUserByEmail } from "../services/userService.js";
+import bcrypt from "bcrypt";
 
 const router = express.Router();
 
@@ -123,6 +126,62 @@ router.delete("/:id", async (req, res) => {
     console.error("Error al eliminar el usuario:", error);
     res.status(500).json({ message: "Error Interno del Servidor" });
   }
+});
+
+// Endpoint de login
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  // Buscar al usuario por email
+  const user = await getUserByEmail(email);
+  console.log("Usuario encontrado:", user);
+
+  if (!user) {
+    return res.status(404).json({ message: "Usuario no encontrado" });
+  }
+
+  // Verificar la contraseña hasheada usando bcrypt
+  const isPasswordCorrect = await bcrypt.compare(password, user.password_hashed);
+  console.log("Contraseña ingresada:", password);
+  console.log("Contraseña almacenada (hash):", user.password_hashed);
+  console.log("¿Es la contraseña correcta?:", isPasswordCorrect);
+
+  if (!isPasswordCorrect) {
+    return res.status(401).json({ message: "Contraseña incorrecta" });
+  }
+
+  // Si la autenticación es exitosa, devolver el usuario o un token
+  res.status(200).json({
+    id: user.id_user,
+    username: user.username,
+    email: user.email,
+    role: user.role,
+  });
+});
+
+bcrypt.hash('123456', 10, (err, hash) => {
+  if (err) throw err;
+  console.log('Hashed password:', hash);
+});
+
+
+function verifyToken(req, res, next) {
+  const token = req.headers["authorization"];
+  if (!token) {
+    return res.status(403).json({ message: "No token provided" });
+  }
+
+  jwt.verify(token, "your_secret_key", (err, decoded) => {
+    if (err) {
+      return res.status(500).json({ message: "Failed to authenticate token" });
+    }
+    req.userId = decoded.id;
+    next();
+  });
+}
+
+router.get("/protected-route", verifyToken, (req, res) => {
+  res.status(200).json({ message: "Authorized!" });
 });
 
 export default router;

@@ -1,7 +1,13 @@
 import conn from "../connection.js";
 
-// Añadir color a un producto
 async function addColorToProduct(productId, colorId) {
+  const [productRows] = await conn.query("SELECT id_producto FROM DivinoSeas_Productos WHERE id_producto = ?", [productId]);
+  const [colorRows] = await conn.query("SELECT id_color FROM Colores WHERE id_color = ?", [colorId]);
+
+  if (productRows.length === 0 || colorRows.length === 0) {
+    throw new Error('Producto o color no encontrado');
+  }
+
   const result = await conn.query(
     "INSERT INTO ProductoColores (id_producto, id_color) VALUES (?, ?)",
     [productId, colorId]

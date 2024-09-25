@@ -7,19 +7,16 @@ import {
 
 const router = express.Router();
 
-// Añadir color a un producto
-router.post("/:productId/colors/:colorId", async (req, res) => {
+router.post("/:id_producto/colors", async (req, res) => {
+  const { id_producto } = req.params;
+  const { id_colores } = req.body; // Esperamos un array de colores
+
   try {
-    const { productId, colorId } = req.params;
-    await addColorToProduct(productId, colorId);
-    res.status(201).json({ message: "Color añadido al producto con éxito" });
+    await Promise.all(id_colores.map(id_color => addColorToProduct(id_producto, id_color)));
+    res.status(201).json({ success: true, message: "Colores asociados al producto" });
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: "Error al añadir el color al producto",
-        error: error.message,
-      });
+    console.error('Error al asociar colores:', error);
+    res.status(500).json({ success: false, message: 'Error al asociar colores', error: error.message });
   }
 });
 

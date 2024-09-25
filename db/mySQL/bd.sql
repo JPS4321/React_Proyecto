@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS DivinoSeas_Productos (
     descripcion TEXT NOT NULL,
     precio DECIMAL(10,2) NOT NULL,
     imagen LONGBLOB, 
+    secondimage LONGBLOB,
     id_categoria INT,
     cantidad_xs INT DEFAULT 0,
     cantidad_s INT DEFAULT 0,

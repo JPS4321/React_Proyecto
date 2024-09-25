@@ -42,9 +42,11 @@ router.get("/:id", async (req, res) => {
 });
 
 // Crear un nuevo producto
-router.post("/", upload.single('imagen'), validacionProducto, async (req, res) => {
+router.post("/", upload.fields([{ name: 'imagen', maxCount: 1 }, { name: 'secondimage', maxCount: 1 }]), validacionProducto, async (req, res) => {
   const { nombre, descripcion, precio, id_categoria, cantidad_xs, cantidad_s, cantidad_m, cantidad_l } = req.body;
-  const imagen = req.file ? req.file.buffer : null; // Obtener la imagen si está disponible
+  const imagen = req.files['imagen'] ? req.files['imagen'][0].buffer : null; // Obtener la imagen si está disponible
+  const secondimage = req.files['secondimage'] ? req.files['secondimage'][0].buffer : null; // Obtener la secondimage si está disponible
+
   try {
     const { success, result, error } = await createProducto(
       nombre,
@@ -52,6 +54,7 @@ router.post("/", upload.single('imagen'), validacionProducto, async (req, res) =
       precio,
       id_categoria,
       imagen,
+      secondimage,
       cantidad_xs,
       cantidad_s,
       cantidad_m,
@@ -82,10 +85,11 @@ router.post("/", upload.single('imagen'), validacionProducto, async (req, res) =
 });
 
 // Actualizar un producto existente
-router.put("/:id", upload.single('imagen'), validacionProducto, async (req, res) => {
+router.put("/:id", upload.fields([{ name: 'imagen', maxCount: 1 }, { name: 'secondimage', maxCount: 1 }]), validacionProducto, async (req, res) => {
   const { id } = req.params;
   const { nombre, descripcion, precio, id_categoria, cantidad_xs, cantidad_s, cantidad_m, cantidad_l } = req.body;
-  const imagen = req.file ? req.file.buffer : null; // Obtener la imagen si está disponible
+  const imagen = req.files['imagen'] ? req.files['imagen'][0].buffer : null; // Obtener la imagen si está disponible
+  const secondimage = req.files['secondimage'] ? req.files['secondimage'][0].buffer : null; // Obtener la secondimage si está disponible
 
   try {
     const result = await updateProducto(
@@ -95,6 +99,7 @@ router.put("/:id", upload.single('imagen'), validacionProducto, async (req, res)
       precio,
       id_categoria,
       imagen,
+      secondimage,
       cantidad_xs,
       cantidad_s,
       cantidad_m,

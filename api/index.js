@@ -27,7 +27,7 @@ app.use(cors());
 app.use("/productos", productRouter);
 app.use("/categorias", categoryRouter);
 app.use("/colores", colorRouter);
-app.use("/productos", productColorRouter);
+app.use("/producto-colores", productColorRouter);
 app.use("/colecciones", collectionRouter);
 app.use("/producto-colecciones", productCollectionRouter);
 app.use("/promociones", promotionRouter);

@@ -1,19 +1,41 @@
 import conn from '../connection.js';
 
+function convertirABase64(buffer) {
+    return buffer ? buffer.toString('base64') : null;
+}
+
 export async function getAllProductos() {
     try {
         const [rows] = await conn.query('SELECT * FROM DivinoSeas_Productos');
-        return rows;
+        // Convertir las imágenes y secondimage a base64
+        const productos = rows.map(producto => {
+            return {
+                ...producto,
+                imagen: convertirABase64(producto.imagen),
+                secondimage: convertirABase64(producto.secondimage),
+            };
+        });
+        return productos;
     } catch (e) {
         console.log(e);
         return e;
     }
 }
 
+
 export async function getProductoById(id_producto) {
     try {
         const [rows] = await conn.query('SELECT * FROM DivinoSeas_Productos WHERE id_producto = ?', [id_producto]);
-        return rows[0] || null;
+        if (rows.length > 0) {
+            const producto = rows[0];
+            // Convertir las imágenes y secondimage a base64
+            return {
+                ...producto,
+                imagen: convertirABase64(producto.imagen),
+                secondimage: convertirABase64(producto.secondimage),
+            };
+        }
+        return null;
     } catch (e) {
         console.log(e);
         return e;

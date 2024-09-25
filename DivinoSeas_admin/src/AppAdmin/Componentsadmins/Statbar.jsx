@@ -40,7 +40,9 @@ const Statbar = ({ onSearch }) => {
         </div>
         <div className="lineapues"></div>
       </nav>
-      {showForm && <InventoryForm onClose={handleFormClose} />}
+      {showForm && (
+          <InventoryForm onClose={handleFormClose} />
+        )}
     </div>
   );
 };

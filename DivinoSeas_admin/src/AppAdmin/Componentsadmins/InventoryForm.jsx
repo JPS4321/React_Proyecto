@@ -1,37 +1,67 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/InventoryForm.css';
+import useProduct from '../hooks/useProduct'; // Hook de productos
+import useCategory from '../hooks/useCategory'; // Hook de categorías
+import useColeccion from '../hooks/useColeccion'; // Hook de colecciones
 
 const InventoryForm = ({ onClose }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
-  const [category, setCategory] = useState('');
-  const [image, setImage] = useState(null);
+  const [categoryId, setCategoryId] = useState(''); // Para la categoría
+  const [collectionId, setCollectionId] = useState(''); // Para la colección
+  const [image1, setImage1] = useState(null);
+  const [image2, setImage2] = useState(null);
   const [xs, setXs] = useState(0);
   const [s, setS] = useState(0);
   const [m, setM] = useState(0);
   const [l, setL] = useState(0);
+  const { createProduct, loading, error } = useProduct();
+  const { categories, loading: categoriesLoading, error: categoriesError } = useCategory(); // Obtener categorías
+  const { collections, loading: collectionsLoading, error: collectionsError } = useColeccion(); // Obtener colecciones
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (name && description && price && category && image && xs >= 0 && s >= 0 && m >= 0 && l >= 0) {
-      console.log({ name, description, price, category, image, xs, s, m, l });
-      onClose(); 
-      navigate('/Stock'); 
+
+    if (name && description && price && categoryId && collectionId && image1 && image2 && xs >= 0 && s >= 0 && m >= 0 && l >= 0) {
+      const productData = {
+        nombre: name,
+        descripcion: description,
+        precio: price,
+        id_categoria: categoryId, // Usar el ID de la categoría seleccionada
+        id_coleccion: collectionId, // Usar el ID de la colección seleccionada
+        imagen: image1,
+        secondimage: image2,
+        cantidad_xs: xs,
+        cantidad_s: s,
+        cantidad_m: m,
+        cantidad_l: l,
+      };
+
+      const result = await createProduct(productData);
+
+      if (result) {
+        onClose();
+        navigate('/Stock');
+      }
     } else {
       alert('Por favor completa todos los campos antes de agregar el producto.');
     }
   };
 
   const handleCancel = () => {
-    onClose();  
-    navigate('/Stock');  
+    onClose();
+    navigate('/Stock');
   };
 
-  const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
+  const handleImage1Change = (e) => {
+    setImage1(e.target.files[0]);
+  };
+
+  const handleImage2Change = (e) => {
+    setImage2(e.target.files[0]);
   };
 
   return (
@@ -52,14 +82,47 @@ const InventoryForm = ({ onClose }) => {
         </label>
         <label className="label">
           Categoría:
-          <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} className="input" required />
+          {categoriesLoading ? (
+            <p>Cargando categorías...</p>
+          ) : categoriesError ? (
+            <p style={{ color: 'red' }}>{categoriesError}</p>
+          ) : (
+            <select value={categoryId} onChange={(e) => setCategoryId(e.target.value)} className="input" required>
+              <option value="">Selecciona una categoría</option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.nombre}
+                </option>
+              ))}
+            </select>
+          )}
         </label>
         <label className="label">
-          Imagen:
-          <input type="file" onChange={handleImageChange} className="input-file" required />
-          <div className="drag-drop-area">
-            Arrastra una imagen aquí o haz clic para seleccionar.
-          </div>
+          Colección:
+          {collectionsLoading ? (
+            <p>Cargando colecciones...</p>
+          ) : collectionsError ? (
+            <p style={{ color: 'red' }}>{collectionsError}</p>
+          ) : (
+            <select value={collectionId} onChange={(e) => setCollectionId(e.target.value)} className="input" required>
+              <option value="">Selecciona una colección</option>
+              {collections.map((collection) => (
+                <option key={collection.id_coleccion} value={collection.id_coleccion}>
+                  {collection.nombre}
+                </option>
+              ))}
+            </select>
+          )}
+        </label>
+        <label className="label">
+          Imagen 1:
+          <input type="file" onChange={handleImage1Change} className="input-file" required />
+          <div className="drag-drop-area">Arrastra una imagen aquí o haz clic para seleccionar.</div>
+        </label>
+        <label className="label">
+          Imagen 2:
+          <input type="file" onChange={handleImage2Change} className="input-file" required />
+          <div className="drag-drop-area">Arrastra una segunda imagen aquí o haz clic para seleccionar.</div>
         </label>
         <div className="sizes-container">
           <label className="size-label">
@@ -80,9 +143,12 @@ const InventoryForm = ({ onClose }) => {
           </label>
         </div>
         <div className="button-container">
-          <button type="submit" className="submit-button">Agregar</button>
+          <button type="submit" className="submit-button" disabled={loading}>
+            {loading ? 'Agregando...' : 'Agregar'}
+          </button>
           <button type="button" onClick={handleCancel} className="cancel-button">Cancelar</button>
         </div>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
       </form>
     </div>
   );

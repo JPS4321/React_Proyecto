@@ -1,26 +1,23 @@
 import conn from '../connection.js';
 
-function convertirABase64(buffer) {
-    return buffer ? buffer.toString('base64') : null;
-}
+function convertirABase64(buffer, tipoImagen = 'image/jpeg') {
+    return buffer ? `data:${tipoImagen};base64,${buffer.toString('base64')}` : null;
+  }
+  
 
 export async function getAllProductos() {
     try {
-        const [rows] = await conn.query('SELECT * FROM DivinoSeas_Productos');
-        // Convertir las imágenes y secondimage a base64
-        const productos = rows.map(producto => {
-            return {
-                ...producto,
-                imagen: convertirABase64(producto.imagen),
-                secondimage: convertirABase64(producto.secondimage),
-            };
-        });
-        return productos;
-    } catch (e) {
-        console.log(e);
-        return e;
+      const [rows] = await conn.query('SELECT * FROM DivinoSeas_Productos');
+      const productos = rows.map(producto => ({
+        ...producto,
+        imagen: convertirABase64(producto.imagen) // Convertir el buffer a base64
+      }));
+      return productos;
+    } catch (error) {
+      console.error(error);
+      return [];
     }
-}
+  }
 
 
 export async function getProductoById(id_producto) {

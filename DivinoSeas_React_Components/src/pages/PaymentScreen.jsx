@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './pages_css/PaymentScreen.css';
 import PaymentHeader from '../Components/PaymentScreen/PaymentHeader';
 import ContactForm from '../Components/PaymentScreen/ContactForm';
@@ -9,9 +9,12 @@ import PaymentOptions from '../Components/PaymentScreen/PaymentOptions';
 import Navbar from '../Components/NavBar/Navbar';
 
 const PaymentScreen = () => {
-  // Ejemplo hardcodeado
-  const price = 200; // Precio de ejemplo
-  const discount = 5; // Ejemplo de porcentaje de descuento
+  const [price] = useState(200); // Assume this is fetched or passed from a higher level
+  const [discount, setDiscount] = useState(0);
+
+  const applyDiscount = (discountValue) => {
+    setDiscount(discountValue);
+  };
 
   return (
     <div className="container">
@@ -24,7 +27,8 @@ const PaymentScreen = () => {
           <ShippingForm />
           {/* Passing price and discount to OrderSummary */}
           <OrderSummary price={price} discount={discount} />
-          <PromoCodeInput />
+          {/* Passing applyDiscount function to PromoCodeInput */}
+          <PromoCodeInput applyDiscount={applyDiscount} />
         </div>
       </div>
     </div>

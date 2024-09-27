@@ -194,7 +194,7 @@ const InventoryForm = ({   onClose = () => {}  }) => {
           </button>
           <button type="button" onClick={handleCancel} className="cancel-button">Cancelar</button>
         </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {error && <p style={{ color: 'red' }}>{typeof error === 'string' ? error : 'Ocurrió un error'}</p>}
       </form>
     </div>
   );

@@ -44,4 +44,5 @@ const PromoCodeInput = ({ applyDiscount }) => {
   );
 };
 
+//Testing
 export default PromoCodeInput;

@@ -1,0 +1,21 @@
+.promo-code {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .promo-code input {
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 200px;
+  }
+  
+  .promo-code button {
+    padding: 8px;
+    width: 80px;
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: 5px;
+  }
+  

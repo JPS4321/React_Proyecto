@@ -30,14 +30,18 @@ function Collections() {
     };
 
     const filteredProducts = products.filter(product => {
-        const matchesPrice = product.price >= minPrice && product.price <= maxPrice;
+        const finalPrice = product.discount > 0 ? product.price - (product.price * (product.discount / 100)) : product.price;
+        
+        const matchesPrice = finalPrice >= minPrice && finalPrice <= maxPrice;
+        
         const matchesAvailability = 
             (inStockFilter && product.Existencia) || 
             (outOfStockFilter && !product.Existencia) ||
             (!inStockFilter && !outOfStockFilter); 
+        
         return matchesPrice && matchesAvailability;
     });
-
+    
     return (
         <div className='container'>
             <Marquee text='Welcome to Divino Seas'/>

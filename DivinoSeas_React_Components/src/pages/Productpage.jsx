@@ -38,6 +38,14 @@ function ProductPage() {
 
     const discountedPrice = discount > 0 ? price - (price * discount) / 100 : price;
 
+    
+    const sizeOptions = [
+        { size: 'XS', number: 1 },
+        { size: 'S', number: 4 },  
+        { size: 'M', number: 3 },
+        { size: 'L', number: 0 }   
+    ];
+
     return (
         <div className='ProductPageContainer'>
             <Marquee text='Welcome to Divino Seas' />
@@ -57,7 +65,7 @@ function ProductPage() {
                                 <span className='OriginalPrice' style={{ textDecoration: 'line-through', marginRight: '10px' }}>
                                     Q{price.toFixed(2)}
                                 </span>
-                                <span className='DiscountedPrice' style={{fontWeight: 'bold',color:'black' }}>
+                                <span className='DiscountedPrice' style={{ fontWeight: 'bold', color: 'black' }}>
                                     Q{discountedPrice.toFixed(2)}
                                 </span>
                             </>
@@ -67,26 +75,16 @@ function ProductPage() {
                     </p>
                     <p className='Size'>Size: {selectedSize}</p>
                     <div className='SizesButtonRow'>
-                        <button 
-                            className={`sizeButton ${selectedSize === 'XS' ? 'selected' : ''}`} 
-                            onClick={() => handleSizeClick('XS')}>
-                            XS
-                        </button>
-                        <button 
-                            className={`sizeButton ${selectedSize === 'S' ? 'selected' : ''}`} 
-                            onClick={() => handleSizeClick('S')}>
-                            S
-                        </button>
-                        <button 
-                            className={`sizeButton ${selectedSize === 'M' ? 'selected' : ''}`} 
-                            onClick={() => handleSizeClick('M')}>
-                            M
-                        </button>
-                        <button 
-                            className={`sizeButton ${selectedSize === 'L' ? 'selected' : ''}`} 
-                            onClick={() => handleSizeClick('L')}>
-                            L
-                        </button>
+                        {sizeOptions.map((option) => (
+                            <button
+                                key={option.size}
+                                className={`sizeButton ${selectedSize === option.size ? 'selected' : ''} ${option.number === 0 ? 'disabledButton' : ''}`} 
+                                onClick={() => handleSizeClick(option.size)}
+                                disabled={option.number === 0}  
+                            >
+                                {option.size} 
+                            </button>
+                        ))}
                     </div>
                     <div className="CounterContainer">
                         <p className="CounterLabel">Amount:</p>

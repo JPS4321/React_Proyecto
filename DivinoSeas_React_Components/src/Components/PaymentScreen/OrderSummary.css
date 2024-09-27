@@ -1,0 +1,24 @@
+.order-summary {
+    margin-top: 20px;
+  }
+  
+  .price-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .original-price {
+    text-decoration: line-through;
+    color: red;
+    margin-right: 10px;
+  }
+  
+  .discounted-price {
+    font-weight: bold;
+    color: green;
+  }
+  
+  .final-price {
+    font-weight: bold;
+  }
+  

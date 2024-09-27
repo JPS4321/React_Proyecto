@@ -1,0 +1,27 @@
+.promo-code {
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    margin-top: 20px;        
+  }
+  
+  .promo-code input {
+    margin-right: 10px; 
+    padding: 8px;
+    width: 300px;       
+  }
+  
+  .promo-code button {
+    padding: 8px 15px;
+    border: 1px solid black;
+    cursor: pointer;
+  }
+
+.error-message {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    color: red;
+    margin-top: 10px;
+}
+  

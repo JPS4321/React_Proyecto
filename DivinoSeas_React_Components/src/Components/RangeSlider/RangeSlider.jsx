@@ -4,23 +4,51 @@ import './RangeSlider.css';
 const RangeSlider = ({ minValue, maxValue, onMinChange, onMaxChange }) => {
   const [tempMinValue, setTempMinValue] = useState(minValue);
   const [tempMaxValue, setTempMaxValue] = useState(maxValue);
+  const [inputMin, setInputMin] = useState(minValue.toString());
+  const [inputMax, setInputMax] = useState(maxValue.toString());
 
-  const handleMinChange = (e) => {
+  const handleMinInputChange = (e) => {
+    setInputMin(e.target.value);
+  };
+
+  const handleMaxInputChange = (e) => {
+    setInputMax(e.target.value);
+  };
+
+  const handleMinChangeEnd = (e) => {
+    if (e.key === 'Enter') {
+      let value = Number(inputMin) || 0;
+      if (value >= tempMaxValue) {
+        value = tempMaxValue - 1;
+      }
+      setTempMinValue(value);
+      setInputMin(value.toString());
+      onMinChange(value); 
+    }
+  };
+
+  const handleMaxChangeEnd = (e) => {
+    if (e.key === 'Enter') {
+      let value = Number(inputMax) || 0;
+      if (value <= tempMinValue) {
+        value = tempMinValue + 1;
+      }
+      setTempMaxValue(value);
+      setInputMax(value.toString());
+      onMaxChange(value); 
+    }
+  };
+
+  const handleMinSliderChange = (e) => {
     const value = Math.min(Number(e.target.value), tempMaxValue - 1);
     setTempMinValue(value);
+    setInputMin(value.toString());
   };
 
-  const handleMaxChange = (e) => {
+  const handleMaxSliderChange = (e) => {
     const value = Math.max(Number(e.target.value), tempMinValue + 1);
     setTempMaxValue(value);
-  };
-
-  const handleMinChangeEnd = () => {
-    onMinChange(tempMinValue); 
-  };
-
-  const handleMaxChangeEnd = () => {
-    onMaxChange(tempMaxValue); 
+    setInputMax(value.toString());
   };
 
   const minPercent = (tempMinValue / 1000) * 100;
@@ -32,23 +60,24 @@ const RangeSlider = ({ minValue, maxValue, onMinChange, onMaxChange }) => {
 
       <div className="range-input-container">
         <input
-          type="number"
+          type="text"
           className="range-input"
-          value={tempMinValue}
-          onChange={handleMinChange}
-          min="0"
-          max="1000"
+          value={inputMin}
+          onChange={handleMinInputChange}
+          onKeyDown={handleMinChangeEnd}
+          placeholder="Mín"
         />
         <span className="range-separator">Para</span>
         <input
-          type="number"
+          type="text"
           className="range-input"
-          value={tempMaxValue}
-          onChange={handleMaxChange}
-          min="0"
-          max="1000"
+          value={inputMax}
+          onChange={handleMaxInputChange}
+          onKeyDown={handleMaxChangeEnd}
+          placeholder="Máx"
         />
       </div>
+
       <div className="slider-container">
         <div className="slider-background"></div>
         <div
@@ -64,9 +93,7 @@ const RangeSlider = ({ minValue, maxValue, onMinChange, onMaxChange }) => {
           min="0"
           max="1000"
           value={tempMinValue}
-          onChange={handleMinChange}
-          onMouseUp={handleMinChangeEnd} 
-          onTouchEnd={handleMinChangeEnd} 
+          onChange={handleMinSliderChange}
         />
         <input
           type="range"
@@ -74,9 +101,7 @@ const RangeSlider = ({ minValue, maxValue, onMinChange, onMaxChange }) => {
           min="0"
           max="1000"
           value={tempMaxValue}
-          onChange={handleMaxChange}
-          onMouseUp={handleMaxChangeEnd} 
-          onTouchEnd={handleMaxChangeEnd} 
+          onChange={handleMaxSliderChange}
         />
       </div>
     </div>

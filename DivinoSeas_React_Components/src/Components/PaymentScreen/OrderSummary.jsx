@@ -1,5 +1,5 @@
 import React from 'react';
-import './OrderSummary.css'; // Assuming this file is used for styling
+import './OrderSummary.css';
 
 const OrderSummary = ({ price, discount }) => {
   const discountedPrice = discount > 0 ? price - (price * discount) / 100 : price;
@@ -11,7 +11,7 @@ const OrderSummary = ({ price, discount }) => {
         {discount > 0 ? (
           <div>
             <span className="original-price">Original Price: Q{price.toFixed(2)}</span>
-            <span className="discounted-price">Discounted Price: Q{discountedPrice.toFixed(2)}</span>
+            <span className="discounted-price">Discounted Price: Q{discountedPrice.toFixed(2)} ({discount}% off)</span>
           </div>
         ) : (
           <div className="final-price">

@@ -6,7 +6,7 @@ function ProductItem({ imageSrc, title, sizes }) {
       <div className="product-item">
         <div className="product-info">
           <span className="product-title">{title}</span>
-          <img src={imageSrc} alt={title} className="product-image" />
+          <img src={imageSrc || "https://via.placeholder.com/150"} alt={title} className="product-image" />
         </div>
         <div className="product-sizes-container">
           <div className="product-sizes">

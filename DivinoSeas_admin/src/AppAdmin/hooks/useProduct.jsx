@@ -37,7 +37,6 @@ const useProduct = () => {
     }
   };
 
-  // Obtener todos los productos
   const getAllProducts = async () => {
     setLoading(true);
     setError(null);
@@ -47,11 +46,12 @@ const useProduct = () => {
       return response.data;
     } catch (err) {
       setError(err.response?.data || 'Error al obtener productos');
+      console.error('Error al obtener productos:', err);  // Agrega esto para ver más detalles del error
       setLoading(false);
       return [];
     }
   };
-
+  
   // Obtener producto por ID
   const getProductById = async (id) => {
     setLoading(true);

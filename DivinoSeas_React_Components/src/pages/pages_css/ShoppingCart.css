@@ -44,3 +44,38 @@
 .checkout-button:hover {
     background-color: gray;
 }
+
+/* Set the height of html and body to 100% to allow flexbox alignment */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ensure that the main container fills the remaining height */
+.container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* The content area will take all available vertical space minus the footer */
+.content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Make sure the footer stays at the bottom */
+footer {
+    background-color: #333; 
+    color: white; 
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+}

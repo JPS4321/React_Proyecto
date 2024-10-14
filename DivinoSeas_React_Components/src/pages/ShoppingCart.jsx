@@ -12,7 +12,7 @@ function ShoppingCart() {
     useEffect(() => {
         const savedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         setCartItems(savedCartItems);
-    }, []);  // Empty dependency array to run once on component mount
+    }, []);
 
     const navigate = useNavigate(); 
 
@@ -76,7 +76,7 @@ function ShoppingCart() {
                     </button>
                 </div>
             </div>
-            <Footer/>
+            <Footer /> {/* Testeo de footer*/}
         </div>
     );
 }

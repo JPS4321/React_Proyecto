@@ -1,49 +1,97 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'; 
 import Navbar from '../Components/NavBar/Navbar';
 import Marquee from '../Components/Marquee/Marquee';
 import Footer from '../Components/Footer/Footer';
+import useProduct from '../hooks/useProduct';  // Importa tu hook personalizado
 import './pages_css/ProductPage.css';
+
+// Función para convertir un ArrayBuffer en una cadena Base64
+const arrayBufferToBase64 = (buffer) => {
+    let binary = '';
+    const bytes = new Uint8Array(buffer);
+    const len = bytes.byteLength;
+    for (let i = 0; i < len; i++) {
+        binary += String.fromCharCode(bytes[i]);
+    }
+    return window.btoa(binary);
+};
 
 function ProductPage() {
     const { state } = useLocation(); 
     const navigate = useNavigate();
+    const { getProductById } = useProduct();  // Usa el hook personalizado
 
-    if (!state) {
-        return <div>Product not found</div>;
-    }
-
-    const { title, imageSrc, hoverImageSrc, price, discount } = state;
-
+    const [productData, setProductData] = useState(null);
+    const [hoverImageBase64, setHoverImageBase64] = useState(null);  // Estado para almacenar la imagen convertida
     const [amount, setAmount] = useState(1);
     const [selectedSize, setSelectedSize] = useState('M'); 
+    const [fetchError, setFetchError] = useState(null);  // Para manejar errores de fetch
 
-    const increaseAmount = () => {
-        setAmount(amount + 1);
-    };
+    // useEffect que se ejecuta solo una vez al cargar el componente
+    useEffect(() => {
+        if (state?.id) {
+            const fetchData = async () => {
+                try {
+                    console.log("Fetching product data for ID:", state.id);  // Depuración
+                    const product = await getProductById(state.id);  // Llama a la API para obtener el producto
+                    console.log("Product data fetched:", product);  // Depuración
 
-    const decreaseAmount = () => {
-        if (amount > 1) {
-            setAmount(amount - 1);
+                    if (!product) {
+                        setFetchError('Product not found');
+                        return;
+                    }
+
+                    const mappedProduct = {
+                        title: product?.nombre || 'Unknown Product',
+                        price: parseFloat(product?.precio || 0),
+                        imageSrc: product?.imagen || '',
+                        hoverImageSrc: product?.secondimage?.data || '',
+                        cantidad_xs: product?.cantidad_xs || 0,
+                        cantidad_s: product?.cantidad_s || 0,
+                        cantidad_m: product?.cantidad_m || 0,
+                        cantidad_l: product?.cantidad_l || 0
+                    };
+                    setProductData(mappedProduct);
+
+                    // Convertir el Buffer de hoverImageSrc a Base64
+                    if (mappedProduct.hoverImageSrc) {
+                        const base64String = arrayBufferToBase64(mappedProduct.hoverImageSrc);
+                        setHoverImageBase64(`data:image/png;base64,${base64String}`);
+                    }
+                } catch (err) {
+                    console.error("Failed to fetch product data:", err);  // Depuración de error
+                    setFetchError('Failed to fetch product data');
+                }
+            };
+
+            fetchData();
         }
+    }, [state]);
+
+    const increaseAmount = () => setAmount(amount + 1);
+    const decreaseAmount = () => {
+        if (amount > 1) setAmount(amount - 1);
     };
+    const handleSizeClick = (size) => setSelectedSize(size);
+    const addToCart = () => navigate('/ShoppingCart');
 
-    const handleSizeClick = (size) => {
-        setSelectedSize(size);
-    };
+    if (fetchError) {
+        return <div>{fetchError}</div>;
+    }
 
-    const addToCart = () => {
-        navigate('/ShoppingCart');
-    };
+    if (!productData) {
+        return <div>Loading product data...</div>;
+    }
 
-    const discountedPrice = discount > 0 ? price - (price * discount) / 100 : price;
+    const { title, imageSrc, price } = productData;
+    const displayedPrice = Number(price) || 0;
 
-    
     const sizeOptions = [
-        { size: 'XS', number: 1 },
-        { size: 'S', number: 4 },  
-        { size: 'M', number: 3 },
-        { size: 'L', number: 0 }   
+        { size: 'XS', number: productData.cantidad_xs },
+        { size: 'S', number: productData.cantidad_s },
+        { size: 'M', number: productData.cantidad_m },
+        { size: 'L', number: productData.cantidad_l }
     ];
 
     return (
@@ -55,23 +103,12 @@ function ProductPage() {
             <div className='ProductPageContent'>
                 <div className='left-column'>
                     <img src={imageSrc} alt='Product Image 1' />
-                    <img src={hoverImageSrc} alt='Product Image 2' />
+                    {hoverImageBase64 && <img src={hoverImageBase64} alt='Product Image 2' />}
                 </div>
                 <div className='right-column'>
                     <h1 className='Title'>{title}</h1>
                     <p className='Price'>
-                        {discount > 0 ? (
-                            <>
-                                <span className='OriginalPrice' style={{ textDecoration: 'line-through', marginRight: '10px' }}>
-                                    Q{price.toFixed(2)}
-                                </span>
-                                <span className='DiscountedPrice' style={{ fontWeight: 'bold', color: 'black' }}>
-                                    Q{discountedPrice.toFixed(2)}
-                                </span>
-                            </>
-                        ) : (
-                            <>Q{price.toFixed(2)}</>
-                        )}
+                        Q{typeof displayedPrice === 'number' && !isNaN(displayedPrice) ? displayedPrice.toFixed(2) : 'N/A'}
                     </p>
                     <p className='Size'>Size: {selectedSize}</p>
                     <div className='SizesButtonRow'>
@@ -82,7 +119,7 @@ function ProductPage() {
                                 onClick={() => handleSizeClick(option.size)}
                                 disabled={option.number === 0}  
                             >
-                                {option.size} 
+                                {option.size}
                             </button>
                         ))}
                     </div>

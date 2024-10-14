@@ -6,7 +6,7 @@ import FilterToggle from '../Components/FilterTogle/FilterToggle';
 import styles from './pages_css/Collections.module.css'; 
 import RangeSlider from '../Components/RangeSlider/RangeSlider';
 import Footer from '../Components/Footer/Footer';
-import useProduct from '../Hooks/useProduct'; // Importa el hook que creaste
+import useProduct from '../hooks/useProduct'; // Importa el hook que creaste
 
 function Collections() {
     const [minPrice, setMinPrice] = useState(0); 

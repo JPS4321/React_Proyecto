@@ -1,0 +1,50 @@
+
+        Timestamp: 2024-10-14T21:32:34.083Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-14T21:32:34.120Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-14T21:32:34.724Z
+        URL: /productos/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-14T21:32:34.738Z
+        URL: /productos/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-14T21:34:12.401Z
+        URL: /productos/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-14T21:34:14.949Z
+        URL: /productos/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-14T21:34:14.964Z
+        URL: /productos/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    

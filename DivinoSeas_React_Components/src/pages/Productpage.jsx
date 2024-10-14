@@ -45,6 +45,7 @@ function ProductPage() {
                     const mappedProduct = {
                         title: product?.nombre || 'Unknown Product',
                         price: parseFloat(product?.precio || 0),
+                        discount: parseFloat(product?.discount || 0),  // Agregar descuento si existe
                         imageSrc: product?.imagen || '',
                         hoverImageSrc: product?.secondimage?.data || '',
                         cantidad_xs: product?.cantidad_xs || 0,
@@ -82,18 +83,24 @@ function ProductPage() {
     if (!productData) {
         return <div>Loading product data...</div>;
     }
+
+    // Calcular el precio con descuento
+    const { title, imageSrc, price, discount } = productData;
+    const displayedPrice = Number(price) || 0;
+    const discountedPrice = discount > 0 ? displayedPrice - (displayedPrice * discount / 100) : displayedPrice;
+
     const addToCart = () => {
         const existingCart = localStorage.getItem('cartItems');
         const cartItems = existingCart ? JSON.parse(existingCart) : [];
     
-        // Check if the item already exists in the cart
+        // Verificar si el artículo ya existe en el carrito
         const existingItemIndex = cartItems.findIndex(item => item.id === state.id && item.size === selectedSize);
     
         if (existingItemIndex !== -1) {
-            // If item exists, update its quantity
+            // Si el artículo ya existe, actualizar la cantidad
             cartItems[existingItemIndex].quantity += amount;
         } else {
-            // If not, add new item
+            // Si no, agregar un nuevo artículo
             cartItems.push({
                 id: state.id,
                 name: title,
@@ -103,16 +110,12 @@ function ProductPage() {
             });
         }
     
-        // Save updated cart to localStorage
+        // Guardar el carrito actualizado en localStorage
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
     
-        // Navigate to the Shopping Cart page
+        // Navegar a la página del carrito
         navigate('/ShoppingCart');
     };
-    
-
-    const { title, imageSrc, price } = productData;
-    const displayedPrice = Number(price) || 0;
 
     const sizeOptions = [
         { size: 'XS', number: productData.cantidad_xs },
@@ -135,7 +138,7 @@ function ProductPage() {
                 <div className='right-column'>
                     <h1 className='Title'>{title}</h1>
                     <p className='Price'>
-                        Q{typeof displayedPrice === 'number' && !isNaN(displayedPrice) ? displayedPrice.toFixed(2) : 'N/A'}
+                        Q{typeof discountedPrice === 'number' && !isNaN(discountedPrice) ? discountedPrice.toFixed(2) : 'N/A'}
                     </p>
                     <p className='Size'>Size: {selectedSize}</p>
                     <div className='SizesButtonRow'>

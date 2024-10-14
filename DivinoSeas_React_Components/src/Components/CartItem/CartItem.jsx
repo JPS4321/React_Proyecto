@@ -5,7 +5,7 @@ function CartItem({ item, onIncrement, onDecrement, onRemove }) {
     return (
         <div className="cart-item">
             <div className="cart-item-details">
-                <h2 className="cart-item-name">{item.name}</h2>
+                <h2 className="cart-item-name">{item.name} (Size: {item.size})</h2>
                 <p className="cart-item-price">${item.price.toFixed(2)}</p>
                 <div className="cart-item-quantity">
                     <button className="quantity-button" onClick={() => onDecrement(item.id)}>-</button>
@@ -17,5 +17,6 @@ function CartItem({ item, onIncrement, onDecrement, onRemove }) {
         </div>
     );
 }
+
 
 export default CartItem;

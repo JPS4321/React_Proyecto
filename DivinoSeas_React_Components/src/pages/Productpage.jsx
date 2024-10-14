@@ -33,8 +33,33 @@ function ProductPage() {
     };
 
     const addToCart = () => {
+        const existingCart = localStorage.getItem('cartItems');
+        const cartItems = existingCart ? JSON.parse(existingCart) : [];
+    
+        // Check if the item already exists in the cart
+        const existingItemIndex = cartItems.findIndex(item => item.id === state.id && item.size === selectedSize);
+    
+        if (existingItemIndex !== -1) {
+            // If item exists, update its quantity
+            cartItems[existingItemIndex].quantity += amount;
+        } else {
+            // If not, add new item
+            cartItems.push({
+                id: state.id,
+                name: title,
+                price: discountedPrice,
+                quantity: amount,
+                size: selectedSize
+            });
+        }
+    
+        // Save updated cart to localStorage
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    
+        // Navigate to the Shopping Cart page
         navigate('/ShoppingCart');
     };
+    
 
     const discountedPrice = discount > 0 ? price - (price * discount) / 100 : price;
 

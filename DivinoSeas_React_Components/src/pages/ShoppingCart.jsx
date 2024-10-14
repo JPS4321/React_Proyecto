@@ -7,11 +7,11 @@ import Footer from '../Components/Footer/Footer';
 import './pages_css/ShoppingCart.css';
 
 function ShoppingCart() {
-    const [cartItems, setCartItems] = useState([
-        { id: 1, name: 'Item 1', price: 50, quantity: 1 },
-        { id: 2, name: 'Item 2', price: 75, quantity: 1 },
-        { id: 3, name: 'Item 3', price: 75, quantity: 1 },
-    ]);
+    const [cartItems, setCartItems] = useState(() => {
+        const savedCartItems = localStorage.getItem('cartItems');
+        return savedCartItems ? JSON.parse(savedCartItems) : [];
+    });
+    
 
     const navigate = useNavigate();  // Hook para redirigir
 

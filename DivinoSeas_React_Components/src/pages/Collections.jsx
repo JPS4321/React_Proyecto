@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../Components/NavBar/Navbar';
 import Marquee from '../Components/Marquee/Marquee';
 import ProductCard from '../Components/ProductCard/ProductCard';
 import FilterToggle from '../Components/FilterTogle/FilterToggle';
 import styles from './pages_css/Collections.module.css'; 
-import image from '../assets/bottom01.png';
-import hoverImage from '../assets/bottom02.png'; 
 import RangeSlider from '../Components/RangeSlider/RangeSlider';
-import Footer from '../Components/Footer/Footer'
+import Footer from '../Components/Footer/Footer';
+import useProduct from '../Hooks/useProduct'; // Importa el hook que creaste
 
 function Collections() {
     const [minPrice, setMinPrice] = useState(0); 
@@ -15,33 +14,56 @@ function Collections() {
     const [inStockFilter, setInStockFilter] = useState(false);
     const [outOfStockFilter, setOutOfStockFilter] = useState(false);
 
-    const products = [
-        { id: 1, imageSrc: image, hoverImageSrc: hoverImage, title: 'Product 1', price: 20.00, discount: 0, Existencia: false },
-        { id: 2, imageSrc: image, hoverImageSrc: hoverImage, title: 'Product 2', price: 40.00, discount: 10, Existencia: true },
-        { id: 3, imageSrc: image, hoverImageSrc: hoverImage, title: 'Product 3', price: 60.00, discount: 10, Existencia: false },
-        { id: 4, imageSrc: image, hoverImageSrc: hoverImage, title: 'Product 4', price: 80.00, discount: 0, Existencia: true },
-        { id: 5, imageSrc: image, hoverImageSrc: hoverImage, title: 'Product 5', price: 100.00, discount: 20, Existencia: true },
-        { id: 6, imageSrc: image, hoverImageSrc: hoverImage, title: 'Product 6', price: 120.00, discount: 25, Existencia: true },
-    ];
-    
+    const { getAllProducts, loading, error } = useProduct();
+    const [products, setProducts] = useState([]);
+    const [visibleProducts, setVisibleProducts] = useState(6); // Controla cuántos productos se muestran inicialmente
+
+    // Cargar los productos cuando el componente se monte
+    useEffect(() => {
+        const fetchProducts = async () => {
+            const fetchedProducts = await getAllProducts();
+            setProducts(fetchedProducts);
+        };
+
+        fetchProducts();
+    }, []);
+
     const handleAvailabilityChange = (inStock, outOfStock) => {
         setInStockFilter(inStock);
         setOutOfStockFilter(outOfStock);
     };
 
     const filteredProducts = products.filter(product => {
-        const finalPrice = product.discount > 0 ? product.price - (product.price * (product.discount / 100)) : product.price;
-        
+        // Calcular el precio final
+        const finalPrice = product.discount > 0 
+            ? product.precio - (product.precio * product.discount) / 100 
+            : product.precio;
+
+        // Verificar si el precio está en el rango
         const matchesPrice = finalPrice >= minPrice && finalPrice <= maxPrice;
-        
+
+        // Verificar la existencia
+        const hasStock = 
+            product.cantidad_xs > 0 || 
+            product.cantidad_s > 0 || 
+            product.cantidad_m > 0 || 
+            product.cantidad_l > 0;
+
         const matchesAvailability = 
-            (inStockFilter && product.Existencia) || 
-            (outOfStockFilter && !product.Existencia) ||
+            (inStockFilter && hasStock) || 
+            (outOfStockFilter && !hasStock) || 
             (!inStockFilter && !outOfStockFilter); 
-        
+
         return matchesPrice && matchesAvailability;
     });
-    
+
+    const loadMoreProducts = () => {
+        setVisibleProducts(prevVisible => prevVisible + 6); // Muestra 6 productos más al hacer clic en "Cargar más"
+    };
+
+    if (loading) return <p>Cargando productos...</p>;
+    if (error) return <p>Error al cargar productos: {error}</p>;
+
     return (
         <div className='container'>
             <Marquee text='Welcome to Divino Seas'/>
@@ -62,19 +84,26 @@ function Collections() {
                     </div>
                 </div>
                 <div className={styles.productsGrid}>
-                    {filteredProducts.map(product => {
+                    {filteredProducts.slice(0, visibleProducts).map(product => {
                         return (
                             <ProductCard 
-                                key={product.id} 
-                                imageSrc={product.imageSrc} 
-                                hoverImageSrc={product.hoverImageSrc} 
-                                title={product.title} 
-                                price={product.price} 
+                                key={product.id_producto} 
+                                id={product.id_producto} 
+                                imageSrc={product.imagen} 
+                                hoverImageSrc={product.secondimage} 
+                                title={product.nombre} 
+                                price={product.precio} 
                                 discount={product.discount}  
                             />
                         );
                     })}
                 </div>
+
+                {visibleProducts < filteredProducts.length && (
+                    <div className={styles.loadMore}>
+                        <button onClick={loadMoreProducts}>Cargar más</button>
+                    </div>
+                )}
             </div>
             <Footer/>
         </div>

@@ -34,7 +34,7 @@
   top: 0; /* Superposición completa con la imagen principal */
   left: 0;
   width: 100%;
-  max-height: 130px; 
+  max-height: 150px; 
   object-fit: cover;
   border-radius: 8px;
   opacity: 0; /* Por defecto oculta la imagen hover */

@@ -1,26 +1,42 @@
-import React from 'react'; 
-import { useNavigate } from 'react-router-dom'; 
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './ProductCard.css';
 
 function ProductCard({ id, title, imageSrc, hoverImageSrc, price, discount }) {
-  const navigate = useNavigate(); 
+  const [hoverImageBase64, setHoverImageBase64] = useState('');
+  const navigate = useNavigate();
 
-  // Asegúrate de que price sea siempre un número
   const formattedPrice = Number(price) || 0;
   const discountedPrice = discount > 0 ? formattedPrice - (formattedPrice * discount) / 100 : formattedPrice;
 
+  useEffect(() => {
+    // Verifica si hoverImageSrc es un objeto Buffer (indicado por la propiedad 'data' y 'type')
+    if (hoverImageSrc?.data && hoverImageSrc.type === 'Buffer') {
+      // Convierte el buffer a un Blob y luego a una URL base64
+      const byteArray = new Uint8Array(hoverImageSrc.data);
+      const blob = new Blob([byteArray], { type: 'image/jpeg' }); // Cambia 'image/jpeg' si es otro tipo
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        setHoverImageBase64(reader.result); // reader.result contiene la cadena base64
+      };
+
+      reader.readAsDataURL(blob); // Convierte el Blob en base64
+    } else {
+      setHoverImageBase64(hoverImageSrc); // Si ya es una cadena válida, úsala directamente
+    }
+  }, [hoverImageSrc]);
+
   const handleClick = () => {
-    navigate(`/products/${id}`, { 
-      state: { id, title, imageSrc, hoverImageSrc, price: formattedPrice, discount } 
+    navigate(`/products/${id}`, {
+      state: { id, title, imageSrc, hoverImageBase64, price: formattedPrice, discount }
     });
   };
 
   return (
-    <div className="card" onClick={handleClick}> 
-      {/* Usa directamente el string base64 tal como lo recibes del backend para la imagen principal */}
+    <div className="card" onClick={handleClick}>
       <img src={imageSrc} alt={title} className="card-image" />
-      
-      {/* Contenido de la tarjeta */}
+      <img src={hoverImageBase64} alt={`${title} - Hover`} className="hover-image" />
       <div className="card-content">
         <h2 className="card-title">{title}</h2>
         {discount > 0 ? (
@@ -29,14 +45,9 @@ function ProductCard({ id, title, imageSrc, hoverImageSrc, price, discount }) {
             <span className="discounted-price">Q{discountedPrice.toFixed(2)}</span>
           </div>
         ) : (
-          <div className="card-price">
-            Q{formattedPrice.toFixed(2)}
-          </div>
+          <div className="card-price">Q{formattedPrice.toFixed(2)}</div>
         )}
       </div>
-
-      {/* Imagen hover debajo del contenido */}
-      <img src={hoverImageSrc} alt={`${title} - Hover`} className="hover-image" />
     </div>
   );
 }

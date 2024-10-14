@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../Components/NavBar/Navbar';
 import Marquee from '../Components/Marquee/Marquee';
@@ -7,34 +7,41 @@ import Footer from '../Components/Footer/Footer';
 import './pages_css/ShoppingCart.css';
 
 function ShoppingCart() {
-    const [cartItems, setCartItems] = useState([
-        { id: 1, name: 'Item 1', price: 50, quantity: 1 },
-        { id: 2, name: 'Item 2', price: 75, quantity: 1 },
-        { id: 3, name: 'Item 3', price: 75, quantity: 1 },
-    ]);
+    const [cartItems, setCartItems] = useState([]);
 
-    const navigate = useNavigate();  // Hook para redirigir
+    useEffect(() => {
+        const savedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        setCartItems(savedCartItems);
+    }, []);  // Empty dependency array to run once on component mount
+
+    const navigate = useNavigate(); 
 
     const handleIncrement = (id) => {
-        setCartItems(cartItems.map(item => 
+        const updatedCartItems = cartItems.map(item =>
             item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-        ));
+        );
+        setCartItems(updatedCartItems);
+        localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
     };
 
     const handleDecrement = (id) => {
-        setCartItems(cartItems.map(item => 
+        const updatedCartItems = cartItems.map(item =>
             item.id === id && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item
-        ));
+        );
+        setCartItems(updatedCartItems);
+        localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
     };
 
     const handleRemove = (id) => {
-        setCartItems(cartItems.filter(item => item.id !== id));
+        const updatedCartItems = cartItems.filter(item => item.id !== id);
+        setCartItems(updatedCartItems);
+        localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
     };
 
     const totalAmount = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
     const handleCheckout = () => {
-        navigate('/PaymentScreen');  
+        navigate('/PaymentScreen');
     };
 
     return (

@@ -1490,3 +1490,45 @@
         Response Body: 
         ------------------------------
     
+        Timestamp: 2024-10-15T05:49:37.355Z
+        URL: /usuarios/login
+        HTTP Method: OPTIONS
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:49:37.450Z
+        URL: /usuarios/login
+        HTTP Method: POST
+        Request Body: {"email":"sofia.garcia@gmail.com","password":"123456"}
+        Response Body: {"id":1,"username":"sofia.garcia","email":"sofia.garcia@gmail.com","role":"Administrador"}
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:49:39.801Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:49:39.806Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:49:52.450Z
+        URL: /usuarios/login
+        HTTP Method: OPTIONS
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:49:52.563Z
+        URL: /usuarios/login
+        HTTP Method: POST
+        Request Body: {"email":"sofia.garcia@gmail.com","password":"123456"}
+        Response Body: {"id":1,"username":"sofia.garcia","email":"sofia.garcia@gmail.com","role":"Administrador"}
+        ------------------------------
+    

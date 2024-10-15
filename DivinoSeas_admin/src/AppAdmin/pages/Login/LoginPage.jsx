@@ -1,21 +1,27 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../AuthContext';
 import axios from 'axios';
-import "./LoginPage.css"; 
+import './LoginPage.css'; 
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [username, setUsername] = useState(''); // Campo adicional para el registro
-  const [isRegister, setIsRegister] = useState(false); // Estado para alternar entre registro e inicio de sesión
+  const [username, setUsername] = useState(''); 
+  const [isRegister, setIsRegister] = useState(false);
   const [error, setError] = useState(null);
-  const { login } = useContext(AuthContext);
+  const { login, user } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  // Redirigir si ya hay un usuario autenticado
+  useEffect(() => {
+    if (user) {
+      navigate('/Home');
+    }
+  }, [user, navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     try {
       const response = await axios.post('http://localhost:3000/usuarios/login', {
         email,
@@ -37,17 +43,15 @@ const LoginPage = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-
     try {
       const response = await axios.post('http://localhost:3000/usuarios', {
         username,
         email,
-        password_hashed: password, // Asumiendo que tu backend hashea la contraseña
-        is_admin: false, // Definir si el usuario es administrador o no
-        role: 'user' // Asignar un rol por defecto
+        password_hashed: password,
+        is_admin: false,
+        role: 'user',
       });
 
-      // Simular el inicio de sesión después del registro exitoso
       login({
         id: response.data.userId,
         username,
@@ -63,48 +67,48 @@ const LoginPage = () => {
 
   return (
     <div className="login-container">
-      <form onSubmit={isRegister ? handleRegister : handleLogin}>
-        <div>
-          <h2>{isRegister ? 'Registrarse' : 'Iniciar Sesión'}</h2>
+      <form onSubmit={isRegister ? handleRegister : handleLogin} className="login-form">
+        <h2>{isRegister ? 'Registrarse' : 'Iniciar Sesión'}</h2>
 
-          {isRegister && (
-            <div>
-              <label>Nombre de Usuario:</label>
-              <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-              />
-            </div>
-          )}
-
-          <div>
-            <label>Email:</label>
+        {isRegister && (
+          <div className="form-group">
+            <label>Nombre de Usuario:</label>
             <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               required
             />
           </div>
-          <div>
-            <label>Contraseña:</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          {error && <p style={{ color: 'red' }}>{error}</p>}
-          <button type="submit">
-            {isRegister ? 'Registrarse' : 'Ingresar'}
-          </button>
+        )}
+
+        <div className="form-group">
+          <label>Email:</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
         </div>
+        <div className="form-group">
+          <label>Contraseña:</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+
+        {error && <p className="error-text">{error}</p>}
+
+        <button type="submit" className="btn-submit">
+          {isRegister ? 'Registrarse' : 'Ingresar'}
+        </button>
       </form>
 
-      <button onClick={() => setIsRegister(!isRegister)}>
+      <button onClick={() => setIsRegister(!isRegister)} className="toggle-btn">
         {isRegister ? '¿Ya tienes una cuenta? Iniciar Sesión' : '¿No tienes una cuenta? Registrarse'}
       </button>
     </div>

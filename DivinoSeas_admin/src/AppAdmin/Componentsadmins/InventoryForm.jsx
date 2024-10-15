@@ -45,8 +45,8 @@ const InventoryForm = ({ product = null, onClose = () => {} }) => {
       setS(product.cantidad_s);
       setM(product.cantidad_m);
       setL(product.cantidad_l);
-      setImage1Preview(product.imagen); // Previsualizar imagen principal
-      setImage2Preview(product.secondimage); // Previsualizar segunda imagen
+      setImage1Preview(product.imagen);
+      setImage2Preview(product.secondimage);
     }
   }, [product]);
 
@@ -121,7 +121,7 @@ const InventoryForm = ({ product = null, onClose = () => {} }) => {
             <select value={categoryId} onChange={(e) => setCategoryId(e.target.value)} className="input" required>
               <option value="">Selecciona una categoría</option>
               {categories.map((category) => (
-                <option key={category.id} value={category.id}>
+                <option key={category.id_categoria} value={category.id_categoria}>
                   {category.nombre}
                 </option>
               ))}
@@ -181,12 +181,12 @@ const InventoryForm = ({ product = null, onClose = () => {} }) => {
         </label>
         <label className="label">
           Imagen 1:
-          {image1Preview && <img src={image1Preview} alt="Imagen 1" className="image-preview" />}
+          {image1Preview && <img src={image1Preview} alt="Imagen 1" className="image-preview" style={{ maxWidth: '300px', margin: '10px 0' }} />}
           <input type="file" onChange={handleImage1Change} className="input-file" />
         </label>
         <label className="label">
           Imagen 2:
-          {image2Preview && <img src={image2Preview} alt="Imagen 2" className="image-preview" />}
+          {image2Preview && <img src={image2Preview} alt="Imagen 2" className="image-preview" style={{ maxWidth: '300px', margin: '10px 0' }} />}
           <input type="file" onChange={handleImage2Change} className="input-file" />
         </label>
         <div className="sizes-container">

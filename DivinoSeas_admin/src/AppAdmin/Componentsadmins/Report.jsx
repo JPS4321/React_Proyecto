@@ -20,33 +20,30 @@ const Report = () => {
     return orderDate >= startDate && orderDate <= endDate;
   });
 
+
   const reportData = filteredOrders.reduce((acc, order) => {
     const month = format(new Date(order.fechaCreacion), 'yyyy-MM');
     if (!acc[month]) {
-      acc[month] = { clientes: 0, envios: 0 };
+      acc[month] = { totalOrdenes: 0 }; 
     }
-    acc[month].clientes += 1;
-    if (order.estado === 'ENTREGADO') {
-      acc[month].envios += 1;
-    }
+    acc[month].totalOrdenes += 1; 
     return acc;
   }, {});
+
 
   const chartData = {
     labels: Object.keys(reportData).map((month) => format(new Date(month), 'MMM yyyy')),
     datasets: [
       {
         label: 'Cantidad de órdenes',
-        data: Object.values(reportData).map((data) => data.clientes),
+        data: Object.values(reportData).map((data) => data.totalOrdenes),
         borderColor: 'rgba(75, 192, 192, 1)',
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        tension: 0.4,
-      },
-      {
-        label: 'Cantidad de envíos',
-        data: Object.values(reportData).map((data) => data.envios),
-        borderColor: 'rgba(255, 255, 255, 1)',
-        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        pointBackgroundColor: 'rgba(75, 192, 192, 1)',
+        pointBorderColor: 'white',
+        pointBorderWidth: 3,
+        pointRadius: 6,
+        borderWidth: 3,
         tension: 0.4,
       },
     ],
@@ -62,7 +59,7 @@ const Report = () => {
       },
       title: {
         display: true,
-        text: 'Órdenes y Envíos por Fecha',
+        text: 'Órdenes por Fecha',
         color: 'white',
       },
     },

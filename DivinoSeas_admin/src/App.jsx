@@ -4,6 +4,7 @@ import Stock from './AppAdmin/pages/Stock/StockPage';
 import Sales from './AppAdmin/pages/Sales/SalesPage';
 import Settings from './AppAdmin/pages/Settings/SettingsPage';
 import LoginPage from './AppAdmin/pages/Login/LoginPage';
+import ReportPage from './AppAdmin/pages/ReportPage/ReportPage';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 import AuthProvider from './AuthContext';
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/Stock" element={<PrivateRoute element={<Stock />} />} />
           <Route path="/Sales" element={<PrivateRoute element={<Sales />} />} />
           <Route path="/Settings" element={<PrivateRoute element={<Settings />} />} />
+          <Route path="/ReportPage" element={<PrivateRoute element={<ReportPage />} />} />
         </Routes>
       </Router>
     </AuthProvider>

@@ -538,3 +538,115 @@
         Response Body: 
         ------------------------------
     
+        Timestamp: 2024-10-15T02:09:39.984Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T02:09:39.995Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T02:09:39.994Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T02:09:39.996Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T02:09:40.003Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T02:09:40.006Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T02:09:40.009Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T02:09:40.009Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T02:11:06.281Z
+        URL: /usuarios/login
+        HTTP Method: OPTIONS
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T02:11:06.432Z
+        URL: /usuarios/login
+        HTTP Method: POST
+        Request Body: {"email":"bbb@gmail.com","password":"bbbbbb"}
+        Response Body: {"id":6,"username":"bbbbbb","email":"bbb@gmail.com","role":"user"}
+        ------------------------------
+    
+        Timestamp: 2024-10-15T02:12:29.527Z
+        URL: /usuarios/login
+        HTTP Method: OPTIONS
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T02:12:29.788Z
+        URL: /usuarios/login
+        HTTP Method: POST
+        Request Body: {"email":"bbb@gmail.com","password":"bbbbbb"}
+        Response Body: {"id":6,"username":"bbbbbb","email":"bbb@gmail.com","role":"user"}
+        ------------------------------
+    
+        Timestamp: 2024-10-15T02:12:32.880Z
+        URL: /usuarios/6
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T02:12:32.886Z
+        URL: /usuarios/6
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T02:12:34.610Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T02:12:34.617Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    

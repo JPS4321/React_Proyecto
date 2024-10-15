@@ -20,7 +20,7 @@ const App = () => {
           <Route path="/Stock" element={<PrivateRoute element={<Stock />} />} />
           <Route path="/Sales" element={<PrivateRoute element={<Sales />} />} />
           <Route path="/Settings" element={<PrivateRoute element={<Settings />} />} />
-          <Route path="/ReportPage" element={<PrivateRoute element={<ReportPage />} />} />
+          <Route path="/Report" element={<PrivateRoute element={<ReportPage />} />} />
         </Routes>
       </Router>
     </AuthProvider>

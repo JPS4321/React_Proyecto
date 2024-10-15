@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/InventoryForm.css';
-import useProduct from '../hooks/useProduct'; // Hook de productos
-import useCategory from '../hooks/useCategory'; // Hook de categorías
-import useColeccion from '../hooks/useColeccion'; // Hook de colecciones
-import useColor from '../hooks/useColor'; // Hook de colores
-import usePromocion from '../hooks/usePromocion'; // Hook de promociones
+import useProduct from '../hooks/useProduct'; 
+import useCategory from '../hooks/useCategory'; 
+import useColeccion from '../hooks/useColeccion'; 
+import useColor from '../hooks/useColor'; 
+import usePromocion from '../hooks/usePromocion'; 
 
 const InventoryForm = ({ product = null, onClose = () => {} }) => {
   const [name, setName] = useState(product ? product.nombre : '');
@@ -21,7 +21,9 @@ const InventoryForm = ({ product = null, onClose = () => {} }) => {
   const [s, setS] = useState(product ? product.cantidad_s : 0);
   const [m, setM] = useState(product ? product.cantidad_m : 0);
   const [l, setL] = useState(product ? product.cantidad_l : 0);
-  
+  const [image1Preview, setImage1Preview] = useState(product ? product.imagen : null);
+  const [image2Preview, setImage2Preview] = useState(product ? product.secondimage : null);
+
   const { createProduct, updateProduct, loading, error } = useProduct();
   const { categories, loading: categoriesLoading, error: categoriesError } = useCategory();
   const { collections, loading: collectionsLoading, error: collectionsError } = useColeccion();
@@ -43,6 +45,8 @@ const InventoryForm = ({ product = null, onClose = () => {} }) => {
       setS(product.cantidad_s);
       setM(product.cantidad_m);
       setL(product.cantidad_l);
+      setImage1Preview(product.imagen); // Previsualizar imagen principal
+      setImage2Preview(product.secondimage); // Previsualizar segunda imagen
     }
   }, [product]);
 
@@ -66,27 +70,29 @@ const InventoryForm = ({ product = null, onClose = () => {} }) => {
     };
 
     if (product) {
-      // Actualizar el producto existente
       await updateProduct(product.id_producto, productData);
     } else {
-      // Crear un nuevo producto
       await createProduct(productData);
     }
 
-    onClose(); // Cerrar el formulario
-    navigate('/Stock'); // Redirigir al listado de productos
+    onClose();
+    navigate('/Stock');
   };
 
   const handleCancel = () => {
-    onClose(); // Cerrar el formulario si se cancela
+    onClose();
   };
 
   const handleImage1Change = (e) => {
-    setImage1(e.target.files[0]);
+    const file = e.target.files[0];
+    setImage1(file);
+    setImage1Preview(URL.createObjectURL(file));
   };
 
   const handleImage2Change = (e) => {
-    setImage2(e.target.files[0]);
+    const file = e.target.files[0];
+    setImage2(file);
+    setImage2Preview(URL.createObjectURL(file));
   };
 
   return (
@@ -175,13 +181,13 @@ const InventoryForm = ({ product = null, onClose = () => {} }) => {
         </label>
         <label className="label">
           Imagen 1:
-          <input type="file" onChange={handleImage1Change} className="input-file" required />
-          <div className="drag-drop-area">Arrastra una imagen aquí o haz clic para seleccionar.</div>
+          {image1Preview && <img src={image1Preview} alt="Imagen 1" className="image-preview" />}
+          <input type="file" onChange={handleImage1Change} className="input-file" />
         </label>
         <label className="label">
           Imagen 2:
-          <input type="file" onChange={handleImage2Change} className="input-file" required />
-          <div className="drag-drop-area">Arrastra una segunda imagen aquí o haz clic para seleccionar.</div>
+          {image2Preview && <img src={image2Preview} alt="Imagen 2" className="image-preview" />}
+          <input type="file" onChange={handleImage2Change} className="input-file" />
         </label>
         <div className="sizes-container">
           <label className="size-label">

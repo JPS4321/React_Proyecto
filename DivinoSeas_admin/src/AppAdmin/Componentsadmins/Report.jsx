@@ -84,7 +84,6 @@ const Report = () => {
     <div className="report-container">
       <h2>Reporte</h2>
 
-      {/* Selector de rango de fechas */}
       <div className="date-picker-container">
         <label htmlFor="start-date">Fecha de inicio:</label>
         <DatePicker

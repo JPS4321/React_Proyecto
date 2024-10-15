@@ -12,6 +12,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 const Report = () => {
   const [startDate, setStartDate] = useState(subMonths(new Date(), 6));
   const [endDate, setEndDate] = useState(new Date());
+  const [chartType, setChartType] = useState('ordenes'); 
 
   const { orders, loading, error } = useOrders();
 
@@ -20,23 +21,32 @@ const Report = () => {
     return orderDate >= startDate && orderDate <= endDate;
   });
 
-
   const reportData = filteredOrders.reduce((acc, order) => {
     const month = format(new Date(order.fechaCreacion), 'yyyy-MM');
     if (!acc[month]) {
-      acc[month] = { totalOrdenes: 0 }; 
+      acc[month] = { totalOrdenes: 0 };
     }
-    acc[month].totalOrdenes += 1; 
+    acc[month].totalOrdenes += 1;
     return acc;
   }, {});
 
+  const uniqueClientsData = filteredOrders.reduce((acc, order) => {
+    const month = format(new Date(order.fechaCreacion), 'yyyy-MM');
+    if (!acc[month]) {
+      acc[month] = { nuevosClientes: new Set() };
+    }
+    acc[month].nuevosClientes.add(order.clienteNombre);
+    return acc;
+  }, {});
 
   const chartData = {
     labels: Object.keys(reportData).map((month) => format(new Date(month), 'MMM yyyy')),
     datasets: [
       {
-        label: 'Cantidad de órdenes',
-        data: Object.values(reportData).map((data) => data.totalOrdenes),
+        label: chartType === 'ordenes' ? 'Cantidad de órdenes' : 'Nuevos clientes',
+        data: chartType === 'ordenes'
+          ? Object.values(reportData).map((data) => data.totalOrdenes)
+          : Object.values(uniqueClientsData).map((data) => data.nuevosClientes.size),
         borderColor: 'rgba(75, 192, 192, 1)',
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         pointBackgroundColor: 'rgba(75, 192, 192, 1)',
@@ -59,7 +69,7 @@ const Report = () => {
       },
       title: {
         display: true,
-        text: 'Órdenes por Fecha',
+        text: chartType === 'ordenes' ? 'Órdenes por Fecha' : 'Nuevos Clientes por Fecha',
         color: 'white',
       },
     },
@@ -114,6 +124,14 @@ const Report = () => {
           minDate={startDate}
           dateFormat="dd/MM/yyyy"
         />
+      </div>
+
+      <div style={{ marginBottom: '20px' }}>
+        <label style={{ color: 'white', marginRight: '10px' }}>Seleccionar reporte:</label>
+        <select value={chartType} onChange={(e) => setChartType(e.target.value)} style={{ padding: '5px', fontSize: '16px' }}>
+          <option value="ordenes">Órdenes</option>
+          <option value="clientes">Nuevos Clientes</option>
+        </select>
       </div>
 
       <div className="chart-container">

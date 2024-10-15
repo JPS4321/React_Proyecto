@@ -832,3 +832,31 @@
         Response Body: 
         ------------------------------
     
+        Timestamp: 2024-10-15T04:53:01.298Z
+        URL: /usuarios/login
+        HTTP Method: OPTIONS
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T04:53:01.452Z
+        URL: /usuarios/login
+        HTTP Method: POST
+        Request Body: {"email":"sofia.garcia@gmail.com","password":"123456"}
+        Response Body: {"id":1,"username":"sofia.garcia","email":"sofia.garcia@gmail.com","role":"Administrador"}
+        ------------------------------
+    
+        Timestamp: 2024-10-15T04:53:04.159Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_orden":1,"estado":"ENTREGADO","fechaCreacion":"2024-10-15T10:49:08.000Z","id_cliente":1,"monto":"201.00"},{"id_orden":2,"estado":"PENDIENTE","fechaCreacion":"2024-10-15T10:49:08.000Z","id_cliente":2,"monto":"150.75"},{"id_orden":3,"estado":"CANCELADO","fechaCreacion":"2024-10-15T10:49:08.000Z","id_cliente":3,"monto":"600.75"},{"id_orden":4,"estado":"ENTREGADO","fechaCreacion":"2024-10-15T10:49:08.000Z","id_cliente":4,"monto":"250.99"}]
+        ------------------------------
+    
+        Timestamp: 2024-10-15T04:53:04.163Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    

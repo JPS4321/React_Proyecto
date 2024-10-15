@@ -12,7 +12,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 const Report = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-  const [chartType, setChartType] = useState('ordenes');
+  const [chartType, setChartType] = useState('ordenes'); 
 
   const { orders, loading, error } = useOrders();
 
@@ -24,9 +24,10 @@ const Report = () => {
   const reportData = filteredOrders.reduce((acc, order) => {
     const day = format(new Date(order.fechaCreacion), 'yyyy-MM-dd');
     if (!acc[day]) {
-      acc[day] = { totalOrdenes: 0 };
+      acc[day] = { totalOrdenes: 0, totalGanado: 0 };
     }
     acc[day].totalOrdenes += 1;
+    acc[day].totalGanado += Number(order.monto) || 0; 
     return acc;
   }, {});
 
@@ -35,7 +36,7 @@ const Report = () => {
     if (!acc[day]) {
       acc[day] = { nuevosClientes: new Set() };
     }
-    acc[day].nuevosClientes.add(order.clienteNombre);
+    acc[day].nuevosClientes.add(order.nombre_cliente);
     return acc;
   }, {});
 
@@ -45,10 +46,13 @@ const Report = () => {
     labels: sortedDates.map((day) => format(new Date(day), 'dd/MM/yyyy')),
     datasets: [
       {
-        label: chartType === 'ordenes' ? 'Cantidad de órdenes' : 'Nuevos clientes',
+        label: chartType === 'ordenes' ? 'Cantidad de órdenes' :
+               chartType === 'clientes' ? 'Nuevos clientes' : 'Dinero ganado',
         data: chartType === 'ordenes'
           ? sortedDates.map((day) => reportData[day].totalOrdenes)
-          : sortedDates.map((day) => uniqueClientsData[day].nuevosClientes.size),
+          : chartType === 'clientes'
+          ? sortedDates.map((day) => uniqueClientsData[day].nuevosClientes.size)
+          : sortedDates.map((day) => reportData[day].totalGanado),
         borderColor: 'rgba(75, 192, 192, 1)',
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         pointBackgroundColor: 'rgba(75, 192, 192, 1)',
@@ -71,7 +75,8 @@ const Report = () => {
       },
       title: {
         display: true,
-        text: chartType === 'ordenes' ? 'Órdenes por Día' : 'Nuevos Clientes por Día',
+        text: chartType === 'ordenes' ? 'Órdenes por Día' :
+              chartType === 'clientes' ? 'Nuevos Clientes por Día' : 'Dinero Ganado por Día',
         color: 'white',
       },
     },
@@ -92,7 +97,7 @@ const Report = () => {
         },
         title: {
           display: true,
-          text: 'Cantidad',
+          text: chartType === 'dinero' ? 'Dinero (Q)' : 'Cantidad',
           color: 'white',
         },
       },
@@ -133,6 +138,7 @@ const Report = () => {
         <select value={chartType} onChange={(e) => setChartType(e.target.value)} style={{ padding: '5px', fontSize: '16px' }}>
           <option value="ordenes">Órdenes</option>
           <option value="clientes">Nuevos Clientes</option>
+          <option value="dinero">Dinero Ganado</option>
         </select>
       </div>
 
@@ -141,12 +147,18 @@ const Report = () => {
       </div>
 
       <div className="table-container" style={{ marginTop: '20px' }}>
-        <h3 style={{ color: '#00aaff' }}>{chartType === 'ordenes' ? 'Órdenes por Día' : 'Nuevos Clientes por Día'}</h3>
+        <h3 style={{ color: '#00aaff' }}>
+          {chartType === 'ordenes' ? 'Órdenes por Día' :
+          chartType === 'clientes' ? 'Nuevos Clientes por Día' : 'Dinero Ganado por Día'}
+        </h3>
         <table style={{ width: '100%', color: 'white', borderCollapse: 'collapse' }}>
           <thead>
             <tr style={{ backgroundColor: '#333' }}>
               <th style={{ padding: '10px', borderBottom: '1px solid #00aaff' }}>Fecha</th>
-              <th style={{ padding: '10px', borderBottom: '1px solid #00aaff' }}>{chartType === 'ordenes' ? 'Cantidad de Órdenes' : 'Cantidad de Nuevos Clientes'}</th>
+              <th style={{ padding: '10px', borderBottom: '1px solid #00aaff' }}>
+                {chartType === 'ordenes' ? 'Cantidad de Órdenes' :
+                chartType === 'clientes' ? 'Cantidad de Nuevos Clientes' : 'Dinero Ganado (Q)'}
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -154,7 +166,8 @@ const Report = () => {
               <tr key={index} style={{ textAlign: 'left', backgroundColor: index % 2 === 0 ? '#1a1a1a' : '#2a2a2a' }}>
                 <td style={{ padding: '10px', borderBottom: '1px solid #00aaff' }}>{format(new Date(day), 'dd/MM/yyyy')}</td>
                 <td style={{ padding: '10px', borderBottom: '1px solid #00aaff' }}>
-                  {chartType === 'ordenes' ? reportData[day].totalOrdenes : uniqueClientsData[day].nuevosClientes.size}
+                  {chartType === 'ordenes' ? reportData[day].totalOrdenes :
+                  chartType === 'clientes' ? uniqueClientsData[day].nuevosClientes.size : reportData[day].totalGanado ? reportData[day].totalGanado.toFixed(2) : '0.00'}
                 </td>
               </tr>
             ))}

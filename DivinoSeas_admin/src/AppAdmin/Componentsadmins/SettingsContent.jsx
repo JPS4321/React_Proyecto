@@ -5,9 +5,8 @@ import useUser from '../hooks/useUser';
 import '../styles/UserProfile.css';
 
 const UserProfile = () => {
-  const { user } = useContext(AuthContext); // Obtener los datos del usuario autenticado desde el contexto
-  const { user: userData, loading, error } = useUser(user?.id); // Usar el hook para obtener los datos del usuario
-  const { logout } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
+  const { user: userData, loading, error } = useUser(user?.id);
   const navigate = useNavigate();
 
   const [permissions, setPermissions] = useState({
@@ -17,7 +16,8 @@ const UserProfile = () => {
   });
 
   const handleLogout = () => {
-    logout();
+    logout(); 
+    localStorage.removeItem('user'); 
     navigate('/login');
   };
 
@@ -91,7 +91,6 @@ const UserProfile = () => {
         <button className="logout-button" onClick={handleLogout}>Cerrar Sesión</button>
         <button className="admin-button" onClick={handleAdmin}>ADMINISTRAR USUARIOS</button>
       </div>
-      
     </div>
   );
 };

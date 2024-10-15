@@ -776,3 +776,59 @@
         Response Body: 
         ------------------------------
     
+        Timestamp: 2024-10-15T04:41:38.466Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: []
+        ------------------------------
+    
+        Timestamp: 2024-10-15T04:41:38.470Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T04:41:39.455Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T04:41:51.453Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T04:49:59.743Z
+        URL: /usuarios/login
+        HTTP Method: OPTIONS
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T04:49:59.809Z
+        URL: /usuarios/login
+        HTTP Method: POST
+        Request Body: {"email":"sofia.garcia@gmail.com","password":"123456"}
+        Response Body: {"id":1,"username":"sofia.garcia","email":"sofia.garcia@gmail.com","role":"Administrador"}
+        ------------------------------
+    
+        Timestamp: 2024-10-15T04:50:01.468Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_orden":1,"fechaCreacion":"2024-10-15T10:49:08.000Z","estado":"ENTREGADO","id_cliente":1},{"id_orden":2,"fechaCreacion":"2024-10-15T10:49:08.000Z","estado":"PENDIENTE","id_cliente":2},{"id_orden":3,"fechaCreacion":"2024-10-15T10:49:08.000Z","estado":"CANCELADO","id_cliente":3},{"id_orden":4,"fechaCreacion":"2024-10-15T10:49:08.000Z","estado":"ENTREGADO","id_cliente":4}]
+        ------------------------------
+    
+        Timestamp: 2024-10-15T04:50:01.471Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    

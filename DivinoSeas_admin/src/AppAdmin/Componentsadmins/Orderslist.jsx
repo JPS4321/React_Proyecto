@@ -1,12 +1,6 @@
 import React from 'react';
+import useOrders from '../hooks/useOrders';
 import "../styles/Orderslist.css";
-
-const orders = [
-  { id: "#1320", status: "ENTREGADO", name: "MARIA SOSA", amount: "Q. 1052", date: "13/03/24" },
-  { id: "#1321", status: "PENDIENTE", name: "JUAN PEREZ", amount: "Q. 752", date: "14/03/24" },
-  { id: "#1322", status: "CANCELADO", name: "ANA LOPEZ", amount: "Q. 1252", date: "15/03/24" },
-  { id: "#1323", status: "ENTREGADO", name: "CARLOS DIAZ", amount: "Q. 1050", date: "16/03/24" },
-];
 
 const OrderStatus = ({ status }) => {
   const getStatusClass = (status) => {
@@ -23,8 +17,13 @@ const OrderStatus = ({ status }) => {
 };
 
 const OrdersList = ({ filter }) => {
+  const { orders, loading, error } = useOrders();
+
+  if (loading) return <div>Cargando órdenes...</div>;
+  if (error) return <div>{error}</div>;
+
   const filteredOrders = orders.filter((order) =>
-    filter === 'TODO' ? true : order.status === filter
+    filter === 'TODO' ? true : order.estado === filter
   );
 
   return (
@@ -38,13 +37,13 @@ const OrdersList = ({ filter }) => {
       </div>
       {filteredOrders.map((order, index) => (
         <div key={index} className="order-item">
-          <div className="order-id">{order.id}</div>
+          <div className="order-id">{order.id_orden}</div>
           <div className="order-status">
-            <OrderStatus status={order.status} />
+            <OrderStatus status={order.estado} />
           </div>
-          <div className="order-name">{order.name}</div>
-          <div className="order-amount">{order.amount}</div>
-          <div className="order-date">{order.date}</div>
+          <div className="order-name">{order.id_cliente}</div>
+          <div className="order-amount">{order.monto}</div>
+          <div className="order-date">{order.fechaCreacion}</div>
         </div>
       ))}
     </div>

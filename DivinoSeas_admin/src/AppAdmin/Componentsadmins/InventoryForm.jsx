@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/InventoryForm.css';
 import useProduct from '../hooks/useProduct'; // Hook de productos
@@ -7,67 +7,80 @@ import useColeccion from '../hooks/useColeccion'; // Hook de colecciones
 import useColor from '../hooks/useColor'; // Hook de colores
 import usePromocion from '../hooks/usePromocion'; // Hook de promociones
 
-const InventoryForm = ({   onClose = () => {}  }) => {
-
-  console.log("onClose prop recibida:", onClose);
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [price, setPrice] = useState('');
-  const [categoryId, setCategoryId] = useState(''); // Para la categoría
-  const [collectionId, setCollectionId] = useState(''); // Para la colección
-  const [colorId, setColorId] = useState(''); // Para el color
-  const [promotionId, setPromotionId] = useState(''); // Para la promoción
+const InventoryForm = ({ product = null, onClose = () => {} }) => {
+  const [name, setName] = useState(product ? product.nombre : '');
+  const [description, setDescription] = useState(product ? product.descripcion : '');
+  const [price, setPrice] = useState(product ? product.precio : '');
+  const [categoryId, setCategoryId] = useState(product ? product.id_categoria : '');
+  const [collectionId, setCollectionId] = useState(product ? product.id_coleccion : '');
+  const [colorId, setColorId] = useState(product ? product.id_color : '');
+  const [promotionId, setPromotionId] = useState(product ? product.id_promocion : '');
   const [image1, setImage1] = useState(null);
   const [image2, setImage2] = useState(null);
-  const [xs, setXs] = useState(0);
-  const [s, setS] = useState(0);
-  const [m, setM] = useState(0);
-  const [l, setL] = useState(0);
-  const { createProduct, loading, error } = useProduct();
-  const { categories, loading: categoriesLoading, error: categoriesError } = useCategory(); // Obtener categorías
-  const { collections, loading: collectionsLoading, error: collectionsError } = useColeccion(); // Obtener colecciones
-  const { colors, loading: colorsLoading, error: colorsError } = useColor(); // Obtener colores
-  const { promotions, loading: promotionsLoading, error: promotionsError } = usePromocion(); // Obtener promociones
+  const [xs, setXs] = useState(product ? product.cantidad_xs : 0);
+  const [s, setS] = useState(product ? product.cantidad_s : 0);
+  const [m, setM] = useState(product ? product.cantidad_m : 0);
+  const [l, setL] = useState(product ? product.cantidad_l : 0);
+  
+  const { createProduct, updateProduct, loading, error } = useProduct();
+  const { categories, loading: categoriesLoading, error: categoriesError } = useCategory();
+  const { collections, loading: collectionsLoading, error: collectionsError } = useColeccion();
+  const { colors, loading: colorsLoading, error: colorsError } = useColor();
+  const { promotions, loading: promotionsLoading, error: promotionsError } = usePromocion();
+  
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (product) {
+      setName(product.nombre);
+      setDescription(product.descripcion);
+      setPrice(product.precio);
+      setCategoryId(product.id_categoria);
+      setCollectionId(product.id_coleccion);
+      setColorId(product.id_color);
+      setPromotionId(product.id_promocion);
+      setXs(product.cantidad_xs);
+      setS(product.cantidad_s);
+      setM(product.cantidad_m);
+      setL(product.cantidad_l);
+    }
+  }, [product]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    const productData = {
+      nombre: name,
+      descripcion: description,
+      precio: price,
+      id_categoria: categoryId,
+      id_coleccion: collectionId,
+      id_color: colorId,
+      id_promocion: promotionId,
+      imagen: image1,
+      secondimage: image2,
+      cantidad_xs: xs,
+      cantidad_s: s,
+      cantidad_m: m,
+      cantidad_l: l,
+    };
 
-    if (name && description && price && categoryId && collectionId && colorId && promotionId && image1 && image2 && xs >= 0 && s >= 0 && m >= 0 && l >= 0) {
-      const productData = {
-        nombre: name,
-        descripcion: description,
-        precio: price,
-        id_categoria: categoryId, // Usar el ID de la categoría seleccionada
-        id_coleccion: collectionId, // Usar el ID de la colección seleccionada
-        id_color: colorId, // Usar el ID del color seleccionado
-        id_promocion: promotionId, // Usar el ID de la promoción seleccionada
-        imagen: image1,
-        secondimage: image2,
-        cantidad_xs: xs,
-        cantidad_s: s,
-        cantidad_m: m,
-        cantidad_l: l,
-      };
-
-      const result = await createProduct(productData);
-
-      if (result) {
-        console.log("onclose", onClose)
-        onClose();
-        navigate('/Stock');
-      }
+    if (product) {
+      // Actualizar el producto existente
+      await updateProduct(product.id_producto, productData);
     } else {
-      alert('Por favor completa todos los campos antes de agregar el producto.');
+      // Crear un nuevo producto
+      await createProduct(productData);
     }
+
+    onClose(); // Cerrar el formulario
+    navigate('/Stock'); // Redirigir al listado de productos
   };
 
   const handleCancel = () => {
-    if (typeof onClose === "function") {
-      console.log("onClose function llamada");
-      onClose();  
-    }
+    onClose(); // Cerrar el formulario si se cancela
   };
+
   const handleImage1Change = (e) => {
     setImage1(e.target.files[0]);
   };
@@ -78,7 +91,7 @@ const InventoryForm = ({   onClose = () => {}  }) => {
 
   return (
     <div className="form-container">
-      <h2 className="form-title">AÑADIR PRODUCTO</h2>
+      <h2 className="form-title">{product ? 'EDITAR PRODUCTO' : 'AÑADIR PRODUCTO'}</h2>
       <form onSubmit={handleSubmit} className="form">
         <label className="label">
           Nombre del producto:
@@ -190,7 +203,7 @@ const InventoryForm = ({   onClose = () => {}  }) => {
         </div>
         <div className="button-container">
           <button type="submit" className="submit-button" disabled={loading}>
-            {loading ? 'Agregando...' : 'Agregar'}
+            {loading ? 'Guardando...' : product ? 'Actualizar' : 'Agregar'}
           </button>
           <button type="button" onClick={handleCancel} className="cancel-button">Cancelar</button>
         </div>

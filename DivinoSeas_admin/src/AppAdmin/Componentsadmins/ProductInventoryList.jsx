@@ -1,6 +1,6 @@
 import "../styles/Card.css";
 
-function ProductItem({ imageSrc, title, sizes }) {
+function ProductItem({ imageSrc, title, sizes, onEdit }) {
   return (
     <>
       <div className="product-item">
@@ -18,7 +18,7 @@ function ProductItem({ imageSrc, title, sizes }) {
             ))}
           </div>
         </div>
-        <button className="add-button">+</button>
+        <button className="add-button" onClick={onEdit}>+</button> {/* Llamar a la función onEdit */}
       </div>
       <div className="lineapuessfek"></div> 
     </>

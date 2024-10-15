@@ -1406,3 +1406,87 @@
         Response Body: 
         ------------------------------
     
+        Timestamp: 2024-10-15T05:47:52.475Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:47:58.066Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:47:58.071Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:47:58.750Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:47:58.758Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:48:11.458Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:48:22.038Z
+        URL: /usuarios/login
+        HTTP Method: OPTIONS
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:48:22.147Z
+        URL: /usuarios/login
+        HTTP Method: POST
+        Request Body: {"email":"sofia.garcia@gmail.com","password":"123456"}
+        Response Body: {"id":1,"username":"sofia.garcia","email":"sofia.garcia@gmail.com","role":"Administrador"}
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:48:25.283Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:48:25.287Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:48:26.164Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:48:26.169Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    

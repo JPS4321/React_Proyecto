@@ -3,7 +3,7 @@ import { Line } from 'react-chartjs-2';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
-import { format } from 'date-fns';
+import { format, compareAsc } from 'date-fns';
 import useOrders from '../hooks/useOrders';
 import '../styles/Report.css';
 
@@ -12,7 +12,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 const Report = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-  const [chartType, setChartType] = useState('ordenes'); 
+  const [chartType, setChartType] = useState('ordenes');
 
   const { orders, loading, error } = useOrders();
 
@@ -39,14 +39,16 @@ const Report = () => {
     return acc;
   }, {});
 
+  const sortedDates = Object.keys(reportData).sort((a, b) => compareAsc(new Date(a), new Date(b)));
+
   const chartData = {
-    labels: Object.keys(reportData).map((day) => format(new Date(day), 'dd/MM/yyyy')),
+    labels: sortedDates.map((day) => format(new Date(day), 'dd/MM/yyyy')),
     datasets: [
       {
         label: chartType === 'ordenes' ? 'Cantidad de órdenes' : 'Nuevos clientes',
         data: chartType === 'ordenes'
-          ? Object.values(reportData).map((data) => data.totalOrdenes)
-          : Object.values(uniqueClientsData).map((data) => data.nuevosClientes.size),
+          ? sortedDates.map((day) => reportData[day].totalOrdenes)
+          : sortedDates.map((day) => uniqueClientsData[day].nuevosClientes.size),
         borderColor: 'rgba(75, 192, 192, 1)',
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         pointBackgroundColor: 'rgba(75, 192, 192, 1)',
@@ -136,6 +138,28 @@ const Report = () => {
 
       <div className="chart-container">
         <Line data={chartData} options={options} />
+      </div>
+
+      <div className="table-container" style={{ marginTop: '20px' }}>
+        <h3 style={{ color: '#00aaff' }}>{chartType === 'ordenes' ? 'Órdenes por Día' : 'Nuevos Clientes por Día'}</h3>
+        <table style={{ width: '100%', color: 'white', borderCollapse: 'collapse' }}>
+          <thead>
+            <tr style={{ backgroundColor: '#333' }}>
+              <th style={{ padding: '10px', borderBottom: '1px solid #00aaff' }}>Fecha</th>
+              <th style={{ padding: '10px', borderBottom: '1px solid #00aaff' }}>{chartType === 'ordenes' ? 'Cantidad de Órdenes' : 'Cantidad de Nuevos Clientes'}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {sortedDates.map((day, index) => (
+              <tr key={index} style={{ textAlign: 'left', backgroundColor: index % 2 === 0 ? '#1a1a1a' : '#2a2a2a' }}>
+                <td style={{ padding: '10px', borderBottom: '1px solid #00aaff' }}>{format(new Date(day), 'dd/MM/yyyy')}</td>
+                <td style={{ padding: '10px', borderBottom: '1px solid #00aaff' }}>
+                  {chartType === 'ordenes' ? reportData[day].totalOrdenes : uniqueClientsData[day].nuevosClientes.size}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

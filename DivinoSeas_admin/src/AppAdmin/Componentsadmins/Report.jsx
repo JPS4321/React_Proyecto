@@ -3,14 +3,14 @@ import { Line } from 'react-chartjs-2';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
-import { subMonths, format } from 'date-fns';
+import { format } from 'date-fns';
 import useOrders from '../hooks/useOrders';
 import '../styles/Report.css';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const Report = () => {
-  const [startDate, setStartDate] = useState(subMonths(new Date(), 6));
+  const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [chartType, setChartType] = useState('ordenes'); 
 
@@ -22,25 +22,25 @@ const Report = () => {
   });
 
   const reportData = filteredOrders.reduce((acc, order) => {
-    const month = format(new Date(order.fechaCreacion), 'yyyy-MM');
-    if (!acc[month]) {
-      acc[month] = { totalOrdenes: 0 };
+    const day = format(new Date(order.fechaCreacion), 'yyyy-MM-dd');
+    if (!acc[day]) {
+      acc[day] = { totalOrdenes: 0 };
     }
-    acc[month].totalOrdenes += 1;
+    acc[day].totalOrdenes += 1;
     return acc;
   }, {});
 
   const uniqueClientsData = filteredOrders.reduce((acc, order) => {
-    const month = format(new Date(order.fechaCreacion), 'yyyy-MM');
-    if (!acc[month]) {
-      acc[month] = { nuevosClientes: new Set() };
+    const day = format(new Date(order.fechaCreacion), 'yyyy-MM-dd');
+    if (!acc[day]) {
+      acc[day] = { nuevosClientes: new Set() };
     }
-    acc[month].nuevosClientes.add(order.clienteNombre);
+    acc[day].nuevosClientes.add(order.clienteNombre);
     return acc;
   }, {});
 
   const chartData = {
-    labels: Object.keys(reportData).map((month) => format(new Date(month), 'MMM yyyy')),
+    labels: Object.keys(reportData).map((day) => format(new Date(day), 'dd/MM/yyyy')),
     datasets: [
       {
         label: chartType === 'ordenes' ? 'Cantidad de órdenes' : 'Nuevos clientes',
@@ -69,7 +69,7 @@ const Report = () => {
       },
       title: {
         display: true,
-        text: chartType === 'ordenes' ? 'Órdenes por Fecha' : 'Nuevos Clientes por Fecha',
+        text: chartType === 'ordenes' ? 'Órdenes por Día' : 'Nuevos Clientes por Día',
         color: 'white',
       },
     },
@@ -80,7 +80,7 @@ const Report = () => {
         },
         title: {
           display: true,
-          text: 'Meses',
+          text: 'Días',
           color: 'white',
         },
       },

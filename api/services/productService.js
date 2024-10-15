@@ -20,12 +20,28 @@ export async function getAllProductos() {
   }
 
 
-export async function getProductoById(id_producto) {
+  export async function getProductoById(id_producto) {
     try {
-        const [rows] = await conn.query('SELECT * FROM DivinoSeas_Productos WHERE id_producto = ?', [id_producto]);
+        const [rows] = await conn.query(`
+            SELECT 
+                p.*, 
+                c.nombre AS nombre_categoria, 
+                col.nombre AS nombre_coleccion, 
+                clr.nombre AS nombre_color,
+                promo.descripcion AS nombre_promocion 
+            FROM DivinoSeas_Productos p
+            LEFT JOIN Categorias c ON p.id_categoria = c.id_categoria
+            LEFT JOIN ProductoColores pc ON p.id_producto = pc.id_producto
+            LEFT JOIN Colores clr ON pc.id_color = clr.id_color
+            LEFT JOIN ProductoColecciones pcl ON p.id_producto = pcl.id_producto
+            LEFT JOIN Colecciones col ON pcl.id_coleccion = col.id_coleccion
+            LEFT JOIN ProductoPromocion pp ON p.id_producto = pp.id_producto
+            LEFT JOIN Promociones promo ON pp.id_promocion = promo.id_promocion
+            WHERE p.id_producto = ?
+        `, [id_producto]);
+
         if (rows.length > 0) {
             const producto = rows[0];
-            // Convertir las imágenes y secondimage a base64
             return {
                 ...producto,
                 imagen: convertirABase64(producto.imagen),
@@ -38,6 +54,7 @@ export async function getProductoById(id_producto) {
         return e;
     }
 }
+
 
 
 export async function createProducto(nombre, descripcion, precio, categoriaNombre, imagen, secondimage, cantidad_xs, cantidad_s, cantidad_m, cantidad_l, colores, colecciones, promociones) {

@@ -38,15 +38,15 @@ const InventoryForm = ({ product = null, onClose = () => {} }) => {
       setDescription(product.descripcion);
       setPrice(product.precio);
       setCategoryId(product.id_categoria);
-      setCollectionId(product.id_coleccion);
-      setColorId(product.id_color);
-      setPromotionId(product.id_promocion);
+      setCollectionId(product.id_coleccion); // Preseleccionar colección
+      setColorId(product.id_color); // Preseleccionar color
+      setPromotionId(product.id_promocion); // Preseleccionar promoción
       setXs(product.cantidad_xs);
       setS(product.cantidad_s);
       setM(product.cantidad_m);
       setL(product.cantidad_l);
-      setImage1Preview(product.imagen);
-      setImage2Preview(product.secondimage);
+      setImage1Preview(product.imagen); // Previsualizar imagen principal
+      setImage2Preview(product.secondimage); // Previsualizar segunda imagen
     }
   }, [product]);
 

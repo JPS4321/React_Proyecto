@@ -10,15 +10,17 @@ const LoginPage = () => {
   const [username, setUsername] = useState(''); 
   const [isRegister, setIsRegister] = useState(false);
   const [error, setError] = useState(null);
-  const { login, user } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // Redirigir si ya hay un usuario autenticado
+  // Revisar si ya existe un usuario guardado en localStorage
   useEffect(() => {
-    if (user) {
-      navigate('/Home');
+    const savedUser = localStorage.getItem('user');
+    if (savedUser) {
+      login(JSON.parse(savedUser)); // Autenticar al usuario si ya estaba guardado
+      navigate('/Home'); // Redirigir al usuario al home
     }
-  }, [user, navigate]);
+  }, [login, navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -28,12 +30,16 @@ const LoginPage = () => {
         password,
       });
 
-      login({
+      const userData = {
         id: response.data.id,
         username: response.data.username,
         email: response.data.email,
         role: response.data.role,
-      });
+      };
+
+      // Guardar usuario en AuthContext y en localStorage
+      login(userData);
+      localStorage.setItem('user', JSON.stringify(userData));
 
       navigate('/Home');
     } catch (err) {
@@ -52,12 +58,16 @@ const LoginPage = () => {
         role: 'user',
       });
 
-      login({
+      const userData = {
         id: response.data.userId,
         username,
         email,
         role: 'user',
-      });
+      };
+
+      // Guardar usuario en AuthContext y en localStorage
+      login(userData);
+      localStorage.setItem('user', JSON.stringify(userData));
 
       navigate('/Home');
     } catch (err) {

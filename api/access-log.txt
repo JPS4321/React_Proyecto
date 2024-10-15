@@ -650,3 +650,45 @@
         Response Body: 
         ------------------------------
     
+        Timestamp: 2024-10-15T02:27:07.934Z
+        URL: /usuarios/login
+        HTTP Method: OPTIONS
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T02:27:08.034Z
+        URL: /usuarios/login
+        HTTP Method: POST
+        Request Body: {"email":"bbb@gmail.com","password":"bbbbbb"}
+        Response Body: {"id":6,"username":"bbbbbb","email":"bbb@gmail.com","role":"user"}
+        ------------------------------
+    
+        Timestamp: 2024-10-15T03:25:46.001Z
+        URL: /usuarios/login
+        HTTP Method: OPTIONS
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T03:25:46.142Z
+        URL: /usuarios/login
+        HTTP Method: POST
+        Request Body: {"email":"bbb@gmail.com","password":"bbbbbb"}
+        Response Body: {"id":6,"username":"bbbbbb","email":"bbb@gmail.com","role":"user"}
+        ------------------------------
+    
+        Timestamp: 2024-10-15T03:25:55.640Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T03:25:55.655Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    

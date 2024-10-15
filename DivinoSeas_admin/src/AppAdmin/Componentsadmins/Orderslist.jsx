@@ -41,7 +41,7 @@ const OrdersList = ({ filter }) => {
           <div className="order-status">
             <OrderStatus status={order.estado} />
           </div>
-          <div className="order-name">{order.id_cliente}</div>
+          <div className="order-name">{order.nombre_cliente}</div> {/* Mostrar nombre del cliente */}
           <div className="order-amount">{order.monto}</div>
           <div className="order-date">{order.fechaCreacion}</div>
         </div>

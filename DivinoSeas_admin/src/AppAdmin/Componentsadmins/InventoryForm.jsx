@@ -11,10 +11,10 @@ const InventoryForm = ({ product = null, onClose = () => {} }) => {
   const [name, setName] = useState(product ? product.nombre : '');
   const [description, setDescription] = useState(product ? product.descripcion : '');
   const [price, setPrice] = useState(product ? product.precio : '');
-  const [categoryId, setCategoryId] = useState(product ? product.id_categoria : '');
-  const [collectionId, setCollectionId] = useState(product ? product.id_coleccion : '');
-  const [colorId, setColorId] = useState(product ? product.id_color : '');
-  const [promotionId, setPromotionId] = useState(product ? product.id_promocion : '');
+  const [categoryId, setCategoryId] = useState(''); // Inicializamos en vacío
+  const [collectionId, setCollectionId] = useState('');
+  const [colorId, setColorId] = useState('');
+  const [promotionId, setPromotionId] = useState('');
   const [image1, setImage1] = useState(null);
   const [image2, setImage2] = useState(null);
   const [xs, setXs] = useState(product ? product.cantidad_xs : 0);
@@ -37,18 +37,35 @@ const InventoryForm = ({ product = null, onClose = () => {} }) => {
       setName(product.nombre);
       setDescription(product.descripcion);
       setPrice(product.precio);
-      setCategoryId(product.id_categoria);
-      setCollectionId(product.id_coleccion); // Preseleccionar colección
-      setColorId(product.id_color); // Preseleccionar color
-      setPromotionId(product.id_promocion); // Preseleccionar promoción
       setXs(product.cantidad_xs);
       setS(product.cantidad_s);
       setM(product.cantidad_m);
       setL(product.cantidad_l);
-      setImage1Preview(product.imagen); // Previsualizar imagen principal
-      setImage2Preview(product.secondimage); // Previsualizar segunda imagen
+      setImage1Preview(product.imagen);
+      setImage2Preview(product.secondimage);
+
+      // Encontrar y establecer los valores basados en el nombre
+      if (categories.length > 0 && product.nombre_categoria) {
+        const foundCategory = categories.find(c => c.nombre === product.nombre_categoria);
+        if (foundCategory) setCategoryId(foundCategory.id_categoria);
+      }
+
+      if (collections.length > 0 && product.nombre_coleccion) {
+        const foundCollection = collections.find(col => col.nombre === product.nombre_coleccion);
+        if (foundCollection) setCollectionId(foundCollection.id_coleccion);
+      }
+
+      if (colors.length > 0 && product.nombre_color) {
+        const foundColor = colors.find(clr => clr.nombre === product.nombre_color);
+        if (foundColor) setColorId(foundColor.id_color);
+      }
+
+      if (promotions.length > 0 && product.nombre_promocion) {
+        const foundPromotion = promotions.find(promo => promo.descripcion === product.nombre_promocion);
+        if (foundPromotion) setPromotionId(foundPromotion.id_promocion);
+      }
     }
-  }, [product]);
+  }, [product, categories, collections, colors, promotions]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -57,10 +74,10 @@ const InventoryForm = ({ product = null, onClose = () => {} }) => {
       nombre: name,
       descripcion: description,
       precio: price,
-      id_categoria: categoryId,
-      id_coleccion: collectionId,
-      id_color: colorId,
-      id_promocion: promotionId,
+      id_categoria: categories.find(c => c.id_categoria === categoryId)?.id_categoria, 
+      id_coleccion: collections.find(col => col.id_coleccion === collectionId)?.id_coleccion,
+      id_color: colors.find(clr => clr.id_color === colorId)?.id_color,
+      id_promocion: promotions.find(promo => promo.id_promocion === promotionId)?.id_promocion,
       imagen: image1,
       secondimage: image2,
       cantidad_xs: xs,

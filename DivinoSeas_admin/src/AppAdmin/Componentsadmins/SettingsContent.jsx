@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../AuthContext';
+import { useNavigate } from 'react-router-dom';
 import useUser from '../hooks/useUser';
 import '../styles/UserProfile.css';
 
@@ -7,6 +8,7 @@ const UserProfile = () => {
   const { user } = useContext(AuthContext); // Obtener los datos del usuario autenticado desde el contexto
   const { user: userData, loading, error } = useUser(user?.id); // Usar el hook para obtener los datos del usuario
   const { logout } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const [permissions, setPermissions] = useState({
     canEditInventory: false,
@@ -17,6 +19,10 @@ const UserProfile = () => {
   const handleLogout = () => {
     logout();
     navigate('/login');
+  };
+
+  const handleAdmin = () => {
+    navigate('/Adminusers');
   };
 
   const handlePermissionChange = (e) => {
@@ -83,7 +89,9 @@ const UserProfile = () => {
           </label>
         </div>
         <button className="logout-button" onClick={handleLogout}>Cerrar Sesión</button>
+        <button className="admin-button" onClick={handleAdmin}>ADMINISTRAR USUARIOS</button>
       </div>
+      
     </div>
   );
 };

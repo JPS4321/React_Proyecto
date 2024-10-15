@@ -1,8 +1,17 @@
 import conn from "../connection.js";
 
+
 export async function getAllOrders() {
   try {
-    const [rows] = await conn.query("SELECT * FROM Ordenes");
+    const [rows] = await conn.query(`
+      SELECT o.id_orden, o.estado, o.fechaCreacion, o.id_cliente, 
+             c.nombre AS nombre_cliente, 
+             COALESCE(SUM(od.cantidad * od.precioPorUnidad), 0) AS monto
+      FROM Ordenes o
+      LEFT JOIN Clientes c ON o.id_cliente = c.id_cliente
+      LEFT JOIN OrdenDetalles od ON o.id_orden = od.id_orden
+      GROUP BY o.id_orden;
+    `);
     return rows;
   } catch (e) {
     console.log(e);

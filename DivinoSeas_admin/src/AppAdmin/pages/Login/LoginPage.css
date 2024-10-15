@@ -9,13 +9,19 @@ body {
   background-color: #000000;
   margin: 0;
   padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .login-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  width: 100vw;
   background-color: #000000;
 }
 
@@ -90,6 +96,7 @@ input:focus {
   margin-top: 20px;
   font-size: 16px;
   transition: color 0.3s ease;
+  text-align: center;
 }
 
 .toggle-btn:hover {

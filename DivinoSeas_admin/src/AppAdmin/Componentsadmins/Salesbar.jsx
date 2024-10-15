@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import OrdersList from './Orderslist';
 import "../styles/Salesbar.css";
 
 const Salesbar = () => {
+  const navigate = useNavigate();
   const [filter, setFilter] = useState('TODO');
-
+  const handleReport = () => {
+    navigate('/Report');
+  };
   return (
     <div>
       <nav className="salesbar">
@@ -16,7 +20,7 @@ const Salesbar = () => {
           </div>
           <h1 className="ventas-title">VENTAS</h1>
           <div className="right-sections">
-            <a href="" className="custom-report-button">REPORTE PERSONALIZADO</a>
+            <button href="" className="custom-report-button" onClick={handleReport}>REPORTE PERSONALIZADO</button>
           </div>
         </div>
         <div className="lineapues"></div>

@@ -26,7 +26,6 @@
   transition: border-color 0.3s;
 }
 
-/* Asegurar que los inputs con error reciban borde rojo */
 .input-flex-container input.input-error {
   border-color: red;
 }
@@ -42,22 +41,12 @@ textarea {
   transition: border-color 0.3s;
 }
 
-/* Asegurar que el textarea con error reciba borde rojo */
 textarea.input-error {
   border-color: red;
 }
 
-/* Color del texto placeholder para inputs con errores */
 .input-error::placeholder {
   color: red;
-}
-
-/* Estilos para mensajes de error */
-.error-message {
-  color: red;
-  font-size: 0.9em;
-  margin-top: 5px;
-  text-align: left;
 }
 
 .submit-button {
@@ -72,4 +61,17 @@ textarea.input-error {
 
 .submit-button:hover {
   background-color: #333;
+}
+
+/* Ajustes Responsive */
+@media (max-width: 768px) {
+  .contact-section {
+    width: 90%;
+    padding: 10px;
+  }
+
+  .input-flex-container {
+    flex-direction: column;
+    gap: 20px;
+  }
 }

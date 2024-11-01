@@ -6,13 +6,10 @@ import './pages_css/Contact.css';
 
 function Contact() {
     return (
-        <div className='container'>
-            <Marquee text='Welcome to Divino Seas'/>
-            <div className='navigation-bar'>
-                <Navbar/>
-            </div>
-            <ContactSec/>
-            
+        <div className='page-container'>
+            <Marquee text='Welcome to Divino Seas' />
+            <Navbar />
+            <ContactSec />
         </div>
     );
 }

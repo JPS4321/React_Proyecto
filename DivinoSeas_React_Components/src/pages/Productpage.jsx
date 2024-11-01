@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../Components/NavBar/Navbar';
 import Marquee from '../Components/Marquee/Marquee';
 import Footer from '../Components/Footer/Footer';
-import useProduct from '../hooks/useProduct';  // Importa tu hook personalizado
+import useProduct from '../Hooks/useProduct.jsx';  // Importa tu hook personalizado
 import './pages_css/ProductPage.css';
 
 // Función para convertir un ArrayBuffer en una cadena Base64

@@ -118,7 +118,7 @@ const ShippingForm = () => {
           <option key={i} value={`zona ${i + 1}`}>{`Zona ${i + 1}`}</option>
         ))}
       </select>
-      <button type="submit" className="submit-button">Continue to Shipping Method</button>
+      <button type="submit" className="submit-button">Continue</button>
       {Object.keys(errors).length > 0 && (
         <div className="error-message">All fields are required.</div>
       )}

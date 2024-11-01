@@ -1,5 +1,92 @@
-/* Add this to your CSS file */
+/* Container General */
+.about-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content {
+  width: 100%;
+}
+
+/* Sección de Texto */
+.text-section {
+  padding: 20px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text-section h1 {
+  margin-bottom: 20px;
+}
+
+.first-text, .second-text {
+  max-width: 800px;
+  text-align: justify;
+  color: gray;
+  line-height: 1.6;
+  font-size: 1em;
+  padding: 20px;
+}
+
+/* Sección de Información */
+.information-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20px 0;
+  flex-wrap: wrap;
+}
+
+.world-map {
+  max-width: 100%;
+  width: 400px;
+  margin-bottom: 20px;
+}
+
+/* Seccción de Servicios */
+.services-section {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-left: 20px;
+}
+
+.service {
+  display: flex;
+  align-items: center;
+}
+
+.service img {
+  margin-right: 10px;
+  width: 40px;
+  height: 40px;
+}
+
 .gray-text {
-    color: gray;
+  color: gray;
+}
+
+/* Diseño 'responsive' */
+@media (max-width: 768px) {
+  .text-section {
+    padding: 10px;
   }
-  
+
+  .information-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .services-section {
+    padding-left: 0;
+    align-items: center;
+  }
+
+  .world-map {
+    width: 100%;
+  }
+}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import './pages_css/PaymentScreen.css';
 import PaymentHeader from '../Components/PaymentScreen/PaymentHeader';
 import ContactForm from '../Components/PaymentScreen/ContactForm';
@@ -9,7 +10,8 @@ import PaymentOptions from '../Components/PaymentScreen/PaymentOptions';
 import Navbar from '../Components/NavBar/Navbar';
 
 const PaymentScreen = () => {
-  const [price] = useState(200); // Assume this is fetched or passed from a higher level
+  const location = useLocation();
+  const [price] = useState(location.state?.price || 0); // Asigna `totalAmount` o 0 si no está disponible
   const [discount, setDiscount] = useState(0);
 
   const applyDiscount = (discountValue) => {

@@ -41,8 +41,9 @@ function ShoppingCart() {
     const totalAmount = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
     const handleCheckout = () => {
-        navigate('/PaymentScreen');
+        navigate('/PaymentScreen', { state: { price: totalAmount } });
     };
+    
 
     return (
         <div className='container'>

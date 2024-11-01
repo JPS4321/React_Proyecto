@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useOrder from '../../Hooks/useOrder'; // Asegúrate de ajustar la ruta de importación
 
 const ShippingForm = ({ email, price, discount }) => {
   const [formData, setFormData] = useState({
@@ -14,6 +15,7 @@ const ShippingForm = ({ email, price, discount }) => {
   const [errors, setErrors] = useState({});
   const [formSubmitted, setFormSubmitted] = useState(false);
   const navigate = useNavigate();
+  const { addClient, loading, error } = useOrder(); // Usa el hook `useOrder`
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -37,18 +39,22 @@ const ShippingForm = ({ email, price, discount }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setFormSubmitted(true);
     if (validateForm()) {
-      console.log('--- ShippingForm Data ---');
-      console.log('Form Data:', formData);
-      console.log('Email from ContactForm:', email);
-      console.log('Price:', price);
-      console.log('Discount:', discount);
-      console.log('-------------------------');
-      
-      navigate('/'); // Redirigir a la ruta principal
+      const clientData = {
+        nombre: `${formData.firstName} ${formData.lastName}`, // Combina firstName y lastName
+        email: email,
+        direccion: `${formData.zona}, ${formData.avenida}, ${formData.colonia}, ${formData.numero}`, // Combina la dirección en el orden especificado
+        contra: '', // Enviar campo contra vacío
+      };
+
+      const client = await addClient(clientData);
+      if (client) {
+        console.log('Cliente creado:', client);
+        navigate('/'); // Redirigir a la ruta principal
+      }
     }
   };
 

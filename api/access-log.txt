@@ -2871,3 +2871,17 @@
         Response Body: 
         ------------------------------
     
+        Timestamp: 2024-11-01T20:03:26.138Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-01T20:03:26.213Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    

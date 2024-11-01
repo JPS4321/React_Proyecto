@@ -90,56 +90,75 @@ export async function getAllProductos() {
 }
 
 export async function createProducto(nombre, descripcion, precio, categoriaNombre, imagen, secondimage, cantidad_xs, cantidad_s, cantidad_m, cantidad_l, colores, colecciones, promociones) {
-    const connection = await conn.getConnection(); // Obtener la conexión para manejar transacciones
-    try {
-      // Iniciar transacción
+  console.log('Datos recibidos para crear producto:', {
+    nombre,
+    descripcion,
+    precio,
+    categoriaNombre,
+    colores,
+    colecciones,
+    promociones
+  });
+  const connection = await conn.getConnection();
+  try {
       await connection.beginTransaction();
       
+      // Log para verificar los valores de entrada
+      console.log('Datos recibidos para crear producto:', { nombre, descripcion, precio, categoriaNombre, colores, colecciones, promociones });
+
       // Buscar el id_categoria basado en el nombre de la categoría
       const [categoriaRows] = await connection.query('SELECT id_categoria FROM Categorias WHERE id_categoria = ?', [categoriaNombre]);
       if (categoriaRows.length === 0) {
-        throw new Error(`Categoría no encontrada: ${categoriaNombre}`);
+          throw new Error(`Categoría no encontrada: ${categoriaNombre}`);
       }
       const id_categoria = categoriaRows[0].id_categoria;
-  
+
       // Inserción del producto en la tabla `DivinoSeas_Productos`
       const [result] = await connection.query(
-        'INSERT INTO DivinoSeas_Productos (nombre, descripcion, precio, id_categoria, imagen, secondimage, cantidad_xs, cantidad_s, cantidad_m, cantidad_l) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-        [nombre, descripcion, precio, id_categoria, imagen, secondimage, cantidad_xs, cantidad_s, cantidad_m, cantidad_l]
+          'INSERT INTO DivinoSeas_Productos (nombre, descripcion, precio, id_categoria, imagen, secondimage, cantidad_xs, cantidad_s, cantidad_m, cantidad_l) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+          [nombre, descripcion, precio, id_categoria, imagen, secondimage, cantidad_xs, cantidad_s, cantidad_m, cantidad_l]
       );
+
       const id_producto = result.insertId; // Obtener el ID del producto recién creado
-  
-      // Insertar colores, colecciones y promociones como antes
+      if (!id_producto) {
+          throw new Error('No se pudo obtener el ID del producto insertado.');
+      }
+
       // Insertar colores en la tabla `ProductoColores`
       if (colores && colores.length > 0) {
-        const colorValues = colores.map(id_color => [id_producto, id_color]);
-        await connection.query('INSERT INTO ProductoColores (id_producto, id_color) VALUES ?', [colorValues]);
+          console.log('Colores a insertar:', colores);
+          const colorValues = colores.map(id_color => [id_producto, id_color]);
+          await connection.query('INSERT INTO ProductoColores (id_producto, id_color) VALUES ?', [colorValues]);
       }
-  
+
       // Insertar colecciones en la tabla `ProductoColecciones`
       if (colecciones && colecciones.length > 0) {
-        const coleccionValues = colecciones.map(id_coleccion => [id_producto, id_coleccion]);
-        await connection.query('INSERT INTO ProductoColecciones (id_producto, id_coleccion) VALUES ?', [coleccionValues]);
+          console.log('Colecciones a insertar:', colecciones);
+          const coleccionValues = colecciones.map(id_coleccion => [id_producto, id_coleccion]);
+          await connection.query('INSERT INTO ProductoColecciones (id_producto, id_coleccion) VALUES ?', [coleccionValues]);
       }
-  
+
       // Insertar promociones en la tabla `ProductoPromocion`
       if (promociones && promociones.length > 0) {
-        const promocionValues = promociones.map(id_promocion => [id_producto, id_promocion]);
-        await connection.query('INSERT INTO ProductoPromocion (id_producto, id_promocion) VALUES ?', [promocionValues]);
+          console.log('Promociones a insertar:', promociones);
+          const promocionValues = promociones.map(id_promocion => [id_producto, id_promocion]);
+          await connection.query('INSERT INTO ProductoPromocion (id_producto, id_promocion) VALUES ?', [promocionValues]);
       }
-  
+
       // Confirmar la transacción si todo salió bien
       await connection.commit();
       return { success: true, message: 'Producto creado exitosamente', id_producto };
-    } catch (error) {
+  } catch (error) {
       // Hacer rollback en caso de error
       await connection.rollback();
       console.error('Error al crear el producto:', error);
       return { success: false, error };
-    } finally {
+  } finally {
       connection.release(); // Liberar la conexión
-    }
   }
+}
+
+
   
 
 export async function updateProducto(id_producto, nombre, descripcion, precio, id_categoria, imagen, secondimage, cantidad_xs, cantidad_s, cantidad_m, cantidad_l) {

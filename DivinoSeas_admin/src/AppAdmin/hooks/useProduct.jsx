@@ -32,6 +32,10 @@ const useProduct = () => {
     if (productData.promociones) {
       productData.promociones.forEach((id_promocion) => formData.append('promociones[]', id_promocion));
     }
+
+    for (let pair of formData.entries()) {
+      console.log(pair[0] + ': ' + pair[1]);
+    }
   
     try {
       const response = await axios.post('http://localhost:3000/productos', formData, {

@@ -135,20 +135,18 @@ const InventoryForm = ({  product = null, onClose = () => {}  }) => {
   
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
     console.log('Enviando producto con datos:', {
-        name,
-        description,
-        price,
-        categoryId,
-        selectedColors,
-        selectedCollections,
-        selectedPromotions
+      name,
+      description,
+      price,
+      categoryId,
+      collectionId,
+      colorId,
+      promotionId
     });
   
-  
-    // Crear un objeto con los datos del producto y los arrays de IDs dinámicos
+    // Crear el objeto de producto para enviar, incluyendo los IDs como arrays con un solo elemento
     const productData = {
       nombre: name,
       descripcion: description,
@@ -160,21 +158,22 @@ const InventoryForm = ({  product = null, onClose = () => {}  }) => {
       cantidad_s: s,
       cantidad_m: m,
       cantidad_l: l,
-      colores: selectedColors.length > 0 ? selectedColors : null,
-      colecciones: selectedCollections.length > 0 ? selectedCollections : null,
-      promociones: selectedPromotions.length > 0 ? selectedPromotions : null
+      colores: colorId ? [colorId] : null, // Convertir en array si hay un valor
+      colecciones: collectionId ? [collectionId] : null, // Convertir en array si hay un valor
+      promociones: promotionId ? [promotionId] : null // Convertir en array si hay un valor
     };
   
+    // Enviar los datos al backend
     if (product) {
       await updateProduct(product.id_producto, productData);
     } else {
       await createProduct(productData);
     }
   
-
     onClose();
     navigate('/Stock');
   };
+  
 
   const handleCancel = () => {
     onClose();
@@ -194,126 +193,127 @@ const InventoryForm = ({  product = null, onClose = () => {}  }) => {
 
   return (
     <div className="form-container">
-        <h2 className="form-title">{product ? 'EDITAR PRODUCTO' : 'AÑADIR PRODUCTO'}</h2>
-        <form onSubmit={handleSubmit} className="form">
-            <label className="label">
-                Nombre del producto:
-                <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="input" required />
-            </label>
-            <label className="label">
-                Descripción:
-                <textarea value={description} onChange={(e) => setDescription(e.target.value)} className="input textarea" required />
-            </label>
-            <label className="label">
-                Precio:
-                <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} className="input" required />
-            </label>
-            <label className="label">
-                Categoría:
-                {categoriesLoading ? (
-                    <p>Cargando categorías...</p>
-                ) : categoriesError ? (
-                    <p style={{ color: 'red' }}>{categoriesError}</p>
-                ) : (
-                    <select value={categoryId} onChange={(e) => setCategoryId(e.target.value)} className="input" required>
-                        <option value="">Selecciona una categoría</option>
-                        {categories.map((category) => (
-                            <option key={category.id_categoria} value={category.id_categoria}>
-                                {category.nombre}
-                            </option>
-                        ))}
-                    </select>
-                )}
-            </label>
-            <label className="label">
-                Colección:
-                {collectionsLoading ? (
-                    <p>Cargando colecciones...</p>
-                ) : collectionsError ? (
-                    <p style={{ color: 'red' }}>{collectionsError}</p>
-                ) : (
-                    <select value={collectionId} onChange={(e) => setCollectionId(e.target.value)} className="input">
-                        <option value="">Selecciona una colección</option>
-                        {collections.map((collection) => (
-                            <option key={collection.id_coleccion} value={collection.id_coleccion}>
-                                {collection.nombre}
-                            </option>
-                        ))}
-                    </select>
-                )}
-            </label>
-            <label className="label">
-                Color:
-                {colorsLoading ? (
-                    <p>Cargando colores...</p>
-                ) : colorsError ? (
-                    <p style={{ color: 'red' }}>{colorsError}</p>
-                ) : (
-                    <select value={colorId} onChange={(e) => setColorId(e.target.value)} className="input">
-                        <option value="">Selecciona un color</option>
-                        {colors.map((color) => (
-                            <option key={color.id_color} value={color.id_color}>
-                                {color.nombre}
-                            </option>
-                        ))}
-                    </select>
-                )}
-            </label>
-            <label className="label">
-                Promoción:
-                {promotionsLoading ? (
-                    <p>Cargando promociones...</p>
-                ) : promotionsError ? (
-                    <p style={{ color: 'red' }}>{promotionsError}</p>
-                ) : (
-                    <select value={promotionId} onChange={(e) => setPromotionId(e.target.value)} className="input">
-                        <option value="">Selecciona una promoción</option>
-                        {promotions.map((promotion) => (
-                            <option key={promotion.id_promocion} value={promotion.id_promocion}>
-                                {promotion.descripcion} - {promotion.descuento}%
-                            </option>
-                        ))}
-                    </select>
-                )}
-            </label>
-            <label className="label">
-                Imagen 1:
-                {image1Preview && <img src={image1Preview} alt="Imagen 1" className="image-preview" style={{ maxWidth: '300px', margin: '10px 0' }} />}
-                <input type="file" onChange={handleImage1Change} className="input-file" />
-            </label>
-            <label className="label">
-                Imagen 2:
-                {image2Preview && <img src={image2Preview} alt="Imagen 2" className="image-preview" style={{ maxWidth: '300px', margin: '10px 0' }} />}
-                <input type="file" onChange={handleImage2Change} className="input-file" />
-            </label>
-            <div className="sizes-container">
-                <label className="size-label">
-                    XS:
-                    <input type="number" value={xs} onChange={(e) => setXs(e.target.value)} className="input-size" min="0" required />
-                </label>
-                <label className="size-label">
-                    S:
-                    <input type="number" value={s} onChange={(e) => setS(e.target.value)} className="input-size" min="0" required />
-                </label>
-                <label className="size-label">
-                    M:
-                    <input type="number" value={m} onChange={(e) => setM(e.target.value)} className="input-size" min="0" required />
-                </label>
-                <label className="size-label">
-                    L:
-                    <input type="number" value={l} onChange={(e) => setL(e.target.value)} className="input-size" min="0" required />
-                </label>
-            </div>
-            <div className="button-container">
-                <button type="submit" className="submit-button" disabled={loading}>
-                    {loading ? 'Guardando...' : product ? 'Actualizar' : 'Agregar'}
-                </button>
-                <button type="button" onClick={handleCancel} className="cancel-button">Cancelar</button>
-            </div>
-            {error && <p style={{ color: 'red' }}>{typeof error === 'string' ? error : 'Ocurrió un error'}</p>}
-        </form>
+      <h2 className="form-title">{product ? 'EDITAR PRODUCTO' : 'AÑADIR PRODUCTO'}</h2>
+      <form onSubmit={handleSubmit} className="form">
+        <label className="label">
+          Nombre del producto:
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="input" required />
+        </label>
+        <label className="label">
+          Descripción:
+          <textarea value={description} onChange={(e) => setDescription(e.target.value)} className="input textarea" required />
+        </label>
+        <label className="label">
+          Precio:
+          <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} className="input" required />
+        </label>
+        <label className="label">
+          Categoría:
+          {categoriesLoading ? (
+            <p>Cargando categorías...</p>
+          ) : categoriesError ? (
+            <p style={{ color: 'red' }}>{categoriesError}</p>
+          ) : (
+            <select value={categoryId} onChange={(e) => setCategoryId(parseInt(e.target.value))} className="input" required>
+              <option value="">Selecciona una categoría</option>
+              {categories.map((category) => (
+                <option key={category.id_categoria} value={category.id_categoria}>
+                  {category.nombre}
+                </option>
+              ))}
+            </select>
+          )}
+        </label>
+        <label className="label">
+          Colección:
+          {collectionsLoading ? (
+            <p>Cargando colecciones...</p>
+          ) : collectionsError ? (
+            <p style={{ color: 'red' }}>{collectionsError}</p>
+          ) : (
+            <select value={collectionId} onChange={(e) => setCollectionId(parseInt(e.target.value))} className="input">
+              <option value="">Selecciona una colección</option>
+              {collections.map((collection) => (
+                <option key={collection.id_coleccion} value={collection.id_coleccion}>
+                  {collection.nombre}
+                </option>
+              ))}
+            </select>
+          )}
+        </label>
+        <label className="label">
+          Color:
+          {colorsLoading ? (
+            <p>Cargando colores...</p>
+          ) : colorsError ? (
+            <p style={{ color: 'red' }}>{colorsError}</p>
+          ) : (
+            <select value={colorId} onChange={(e) => setColorId(parseInt(e.target.value))} className="input">
+              <option value="">Selecciona un color</option>
+              {colors.map((color) => (
+                <option key={color.id_color} value={color.id_color}>
+                  {color.nombre}
+                </option>
+              ))}
+            </select>
+          )}
+        </label>
+        <label className="label">
+          Promoción:
+          {promotionsLoading ? (
+            <p>Cargando promociones...</p>
+          ) : promotionsError ? (
+            <p style={{ color: 'red' }}>{promotionsError}</p>
+          ) : (
+            <select value={promotionId} onChange={(e) => setPromotionId(parseInt(e.target.value))} className="input">
+              <option value="">Selecciona una promoción</option>
+              {promotions.map((promotion) => (
+                <option key={promotion.id_promocion} value={promotion.id_promocion}>
+                  {promotion.descripcion} - {promotion.descuento}%
+                </option>
+              ))}
+            </select>
+          )}
+        </label>
+        <label className="label">
+          Imagen 1:
+          {image1Preview && <img src={image1Preview} alt="Imagen 1" className="image-preview" style={{ maxWidth: '300px', margin: '10px 0' }} />}
+          <input type="file" onChange={handleImage1Change} className="input-file" />
+        </label>
+        <label className="label">
+          Imagen 2:
+          {image2Preview && <img src={image2Preview} alt="Imagen 2" className="image-preview" style={{ maxWidth: '300px', margin: '10px 0' }} />}
+          <input type="file" onChange={handleImage2Change} className="input-file" />
+        </label>
+        <div className="sizes-container">
+          <label className="size-label">
+            XS:
+            <input type="number" value={xs} onChange={(e) => setXs(e.target.value)} className="input-size" min="0" required />
+          </label>
+          <label className="size-label">
+            S:
+            <input type="number" value={s} onChange={(e) => setS(e.target.value)} className="input-size" min="0" required />
+          </label>
+          <label className="size-label">
+            M:
+            <input type="number" value={m} onChange={(e) => setM(e.target.value)} className="input-size" min="0" required />
+          </label>
+          <label className="size-label">
+            L:
+            <input type="number" value={l} onChange={(e) => setL(e.target.value)} className="input-size" min="0" required />
+          </label>
+        </div>
+        <div className="button-container">
+          <button type="submit" className="submit-button" disabled={loading}>
+            {loading ? 'Guardando...' : product ? 'Actualizar' : 'Agregar'}
+          </button>
+          <button type="button" onClick={handleCancel} className="cancel-button">Cancelar</button>
+        </div>
+        {error && <p style={{ color: 'red' }}>{typeof error === 'string' ? error : 'Ocurrió un error'}</p>}
+      </form>
     </div>
-);
+  );
+  
 };
 
 export default InventoryForm;

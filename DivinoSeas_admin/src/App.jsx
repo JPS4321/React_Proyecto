@@ -6,6 +6,8 @@ import Settings from './AppAdmin/pages/Settings/SettingsPage';
 import LoginPage from './AppAdmin/pages/Login/LoginPage';
 import ReportPage from './AppAdmin/pages/ReportPage/ReportPage';
 import AdminPage from './AppAdmin/pages/AdminPage/AdminPage';
+import CreatePage from './AppAdmin/pages/Create/CreatePage';
+
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 import AuthProvider from './AuthContext';
@@ -23,6 +25,7 @@ const App = () => {
           <Route path="/Settings" element={<PrivateRoute element={<Settings />} />} />
           <Route path="/Report" element={<PrivateRoute element={<ReportPage />} />} />
           <Route path="/Adminusers" element={<PrivateRoute element={<AdminPage />} />} />
+          <Route path="/Create" element={<PrivateRoute element={<CreatePage />} />} />
         </Routes>
       </Router>
     </AuthProvider>

@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const ContactForm = () => {
-  const [email, setEmail] = useState('');
-
+const ContactForm = ({ email, setEmail }) => {
   const handleChange = (e) => {
-    setEmail(e.target.value);
+    setEmail(e.target.value); // Actualiza el email en PaymentScreen
   };
 
   return (
     <form className="contact-form">
       <label>Email:
-        <input type="email" value={email} onChange={handleChange} placeholder="Enter your email" />
+        <input 
+          type="email" 
+          value={email} 
+          onChange={handleChange} 
+          placeholder="Enter your email" 
+        />
       </label>
     </form>
   );

@@ -13,6 +13,7 @@ const PaymentScreen = () => {
   const location = useLocation();
   const [price] = useState(location.state?.price || 0); // Asigna `totalAmount` o 0 si no está disponible
   const [discount, setDiscount] = useState(0);
+  const [email, setEmail] = useState(''); // Estado para el email
 
   const applyDiscount = (discountValue) => {
     setDiscount(discountValue);
@@ -25,11 +26,9 @@ const PaymentScreen = () => {
         <PaymentHeader />
         <div className="payment-content">
           <PaymentOptions />
-          <ContactForm />
-          <ShippingForm />
-          {/* Passing price and discount to OrderSummary */}
+          <ContactForm email={email} setEmail={setEmail} />
+          <ShippingForm email={email} price={price} discount={discount} />
           <OrderSummary price={price} discount={discount} />
-          {/* Passing applyDiscount function to PromoCodeInput */}
           <PromoCodeInput applyDiscount={applyDiscount} />
         </div>
       </div>

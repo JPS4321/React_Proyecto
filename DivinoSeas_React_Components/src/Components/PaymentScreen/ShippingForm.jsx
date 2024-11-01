@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const ShippingForm = () => {
+const ShippingForm = ({ email, price, discount }) => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -12,6 +13,7 @@ const ShippingForm = () => {
 
   const [errors, setErrors] = useState({});
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -39,12 +41,17 @@ const ShippingForm = () => {
     e.preventDefault();
     setFormSubmitted(true);
     if (validateForm()) {
-      // Proceed to next step
-      console.log('Form is valid, continue to shipping method');
+      console.log('--- ShippingForm Data ---');
+      console.log('Form Data:', formData);
+      console.log('Email from ContactForm:', email);
+      console.log('Price:', price);
+      console.log('Discount:', discount);
+      console.log('-------------------------');
+      
+      navigate('/'); // Redirigir a la ruta principal
     }
   };
 
-  // Customize the native validation messages
   useEffect(() => {
     const inputs = document.querySelectorAll('input, select');
 

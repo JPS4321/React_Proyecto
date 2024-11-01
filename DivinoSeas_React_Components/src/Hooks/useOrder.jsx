@@ -6,7 +6,7 @@ const useOrder = () => {
   const [error, setError] = useState(null);
 
   // Agregar un nuevo cliente
-  const addClient = async (clientData) => {
+  const addClient = async   (clientData) => {
     setLoading(true);
     setError(null);
     try {

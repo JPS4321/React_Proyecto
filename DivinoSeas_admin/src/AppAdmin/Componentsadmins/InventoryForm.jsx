@@ -23,6 +23,9 @@ const InventoryForm = ({  product = null, onClose = () => {}  }) => {
   const [l, setL] = useState(0);
   const [image1Preview, setImage1Preview] = useState(null);
   const [image2Preview, setImage2Preview] = useState(null);
+  const [selectedColors, setSelectedColors] = useState([]);
+  const [selectedCollections, setSelectedCollections] = useState([]);
+  const [selectedPromotions, setSelectedPromotions] = useState([]);
 
   const { getProductById, createProduct, updateProduct, loading, error } = useProduct();
   const { categories, loading: categoriesLoading, error: categoriesError } = useCategory();
@@ -31,6 +34,33 @@ const InventoryForm = ({  product = null, onClose = () => {}  }) => {
   const { promotions, loading: promotionsLoading, error: promotionsError } = usePromocion();
 
   const navigate = useNavigate();
+
+  const handleColorChange = (e) => {
+    const value = parseInt(e.target.value);
+    if (e.target.checked) {
+      setSelectedColors([...selectedColors, value]);
+    } else {
+      setSelectedColors(selectedColors.filter((id) => id !== value));
+    }
+  };
+
+  const handleCollectionChange = (e) => {
+    const value = parseInt(e.target.value);
+    if (e.target.checked) {
+      setSelectedCollections([...selectedCollections, value]);
+    } else {
+      setSelectedCollections(selectedCollections.filter((id) => id !== value));
+    }
+  };
+  
+  const handlePromotionChange = (e) => {
+    const value = parseInt(e.target.value);
+    if (e.target.checked) {
+      setSelectedPromotions([...selectedPromotions, value]);
+    } else {
+      setSelectedPromotions(selectedPromotions.filter((id) => id !== value));
+    }
+  };
 
   // Llama a getProductById si productId está disponible y product es null
   useEffect(() => {
@@ -106,22 +136,32 @@ const InventoryForm = ({  product = null, onClose = () => {}  }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+  
+  
+    // Crear un objeto con los datos del producto y los arrays de IDs dinámicos
     const productData = {
       nombre: name,
       descripcion: description,
       precio: price,
-      id_categoria: categories.find(c => c.id_categoria === categoryId)?.id_categoria, 
-      id_coleccion: collections.find(col => col.id_coleccion === collectionId)?.id_coleccion,
-      id_color: colors.find(clr => clr.id_color === colorId)?.id_color,
-      id_promocion: promotions.find(promo => promo.id_promocion === promotionId)?.id_promocion,
+      id_categoria: categoryId,
       imagen: image1,
       secondimage: image2,
       cantidad_xs: xs,
       cantidad_s: s,
       cantidad_m: m,
       cantidad_l: l,
+      colores: selectedColors, // Array de IDs seleccionados de colores
+      colecciones: selectedCollections, // Array de IDs seleccionados de colecciones
+      promociones: selectedPromotions // Array de IDs seleccionados de promociones
     };
+  
+    // Llamar a la función createProduct para enviar los datos al backend
+    const result = await createProduct(productData);
+    if (result) {
+      console.log('Producto creado exitosamente');
+    } else {
+      console.error('Error al crear el producto');
+    }
 
     if (product) {
       await updateProduct(product.id_producto, productData);

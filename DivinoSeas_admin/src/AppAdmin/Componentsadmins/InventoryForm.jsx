@@ -38,30 +38,30 @@ const InventoryForm = ({  product = null, onClose = () => {}  }) => {
   const handleColorChange = (e) => {
     const value = parseInt(e.target.value);
     if (e.target.checked) {
-      setSelectedColors([...selectedColors, value]);
+      setSelectedColors((prev) => [...prev, value]);
     } else {
-      setSelectedColors(selectedColors.filter((id) => id !== value));
+      setSelectedColors((prev) => prev.filter((id) => id !== value));
     }
   };
-
+  
   const handleCollectionChange = (e) => {
     const value = parseInt(e.target.value);
     if (e.target.checked) {
-      setSelectedCollections([...selectedCollections, value]);
+      setSelectedCollections((prev) => [...prev, value]);
     } else {
-      setSelectedCollections(selectedCollections.filter((id) => id !== value));
+      setSelectedCollections((prev) => prev.filter((id) => id !== value));
     }
   };
   
   const handlePromotionChange = (e) => {
     const value = parseInt(e.target.value);
     if (e.target.checked) {
-      setSelectedPromotions([...selectedPromotions, value]);
+      setSelectedPromotions((prev) => [...prev, value]);
     } else {
-      setSelectedPromotions(selectedPromotions.filter((id) => id !== value));
+      setSelectedPromotions((prev) => prev.filter((id) => id !== value));
     }
   };
-
+  
   // Llama a getProductById si productId está disponible y product es null
   useEffect(() => {
     const fetchProductData = async () => {
@@ -135,7 +135,17 @@ const InventoryForm = ({  product = null, onClose = () => {}  }) => {
   
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
+    console.log('Enviando producto con datos:', {
+        name,
+        description,
+        price,
+        categoryId,
+        selectedColors,
+        selectedCollections,
+        selectedPromotions
+    });
   
   
     // Crear un objeto con los datos del producto y los arrays de IDs dinámicos
@@ -150,24 +160,17 @@ const InventoryForm = ({  product = null, onClose = () => {}  }) => {
       cantidad_s: s,
       cantidad_m: m,
       cantidad_l: l,
-      colores: selectedColors, // Array de IDs seleccionados de colores
-      colecciones: selectedCollections, // Array de IDs seleccionados de colecciones
-      promociones: selectedPromotions // Array de IDs seleccionados de promociones
+      colores: selectedColors.length > 0 ? selectedColors : null,
+      colecciones: selectedCollections.length > 0 ? selectedCollections : null,
+      promociones: selectedPromotions.length > 0 ? selectedPromotions : null
     };
   
-    // Llamar a la función createProduct para enviar los datos al backend
-    const result = await createProduct(productData);
-    if (result) {
-      console.log('Producto creado exitosamente');
-    } else {
-      console.error('Error al crear el producto');
-    }
-
     if (product) {
       await updateProduct(product.id_producto, productData);
     } else {
       await createProduct(productData);
     }
+  
 
     onClose();
     navigate('/Stock');
@@ -229,7 +232,7 @@ const InventoryForm = ({  product = null, onClose = () => {}  }) => {
                 ) : collectionsError ? (
                     <p style={{ color: 'red' }}>{collectionsError}</p>
                 ) : (
-                    <select value={collectionId} onChange={(e) => setCollectionId(e.target.value)} className="input" required>
+                    <select value={collectionId} onChange={(e) => setCollectionId(e.target.value)} className="input">
                         <option value="">Selecciona una colección</option>
                         {collections.map((collection) => (
                             <option key={collection.id_coleccion} value={collection.id_coleccion}>
@@ -246,7 +249,7 @@ const InventoryForm = ({  product = null, onClose = () => {}  }) => {
                 ) : colorsError ? (
                     <p style={{ color: 'red' }}>{colorsError}</p>
                 ) : (
-                    <select value={colorId} onChange={(e) => setColorId(e.target.value)} className="input" required>
+                    <select value={colorId} onChange={(e) => setColorId(e.target.value)} className="input">
                         <option value="">Selecciona un color</option>
                         {colors.map((color) => (
                             <option key={color.id_color} value={color.id_color}>
@@ -263,7 +266,7 @@ const InventoryForm = ({  product = null, onClose = () => {}  }) => {
                 ) : promotionsError ? (
                     <p style={{ color: 'red' }}>{promotionsError}</p>
                 ) : (
-                    <select value={promotionId} onChange={(e) => setPromotionId(e.target.value)} className="input" required>
+                    <select value={promotionId} onChange={(e) => setPromotionId(e.target.value)} className="input">
                         <option value="">Selecciona una promoción</option>
                         {promotions.map((promotion) => (
                             <option key={promotion.id_promocion} value={promotion.id_promocion}>
@@ -311,7 +314,6 @@ const InventoryForm = ({  product = null, onClose = () => {}  }) => {
         </form>
     </div>
 );
-
 };
 
 export default InventoryForm;

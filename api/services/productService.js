@@ -96,7 +96,7 @@ export async function createProducto(nombre, descripcion, precio, categoriaNombr
       await connection.beginTransaction();
       
       // Buscar el id_categoria basado en el nombre de la categoría
-      const [categoriaRows] = await connection.query('SELECT id_categoria FROM Categorias WHERE nombre = ?', [categoriaNombre]);
+      const [categoriaRows] = await connection.query('SELECT id_categoria FROM Categorias WHERE id_categoria = ?', [categoriaNombre]);
       if (categoriaRows.length === 0) {
         throw new Error(`Categoría no encontrada: ${categoriaNombre}`);
       }

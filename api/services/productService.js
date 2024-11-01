@@ -90,6 +90,11 @@ export async function getAllProductos() {
 }
 
 export async function createProducto(nombre, descripcion, precio, categoriaNombre, imagen, secondimage, cantidad_xs, cantidad_s, cantidad_m, cantidad_l, colores, colecciones, promociones) {
+  // Convertir a arrays si llegan como strings separados por comas o como un único valor
+  colores = colores ? (Array.isArray(colores) ? colores : colores.split(',').map(Number)) : [];
+  colecciones = colecciones ? (Array.isArray(colecciones) ? colecciones : colecciones.split(',').map(Number)) : [];
+  promociones = promociones ? (Array.isArray(promociones) ? promociones : promociones.split(',').map(Number)) : [];
+
   console.log('Datos recibidos para crear producto:', {
     nombre,
     descripcion,
@@ -99,6 +104,7 @@ export async function createProducto(nombre, descripcion, precio, categoriaNombr
     colecciones,
     promociones
   });
+
   const connection = await conn.getConnection();
   try {
       await connection.beginTransaction();
@@ -157,6 +163,7 @@ export async function createProducto(nombre, descripcion, precio, categoriaNombr
       connection.release(); // Liberar la conexión
   }
 }
+
 
 
   

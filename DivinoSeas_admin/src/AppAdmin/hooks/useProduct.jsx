@@ -24,15 +24,23 @@ const useProduct = () => {
   
     // Agregar arrays de colores, colecciones y promociones al FormData
     if (productData.colores) {
-      productData.colores.forEach((id_color) => formData.append('colores[]', id_color));
+      productData.colores.forEach((id_color) => {
+        formData.append('colores[]', id_color);
+      });
     }
     if (productData.colecciones) {
-      productData.colecciones.forEach((id_coleccion) => formData.append('colecciones[]', id_coleccion));
+      productData.colecciones.forEach((id_coleccion) => {
+        formData.append('colecciones[]', id_coleccion);
+      });
     }
     if (productData.promociones) {
-      productData.promociones.forEach((id_promocion) => formData.append('promociones[]', id_promocion));
+      productData.promociones.forEach((id_promocion) => {
+        formData.append('promociones[]', id_promocion);
+      });
     }
+  
 
+    
     for (let pair of formData.entries()) {
       console.log(pair[0] + ': ' + pair[1]);
     }

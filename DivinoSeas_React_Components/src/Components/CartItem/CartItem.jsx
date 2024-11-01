@@ -1,39 +1,35 @@
 import React from 'react';
 import './CartItem.css';
+import placeholderImage from '../../assets/bottom01.png'; // Import placeholder image
 
 function CartItem({ item, onIncrement, onDecrement, onRemove }) {
-
     const handleIncrement = () => {
-        onIncrement(item.id);  // Increment logic passed from parent
-        updateLocalStorageCart(item.id, 'increment'); // Update localStorage
+        onIncrement(item.id);
+        updateLocalStorageCart(item.id, 'increment');
     };
 
     const handleDecrement = () => {
         if (item.quantity > 1) {
-            onDecrement(item.id);  // Decrement logic passed from parent
-            updateLocalStorageCart(item.id, 'decrement'); // Update localStorage
+            onDecrement(item.id);
+            updateLocalStorageCart(item.id, 'decrement');
         }
     };
 
     const handleRemove = () => {
-        onRemove(item.id);  // Remove logic passed from parent
-        updateLocalStorageCart(item.id, 'remove'); // Update localStorage
+        onRemove(item.id);
+        updateLocalStorageCart(item.id, 'remove');
     };
 
-    // Helper function to update the cart in localStorage
     const updateLocalStorageCart = (itemId, action) => {
         let existingCart = JSON.parse(localStorage.getItem('cartItems')) || [];
 
         if (action === 'remove') {
-            // Remove the item
             existingCart = existingCart.filter(cartItem => cartItem.id !== itemId);
         } else if (action === 'increment') {
-            // Find and increment the quantity
             existingCart = existingCart.map(cartItem =>
                 cartItem.id === itemId ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem
             );
         } else if (action === 'decrement') {
-            // Find and decrement the quantity
             existingCart = existingCart.map(cartItem =>
                 cartItem.id === itemId && cartItem.quantity > 1
                     ? { ...cartItem, quantity: cartItem.quantity - 1 }
@@ -41,12 +37,15 @@ function CartItem({ item, onIncrement, onDecrement, onRemove }) {
             );
         }
 
-        // Save the updated cart back to localStorage
         localStorage.setItem('cartItems', JSON.stringify(existingCart));
     };
 
     return (
         <div className="cart-item">
+            {/* Product Image */}
+            <img src={item.image || placeholderImage} alt={item.name} className="cart-item-image" />
+            
+            {/* Product Details */}
             <div className="cart-item-details">
                 <h2 className="cart-item-name">{item.name}</h2>
                 <p className="cart-item-price">${item.price.toFixed(2)}</p>
@@ -56,6 +55,7 @@ function CartItem({ item, onIncrement, onDecrement, onRemove }) {
                     <button className="quantity-button" onClick={handleIncrement}>+</button>
                 </div>
             </div>
+            
             <button className="remove-button" onClick={handleRemove}>Remove</button>
         </div>
     );

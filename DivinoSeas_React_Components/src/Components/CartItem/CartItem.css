@@ -7,9 +7,11 @@
 }
 
 .cart-item-image {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     object-fit: cover;
+    border-radius: 4px;
+    margin-right: 20px; /* Añade espacio entre la imagen en los detalles */
 }
 
 .cart-item-details {

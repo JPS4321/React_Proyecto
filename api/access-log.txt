@@ -1532,3 +1532,1256 @@
         Response Body: {"id":1,"username":"sofia.garcia","email":"sofia.garcia@gmail.com","role":"Administrador"}
         ------------------------------
     
+        Timestamp: 2024-10-15T05:51:28.589Z
+        URL: /usuarios/login
+        HTTP Method: OPTIONS
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:51:28.682Z
+        URL: /usuarios/login
+        HTTP Method: POST
+        Request Body: {"email":"sofia.garcia@gmail.com","password":"123456"}
+        Response Body: {"id":1,"username":"sofia.garcia","email":"sofia.garcia@gmail.com","role":"Administrador"}
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:51:30.471Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:51:30.479Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:51:31.771Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:51:31.771Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:51:31.772Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:51:31.773Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:51:31.776Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:51:31.777Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:51:31.778Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:51:31.779Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:52:28.631Z
+        URL: /usuarios/login
+        HTTP Method: OPTIONS
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:52:28.737Z
+        URL: /usuarios/login
+        HTTP Method: POST
+        Request Body: {"email":"sofia.garcia@gmail.com","password":"123456"}
+        Response Body: {"id":1,"username":"sofia.garcia","email":"sofia.garcia@gmail.com","role":"Administrador"}
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:52:39.027Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:52:39.034Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:52:40.176Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:52:40.176Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:52:40.177Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:52:40.177Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:52:40.180Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:52:40.181Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:52:40.182Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:52:40.183Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:54:36.378Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:54:36.382Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:55:12.199Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:55:12.204Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:55:14.778Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:55:14.783Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:55:16.401Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:55:16.404Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:55:20.205Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:55:20.208Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:55:38.464Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:55:38.467Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:55:42.479Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:55:42.483Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:56:49.052Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:56:49.056Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:58:50.624Z
+        URL: /usuarios/login
+        HTTP Method: OPTIONS
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:58:50.711Z
+        URL: /usuarios/login
+        HTTP Method: POST
+        Request Body: {"email":"sofia.garcia@gmail.com","password":"123456"}
+        Response Body: {"id":1,"username":"sofia.garcia","email":"sofia.garcia@gmail.com","role":"Administrador"}
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:58:54.880Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:58:54.883Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:59:41.002Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:59:41.007Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:59:45.978Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:59:45.984Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:59:46.374Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:59:46.379Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:59:46.836Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:59:46.844Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:59:47.563Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:59:47.564Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:59:47.565Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:59:47.566Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:59:47.568Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:59:47.570Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:59:47.575Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T05:59:47.576Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:00:10.456Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:00:10.457Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:00:10.457Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:00:10.458Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:02:47.457Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:02:47.459Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:02:47.462Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:02:47.464Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:02:54.488Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:02:54.502Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:03:13.930Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:03:13.935Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:04:45.406Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:04:45.415Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:04:46.417Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:04:46.418Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:04:46.419Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:04:46.418Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:04:46.424Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:04:46.424Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:04:46.425Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:04:46.425Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:05:09.757Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:05:09.761Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:05:46.158Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:05:46.168Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:05:47.142Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:05:47.149Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:06:03.190Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:06:03.195Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:06:03.207Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:06:03.209Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:06:03.220Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:06:03.222Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:06:03.225Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:06:03.233Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:06:34.035Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:06:34.043Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:06:34.047Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:06:34.046Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:06:37.561Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:06:37.568Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:07:18.868Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:07:18.878Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:07:19.780Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:07:19.782Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:07:19.783Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:07:19.784Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:07:19.789Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:07:19.790Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:07:19.791Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:07:19.793Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:07:52.654Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:07:52.667Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:09:19.580Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:09:19.595Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:09:23.721Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:09:23.735Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:09:23.747Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:09:23.755Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:09:23.757Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:09:23.759Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:09:23.767Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:09:23.770Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:09:39.212Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:09:39.224Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:10:10.104Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:10:10.116Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:10:10.901Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:10:10.907Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:10:10.914Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:10:10.922Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:10:10.929Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:10:10.932Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:10:10.937Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:10:10.938Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:10:22.816Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:10:22.825Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:10:49.859Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:10:49.865Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:11:02.790Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:11:02.796Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:11:03.610Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:11:03.614Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:11:05.919Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:11:05.923Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:12:20.012Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-15T06:12:20.017Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:01:26.377Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:01:26.388Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:17.839Z
+        URL: /usuarios/login
+        HTTP Method: OPTIONS
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:18.039Z
+        URL: /usuarios/login
+        HTTP Method: POST
+        Request Body: {"email":"sofia.garcia@gmail.com","password":"12345"}
+        Response Body: {"message":"Contraseña incorrecta"}
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:21.248Z
+        URL: /usuarios/login
+        HTTP Method: POST
+        Request Body: {"email":"sofia.garcia@gmail.com","password":"123456"}
+        Response Body: {"id":1,"username":"sofia.garcia","email":"sofia.garcia@gmail.com","role":"Administrador"}
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:23.365Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:23.372Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:26.307Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:26.314Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:26.321Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:26.324Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:26.329Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:26.330Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:26.333Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:26.334Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:37.680Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:37.682Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:37.681Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:37.683Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:37.686Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:37.687Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:37.689Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:37.688Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:41.656Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:41.661Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:44.602Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:44.610Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:59.817Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:02:59.820Z
+        URL: /usuarios/1
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:03:59.784Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-10-22T23:03:59.792Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    

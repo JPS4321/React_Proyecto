@@ -1,8 +1,11 @@
 import conn from '../connection.js';
 
 function convertirABase64(buffer, tipoImagen = 'image/jpeg') {
-    return buffer ? `data:${tipoImagen};base64,${buffer.toString('base64')}` : null;
-  }
+  return buffer && Buffer.isBuffer(buffer) 
+    ? `data:${tipoImagen};base64,${buffer.toString('base64')}` 
+    : null;
+}
+
   
 
 export async function getAllProductos() {
@@ -21,6 +24,8 @@ export async function getAllProductos() {
 
 
   export async function getProductoById(id_producto) {
+    console.log("getProductoById llamado con id_producto:", id_producto); // Log inicial
+
     try {
         const [rows] = await conn.query(`
             SELECT 
@@ -41,21 +46,48 @@ export async function getAllProductos() {
         `, [id_producto]);
 
         if (rows.length > 0) {
-            const producto = rows[0];
-            return {
-                ...producto,
-                imagen: convertirABase64(producto.imagen),
-                secondimage: convertirABase64(producto.secondimage),
+            // Inicializar el producto usando los datos comunes
+            const producto = {
+                id_producto: rows[0].id_producto,
+                nombre: rows[0].nombre,
+                descripcion: rows[0].descripcion,
+                precio: rows[0].precio,
+                imagen: convertirABase64(rows[0].imagen),
+                secondimage: convertirABase64(rows[0].secondimage),
+                cantidad_xs: rows[0].cantidad_xs,
+                cantidad_s: rows[0].cantidad_s,
+                cantidad_m: rows[0].cantidad_m,
+                cantidad_l: rows[0].cantidad_l,
+                categoria: rows[0].nombre_categoria,
+                colores: [],
+                colecciones: [],
+                promociones: []
             };
+
+            // Agrupar los colores, colecciones y promociones
+            rows.forEach(row => {
+                if (row.nombre_color && !producto.colores.includes(row.nombre_color)) {
+                    producto.colores.push(row.nombre_color);
+                }
+                if (row.nombre_coleccion && !producto.colecciones.includes(row.nombre_coleccion)) {
+                    producto.colecciones.push(row.nombre_coleccion);
+                }
+                if (row.nombre_promocion && !producto.promociones.includes(row.nombre_promocion)) {
+                    producto.promociones.push(row.nombre_promocion);
+                }
+            });
+
+            console.log("Producto completo:", producto); // Verificación del producto completo con detalles relacionados
+            return producto;
+        } else {
+            console.log("No se encontró el producto con id:", id_producto);
+            return null;
         }
-        return null;
     } catch (e) {
-        console.log(e);
+        console.error("Error en getProductoById:", e);
         return e;
     }
 }
-
-
 
 export async function createProducto(nombre, descripcion, precio, categoriaNombre, imagen, secondimage, cantidad_xs, cantidad_s, cantidad_m, cantidad_l, colores, colecciones, promociones) {
     const connection = await conn.getConnection(); // Obtener la conexión para manejar transacciones

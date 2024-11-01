@@ -2843,3 +2843,59 @@
         Response Body: 
         ------------------------------
     
+        Timestamp: 2024-11-01T20:50:15.567Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-01T20:50:15.575Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-01T20:50:15.578Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-01T20:50:15.585Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-01T20:50:15.591Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-01T20:50:15.592Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-01T20:50:15.596Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-01T20:50:15.598Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    

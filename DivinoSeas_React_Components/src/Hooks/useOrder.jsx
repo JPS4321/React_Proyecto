@@ -69,11 +69,28 @@ const useOrder = () => {
     }
   };
 
+  // Agregar información de envío
+  const addShipping = async (shippingData) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await axios.post('http://localhost:3000/envios', shippingData);
+      setLoading(false);
+      return response.data;
+    } catch (err) {
+      setError(err.response?.data || 'Error al agregar envío');
+      console.error('Error al agregar envío:', err);
+      setLoading(false);
+      return null;
+    }
+  };
+
   return {
     addClient,
     createOrder,
     addOrderDetails,
     createPayment,
+    addShipping,
     loading,
     error,
   };

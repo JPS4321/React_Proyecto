@@ -11,7 +11,10 @@ const Navbar = () => {
 
   return (
     <div className='navbar2'>
-      <img src={logo} alt="DivinoSeas Logo" className='logo' />
+      {/* Wrap logo with Link to Home */}
+      <Link to="/">
+        <img src={logo} alt="DivinoSeas Logo" className='logo' />
+      </Link>
       <ul>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/about-us">About</Link></li>

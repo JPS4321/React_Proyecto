@@ -1,30 +1,27 @@
 import conn from '../connection.js';
 
 function convertirABase64(buffer, tipoImagen = 'image/jpeg') {
-  return buffer && Buffer.isBuffer(buffer) 
-    ? `data:${tipoImagen};base64,${buffer.toString('base64')}` 
-    : null;
+    return buffer && Buffer.isBuffer(buffer) 
+        ? `data:${tipoImagen};base64,${buffer.toString('base64')}` 
+        : null;
 }
-
-  
 
 export async function getAllProductos() {
     try {
-      const [rows] = await conn.query('SELECT * FROM DivinoSeas_Productos');
-      const productos = rows.map(producto => ({
-        ...producto,
-        imagen: convertirABase64(producto.imagen) // Convertir el buffer a base64
-      }));
-      return productos;
+        const [rows] = await conn.query('SELECT * FROM DivinoSeas_Productos');
+        const productos = rows.map(producto => ({
+            ...producto,
+            imagen: convertirABase64(producto.imagen)
+        }));
+        return productos;
     } catch (error) {
-      console.error(error);
-      return [];
+        console.error(error);
+        return [];
     }
-  }
+}
 
-
-  export async function getProductoById(id_producto) {
-    console.log("getProductoById llamado con id_producto:", id_producto); // Log inicial
+export async function getProductoById(id_producto) {
+    console.log("getProductoById llamado con id_producto:", id_producto);
 
     try {
         const [rows] = await conn.query(`
@@ -46,7 +43,6 @@ export async function getAllProductos() {
         `, [id_producto]);
 
         if (rows.length > 0) {
-            // Inicializar el producto usando los datos comunes
             const producto = {
                 id_producto: rows[0].id_producto,
                 nombre: rows[0].nombre,
@@ -64,7 +60,6 @@ export async function getAllProductos() {
                 promociones: []
             };
 
-            // Agrupar los colores, colecciones y promociones
             rows.forEach(row => {
                 if (row.nombre_color && !producto.colores.includes(row.nombre_color)) {
                     producto.colores.push(row.nombre_color);
@@ -77,7 +72,7 @@ export async function getAllProductos() {
                 }
             });
 
-            console.log("Producto completo:", producto); // Verificación del producto completo con detalles relacionados
+            console.log("Producto completo:", producto);
             return producto;
         } else {
             console.log("No se encontró el producto con id:", id_producto);
@@ -90,94 +85,102 @@ export async function getAllProductos() {
 }
 
 export async function createProducto(nombre, descripcion, precio, categoriaNombre, imagen, secondimage, cantidad_xs, cantidad_s, cantidad_m, cantidad_l, colores, colecciones, promociones) {
-  // Convertir a arrays si llegan como strings separados por comas o como un único valor
-  colores = colores ? (Array.isArray(colores) ? colores : colores.split(',').map(Number)) : [];
-  colecciones = colecciones ? (Array.isArray(colecciones) ? colecciones : colecciones.split(',').map(Number)) : [];
-  promociones = promociones ? (Array.isArray(promociones) ? promociones : promociones.split(',').map(Number)) : [];
+    colores = colores ? (Array.isArray(colores) ? colores : colores.split(',').map(Number)) : [];
+    colecciones = colecciones ? (Array.isArray(colecciones) ? colecciones : colecciones.split(',').map(Number)) : [];
+    promociones = promociones ? (Array.isArray(promociones) ? promociones : promociones.split(',').map(Number)) : [];
 
-  console.log('Datos recibidos para crear producto:', {
-    nombre,
-    descripcion,
-    precio,
-    categoriaNombre,
-    colores,
-    colecciones,
-    promociones
-  });
+    console.log('Datos recibidos para crear producto:', { nombre, descripcion, precio, categoriaNombre, colores, colecciones, promociones });
 
-  const connection = await conn.getConnection();
-  try {
-      await connection.beginTransaction();
-      
-      // Log para verificar los valores de entrada
-      console.log('Datos recibidos para crear producto:', { nombre, descripcion, precio, categoriaNombre, colores, colecciones, promociones });
+    const connection = await conn.getConnection();
+    try {
+        await connection.beginTransaction();
 
-      // Buscar el id_categoria basado en el nombre de la categoría
-      const [categoriaRows] = await connection.query('SELECT id_categoria FROM Categorias WHERE id_categoria = ?', [categoriaNombre]);
-      if (categoriaRows.length === 0) {
-          throw new Error(`Categoría no encontrada: ${categoriaNombre}`);
-      }
-      const id_categoria = categoriaRows[0].id_categoria;
+        const [categoriaRows] = await connection.query('SELECT id_categoria FROM Categorias WHERE id_categoria = ?', [categoriaNombre]);
+        if (categoriaRows.length === 0) {
+            throw new Error(`Categoría no encontrada: ${categoriaNombre}`);
+        }
+        const id_categoria = categoriaRows[0].id_categoria;
 
-      // Inserción del producto en la tabla `DivinoSeas_Productos`
-      const [result] = await connection.query(
-          'INSERT INTO DivinoSeas_Productos (nombre, descripcion, precio, id_categoria, imagen, secondimage, cantidad_xs, cantidad_s, cantidad_m, cantidad_l) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-          [nombre, descripcion, precio, id_categoria, imagen, secondimage, cantidad_xs, cantidad_s, cantidad_m, cantidad_l]
-      );
+        const [result] = await connection.query(
+            'INSERT INTO DivinoSeas_Productos (nombre, descripcion, precio, id_categoria, imagen, secondimage, cantidad_xs, cantidad_s, cantidad_m, cantidad_l) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            [nombre, descripcion, precio, id_categoria, imagen, secondimage, cantidad_xs, cantidad_s, cantidad_m, cantidad_l]
+        );
 
-      const id_producto = result.insertId; // Obtener el ID del producto recién creado
-      if (!id_producto) {
-          throw new Error('No se pudo obtener el ID del producto insertado.');
-      }
+        const id_producto = result.insertId;
+        if (!id_producto) {
+            throw new Error('No se pudo obtener el ID del producto insertado.');
+        }
 
-      // Insertar colores en la tabla `ProductoColores`
-      if (colores && colores.length > 0) {
-          console.log('Colores a insertar:', colores);
-          const colorValues = colores.map(id_color => [id_producto, id_color]);
-          await connection.query('INSERT INTO ProductoColores (id_producto, id_color) VALUES ?', [colorValues]);
-      }
+        if (colores.length > 0) {
+            console.log('Insertando colores:', colores);
+            const colorValues = colores.map(id_color => [id_producto, id_color]);
+            await connection.query('INSERT INTO ProductoColores (id_producto, id_color) VALUES ?', [colorValues]);
+        }
 
-      // Insertar colecciones en la tabla `ProductoColecciones`
-      if (colecciones && colecciones.length > 0) {
-          console.log('Colecciones a insertar:', colecciones);
-          const coleccionValues = colecciones.map(id_coleccion => [id_producto, id_coleccion]);
-          await connection.query('INSERT INTO ProductoColecciones (id_producto, id_coleccion) VALUES ?', [coleccionValues]);
-      }
+        if (colecciones.length > 0) {
+            console.log('Insertando colecciones:', colecciones);
+            const coleccionValues = colecciones.map(id_coleccion => [id_producto, id_coleccion]);
+            await connection.query('INSERT INTO ProductoColecciones (id_producto, id_coleccion) VALUES ?', [coleccionValues]);
+        }
 
-      // Insertar promociones en la tabla `ProductoPromocion`
-      if (promociones && promociones.length > 0) {
-          console.log('Promociones a insertar:', promociones);
-          const promocionValues = promociones.map(id_promocion => [id_producto, id_promocion]);
-          await connection.query('INSERT INTO ProductoPromocion (id_producto, id_promocion) VALUES ?', [promocionValues]);
-      }
+        if (promociones.length > 0) {
+            console.log('Insertando promociones:', promociones);
+            const promocionValues = promociones.map(id_promocion => [id_producto, id_promocion]);
+            await connection.query('INSERT INTO ProductoPromocion (id_producto, id_promocion) VALUES ?', [promocionValues]);
+        }
 
-      // Confirmar la transacción si todo salió bien
-      await connection.commit();
-      return { success: true, message: 'Producto creado exitosamente', id_producto };
-  } catch (error) {
-      // Hacer rollback en caso de error
-      await connection.rollback();
-      console.error('Error al crear el producto:', error);
-      return { success: false, error };
-  } finally {
-      connection.release(); // Liberar la conexión
-  }
+        await connection.commit();
+        return { success: true, message: 'Producto creado exitosamente', id_producto };
+    } catch (error) {
+        await connection.rollback();
+        console.error('Error al crear el producto:', error);
+        return { success: false, error };
+    } finally {
+        connection.release();
+    }
 }
 
+export async function updateProducto(id_producto, nombre, descripcion, precio, id_categoria, imagen, secondimage, cantidad_xs, cantidad_s, cantidad_m, cantidad_l, colores, colecciones, promociones) {
+    colores = colores ? (Array.isArray(colores) ? colores : colores.split(',').map(Number)) : [];
+    colecciones = colecciones ? (Array.isArray(colecciones) ? colecciones : colecciones.split(',').map(Number)) : [];
+    promociones = promociones ? (Array.isArray(promociones) ? promociones : promociones.split(',').map(Number)) : [];
 
-
-  
-
-export async function updateProducto(id_producto, nombre, descripcion, precio, id_categoria, imagen, secondimage, cantidad_xs, cantidad_s, cantidad_m, cantidad_l) {
+    const connection = await conn.getConnection();
     try {
-        const [result] = await conn.query(
+        await connection.beginTransaction();
+
+        await connection.query(
             'UPDATE DivinoSeas_Productos SET nombre = ?, descripcion = ?, precio = ?, id_categoria = ?, imagen = ?, secondimage = ?, cantidad_xs = ?, cantidad_s = ?, cantidad_m = ?, cantidad_l = ? WHERE id_producto = ?',
             [nombre, descripcion, precio, id_categoria, imagen, secondimage, cantidad_xs, cantidad_s, cantidad_m, cantidad_l, id_producto]
         );
-        return result;
-    } catch (e) {
-        console.log(e);
-        return e;
+
+        await connection.query('DELETE FROM ProductoColores WHERE id_producto = ?', [id_producto]);
+        await connection.query('DELETE FROM ProductoColecciones WHERE id_producto = ?', [id_producto]);
+        await connection.query('DELETE FROM ProductoPromocion WHERE id_producto = ?', [id_producto]);
+
+        if (colores.length > 0) {
+            const colorValues = colores.map(id_color => [id_producto, id_color]);
+            await connection.query('INSERT INTO ProductoColores (id_producto, id_color) VALUES ?', [colorValues]);
+        }
+
+        if (colecciones.length > 0) {
+            const coleccionValues = colecciones.map(id_coleccion => [id_producto, id_coleccion]);
+            await connection.query('INSERT INTO ProductoColecciones (id_producto, id_coleccion) VALUES ?', [coleccionValues]);
+        }
+
+        if (promociones.length > 0) {
+            const promocionValues = promociones.map(id_promocion => [id_producto, id_promocion]);
+            await connection.query('INSERT INTO ProductoPromocion (id_producto, id_promocion) VALUES ?', [promocionValues]);
+        }
+
+        await connection.commit();
+        return { success: true, message: 'Producto actualizado exitosamente' };
+    } catch (error) {
+        await connection.rollback();
+        console.error('Error al actualizar el producto:', error);
+        return { success: false, error };
+    } finally {
+        connection.release();
     }
 }
 
@@ -185,7 +188,7 @@ export async function deleteProducto(id_producto) {
     try {
         await conn.query('DELETE FROM DivinoSeas_Productos WHERE id_producto = ?', [id_producto]);
     } catch (e) {
-        console.log(e);
+        console.error(e);
         return e;
     }
 }

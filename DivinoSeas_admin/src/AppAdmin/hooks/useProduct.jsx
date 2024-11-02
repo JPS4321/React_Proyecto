@@ -9,20 +9,19 @@ const useProduct = () => {
   const createProduct = async (productData) => {
     setLoading(true);
     setError(null);
-  
+
     const formData = new FormData();
     formData.append('nombre', productData.nombre);
     formData.append('descripcion', productData.descripcion);
     formData.append('precio', productData.precio);
     formData.append('id_categoria', productData.id_categoria);
-    formData.append('imagen', productData.imagen); // Imagen principal
-    formData.append('secondimage', productData.secondimage); // Segunda imagen
+    formData.append('imagen', productData.imagen);
+    formData.append('secondimage', productData.secondimage);
     formData.append('cantidad_xs', productData.cantidad_xs);
     formData.append('cantidad_s', productData.cantidad_s);
     formData.append('cantidad_m', productData.cantidad_m);
     formData.append('cantidad_l', productData.cantidad_l);
-  
-    // Agregar arrays de colores, colecciones y promociones al FormData
+
     if (productData.colores) {
       productData.colores.forEach((id_color) => {
         formData.append('colores[]', id_color);
@@ -38,13 +37,7 @@ const useProduct = () => {
         formData.append('promociones[]', id_promocion);
       });
     }
-  
 
-    
-    for (let pair of formData.entries()) {
-      console.log(pair[0] + ': ' + pair[1]);
-    }
-  
     try {
       const response = await axios.post('http://localhost:3000/productos', formData, {
         headers: {
@@ -54,13 +47,14 @@ const useProduct = () => {
       setLoading(false);
       return response.data;
     } catch (err) {
+      console.error('Error al crear el producto:', err);
       setError(err.response?.data || 'Error al crear el producto');
       setLoading(false);
       return null;
     }
   };
-  
 
+  // Obtener todos los productos
   const getAllProducts = async () => {
     setLoading(true);
     setError(null);
@@ -69,13 +63,13 @@ const useProduct = () => {
       setLoading(false);
       return response.data;
     } catch (err) {
+      console.error('Error al obtener productos:', err);
       setError(err.response?.data || 'Error al obtener productos');
-      console.error('Error al obtener productos:', err);  // Agrega esto para ver más detalles del error
       setLoading(false);
       return [];
     }
   };
-  
+
   // Obtener producto por ID
   const getProductById = async (id) => {
     setLoading(true);
@@ -85,6 +79,7 @@ const useProduct = () => {
       setLoading(false);
       return response.data;
     } catch (err) {
+      console.error('Error al obtener producto:', err);
       setError(err.response?.data || 'Error al obtener producto');
       setLoading(false);
       return null;
@@ -101,12 +96,36 @@ const useProduct = () => {
     formData.append('descripcion', productData.descripcion);
     formData.append('precio', productData.precio);
     formData.append('id_categoria', productData.id_categoria);
-    formData.append('imagen', productData.imagen); // Imagen principal
-    formData.append('secondimage', productData.secondimage); // Segunda imagen
+    formData.append('imagen', productData.imagen);
+    formData.append('secondimage', productData.secondimage);
     formData.append('cantidad_xs', productData.cantidad_xs);
     formData.append('cantidad_s', productData.cantidad_s);
     formData.append('cantidad_m', productData.cantidad_m);
     formData.append('cantidad_l', productData.cantidad_l);
+
+    console.log('Colores:', productData.colores);
+    console.log('Colecciones:', productData.colecciones);
+    console.log('Promociones:', productData.promociones);
+
+    if (Array.isArray(productData.colores) && productData.colores.length > 0) {
+      productData.colores.forEach((id_color) => {
+        formData.append('colores[]', id_color);
+      });
+    }
+    if (Array.isArray(productData.colecciones) && productData.colecciones.length > 0) {
+      productData.colecciones.forEach((id_coleccion) => {
+        formData.append('colecciones[]', id_coleccion);
+      });
+    }
+    if (Array.isArray(productData.promociones) && productData.promociones.length > 0) {
+      productData.promociones.forEach((id_promocion) => {
+        formData.append('promociones[]', id_promocion);
+      });
+    }
+
+    for (let pair of formData.entries()) {
+      console.log(`${pair[0]}: ${pair[1]}`);
+    }
 
     try {
       const response = await axios.put(`http://localhost:3000/productos/${id}`, formData, {
@@ -117,6 +136,7 @@ const useProduct = () => {
       setLoading(false);
       return response.data;
     } catch (err) {
+      console.error('Error al actualizar el producto:', err);
       setError(err.response?.data || 'Error al actualizar el producto');
       setLoading(false);
       return null;

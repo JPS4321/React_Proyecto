@@ -168,7 +168,6 @@ const EditProductInventory = ({ productId, onClose = () => {} }) => {
             </select>
           )}
         </label>
-        {/* Repite para Colección, Color y Promoción */}
         <label className="label">
           Colección:
           {collectionsLoading ? (
@@ -232,8 +231,75 @@ const EditProductInventory = ({ productId, onClose = () => {} }) => {
             </select>
           )}
         </label>
+        <label className="label">
+          Imagen 1:
+          {image1Preview && (
+            <img
+              src={image1Preview}
+              alt="Imagen 1"
+              className="image-preview"
+              style={{ maxWidth: "300px", margin: "10px 0" }}
+            />
+          )}
+          <input type="file" onChange={handleImage1Change} className="input-file" />
+        </label>
+        <label className="label">
+          Imagen 2:
+          {image2Preview && (
+            <img
+              src={image2Preview}
+              alt="Imagen 2"
+              className="image-preview"
+              style={{ maxWidth: "300px", margin: "10px 0" }}
+            />
+          )}
+          <input type="file" onChange={handleImage2Change} className="input-file" />
+        </label>
         <div className="sizes-container">
-          {/* Inputs para XS, S, M, L */}
+          <label className="size-label">
+            XS:
+            <input
+              type="number"
+              value={xs}
+              onChange={(e) => setXs(e.target.value)}
+              className="input-size"
+              min="0"
+              required
+            />
+          </label>
+          <label className="size-label">
+            S:
+            <input
+              type="number"
+              value={s}
+              onChange={(e) => setS(e.target.value)}
+              className="input-size"
+              min="0"
+              required
+            />
+          </label>
+          <label className="size-label">
+            M:
+            <input
+              type="number"
+              value={m}
+              onChange={(e) => setM(e.target.value)}
+              className="input-size"
+              min="0"
+              required
+            />
+          </label>
+          <label className="size-label">
+            L:
+            <input
+              type="number"
+              value={l}
+              onChange={(e) => setL(e.target.value)}
+              className="input-size"
+              min="0"
+              required
+            />
+          </label>
         </div>
         <div className="button-container">
           <button type="submit" className="submit-button" disabled={loading}>
@@ -243,7 +309,11 @@ const EditProductInventory = ({ productId, onClose = () => {} }) => {
             Cancelar
           </button>
         </div>
-        {error && <p style={{ color: "red" }}>{typeof error === "string" ? error : "Ocurrió un error"}</p>}
+        {error && (
+          <p style={{ color: "red" }}>
+            {typeof error === "string" ? error : "Ocurrió un error"}
+          </p>
+        )}
       </form>
     </div>
   );

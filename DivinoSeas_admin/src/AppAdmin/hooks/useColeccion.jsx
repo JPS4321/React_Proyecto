@@ -21,7 +21,30 @@ const useColeccion = () => {
     fetchCollections();
   }, []);
 
-  return { collections, loading, error };
+  const addCollection = async ({ nombre, descripcion }) => {
+    try {
+      const newCollection = { nombre, descripcion };
+      const response = await axios.post('http://localhost:3000/colecciones', newCollection);
+      setCollections([...collections, response.data]);
+      return { success: true, message: 'Colección agregada exitosamente' };
+    } catch (err) {
+      setError('Error al agregar colección');
+      return { success: false, message: 'Error al agregar colección' };
+    }
+  };
+
+  const deleteCollection = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3000/colecciones/${id}`);
+      setCollections(collections.filter(collection => collection.id !== id));
+      return { success: true, message: 'Colección eliminada exitosamente' };
+    } catch (err) {
+      setError('Error al eliminar colección');
+      return { success: false, message: 'Error al eliminar colección' };
+    }
+  };
+
+  return { collections, loading, error, addCollection, deleteCollection };
 };
 
 export default useColeccion;

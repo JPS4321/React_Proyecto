@@ -1,15 +1,20 @@
-
 import React, { useState, useEffect, useRef } from 'react';
-import useCategory from '../hooks/useCategory'; // Importa el hook
+import useCategory from '../hooks/useCategory'; 
+import useColeccion from '../hooks/useColeccion';
+import usePromocion from '../hooks/usePromocion'; 
+import useColor from '../hooks/useColor'; 
 
 const Card = ({ text, isActive, onClick, onClose }) => {
-  const { addCategory } = useCategory(); // Destructura la función addCategory del hook
+  const { addCategory, deleteCategory } = useCategory(); 
+  const { addPromotions, deletePromotions } = usePromocion(); 
+  const { addColors, deleteColors } = useColor(); 
+  const { addCollection, deleteCollection } = useColeccion(); 
   const [isFormVisible, setFormVisible] = useState(false);
   const [isDeleteFormVisible, setDeleteFormVisible] = useState(false);
-  const [formData, setFormData] = useState({ nombre: '', descripcion: '' });
+  const [formData, setFormData] = useState({});
+  const [deleteId, setDeleteId] = useState('');
   const cardRef = useRef(null);
 
-  // Manejador para cerrar otras tarjetas al abrir una
   useEffect(() => {
     if (!isActive) {
       setFormVisible(false);
@@ -17,7 +22,6 @@ const Card = ({ text, isActive, onClick, onClose }) => {
     }
   }, [isActive]);
 
-  // Manejador para detectar clics fuera de la tarjeta
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (cardRef.current && !cardRef.current.contains(event.target)) {
@@ -41,24 +45,84 @@ const Card = ({ text, isActive, onClick, onClose }) => {
   const handleAddClick = () => {
     onClick();
     setFormVisible(true);
+    setFormData({}); // Resetea el formData al abrir el formulario
   };
-  
+
   const handleDeleteClick = () => {
     onClick();
     setDeleteFormVisible(true);
   };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleAcceptClick = () => {
-    if (formData.nombre && formData.descripcion) {
-      addCategory(formData); // Llama a la función addCategory con los datos del formulario
-      setFormVisible(false);
-      setFormData({ nombre: '', descripcion: '' }); // Limpia el formulario
+  const handleAcceptClick = async () => {
+    switch (text) {
+      case 'Categoría':
+        if (formData.nombre && formData.descripcion) {
+          await addCategory(formData);
+        } else {
+          alert('Por favor, completa todos los campos.');
+          return;
+        }
+        break;
+      case 'Colección':
+        if (formData.nombre && formData.descripcion) {
+          await addCollection(formData);
+        } else {
+          alert('Por favor, completa todos los campos.');
+          return;
+        }
+        break;
+      case 'Colores':
+        if (formData.nombre) {
+          await addColors(formData);
+        } else {
+          alert('Por favor, completa el campo de nombre.');
+          return;
+        }
+        break;
+      case 'Promociones':
+        if (formData.descripcion && formData.descuento && formData.fechaInicio && formData.fechaFin) {
+          await addPromotions(formData);
+        } else {
+          alert('Por favor, completa todos los campos.');
+          return;
+        }
+        break;
+      default:
+        alert('Funcionalidad no implementada para esta tarjeta');
+        return;
+    }
+    setFormVisible(false);
+    setFormData({});
+  };
+
+  const handleDeleteConfirmClick = async () => {
+    if (deleteId) {
+      switch (text) {
+        case 'Categoría':
+          await deleteCategory(deleteId);
+          break;
+        case 'Colección':
+          await deleteCollection(deleteId);
+          break;
+        case 'Colores':
+          await deleteColors(deleteId);
+          break;
+        case 'Promociones':
+          await deletePromotions(deleteId);
+          break;
+        default:
+          alert('Funcionalidad no implementada para esta tarjeta');
+          return;
+      }
+      setDeleteFormVisible(false);
+      setDeleteId('');
     } else {
-      alert('Por favor, completa todos los campos.');
+      alert('Por favor, proporciona un ID válido para eliminar.');
     }
   };
 
@@ -125,10 +189,10 @@ const Card = ({ text, isActive, onClick, onClose }) => {
         </div>
       ) : (
         <div className="delete-form">
-          <label>Id de categoría para eliminar:</label>
-          <input type="text" name="deleteName" />
+          <label>Id para eliminar:</label>
+          <input type="text" name="deleteId" onChange={(e) => setDeleteId(e.target.value)} />
           <div className="form-buttons">
-            <button className="delete-confirm-button">Confirmar</button>
+            <button className="delete-confirm-button" onClick={handleDeleteConfirmClick}>Confirmar</button>
             <button className="cancel-button" onClick={() => setDeleteFormVisible(false)}>Cancelar</button>
           </div>
         </div>

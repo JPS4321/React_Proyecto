@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useOrder from '../../Hooks/useOrder'; // Asegúrate de ajustar la ruta de importación
 
-const ShippingForm = ({ email, price, discount }) => {
+const ShippingForm = ({ email, price, discount, cartData }) => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -15,7 +15,7 @@ const ShippingForm = ({ email, price, discount }) => {
   const [errors, setErrors] = useState({});
   const [formSubmitted, setFormSubmitted] = useState(false);
   const navigate = useNavigate();
-  const { addClient, loading, error } = useOrder(); // Usa el hook `useOrder`
+  const { addClient, createOrder, loading, error } = useOrder();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -44,16 +44,30 @@ const ShippingForm = ({ email, price, discount }) => {
     setFormSubmitted(true);
     if (validateForm()) {
       const clientData = {
-        nombre: `${formData.firstName} ${formData.lastName}`, // Combina firstName y lastName
+        nombre: "${formData.firstName}_${formData.lastName}",
         email: email,
-        direccion: `${formData.zona}, ${formData.avenida}, ${formData.colonia}, ${formData.numero}`, // Combina la dirección en el orden especificado
-        contra: '', // Enviar campo contra vacío
+        direccion: "${formData.zona}, ${formData.avenida}, ${formData.colonia}, ${formData.numero}",
+        contra: '',
       };
 
+      // Agregar cliente
       const client = await addClient(clientData);
+
       if (client) {
         console.log('Cliente creado:', client);
-        navigate('/'); // Redirigir a la ruta principal
+
+        // Crear una nueva orden con el id del cliente recién creado
+        const orderData = {
+          fechaCreacion: new Date().toISOString(), // Fecha actual
+          estado: 'Preparacion en curso',
+          id_cliente: client.id_cliente, // Utiliza el ID del cliente recién creado
+        };
+
+        const order = await createOrder(orderData);
+        if (order) {
+          console.log('Orden creada:', order);
+          navigate('/'); // Redirigir a la ruta principal o a otra ruta deseada
+        }
       }
     }
   };

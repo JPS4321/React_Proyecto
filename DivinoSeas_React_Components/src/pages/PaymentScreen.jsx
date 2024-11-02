@@ -11,9 +11,10 @@ import Navbar from '../Components/NavBar/Navbar';
 
 const PaymentScreen = () => {
   const location = useLocation();
-  const [price] = useState(location.state?.price || 0); // Asigna `totalAmount` o 0 si no está disponible
+  const [price] = useState(location.state?.price || 0);
   const [discount, setDiscount] = useState(0);
-  const [email, setEmail] = useState(''); // Estado para el email
+  const [email, setEmail] = useState('');
+  const cartData = location.state?.cartData || []; // Guardamos `cartData` para enviarlo a `ShippingForm`
 
   const applyDiscount = (discountValue) => {
     setDiscount(discountValue);
@@ -27,7 +28,7 @@ const PaymentScreen = () => {
         <div className="payment-content">
           <PaymentOptions />
           <ContactForm email={email} setEmail={setEmail} />
-          <ShippingForm email={email} price={price} discount={discount} />
+          <ShippingForm email={email} price={price} discount={discount} cartData={cartData} /> {/* Pasamos `cartData` */}
           <OrderSummary price={price} discount={discount} />
           <PromoCodeInput applyDiscount={applyDiscount} />
         </div>

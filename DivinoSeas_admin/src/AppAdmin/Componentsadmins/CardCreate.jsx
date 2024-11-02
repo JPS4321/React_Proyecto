@@ -2,12 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 
 const Card = ({ text, isActive, onClick, onClose }) => {
   const [isFormVisible, setFormVisible] = useState(false);
+  const [isDeleteFormVisible, setDeleteFormVisible] = useState(false);
   const cardRef = useRef(null);
 
   // Manejador para cerrar otras tarjetas al abrir una
   useEffect(() => {
     if (!isActive) {
       setFormVisible(false);
+      setDeleteFormVisible(false);
     }
   }, [isActive]);
 
@@ -16,11 +18,12 @@ const Card = ({ text, isActive, onClick, onClose }) => {
     const handleClickOutside = (event) => {
       if (cardRef.current && !cardRef.current.contains(event.target)) {
         setFormVisible(false);
+        setDeleteFormVisible(false);
         onClose();
       }
     };
 
-    if (isFormVisible) {
+    if (isFormVisible || isDeleteFormVisible) {
       document.addEventListener('mousedown', handleClickOutside);
     } else {
       document.removeEventListener('mousedown', handleClickOutside);
@@ -29,11 +32,15 @@ const Card = ({ text, isActive, onClick, onClose }) => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isFormVisible, onClose]);
+  }, [isFormVisible, isDeleteFormVisible, onClose]);
 
   const handleAddClick = () => {
     onClick();
     setFormVisible(true);
+  };
+
+  const handleDeleteClick = () => {
+    setDeleteFormVisible(true);
   };
 
   const renderFormFields = () => {
@@ -82,19 +89,28 @@ const Card = ({ text, isActive, onClick, onClose }) => {
   };
 
   return (
-    <div className={`card ${isFormVisible ? 'card-expanded' : ''}`} ref={cardRef}>
+    <div className={`card ${isFormVisible || isDeleteFormVisible ? 'card-expanded' : ''}`} ref={cardRef}>
       <h2>{text}</h2>
-      {!isFormVisible ? (
+      {!isFormVisible && !isDeleteFormVisible ? (
         <div className="card-buttons">
           <button className="add-button" onClick={handleAddClick}>Agregar</button>
-          <button className="delete-button">Eliminar</button>
+          <button className="delete-button" onClick={handleDeleteClick}>Eliminar</button>
         </div>
-      ) : (
+      ) : isFormVisible ? (
         <div className="card-form">
           {renderFormFields()}
           <div className="form-buttons">
             <button className="accept-button">Aceptar</button>
             <button className="cancel-button" onClick={() => { setFormVisible(false); onClose(); }}>Cancelar</button>
+          </div>
+        </div>
+      ) : (
+        <div className="delete-form">
+          <label>Nombre para eliminar:</label>
+          <input type="text" name="deleteName" />
+          <div className="form-buttons">
+            <button className="delete-confirm-button">Confirmar</button>
+            <button className="cancel-button" onClick={() => setDeleteFormVisible(false)}>Cancelar</button>
           </div>
         </div>
       )}

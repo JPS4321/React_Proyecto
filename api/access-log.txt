@@ -4796,3 +4796,549 @@
         Response Body: {"success":true,"message":"Producto creado exitosamente","id_producto":16}
         ------------------------------
     
+        Timestamp: 2024-11-02T02:29:19.907Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: []
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:29:19.916Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:29:23.838Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: []
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:29:23.842Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:29:23.859Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: []
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:29:23.861Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: []
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:29:23.865Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: []
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:29:23.867Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:29:23.866Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:29:23.872Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:29:28.247Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: []
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:29:28.252Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:29:29.903Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:29:29.907Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:30:09.624Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:30:09.630Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:30:14.283Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:30:14.287Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:30:15.237Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:30:15.238Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:30:15.236Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:30:15.238Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:30:15.241Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:30:15.242Z
+        URL: /colores
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:30:15.243Z
+        URL: /colecciones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:30:15.244Z
+        URL: /promociones
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:32:08.580Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:32:08.584Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:32:12.782Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:32:12.786Z
+        URL: /productos
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:32:14.045Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:32:14.049Z
+        URL: /ordenes
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:51:49.437Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:51:49.443Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:51:49.448Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:51:49.452Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:51:49.456Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:51:49.461Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:51:49.465Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:51:49.470Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:51:55.565Z
+        URL: /categorias
+        HTTP Method: OPTIONS
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:51:55.619Z
+        URL: /categorias
+        HTTP Method: POST
+        Request Body: {"nombre":"prueba","descripcion":"prueba"}
+        Response Body: {"message":"Categoría creada con éxito","id_categoria":1}
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:54:45.598Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_categoria":1,"nombre":"prueba","descripcion":"prueba"}]
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:54:45.602Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:54:45.605Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:54:45.608Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:56:33.880Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:56:33.884Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:56:33.887Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:56:33.900Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:56:33.905Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:56:33.909Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:56:33.913Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:56:33.918Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:56:41.840Z
+        URL: /categorias
+        HTTP Method: OPTIONS
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T02:56:41.864Z
+        URL: /categorias
+        HTTP Method: POST
+        Request Body: {"nombre":"prueba","descripcion":"sadf"}
+        Response Body: {"message":"Categoría creada con éxito","id_categoria":2}
+        ------------------------------
+    
+        Timestamp: 2024-11-02T03:28:49.514Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: [{"id_categoria":1,"nombre":"prueba","descripcion":"prueba"},{"id_categoria":2,"nombre":"prueba","descripcion":"sadf"}]
+        ------------------------------
+    
+        Timestamp: 2024-11-02T03:28:49.528Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T03:28:49.532Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T03:28:49.535Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T03:28:49.539Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T03:28:49.543Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T03:28:49.547Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T03:28:49.550Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T03:34:51.599Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T03:34:51.602Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T03:34:51.606Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T03:34:51.609Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T03:53:36.011Z
+        URL: /categorias',%20%7B%20data:%20%7B%20prueba%20%7D%20%7D
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: {"message":"No encontrado: El endpoint no existe"}
+        ------------------------------
+    
+        Timestamp: 2024-11-02T03:53:42.156Z
+        URL: /categorias',%20%7B%20data:%20%7B%201%20%7D%20%7D
+        HTTP Method: DELETE
+        Request Body: {}
+        Response Body: {"message":"No encontrado: El endpoint no existe"}
+        ------------------------------
+    
+        Timestamp: 2024-11-02T03:55:50.443Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T03:55:50.451Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T03:55:50.456Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T03:55:50.461Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T03:56:00.603Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T03:56:00.607Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T03:56:00.611Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    
+        Timestamp: 2024-11-02T03:56:00.615Z
+        URL: /categorias
+        HTTP Method: GET
+        Request Body: {}
+        Response Body: 
+        ------------------------------
+    

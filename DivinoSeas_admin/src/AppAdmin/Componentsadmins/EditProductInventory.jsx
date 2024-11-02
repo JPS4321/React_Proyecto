@@ -8,7 +8,6 @@ import usePromocion from "../hooks/usePromocion";
 import useProduct from "../hooks/useProduct";
 
 const EditProductInventory = ({ product, onClose = () => {} }) => {
-  // Estado para manejar los datos del producto recibido
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -45,7 +44,6 @@ const EditProductInventory = ({ product, onClose = () => {} }) => {
 
   const navigate = useNavigate();
 
-  // Usar useEffect para inicializar los campos con los datos del producto recibido
   useEffect(() => {
     if (product) {
       setName(product.nombre || "");
@@ -62,7 +60,7 @@ const EditProductInventory = ({ product, onClose = () => {} }) => {
       setImage1Preview(product.imagen || null);
       setImage2Preview(product.secondimage || null);
     }
-  }, [product]); // El useEffect se ejecuta cuando el componente se monta o cuando 'product' cambia
+  }, [product]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -111,7 +109,6 @@ const EditProductInventory = ({ product, onClose = () => {} }) => {
     <div className="form-container">
       <h2 className="form-title">EDITAR PRODUCTO</h2>
       <form onSubmit={handleSubmit} className="form">
-        {/* Nombre */}
         <label className="label">
           Nombre del producto:
           <input
@@ -122,7 +119,6 @@ const EditProductInventory = ({ product, onClose = () => {} }) => {
             required
           />
         </label>
-        {/* Descripción */}
         <label className="label">
           Descripción:
           <textarea
@@ -132,7 +128,6 @@ const EditProductInventory = ({ product, onClose = () => {} }) => {
             required
           />
         </label>
-        {/* Precio */}
         <label className="label">
           Precio:
           <input
@@ -143,7 +138,6 @@ const EditProductInventory = ({ product, onClose = () => {} }) => {
             required
           />
         </label>
-        {/* Categoría */}
         <label className="label">
           Categoría:
           <select
@@ -166,7 +160,6 @@ const EditProductInventory = ({ product, onClose = () => {} }) => {
             )}
           </select>
         </label>
-        {/* Colección */}
         <label className="label">
           Colección:
           <select
@@ -188,7 +181,6 @@ const EditProductInventory = ({ product, onClose = () => {} }) => {
             )}
           </select>
         </label>
-        {/* Color */}
         <label className="label">
           Color:
           <select
@@ -210,7 +202,6 @@ const EditProductInventory = ({ product, onClose = () => {} }) => {
             )}
           </select>
         </label>
-        {/* Promoción */}
         <label className="label">
           Promoción:
           <select
@@ -232,7 +223,6 @@ const EditProductInventory = ({ product, onClose = () => {} }) => {
             )}
           </select>
         </label>
-        {/* Imagen 1 */}
         <label className="label">
           Imagen 1:
           {image1Preview && (
@@ -245,7 +235,6 @@ const EditProductInventory = ({ product, onClose = () => {} }) => {
           )}
           <input type="file" onChange={handleImage1Change} className="input-file" />
         </label>
-        {/* Imagen 2 */}
         <label className="label">
           Imagen 2:
           {image2Preview && (
@@ -258,7 +247,6 @@ const EditProductInventory = ({ product, onClose = () => {} }) => {
           )}
           <input type="file" onChange={handleImage2Change} className="input-file" />
         </label>
-        {/* Tamaños */}
         <div className="sizes-container">
           <label className="size-label">
             XS:
@@ -305,7 +293,6 @@ const EditProductInventory = ({ product, onClose = () => {} }) => {
             />
           </label>
         </div>
-        {/* Botones */}
         <div className="button-container">
           <button type="submit" className="submit-button" disabled={loading}>
             {loading ? "Guardando..." : "Actualizar"}

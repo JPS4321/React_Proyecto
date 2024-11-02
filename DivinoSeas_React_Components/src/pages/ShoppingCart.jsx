@@ -41,8 +41,15 @@ function ShoppingCart() {
     const totalAmount = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
     const handleCheckout = () => {
-        navigate('/PaymentScreen', { state: { price: totalAmount } });
+        const cartData = cartItems.map(item => ({
+            id: item.id,
+            quantity: item.quantity,
+            price: item.price  // Agrega el precio individual
+        }));
+        navigate('/PaymentScreen', { state: { price: totalAmount, cartData } });
     };
+    
+    
     
 
     return (

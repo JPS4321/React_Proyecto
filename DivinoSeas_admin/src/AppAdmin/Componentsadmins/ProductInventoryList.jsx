@@ -1,6 +1,18 @@
+import React, { useState } from "react";
 import "../styles/Card.css";
+import EditProductInventory from "./EditProductInventory"; // Importa el nuevo componente
 
-function ProductItem({ imageSrc, title, sizes }) {
+function ProductInventoryList({ imageSrc, title, sizes, product }) {
+  const [showEditForm, setShowEditForm] = useState(false);
+
+  const handleButtonClick = () => {
+    setShowEditForm(true);
+  };
+
+  const handleCloseForm = () => {
+    setShowEditForm(false);
+  };
+
   return (
     <>
       <div className="custom-product-item">
@@ -18,11 +30,20 @@ function ProductItem({ imageSrc, title, sizes }) {
             ))}
           </div>
         </div>
-        <button className="custom-add-button">+</button>
+        <button className="custom-add-button" onClick={handleButtonClick}>
+          +
+        </button>
       </div>
-      <div className="custom-line-separator"></div> 
+      <div className="custom-line-separator"></div>
+
+      {showEditForm && (
+        <EditProductInventory
+          product={product}
+          onClose={handleCloseForm}
+        />
+      )}
     </>
   );
 }
 
-export default ProductItem;
+export default ProductInventoryList;

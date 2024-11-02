@@ -3,7 +3,7 @@ import "../styles/Contenido.css";
 import ProductItem from "./ProductInventoryList.jsx"; // Asegúrate de que este componente esté bien exportado
 import Statbar from "./Statbar";
 import useProduct from "../hooks/useProduct"; // Aquí importamos el hook para obtener productos
-import InventoryForm from "./InventoryForm"; // Importa el formulario de inventario
+import EditProductInventory from "./EditProductInventory"; // Importa el componente correcto para la edición
 
 const Contenido = () => {
   const [searchText, setSearchText] = useState("");
@@ -59,6 +59,7 @@ const Contenido = () => {
                 { count: item.cantidad_m, label: "M" },
                 { count: item.cantidad_l, label: "L" },
               ]}
+              product={item} // Pasar el producto completo para la edición
               onEdit={() => handleEditProduct(item)} // Llamar a la función de edición
             />
           ))
@@ -69,7 +70,7 @@ const Contenido = () => {
 
       {/* Mostrar el formulario si estamos en modo edición */}
       {isEditing && (
-        <InventoryForm
+        <EditProductInventory
           product={currentProduct} // Pasar el producto actual al formulario
           onClose={handleCloseForm} // Cerrar el formulario
         />

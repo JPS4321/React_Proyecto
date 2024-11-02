@@ -1,37 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../styles/Card.css";
-import EditProductInventory from "./EditProductInventory"; // Importa el nuevo componente
+import EditProductInventory from "./EditProductInventory"; 
 
 function ProductInventoryList({ imageSrc, title, sizes, product }) {
   const [showEditForm, setShowEditForm] = useState(false);
 
-  // Agrega un efecto para revisar si el producto se recibe correctamente
-  useEffect(() => {
-    if (!product) {
-      console.error("El producto es undefined o null en ProductInventoryList");
-    } else {
-      console.log("Producto recibido en ProductInventoryList:", product);
-    }
-  }, [product]);
 
   const handleButtonClick = () => {
-    if (!product) {
-      console.error("El producto es undefined o null cuando se hace clic en el botón");
-    } else {
-      console.log("Botón presionado, producto:", product);
-      setShowEditForm(true);
-    }
+    setShowEditForm(true);
   };
 
   const handleCloseForm = () => {
-    console.log("Formulario de edición cerrado.");
     setShowEditForm(false);
   };
-
-  if (!product) {
-    // Renderiza un mensaje de error o nada si el producto es inválido
-    return <p>Error: Producto no encontrado o inválido.</p>;
-  }
 
   return (
     <>
@@ -56,10 +37,11 @@ function ProductInventoryList({ imageSrc, title, sizes, product }) {
       </div>
       <div className="custom-line-separator"></div>
 
+      {/* Mostrar el formulario de edición si showEditForm es true */}
       {showEditForm && (
         <EditProductInventory
-          product={product}
-          onClose={handleCloseForm}
+          product={product} 
+          onClose={handleCloseForm} 
         />
       )}
     </>

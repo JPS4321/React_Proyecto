@@ -8,34 +8,61 @@ import usePromocion from "../hooks/usePromocion";
 import useProduct from "../hooks/useProduct";
 
 const EditProductInventory = ({ product, onClose = () => {} }) => {
-  if (!product) {
-    console.error("No se recibió un producto válido.");
-    return null;
-  }
-
-  const [name, setName] = useState(product.nombre || "");
-  const [description, setDescription] = useState(product.descripcion || "");
-  const [price, setPrice] = useState(product.precio || "");
-  const [categoryId, setCategoryId] = useState(product.id_categoria || "");
-  const [collectionId, setCollectionId] = useState(product.id_coleccion || "");
-  const [colorId, setColorId] = useState(product.id_color || "");
-  const [promotionId, setPromotionId] = useState(product.id_promocion || "");
-  const [xs, setXs] = useState(product.cantidad_xs || 0);
-  const [s, setS] = useState(product.cantidad_s || 0);
-  const [m, setM] = useState(product.cantidad_m || 0);
-  const [l, setL] = useState(product.cantidad_l || 0);
-  const [image1Preview, setImage1Preview] = useState(product.imagen || null);
-  const [image2Preview, setImage2Preview] = useState(product.secondimage || null);
+  // Estado para manejar los datos del producto recibido
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [categoryId, setCategoryId] = useState("");
+  const [collectionId, setCollectionId] = useState("");
+  const [colorId, setColorId] = useState("");
+  const [promotionId, setPromotionId] = useState("");
   const [image1, setImage1] = useState(null);
   const [image2, setImage2] = useState(null);
+  const [xs, setXs] = useState(0);
+  const [s, setS] = useState(0);
+  const [m, setM] = useState(0);
+  const [l, setL] = useState(0);
+  const [image1Preview, setImage1Preview] = useState(null);
+  const [image2Preview, setImage2Preview] = useState(null);
 
   const { updateProduct, loading, error } = useProduct();
-  const { categories, loading: categoriesLoading, error: categoriesError } = useCategory();
-  const { collections, loading: collectionsLoading, error: collectionsError } = useColeccion();
+  const {
+    categories,
+    loading: categoriesLoading,
+    error: categoriesError,
+  } = useCategory();
+  const {
+    collections,
+    loading: collectionsLoading,
+    error: collectionsError,
+  } = useColeccion();
   const { colors, loading: colorsLoading, error: colorsError } = useColor();
-  const { promotions, loading: promotionsLoading, error: promotionsError } = usePromocion();
+  const {
+    promotions,
+    loading: promotionsLoading,
+    error: promotionsError,
+  } = usePromocion();
 
   const navigate = useNavigate();
+
+  // Usar useEffect para inicializar los campos con los datos del producto recibido
+  useEffect(() => {
+    if (product) {
+      setName(product.nombre || "");
+      setDescription(product.descripcion || "");
+      setPrice(product.precio || "");
+      setCategoryId(product.id_categoria || "");
+      setCollectionId(product.id_coleccion || "");
+      setColorId(product.id_color || "");
+      setPromotionId(product.id_promocion || "");
+      setXs(product.cantidad_xs || 0);
+      setS(product.cantidad_s || 0);
+      setM(product.cantidad_m || 0);
+      setL(product.cantidad_l || 0);
+      setImage1Preview(product.imagen || null);
+      setImage2Preview(product.secondimage || null);
+    }
+  }, [product]); // El useEffect se ejecuta cuando el componente se monta o cuando 'product' cambia
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -57,7 +84,6 @@ const EditProductInventory = ({ product, onClose = () => {} }) => {
 
     try {
       await updateProduct(product.id_producto, productData);
-      console.log("Producto actualizado:", productData);
       onClose();
       navigate("/Stock");
     } catch (err) {
@@ -66,7 +92,6 @@ const EditProductInventory = ({ product, onClose = () => {} }) => {
   };
 
   const handleCancel = () => {
-    console.log("Edición cancelada.");
     onClose();
   };
 
@@ -86,6 +111,7 @@ const EditProductInventory = ({ product, onClose = () => {} }) => {
     <div className="form-container">
       <h2 className="form-title">EDITAR PRODUCTO</h2>
       <form onSubmit={handleSubmit} className="form">
+        {/* Nombre */}
         <label className="label">
           Nombre del producto:
           <input
@@ -96,6 +122,7 @@ const EditProductInventory = ({ product, onClose = () => {} }) => {
             required
           />
         </label>
+        {/* Descripción */}
         <label className="label">
           Descripción:
           <textarea
@@ -105,6 +132,7 @@ const EditProductInventory = ({ product, onClose = () => {} }) => {
             required
           />
         </label>
+        {/* Precio */}
         <label className="label">
           Precio:
           <input
@@ -115,91 +143,96 @@ const EditProductInventory = ({ product, onClose = () => {} }) => {
             required
           />
         </label>
+        {/* Categoría */}
         <label className="label">
           Categoría:
-          {categoriesLoading ? (
-            <p>Cargando categorías...</p>
-          ) : categoriesError ? (
-            <p style={{ color: "red" }}>{categoriesError}</p>
-          ) : (
-            <select
-              value={categoryId}
-              onChange={(e) => setCategoryId(e.target.value)}
-              className="input"
-              required
-            >
-              <option value="">Selecciona una categoría</option>
-              {categories.map((category) => (
+          <select
+            value={categoryId}
+            onChange={(e) => setCategoryId(e.target.value)}
+            className="input"
+            required
+          >
+            <option value="">Selecciona una categoría</option>
+            {categoriesLoading ? (
+              <option>Cargando categorías...</option>
+            ) : categoriesError ? (
+              <option style={{ color: "red" }}>Error al cargar categorías</option>
+            ) : (
+              categories.map((category) => (
                 <option key={category.id_categoria} value={category.id_categoria}>
                   {category.nombre}
                 </option>
-              ))}
-            </select>
-          )}
+              ))
+            )}
+          </select>
         </label>
+        {/* Colección */}
         <label className="label">
           Colección:
-          {collectionsLoading ? (
-            <p>Cargando colecciones...</p>
-          ) : collectionsError ? (
-            <p style={{ color: "red" }}>{collectionsError}</p>
-          ) : (
-            <select
-              value={collectionId}
-              onChange={(e) => setCollectionId(e.target.value)}
-              className="input"
-            >
-              <option value="">Selecciona una colección</option>
-              {collections.map((collection) => (
+          <select
+            value={collectionId}
+            onChange={(e) => setCollectionId(e.target.value)}
+            className="input"
+          >
+            <option value="">Selecciona una colección</option>
+            {collectionsLoading ? (
+              <option>Cargando colecciones...</option>
+            ) : collectionsError ? (
+              <option style={{ color: "red" }}>Error al cargar colecciones</option>
+            ) : (
+              collections.map((collection) => (
                 <option key={collection.id_coleccion} value={collection.id_coleccion}>
                   {collection.nombre}
                 </option>
-              ))}
-            </select>
-          )}
+              ))
+            )}
+          </select>
         </label>
+        {/* Color */}
         <label className="label">
           Color:
-          {colorsLoading ? (
-            <p>Cargando colores...</p>
-          ) : colorsError ? (
-            <p style={{ color: "red" }}>{colorsError}</p>
-          ) : (
-            <select
-              value={colorId}
-              onChange={(e) => setColorId(e.target.value)}
-              className="input"
-            >
-              <option value="">Selecciona un color</option>
-              {colors.map((color) => (
+          <select
+            value={colorId}
+            onChange={(e) => setColorId(e.target.value)}
+            className="input"
+          >
+            <option value="">Selecciona un color</option>
+            {colorsLoading ? (
+              <option>Cargando colores...</option>
+            ) : colorsError ? (
+              <option style={{ color: "red" }}>Error al cargar colores</option>
+            ) : (
+              colors.map((color) => (
                 <option key={color.id_color} value={color.id_color}>
                   {color.nombre}
                 </option>
-              ))}
-            </select>
-          )}
+              ))
+            )}
+          </select>
         </label>
+        {/* Promoción */}
         <label className="label">
           Promoción:
-          {promotionsLoading ? (
-            <p>Cargando promociones...</p>
-          ) : promotionsError ? (
-            <p style={{ color: "red" }}>{promotionsError}</p>
-          ) : (
-            <select
-              value={promotionId}
-              onChange={(e) => setPromotionId(e.target.value)}
-              className="input"
-            >
-              <option value="">Selecciona una promoción</option>
-              {promotions.map((promotion) => (
+          <select
+            value={promotionId}
+            onChange={(e) => setPromotionId(e.target.value)}
+            className="input"
+          >
+            <option value="">Selecciona una promoción</option>
+            {promotionsLoading ? (
+              <option>Cargando promociones...</option>
+            ) : promotionsError ? (
+              <option style={{ color: "red" }}>Error al cargar promociones</option>
+            ) : (
+              promotions.map((promotion) => (
                 <option key={promotion.id_promocion} value={promotion.id_promocion}>
                   {promotion.descripcion} - {promotion.descuento}%
                 </option>
-              ))}
-            </select>
-          )}
+              ))
+            )}
+          </select>
         </label>
+        {/* Imagen 1 */}
         <label className="label">
           Imagen 1:
           {image1Preview && (
@@ -212,6 +245,7 @@ const EditProductInventory = ({ product, onClose = () => {} }) => {
           )}
           <input type="file" onChange={handleImage1Change} className="input-file" />
         </label>
+        {/* Imagen 2 */}
         <label className="label">
           Imagen 2:
           {image2Preview && (
@@ -224,6 +258,7 @@ const EditProductInventory = ({ product, onClose = () => {} }) => {
           )}
           <input type="file" onChange={handleImage2Change} className="input-file" />
         </label>
+        {/* Tamaños */}
         <div className="sizes-container">
           <label className="size-label">
             XS:
@@ -270,6 +305,7 @@ const EditProductInventory = ({ product, onClose = () => {} }) => {
             />
           </label>
         </div>
+        {/* Botones */}
         <div className="button-container">
           <button type="submit" className="submit-button" disabled={loading}>
             {loading ? "Guardando..." : "Actualizar"}

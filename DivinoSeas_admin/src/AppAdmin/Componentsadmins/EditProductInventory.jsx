@@ -1,74 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/InventoryForm.css";
-import useProduct from "../hooks/useProduct";
 import useCategory from "../hooks/useCategory";
 import useColeccion from "../hooks/useColeccion";
 import useColor from "../hooks/useColor";
 import usePromocion from "../hooks/usePromocion";
+import useProduct from "../hooks/useProduct";
 
-const EditProductInventory = ({ productId, onClose = () => {} }) => {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [categoryId, setCategoryId] = useState("");
-  const [collectionId, setCollectionId] = useState("");
-  const [colorId, setColorId] = useState("");
-  const [promotionId, setPromotionId] = useState("");
+const EditProductInventory = ({ product, onClose = () => {} }) => {
+  if (!product) {
+    console.error("No se recibió un producto válido.");
+    return null;
+  }
+
+  const [name, setName] = useState(product.nombre || "");
+  const [description, setDescription] = useState(product.descripcion || "");
+  const [price, setPrice] = useState(product.precio || "");
+  const [categoryId, setCategoryId] = useState(product.id_categoria || "");
+  const [collectionId, setCollectionId] = useState(product.id_coleccion || "");
+  const [colorId, setColorId] = useState(product.id_color || "");
+  const [promotionId, setPromotionId] = useState(product.id_promocion || "");
+  const [xs, setXs] = useState(product.cantidad_xs || 0);
+  const [s, setS] = useState(product.cantidad_s || 0);
+  const [m, setM] = useState(product.cantidad_m || 0);
+  const [l, setL] = useState(product.cantidad_l || 0);
+  const [image1Preview, setImage1Preview] = useState(product.imagen || null);
+  const [image2Preview, setImage2Preview] = useState(product.secondimage || null);
   const [image1, setImage1] = useState(null);
   const [image2, setImage2] = useState(null);
-  const [xs, setXs] = useState(0);
-  const [s, setS] = useState(0);
-  const [m, setM] = useState(0);
-  const [l, setL] = useState(0);
-  const [image1Preview, setImage1Preview] = useState(null);
-  const [image2Preview, setImage2Preview] = useState(null);
 
-  const { getProductById, updateProduct, loading, error } = useProduct();
-  const {
-    categories,
-    loading: categoriesLoading,
-    error: categoriesError,
-  } = useCategory();
-  const {
-    collections,
-    loading: collectionsLoading,
-    error: collectionsError,
-  } = useColeccion();
+  const { updateProduct, loading, error } = useProduct();
+  const { categories, loading: categoriesLoading, error: categoriesError } = useCategory();
+  const { collections, loading: collectionsLoading, error: collectionsError } = useColeccion();
   const { colors, loading: colorsLoading, error: colorsError } = useColor();
-  const {
-    promotions,
-    loading: promotionsLoading,
-    error: promotionsError,
-  } = usePromocion();
+  const { promotions, loading: promotionsLoading, error: promotionsError } = usePromocion();
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchProductData = async () => {
-      if (productId) {
-        try {
-          const productData = await getProductById(productId);
-          setName(productData.nombre || "");
-          setDescription(productData.descripcion || "");
-          setPrice(productData.precio || "");
-          setCategoryId(productData.id_categoria || "");
-          setCollectionId(productData.id_coleccion || "");
-          setColorId(productData.id_color || "");
-          setPromotionId(productData.id_promocion || "");
-          setXs(productData.cantidad_xs || 0);
-          setS(productData.cantidad_s || 0);
-          setM(productData.cantidad_m || 0);
-          setL(productData.cantidad_l || 0);
-          setImage1Preview(productData.imagen || null);
-          setImage2Preview(productData.secondimage || null);
-        } catch (err) {
-          console.error("Error fetching product data:", err);
-        }
-      }
-    };
-    fetchProductData();
-  }, [productId, getProductById]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -89,15 +56,17 @@ const EditProductInventory = ({ productId, onClose = () => {} }) => {
     };
 
     try {
-      await updateProduct(productId, productData);
+      await updateProduct(product.id_producto, productData);
+      console.log("Producto actualizado:", productData);
       onClose();
       navigate("/Stock");
     } catch (err) {
-      console.error("Error updating product:", err);
+      console.error("Error al actualizar el producto:", err);
     }
   };
 
   const handleCancel = () => {
+    console.log("Edición cancelada.");
     onClose();
   };
 

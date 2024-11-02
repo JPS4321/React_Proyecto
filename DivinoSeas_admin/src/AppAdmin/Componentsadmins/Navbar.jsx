@@ -23,6 +23,10 @@ const Navbar = () => {
     navigate('/Settings');
   };
 
+  const handleCreate = () => {
+    navigate('/Create');
+  };
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -42,6 +46,8 @@ const Navbar = () => {
         <ul className='nav-list'>
           <li onClick={handleHome}>Inicio</li>
           <li onClick={handleSettings}>Ajustes</li>
+          <li onClick={handleCreate}>Crear</li>
+
         </ul>
       </div>
       <div className='menu-toggle' onClick={toggleMenu}>
@@ -54,6 +60,7 @@ const Navbar = () => {
             <li onClick={handleSales}>Ventas</li>
             <li onClick={handleHome}>Inicio</li>
             <li onClick={handleSettings}>Ajustes</li>
+            <li onClick={handleCreate}>Crear</li>
           </ul>
         </div>
       )}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import './pages_css/PaymentScreen.css';
 import PaymentHeader from '../Components/PaymentScreen/PaymentHeader';
@@ -15,6 +15,11 @@ const PaymentScreen = () => {
   const [discount, setDiscount] = useState(0);
   const [email, setEmail] = useState('');
   const cartData = location.state?.cartData || []; // Guardamos `cartData` para enviarlo a `ShippingForm`
+
+  useEffect(() => {
+    // Log para ver el contenido de cartData cuando el componente se monta o cuando cartData cambia
+    console.log('Contenido de cartData:', cartData);
+  }, [cartData]);
 
   const applyDiscount = (discountValue) => {
     setDiscount(discountValue);

@@ -15,7 +15,7 @@ const ShippingForm = ({ email, price, discount, cartData }) => {
   const [errors, setErrors] = useState({});
   const [formSubmitted, setFormSubmitted] = useState(false);
   const navigate = useNavigate();
-  const { addClient, createOrder, loading, error } = useOrder();
+  const { addClient, createOrder, addOrderDetails, loading, error } = useOrder(); // Añadimos `addOrderDetails` desde el hook
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -44,9 +44,9 @@ const ShippingForm = ({ email, price, discount, cartData }) => {
     setFormSubmitted(true);
     if (validateForm()) {
       const clientData = {
-        nombre: "${formData.firstName}_${formData.lastName}",
+        nombre: `${formData.firstName} ${formData.lastName}`,
         email: email,
-        direccion: "${formData.zona}, ${formData.avenida}, ${formData.colonia}, ${formData.numero}",
+        direccion: `${formData.zona}, ${formData.avenida}, ${formData.colonia}, ${formData.numero}`,
         contra: '',
       };
 
@@ -66,6 +66,24 @@ const ShippingForm = ({ email, price, discount, cartData }) => {
         const order = await createOrder(orderData);
         if (order) {
           console.log('Orden creada:', order);
+
+          // Guardar el id de la orden creada para usarlo en ordenes-detalles
+          const idOrden = order.id_orden;
+
+          // Iterar sobre cartData para enviar cada producto a ordenes-detalles
+          for (const product of cartData) {
+            const orderDetailsData = {
+              id_orden: idOrden,
+              id_producto: product.id, // ID del producto desde cartData
+              cantidad: product.quantity, // Cantidad desde cartData
+              precioPorUnidad: product.price, // Precio desde cartData
+            };
+
+            // Agregar detalles de la orden
+            await addOrderDetails(orderDetailsData);
+          }
+
+          // Redirigir después de completar todos los detalles de la orden
           navigate('/'); // Redirigir a la ruta principal o a otra ruta deseada
         }
       }

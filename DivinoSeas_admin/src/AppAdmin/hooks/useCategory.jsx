@@ -21,7 +21,28 @@ const useCategory = () => {
     fetchCategories();
   }, []);
 
-  return { categories, loading, error };
+  const addCategory = async ({ nombre, descripcion }) => {
+    try {
+      const newCategory = { nombre, descripcion };
+      const response = await axios.post('http://localhost:3000/categorias', newCategory);
+      setCategories([...categories, response.data]);
+      return { success: true, message: 'Categoría agregada exitosamente' };
+    } catch (err) {
+      setError('Error al agregar categoría');
+      return { success: false, message: 'Error al agregar categoría' };
+    }
+  };
+
+  const deleteCategory = async (categoryId) => {
+    try {
+      await axios.delete(`http://localhost:3000/categorias/${categoryId}`);
+      setCategories(categories.filter(category => category.id !== categoryId));
+    } catch (err) {
+      setError('Error al eliminar categoría');
+    }
+  };
+
+  return { categories, loading, error, addCategory, deleteCategory };
 };
 
 export default useCategory;

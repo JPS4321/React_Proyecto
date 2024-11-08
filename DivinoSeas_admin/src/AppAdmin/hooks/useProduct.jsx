@@ -22,20 +22,15 @@ const useProduct = () => {
     formData.append('cantidad_m', productData.cantidad_m);
     formData.append('cantidad_l', productData.cantidad_l);
 
-    if (productData.colores) {
-      productData.colores.forEach((id_color) => {
-        formData.append('colores[]', id_color);
-      });
+    // Agregar color, colección y promoción como un solo valor
+    if (productData.colorId) {
+      formData.append('id_color', productData.colorId);
     }
-    if (productData.colecciones) {
-      productData.colecciones.forEach((id_coleccion) => {
-        formData.append('colecciones[]', id_coleccion);
-      });
+    if (productData.collectionId) {
+      formData.append('id_coleccion', productData.collectionId);
     }
-    if (productData.promociones) {
-      productData.promociones.forEach((id_promocion) => {
-        formData.append('promociones[]', id_promocion);
-      });
+    if (productData.promotionId) {
+      formData.append('id_promocion', productData.promotionId);
     }
 
     try {
@@ -103,28 +98,15 @@ const useProduct = () => {
     formData.append('cantidad_m', productData.cantidad_m);
     formData.append('cantidad_l', productData.cantidad_l);
 
-    console.log('Colores:', productData.colores);
-    console.log('Colecciones:', productData.colecciones);
-    console.log('Promociones:', productData.promociones);
-
-    if (Array.isArray(productData.colores) && productData.colores.length > 0) {
-      productData.colores.forEach((id_color) => {
-        formData.append('colores[]', id_color);
-      });
+    // Agregar color, colección y promoción como un solo valor
+    if (productData.colorId) {
+      formData.append('id_color', productData.colorId);
     }
-    if (Array.isArray(productData.colecciones) && productData.colecciones.length > 0) {
-      productData.colecciones.forEach((id_coleccion) => {
-        formData.append('colecciones[]', id_coleccion);
-      });
+    if (productData.collectionId) {
+      formData.append('id_coleccion', productData.collectionId);
     }
-    if (Array.isArray(productData.promociones) && productData.promociones.length > 0) {
-      productData.promociones.forEach((id_promocion) => {
-        formData.append('promociones[]', id_promocion);
-      });
-    }
-
-    for (let pair of formData.entries()) {
-      console.log(`${pair[0]}: ${pair[1]}`);
+    if (productData.promotionId) {
+      formData.append('id_promocion', productData.promotionId);
     }
 
     try {

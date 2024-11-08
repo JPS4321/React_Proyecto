@@ -21,7 +21,30 @@ const usePromocion = () => {
     fetchPromotions();
   }, []);
 
-  return { promotions, loading, error };
+  const addPromotions = async ({ descripcion, descuento, fechaInicio, fechaFin }) => {
+    try {
+      const newPromotion = { descripcion, descuento, fechaInicio, fechaFin };
+      const response = await axios.post('http://localhost:3000/promociones', newPromotion);
+      setPromotions([...promotions, response.data]);
+      return { success: true, message: 'Promoción agregada exitosamente' };
+    } catch (err) {
+      setError('Error al agregar promoción');
+      return { success: false, message: 'Error al agregar promoción' };
+    }
+  };
+
+  const deletePromotions = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3000/promociones/${id}`);
+      setPromotions(promotions.filter(promotion => promotion.id !== id));
+      return { success: true, message: 'Promoción eliminada exitosamente' };
+    } catch (err) {
+      setError('Error al eliminar promoción');
+      return { success: false, message: 'Error al eliminar promoción' };
+    }
+  };
+
+  return { promotions, loading, error, addPromotions, deletePromotions };
 };
 
 export default usePromocion;

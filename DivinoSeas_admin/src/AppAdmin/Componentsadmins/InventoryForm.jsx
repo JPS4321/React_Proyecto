@@ -23,88 +23,17 @@ const InventoryForm = ({ product = null, onClose = () => {} }) => {
   const [l, setL] = useState(0);
   const [image1Preview, setImage1Preview] = useState(null);
   const [image2Preview, setImage2Preview] = useState(null);
-  const [selectedColors, setSelectedColors] = useState([]);
-  const [selectedCollections, setSelectedCollections] = useState([]);
-  const [selectedPromotions, setSelectedPromotions] = useState([]);
 
-  const { getProductById, createProduct, updateProduct, loading, error } =
-    useProduct();
-  const {
-    categories,
-    loading: categoriesLoading,
-    error: categoriesError,
-  } = useCategory();
-  const {
-    collections,
-    loading: collectionsLoading,
-    error: collectionsError,
-  } = useColeccion();
+  const { getProductById, createProduct, updateProduct, loading, error } = useProduct();
+  const { categories, loading: categoriesLoading, error: categoriesError } = useCategory();
+  const { collections, loading: collectionsLoading, error: collectionsError } = useColeccion();
   const { colors, loading: colorsLoading, error: colorsError } = useColor();
-  const {
-    promotions,
-    loading: promotionsLoading,
-    error: promotionsError,
-  } = usePromocion();
+  const { promotions, loading: promotionsLoading, error: promotionsError } = usePromocion();
 
   const navigate = useNavigate();
 
-  const handleColorChange = (e) => {
-    const value = parseInt(e.target.value);
-    if (e.target.checked) {
-      setSelectedColors((prev) => [...prev, value]);
-    } else {
-      setSelectedColors((prev) => prev.filter((id) => id !== value));
-    }
-  };
-
-  const handleCollectionChange = (e) => {
-    const value = parseInt(e.target.value);
-    if (e.target.checked) {
-      setSelectedCollections((prev) => [...prev, value]);
-    } else {
-      setSelectedCollections((prev) => prev.filter((id) => id !== value));
-    }
-  };
-
-  const handlePromotionChange = (e) => {
-    const value = parseInt(e.target.value);
-    if (e.target.checked) {
-      setSelectedPromotions((prev) => [...prev, value]);
-    } else {
-      setSelectedPromotions((prev) => prev.filter((id) => id !== value));
-    }
-  };
-
-  // Llama a getProductById si productId está disponible y product es null
   useEffect(() => {
-    const fetchProductData = async () => {
-      if (product) {
-        const productData = await getProductById(product.id_producto);
-        setName(productData.nombre);
-        setDescription(productData.descripcion);
-        setPrice(productData.precio);
-        setImage1Preview(productData.imagen);
-        setImage2Preview(productData.secondimage);
-        // Aquí se puede continuar cargando el resto de los datos
-      }
-    };
-    fetchProductData();
-  }, [product]);
-
-  useEffect(() => {
-    if (
-      product &&
-      categories.length > 0 &&
-      collections.length > 0 &&
-      colors.length > 0 &&
-      promotions.length > 0
-    ) {
-      console.log("Product received in useEffect:", product);
-      console.log("Categories:", categories);
-      console.log("Collections:", collections);
-      console.log("Colors:", colors);
-      console.log("Promotions:", promotions);
-
+    if (product) {
       setName(product.nombre);
       setDescription(product.descripcion);
       setPrice(product.precio);
@@ -115,64 +44,25 @@ const InventoryForm = ({ product = null, onClose = () => {} }) => {
       setImage1Preview(product.imagen);
       setImage2Preview(product.secondimage);
 
-      // Asignar categorías, colecciones, colores y promociones
-      if (product.nombre_categoria) {
-        const foundCategory = categories.find(
-          (c) => c.nombre === product.nombre_categoria
-        );
-        if (foundCategory) {
-          setCategoryId(foundCategory.id_categoria);
-          console.log("Found category:", foundCategory);
-        }
-      }
-
-      if (product.nombre_coleccion) {
-        const foundCollection = collections.find(
-          (col) => col.nombre === product.nombre_coleccion
-        );
-        if (foundCollection) {
-          setCollectionId(foundCollection.id_coleccion);
-          console.log("Found collection:", foundCollection);
-        }
-      }
-
-      if (product.nombre_color) {
-        const foundColor = colors.find(
-          (clr) => clr.nombre === product.nombre_color
-        );
-        if (foundColor) {
-          setColorId(foundColor.id_color);
-          console.log("Found color:", foundColor);
-        }
-      }
-
-      if (product.nombre_promocion) {
-        const foundPromotion = promotions.find(
-          (promo) => promo.descripcion === product.nombre_promocion
-        );
-        if (foundPromotion) {
-          setPromotionId(foundPromotion.id_promocion);
-          console.log("Found promotion:", foundPromotion);
-        }
-      }
-    } else {
-      console.log("Waiting for product or other data to load...");
+      setCategoryId(product.id_categoria || "");
+      setCollectionId(product.id_coleccion || "");
+      setColorId(product.id_color || "");
+      setPromotionId(product.id_promocion || "");
     }
-  }, [product, categories, collections, colors, promotions]);
+  }, [product]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Enviando producto con datos:", {
+    console.log("Datos de envío:", {
       name,
       description,
       price,
       categoryId,
-      collectionId,
       colorId,
+      collectionId,
       promotionId,
     });
 
-    // Crear el objeto de producto para enviar, incluyendo los IDs como arrays con un solo elemento
     const productData = {
       nombre: name,
       descripcion: description,
@@ -184,12 +74,11 @@ const InventoryForm = ({ product = null, onClose = () => {} }) => {
       cantidad_s: s,
       cantidad_m: m,
       cantidad_l: l,
-      colores: colorId ? [colorId] : null, // Convertir en array si hay un valor
-      colecciones: collectionId ? [collectionId] : null, // Convertir en array si hay un valor
-      promociones: promotionId ? [promotionId] : null, // Convertir en array si hay un valor
+      id_color: colorId,
+      id_coleccion: collectionId,
+      id_promocion: promotionId,
     };
 
-    // Enviar los datos al backend
     if (product) {
       await updateProduct(product.id_producto, productData);
     } else {
@@ -266,10 +155,7 @@ const InventoryForm = ({ product = null, onClose = () => {} }) => {
             >
               <option value="">Selecciona una categoría</option>
               {categories.map((category) => (
-                <option
-                  key={category.id_categoria}
-                  value={category.id_categoria}
-                >
+                <option key={category.id_categoria} value={category.id_categoria}>
                   {category.nombre}
                 </option>
               ))}
@@ -290,10 +176,7 @@ const InventoryForm = ({ product = null, onClose = () => {} }) => {
             >
               <option value="">Selecciona una colección</option>
               {collections.map((collection) => (
-                <option
-                  key={collection.id_coleccion}
-                  value={collection.id_coleccion}
-                >
+                <option key={collection.id_coleccion} value={collection.id_coleccion}>
                   {collection.nombre}
                 </option>
               ))}
@@ -335,10 +218,7 @@ const InventoryForm = ({ product = null, onClose = () => {} }) => {
             >
               <option value="">Selecciona una promoción</option>
               {promotions.map((promotion) => (
-                <option
-                  key={promotion.id_promocion}
-                  value={promotion.id_promocion}
-                >
+                <option key={promotion.id_promocion} value={promotion.id_promocion}>
                   {promotion.descripcion} - {promotion.descuento}%
                 </option>
               ))}
@@ -355,11 +235,7 @@ const InventoryForm = ({ product = null, onClose = () => {} }) => {
               style={{ maxWidth: "300px", margin: "10px 0" }}
             />
           )}
-          <input
-            type="file"
-            onChange={handleImage1Change}
-            className="input-file"
-          />
+          <input type="file" onChange={handleImage1Change} className="input-file" />
         </label>
         <label className="label">
           Imagen 2:
@@ -371,11 +247,7 @@ const InventoryForm = ({ product = null, onClose = () => {} }) => {
               style={{ maxWidth: "300px", margin: "10px 0" }}
             />
           )}
-          <input
-            type="file"
-            onChange={handleImage2Change}
-            className="input-file"
-          />
+          <input type="file" onChange={handleImage2Change} className="input-file" />
         </label>
         <div className="sizes-container">
           <label className="size-label">
@@ -427,11 +299,7 @@ const InventoryForm = ({ product = null, onClose = () => {} }) => {
           <button type="submit" className="submit-button" disabled={loading}>
             {loading ? "Guardando..." : product ? "Actualizar" : "Agregar"}
           </button>
-          <button
-            type="button"
-            onClick={handleCancel}
-            className="cancel-button"
-          >
+          <button type="button" onClick={handleCancel} className="cancel-button">
             Cancelar
           </button>
         </div>

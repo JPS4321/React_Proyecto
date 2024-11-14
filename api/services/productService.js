@@ -92,52 +92,79 @@ export async function createProducto(
   }
 }
 
+
 export async function updateProducto(
-    id_producto,
-    nombre,
-    descripcion,
-    precio,
-    id_categoria,
-    id_color,
-    id_coleccion,
-    id_promocion,
-    imagen,
-    secondimage,
-    cantidad_xs,
-    cantidad_s,
-    cantidad_m,
-    cantidad_l
-  ) {
-    try {
-      // Inicia la consulta y los parámetros
-      let query = `UPDATE DivinoSeas_Productos SET nombre = ?, descripcion = ?, precio = ?, id_categoria = ?, id_color = ?, id_coleccion = ?, id_promocion = ?, cantidad_xs = ?, cantidad_s = ?, cantidad_m = ?, cantidad_l = ?`;
-      const params = [nombre, descripcion, precio, id_categoria, id_color, id_coleccion, id_promocion, cantidad_xs, cantidad_s, cantidad_m, cantidad_l];
-  
-      // Agrega la imagen solo si está definida
-      if (imagen !== undefined && imagen !== null) {
-        query += `, imagen = ?`;
-        params.push(imagen);
-      }
-  
-      // Agrega la secondimage solo si está definida
-      if (secondimage !== undefined && secondimage !== null) {
-        query += `, secondimage = ?`;
-        params.push(secondimage);
-      }
-  
-      // Agrega la condición de WHERE y el id_producto al final
-      query += ` WHERE id_producto = ?`;
-      params.push(id_producto);
-  
-      // Ejecuta la consulta con los parámetros construidos dinámicamente
-      const [result] = await conn.query(query, params);
-      
-      return { success: true, message: "Producto actualizado exitosamente" };
-    } catch (error) {
-      console.error("Error al actualizar el producto:", error);
-      return { success: false, error };
+  id_producto,
+  nombre,
+  descripcion,
+  precio,
+  id_categoria,
+  id_color,
+  id_coleccion,
+  id_promocion,
+  imagen,
+  secondimage,
+  cantidad_xs,
+  cantidad_s,
+  cantidad_m,
+  cantidad_l,
+  id_user // Añadir ID del usuario que realiza la actualización
+) {
+  try {
+    // Obtener el producto actual para comparar las cantidades
+    const [existingProduct] = await conn.query(
+      "SELECT cantidad_xs, cantidad_s, cantidad_m, cantidad_l FROM DivinoSeas_Productos WHERE id_producto = ?",
+      [id_producto]
+    );
+
+    const adjustments = [];
+    if (existingProduct[0].cantidad_xs !== cantidad_xs) {
+      adjustments.push({ accion: cantidad_xs > existingProduct[0].cantidad_xs ? "suma" : "resta", cantidad: Math.abs(cantidad_xs - existingProduct[0].cantidad_xs), size: "XS" });
     }
+    if (existingProduct[0].cantidad_s !== cantidad_s) {
+      adjustments.push({ accion: cantidad_s > existingProduct[0].cantidad_s ? "suma" : "resta", cantidad: Math.abs(cantidad_s - existingProduct[0].cantidad_s), size: "S" });
+    }
+    if (existingProduct[0].cantidad_m !== cantidad_m) {
+      adjustments.push({ accion: cantidad_m > existingProduct[0].cantidad_m ? "suma" : "resta", cantidad: Math.abs(cantidad_m - existingProduct[0].cantidad_m), size: "M" });
+    }
+    if (existingProduct[0].cantidad_l !== cantidad_l) {
+      adjustments.push({ accion: cantidad_l > existingProduct[0].cantidad_l ? "suma" : "resta", cantidad: Math.abs(cantidad_l - existingProduct[0].cantidad_l), size: "L" });
+    }
+
+    // Actualizar el producto
+    let query = `UPDATE DivinoSeas_Productos SET nombre = ?, descripcion = ?, precio = ?, id_categoria = ?, id_color = ?, id_coleccion = ?, id_promocion = ?, cantidad_xs = ?, cantidad_s = ?, cantidad_m = ?, cantidad_l = ?`;
+    const params = [nombre, descripcion, precio, id_categoria, id_color, id_coleccion, id_promocion, cantidad_xs, cantidad_s, cantidad_m, cantidad_l];
+    
+    if (imagen !== undefined && imagen !== null) {
+      query += `, imagen = ?`;
+      params.push(imagen);
+    }
+
+    if (secondimage !== undefined && secondimage !== null) {
+      query += `, secondimage = ?`;
+      params.push(secondimage);
+    }
+
+    query += ` WHERE id_producto = ?`;
+    params.push(id_producto);
+
+    await conn.query(query, params);
+
+    // Insertar los ajustes en la tabla de auditoría
+    for (const adjustment of adjustments) {
+      await conn.query(
+        `INSERT INTO InventoryAudit (id_producto, id_user, accion, cantidad) VALUES (?, ?, ?, ?)`,
+        [id_producto, id_user, adjustment.accion, adjustment.cantidad]
+      );
+    }
+
+    return { success: true, message: "Producto actualizado exitosamente" };
+  } catch (error) {
+    console.error("Error al actualizar el producto:", error);
+    return { success: false, error };
   }
+}
+
   
 
 export async function deleteProducto(id_producto) {

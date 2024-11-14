@@ -19,46 +19,12 @@ CREATE TABLE IF NOT EXISTS Colores (
     nombre VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS DivinoSeas_Productos (
-    id_producto INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(255) NOT NULL,
-    descripcion TEXT NOT NULL,
-    precio DECIMAL(10,2) NOT NULL,
-    imagen LONGBLOB, 
-    secondimage LONGBLOB,
-    id_categoria INT,
-    cantidad_xs INT DEFAULT 0,
-    cantidad_s INT DEFAULT 0,
-    cantidad_m INT DEFAULT 0,
-    cantidad_l INT DEFAULT 0,
-    FOREIGN KEY (id_categoria) REFERENCES Categorias (id_categoria) ON DELETE SET NULL
-);
-
--- Tabla Producto-Colores para asociar DivinoSeas_Productos con varios colores
-CREATE TABLE IF NOT EXISTS ProductoColores (
-    id_producto INT,
-    id_color INT,
-    PRIMARY KEY (id_producto, id_color),
-    FOREIGN KEY (id_producto) REFERENCES DivinoSeas_Productos (id_producto) ON DELETE CASCADE,
-    FOREIGN KEY (id_color) REFERENCES Colores (id_color) ON DELETE CASCADE
-);
-
 -- Tabla de Colecciones
 CREATE TABLE IF NOT EXISTS Colecciones (
     id_coleccion INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
     descripcion TEXT
 );
-
--- Tabla Producto-Colecciones para asociar DivinoSeas_Productos con colecciones
-CREATE TABLE IF NOT EXISTS ProductoColecciones (
-    id_producto INT,
-    id_coleccion INT,
-    PRIMARY KEY (id_producto, id_coleccion),
-    FOREIGN KEY (id_producto) REFERENCES DivinoSeas_Productos (id_producto) ON DELETE CASCADE,
-    FOREIGN KEY (id_coleccion) REFERENCES Colecciones (id_coleccion) ON DELETE CASCADE
-);
-
 
 -- Tabla de Promociones
 CREATE TABLE IF NOT EXISTS Promociones (
@@ -69,15 +35,29 @@ CREATE TABLE IF NOT EXISTS Promociones (
     fechaFin DATE NOT NULL
 );
 
--- Relación Producto-Promoción (Para aplicar descuentos a DivinoSeas_Productos específicos)
-CREATE TABLE IF NOT EXISTS ProductoPromocion (
-    id_producto INT,
-    id_promocion INT,
-    PRIMARY KEY (id_producto, id_promocion),
-    FOREIGN KEY (id_producto) REFERENCES DivinoSeas_Productos (id_producto) ON DELETE CASCADE,
-    FOREIGN KEY (id_promocion) REFERENCES Promociones (id_promocion) ON DELETE CASCADE
+-- Tabla DivinoSeas_Productos (incluye referencias a colores, colecciones y promociones por ID)
+CREATE TABLE IF NOT EXISTS DivinoSeas_Productos (
+    id_producto INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    descripcion TEXT NOT NULL,
+    precio DECIMAL(10,2) NOT NULL,
+    imagen LONGBLOB, 
+    secondimage LONGBLOB,
+    id_categoria INT,
+    id_color INT,  -- Almacena el ID del color
+    id_coleccion INT,  -- Almacena el ID de la colección
+    id_promocion INT,  -- Almacena el ID de la promoción
+    cantidad_xs INT DEFAULT 0,
+    cantidad_s INT DEFAULT 0,
+    cantidad_m INT DEFAULT 0,
+    cantidad_l INT DEFAULT 0,
+    FOREIGN KEY (id_categoria) REFERENCES Categorias (id_categoria) ON DELETE SET NULL,
+    FOREIGN KEY (id_color) REFERENCES Colores (id_color) ON DELETE SET NULL,
+    FOREIGN KEY (id_coleccion) REFERENCES Colecciones (id_coleccion) ON DELETE SET NULL,
+    FOREIGN KEY (id_promocion) REFERENCES Promociones (id_promocion) ON DELETE SET NULL
 );
 
+-- Tabla de Clientes
 CREATE TABLE IF NOT EXISTS Clientes (
     id_cliente INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
@@ -86,6 +66,7 @@ CREATE TABLE IF NOT EXISTS Clientes (
     contra VARCHAR(255) NOT NULL
 );
 
+-- Tabla de Usuarios
 CREATE TABLE IF NOT EXISTS Users (
     id_user INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL UNIQUE,
@@ -95,7 +76,6 @@ CREATE TABLE IF NOT EXISTS Users (
     role VARCHAR(50) NOT NULL,
     imagen LONGBLOB
 );
-
 
 -- Tabla de Ordenes
 CREATE TABLE IF NOT EXISTS Ordenes (
@@ -134,4 +114,3 @@ CREATE TABLE IF NOT EXISTS Pagos (
     id_orden INT,
     FOREIGN KEY (id_orden) REFERENCES Ordenes (id_orden) ON DELETE SET NULL
 );
-

@@ -24,6 +24,9 @@ function validacionProducto(req, res, next) {
     cantidad_s,
     cantidad_m,
     cantidad_l,
+    id_color,
+    id_coleccion,
+    id_promocion,
   } = req.body;
   if (
     !nombre ||
@@ -74,6 +77,9 @@ router.post(
       descripcion,
       precio,
       id_categoria,
+      id_color,
+      id_coleccion,
+      id_promocion,
       cantidad_xs,
       cantidad_s,
       cantidad_m,
@@ -90,6 +96,9 @@ router.post(
         descripcion,
         precio,
         id_categoria,
+        id_color,
+        id_coleccion,
+        id_promocion,
         imagen,
         secondimage,
         cantidad_xs,
@@ -101,23 +110,19 @@ router.post(
       if (success) {
         return res.status(201).json({ success, message, id_producto });
       } else {
-        return res
-          .status(500)
-          .json({
-            success: false,
-            message: "Error al crear el producto",
-            error,
-          });
+        return res.status(500).json({
+          success: false,
+          message: "Error al crear el producto",
+          error,
+        });
       }
     } catch (error) {
       console.error("Error al procesar la creación del producto:", error);
-      return res
-        .status(500)
-        .json({
-          success: false,
-          message: "Error interno del servidor",
-          error: error.message,
-        });
+      return res.status(500).json({
+        success: false,
+        message: "Error interno del servidor",
+        error: error.message,
+      });
     }
   }
 );
@@ -137,15 +142,18 @@ router.put(
       descripcion,
       precio,
       id_categoria,
+      id_color,
+      id_coleccion,
+      id_promocion,
       cantidad_xs,
       cantidad_s,
       cantidad_m,
       cantidad_l,
     } = req.body;
-    const imagen = req.files["imagen"] ? req.files["imagen"][0].buffer : null; // Obtener la imagen si está disponible
+    const imagen = req.files["imagen"] ? req.files["imagen"][0].buffer : null;
     const secondimage = req.files["secondimage"]
       ? req.files["secondimage"][0].buffer
-      : null; // Obtener la secondimage si está disponible
+      : null;
 
     try {
       const result = await updateProducto(
@@ -154,6 +162,9 @@ router.put(
         descripcion,
         precio,
         id_categoria,
+        id_color,
+        id_coleccion,
+        id_promocion,
         imagen,
         secondimage,
         cantidad_xs,
@@ -161,7 +172,7 @@ router.put(
         cantidad_m,
         cantidad_l
       );
-      if (result.affectedRows && result.affectedRows > 0) {
+      if (result.success) {
         return res.status(200).json({
           success: true,
           message: "Producto actualizado con éxito",

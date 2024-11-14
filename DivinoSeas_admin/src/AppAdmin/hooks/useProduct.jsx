@@ -22,15 +22,15 @@ const useProduct = () => {
     formData.append('cantidad_m', productData.cantidad_m);
     formData.append('cantidad_l', productData.cantidad_l);
 
-    // Agregar color, colección y promoción como un solo valor
-    if (productData.colorId) {
-      formData.append('id_color', productData.colorId);
+    // Agregar ID de color, colección y promoción si están presentes
+    if (productData.id_color) {
+      formData.append('id_color', productData.id_color);
     }
-    if (productData.collectionId) {
-      formData.append('id_coleccion', productData.collectionId);
+    if (productData.id_coleccion) {
+      formData.append('id_coleccion', productData.id_coleccion);
     }
-    if (productData.promotionId) {
-      formData.append('id_promocion', productData.promotionId);
+    if (productData.id_promocion) {
+      formData.append('id_promocion', productData.id_promocion);
     }
 
     try {
@@ -98,15 +98,15 @@ const useProduct = () => {
     formData.append('cantidad_m', productData.cantidad_m);
     formData.append('cantidad_l', productData.cantidad_l);
 
-    // Agregar color, colección y promoción como un solo valor
-    if (productData.colorId) {
-      formData.append('id_color', productData.colorId);
+    // Agregar ID de color, colección y promoción si están presentes
+    if (productData.id_color) {
+      formData.append('id_color', productData.id_color);
     }
-    if (productData.collectionId) {
-      formData.append('id_coleccion', productData.collectionId);
+    if (productData.id_coleccion) {
+      formData.append('id_coleccion', productData.id_coleccion);
     }
-    if (productData.promotionId) {
-      formData.append('id_promocion', productData.promotionId);
+    if (productData.id_promocion) {
+      formData.append('id_promocion', productData.id_promocion);
     }
 
     try {

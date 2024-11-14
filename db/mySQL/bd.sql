@@ -114,3 +114,15 @@ CREATE TABLE IF NOT EXISTS Pagos (
     id_orden INT,
     FOREIGN KEY (id_orden) REFERENCES Ordenes (id_orden) ON DELETE SET NULL
 );
+
+-- Tabla de Auditoría de Inventario
+CREATE TABLE IF NOT EXISTS InventoryAudit (
+    id_audit INT AUTO_INCREMENT PRIMARY KEY,
+    id_producto INT,
+    id_user INT,
+    accion VARCHAR(50), -- "suma" o "resta"
+    cantidad INT NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_producto) REFERENCES DivinoSeas_Productos(id_producto) ON DELETE CASCADE,
+    FOREIGN KEY (id_user) REFERENCES Users(id_user) ON DELETE SET NULL
+);

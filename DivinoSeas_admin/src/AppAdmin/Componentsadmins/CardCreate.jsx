@@ -122,7 +122,7 @@ const Card = ({ text, isActive, onClick, onClose }) => {
       setDeleteFormVisible(false);
       setDeleteId('');
     } else {
-      alert('Por favor, proporciona un ID válido para eliminar.');
+      alert('Por favor, proporciona un nombre válido para eliminar.');
     }
   };
 
@@ -189,7 +189,7 @@ const Card = ({ text, isActive, onClick, onClose }) => {
         </div>
       ) : (
         <div className="delete-form">
-          <label>Id para eliminar:</label>
+          <label>Nombre para eliminar:</label>
           <input type="text" name="deleteId" onChange={(e) => setDeleteId(e.target.value)} />
           <div className="form-buttons">
             <button className="delete-confirm-button" onClick={handleDeleteConfirmClick}>Confirmar</button>

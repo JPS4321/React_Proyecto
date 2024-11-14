@@ -45,12 +45,13 @@ const Card = ({ text, isActive, onClick, onClose }) => {
   const handleAddClick = () => {
     onClick();
     setFormVisible(true);
-    setFormData({}); // Resetea el formData al abrir el formulario
+    setFormData({}); 
   };
 
   const handleDeleteClick = () => {
     onClick();
     setDeleteFormVisible(true);
+    setFormData({}); 
   };
 
   const handleInputChange = (e) => {
@@ -189,7 +190,7 @@ const Card = ({ text, isActive, onClick, onClose }) => {
         </div>
       ) : (
         <div className="delete-form">
-          <label>Nombre para eliminar:</label>
+          <label>Id para eliminar:</label>
           <input type="text" name="deleteId" onChange={(e) => setDeleteId(e.target.value)} />
           <div className="form-buttons">
             <button className="delete-confirm-button" onClick={handleDeleteConfirmClick}>Confirmar</button>

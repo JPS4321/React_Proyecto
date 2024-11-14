@@ -36,7 +36,7 @@ const useCategory = () => {
   const deleteCategory = async (categoryId) => {
     try {
       await axios.delete(`http://localhost:3000/categorias/${categoryId}`);
-      setCategories(categories.filter(category => category.name !== categoryId));
+      setCategories(categories.filter(category => category.id !== categoryId));
     } catch (err) {
       setError('Error al eliminar categoría');
     }

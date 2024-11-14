@@ -64,6 +64,7 @@ const EditProductInventory = ({ product, onClose = () => {} }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     const productData = {
       nombre: name,
       descripcion: description,
@@ -72,14 +73,20 @@ const EditProductInventory = ({ product, onClose = () => {} }) => {
       id_coleccion: collectionId,
       id_color: colorId,
       id_promocion: promotionId,
-      imagen: image1,
-      secondimage: image2,
       cantidad_xs: xs,
       cantidad_s: s,
       cantidad_m: m,
       cantidad_l: l,
     };
-
+  
+    // Agregar solo las imágenes si han sido seleccionadas
+    if (image1) {
+      productData.imagen = image1;
+    }
+    if (image2) {
+      productData.secondimage = image2;
+    }
+  
     try {
       await updateProduct(product.id_producto, productData);
       onClose();
@@ -88,6 +95,7 @@ const EditProductInventory = ({ product, onClose = () => {} }) => {
       console.error("Error al actualizar el producto:", err);
     }
   };
+  
 
   const handleCancel = () => {
     onClose();

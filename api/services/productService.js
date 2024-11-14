@@ -93,50 +93,52 @@ export async function createProducto(
 }
 
 export async function updateProducto(
-  id_producto,
-  nombre,
-  descripcion,
-  precio,
-  id_categoria,
-  id_color,
-  id_coleccion,
-  id_promocion,
-  imagen,
-  secondimage,
-  cantidad_xs,
-  cantidad_s,
-  cantidad_m,
-  cantidad_l
-) {
-  try {
-    await conn.query(
-      `UPDATE DivinoSeas_Productos 
-      SET nombre = ?, descripcion = ?, precio = ?, id_categoria = ?, id_color = ?, id_coleccion = ?, id_promocion = ?, 
-      imagen = ?, secondimage = ?, cantidad_xs = ?, cantidad_s = ?, cantidad_m = ?, cantidad_l = ? 
-      WHERE id_producto = ?`,
-      [
-        nombre,
-        descripcion,
-        precio,
-        id_categoria,
-        id_color,
-        id_coleccion,
-        id_promocion,
-        imagen,
-        secondimage,
-        cantidad_xs,
-        cantidad_s,
-        cantidad_m,
-        cantidad_l,
-        id_producto,
-      ]
-    );
-    return { success: true, message: "Producto actualizado exitosamente" };
-  } catch (error) {
-    console.error("Error al actualizar el producto:", error);
-    return { success: false, error };
+    id_producto,
+    nombre,
+    descripcion,
+    precio,
+    id_categoria,
+    id_color,
+    id_coleccion,
+    id_promocion,
+    imagen,
+    secondimage,
+    cantidad_xs,
+    cantidad_s,
+    cantidad_m,
+    cantidad_l
+  ) {
+    try {
+      // Inicia la consulta y los parámetros
+      let query = `UPDATE DivinoSeas_Productos SET nombre = ?, descripcion = ?, precio = ?, id_categoria = ?, id_color = ?, id_coleccion = ?, id_promocion = ?, cantidad_xs = ?, cantidad_s = ?, cantidad_m = ?, cantidad_l = ?`;
+      const params = [nombre, descripcion, precio, id_categoria, id_color, id_coleccion, id_promocion, cantidad_xs, cantidad_s, cantidad_m, cantidad_l];
+  
+      // Agrega la imagen solo si está definida
+      if (imagen !== undefined && imagen !== null) {
+        query += `, imagen = ?`;
+        params.push(imagen);
+      }
+  
+      // Agrega la secondimage solo si está definida
+      if (secondimage !== undefined && secondimage !== null) {
+        query += `, secondimage = ?`;
+        params.push(secondimage);
+      }
+  
+      // Agrega la condición de WHERE y el id_producto al final
+      query += ` WHERE id_producto = ?`;
+      params.push(id_producto);
+  
+      // Ejecuta la consulta con los parámetros construidos dinámicamente
+      const [result] = await conn.query(query, params);
+      
+      return { success: true, message: "Producto actualizado exitosamente" };
+    } catch (error) {
+      console.error("Error al actualizar el producto:", error);
+      return { success: false, error };
+    }
   }
-}
+  
 
 export async function deleteProducto(id_producto) {
   try {

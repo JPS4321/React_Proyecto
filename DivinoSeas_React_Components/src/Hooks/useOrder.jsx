@@ -1,35 +1,35 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-const useOrder = () => {
+const useOrder = (initialToken = null) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(initialToken);
 
   // Función para obtener un nuevo token desde la ruta `/auth/generate-token`
   const fetchToken = async () => {
-    try {
-      const response = await axios.post('http://localhost:3000/auth/generate-token');
-      const newToken = response.data.token;
-      setToken(newToken);
-      return newToken;
-    } catch (err) {
-      console.error('Error al obtener el token:', err.response?.data || err.message);
-      setError('Error al obtener el token');
-      return null;
+    if (!token) {
+      try {
+        const response = await axios.post('http://localhost:3000/auth/generate-token');
+        const newToken = response.data.token;
+        setToken(newToken);
+        return newToken;
+      } catch (err) {
+        console.error('Error al obtener el token:', err.response?.data || err.message);
+        setError('Error al obtener el token');
+        return null;
+      }
     }
+    return token;
   };
 
   // Función auxiliar para asegurar que siempre haya un token válido
   const ensureToken = async () => {
-    if (!token) {
-      const newToken = await fetchToken();
-      if (!newToken) {
-        throw new Error('No se pudo obtener un token válido');
-      }
-      return newToken;
+    const currentToken = await fetchToken();
+    if (!currentToken) {
+      throw new Error('No se pudo obtener un token válido');
     }
-    return token;
+    return currentToken;
   };
 
   // Agregar un nuevo cliente

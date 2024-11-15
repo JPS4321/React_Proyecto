@@ -24,7 +24,7 @@ const UserBlock = ({ element, requiredPermission, role }) => {
   })();
 
   // Si no tiene permiso, redirige a una página de acceso denegado o inicio
-  return hasPermission ? element : <Navigate to="/access-denied" />;
+  return hasPermission ? element : <Navigate to="/Home" />;
 };
 
 export default UserBlock;

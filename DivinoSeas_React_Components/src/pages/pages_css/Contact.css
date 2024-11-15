@@ -1,3 +1,4 @@
+/* === Contenedor General === */
 .page-container {
   width: 100%;
   padding: 20px;
@@ -7,24 +8,25 @@
   margin-bottom: 20px;
 }
 
-
-/* Ajustes para el formulario y el checkbox en la página */
+/* === Sección de Contacto === */
 .contact-section {
   width: 70%;
   margin: 0 auto;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
-.contact-section h2, .contact-section p {
+.contact-section h2, 
+.contact-section p {
   margin-bottom: 20px;
 }
 
+/* === Contenedor del input === */
 .input-flex-container {
   display: flex;
   justify-content: space-between;
-  gap: 10%;
+  gap: 10%; /* Consistencia en espacio entre elementos */
   margin-bottom: 20px;
 }
 
@@ -34,7 +36,7 @@
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s ease;
 }
 
 textarea {
@@ -45,15 +47,14 @@ textarea {
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s ease;
 }
 
-/* Estilos para inputs con errores */
+/* === Manejo de errores === */
 .input-error {
   border-color: red;
 }
 
-/* Estilos para mensajes de error */
 .error-message {
   color: red;
   font-size: 0.9em;
@@ -61,29 +62,25 @@ textarea {
   text-align: left;
 }
 
-/* Ajustes en el checkbox */
+/* === Sección del checkbox === */
 .checkbox-container {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  position: relative;
-  z-index: 1;
 }
 
 .checkbox-container input[type="checkbox"] {
   margin-right: 10px;
-  z-index: 1;
-  width: 20px; /* Asegura que el checkbox tenga suficiente área para clic */
+  width: 20px;
   height: 20px;
-  cursor: pointer; /* Asegura que el cursor sea el correcto cuando pasa sobre el checkbox */
+  cursor: pointer;
 }
 
 .checkbox-container label {
-  z-index: 1;
-  cursor: default; /* Evita que el texto sea clickeable */
+  cursor: default;
 }
 
-/* Botón de envío */
+/* === Bottón de enviar === */
 .submit-button {
   width: 100%;
   padding: 10px;
@@ -91,7 +88,7 @@ textarea {
   color: white;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 .submit-button:hover {

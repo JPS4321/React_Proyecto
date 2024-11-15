@@ -1,4 +1,4 @@
-/* Container General */
+/* === Contenedor General === */
 .about-container {
   display: flex;
   flex-direction: column;
@@ -9,7 +9,7 @@
   width: 100%;
 }
 
-/* Sección de Texto */
+/* === Sección de texto === */
 .text-section {
   padding: 20px;
   background-color: white;
@@ -22,7 +22,7 @@
   margin-bottom: 20px;
 }
 
-.first-text, .second-text {
+.text-content {
   max-width: 800px;
   text-align: justify;
   color: gray;
@@ -31,7 +31,7 @@
   padding: 20px;
 }
 
-/* Sección de Información */
+/* === Sección de Información === */
 .information-section {
   display: flex;
   align-items: center;
@@ -41,12 +41,12 @@
 }
 
 .world-map {
-  max-width: 100%;
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   margin-bottom: 20px;
 }
 
-/* Seccción de Servicios */
+/* === Sección de Servicios === */
 .services-section {
   max-width: 600px;
   display: flex;
@@ -70,7 +70,7 @@
   color: gray;
 }
 
-/* Diseño 'responsive' */
+/* === Diseño "Responsive" === */
 @media (max-width: 768px) {
   .text-section {
     padding: 10px;

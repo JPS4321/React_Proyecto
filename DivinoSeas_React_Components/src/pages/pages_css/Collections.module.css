@@ -1,20 +1,22 @@
+/* === Contenedor General === */
 .container {
-  min-height: calc(100vh - 100px); 
+  min-height: calc(100vh - 100px);
   display: flex;
   flex-direction: column;
 }
 
 .footer {
-  margin-top: auto; 
+  margin-top: auto;
 }
 
+/* === Sección Layout === */
 .layout {
   display: flex;
   margin-top: 20px;
-  height: auto;  
-  overflow-y: auto;  
+  overflow-y: auto; /* La altura 'auto' ya es implícita */
 }
 
+/* === Sección de Filtros === */
 .filters {
   flex: 1;
   padding: 0 20px;
@@ -25,18 +27,19 @@
   overflow-y: auto;
 }
 
+/* === Sección de cuadricula "grid" === */
 .productsGrid {
-  flex: 3;  
+  flex: 3;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
   padding: 20px;
-  justify-content: center;  
-  align-items: stretch;    
-  overflow-y: auto;
+  justify-content: center;
+  align-items: stretch;
+  overflow-y: auto; /* Redundante...ajá */
 }
 
-/* Botón para cargar más productos */
+/* === Botón Cargar Más === */
 .loadMore {
   text-align: center;
   margin-top: 20px;

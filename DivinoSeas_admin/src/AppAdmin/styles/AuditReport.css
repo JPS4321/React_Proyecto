@@ -1,39 +1,53 @@
-.audit-report-container {
-    margin: 20px;
+.page-container {
+    margin: 0 auto;
     padding: 20px;
-    background-color: #2c2c2c; /* Gris oscuro */
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
     font-family: 'Arial', sans-serif;
-    color: #e0e0e0; /* Gris claro para texto */
+    color: white;
 }
 
-.close-button {
-    display: block;
-    margin: 0 auto 20px auto;
-    padding: 10px 20px;
-    background-color: #007bff; /* Celeste */
-    color: #ffffff; /* Blanco */
-    border: none;
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #333; /* Fondo gris oscuro */
+    padding: 15px 20px;
     border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: bold;
 }
 
-.close-button:hover {
-    background-color: #0056b3; /* Celeste más oscuro */
+.header h2 {
+    font-size: 1.8rem;
+    color: #1987fc; /* Celeste */
+    text-align: center;
+    margin: 0 auto;
+    flex-grow: 1;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: #1987fc; /* Celeste */
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.back-button:hover {
+    color: #156ec9; /* Celeste más oscuro */
+}
+
+.audit-report-container {
+    background-color: #333; /* Fondo negro */
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
 }
 
 .audit-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    background-color: #3a3a3a; /* Fondo gris oscuro */
+    background-color: #444; /* Fondo gris oscuro */
     border-radius: 8px;
     overflow: hidden;
 }
@@ -42,42 +56,69 @@
 .audit-table td {
     text-align: left;
     padding: 12px;
-    border-bottom: 1px solid #555; /* Gris más claro */
+    border-bottom: 1px solid #555; /* Gris */
     font-size: 0.9rem;
 }
 
 .audit-table th {
-    background-color: #007bff; /* Celeste */
+    background-color: #1987fc; /* Celeste */
     color: white; /* Blanco */
     text-transform: uppercase;
     font-weight: bold;
 }
 
 .audit-table tr:nth-child(even) {
-    background-color: #2c2c2c; /* Gris oscuro */
+    background-color: #3a3a3a; /* Gris oscuro */
 }
 
 .audit-table tr:hover {
-    background-color: #444; /* Gris medio */
+    background-color: #555; /* Gris medio */
 }
 
 .audit-table td {
-    color: #e0e0e0; /* Gris claro */
+    color: white;
 }
 
 .loading-message,
 .no-data-message {
     text-align: center;
-    color: #e0e0e0; /* Gris claro */
+    color: white;
     font-size: 1rem;
     margin-top: 20px;
 }
 
 .error-message {
     text-align: center;
-    color: #ff4c4c; /* Rojo para errores */
+    color: #ff4d4d; /* Rojo */
     font-size: 1rem;
     margin-top: 20px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination-button {
+    background-color: #1987fc; /* Celeste */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.pagination-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination-button:hover:not(:disabled) {
+    background-color: #156ec9; /* Celeste más oscuro */
 }
 
 @media (max-width: 768px) {
@@ -85,14 +126,12 @@
         padding: 15px;
     }
 
-    .close-button {
-        font-size: 0.9rem;
-        padding: 8px 15px;
+    .header h2 {
+        font-size: 1.5rem;
     }
 
-    .audit-table th,
-    .audit-table td {
-        font-size: 0.8rem;
-        padding: 8px;
+    .pagination-button {
+        font-size: 0.9rem;
+        padding: 8px 12px;
     }
 }

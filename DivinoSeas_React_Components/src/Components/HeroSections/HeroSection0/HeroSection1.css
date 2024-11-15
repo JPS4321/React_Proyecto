@@ -9,22 +9,26 @@
 .HeroSectionItem {
     position: relative;
     overflow: hidden;
+    border-radius: 8px; /* Añadido para bordes redondeados */
 }
 
 .HeroImage {
     width: 100%;
-    height: auto;
-    display: block;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen cubra toda el área */
+    border-radius: 8px; /* Bordes redondeados también en la imagen */
 }
 
 .BlackBox {
     background-color: #000000;
     color: #FFFFFF;
+    opacity: 0.8; /* Ligera transparencia para dar un efecto de superposición */
 }
 
 .WhiteBox {
     background-color: #FFFFFF;
     color: #000000;
+    opacity: 0.8;
 }
 
 .BoxContent {
@@ -34,12 +38,24 @@
     transform: translate(-50%, -50%);
     padding: 20px;
     text-align: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+    border-radius: 8px; /* Bordes redondeados para el texto */
+    max-width: 80%; /* Limita el ancho del contenido */
 }
 
 .WhiteText {
     color: #FFFFFF;
+    font-weight: bold; /* Resalta el texto en blanco */
 }
 
 .BlackText {
     color: #000000;
+    font-weight: bold; /* Resalta el texto en negro */
+}
+
+/* Ajustes responsive */
+@media (max-width: 768px) {
+    .HeroSectionContainer {
+        grid-template-columns: 1fr; /* Pone las columnas en una sola fila en pantallas pequeñas */
+    }
 }

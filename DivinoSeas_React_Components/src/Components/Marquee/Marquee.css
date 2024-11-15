@@ -1,23 +1,34 @@
 .marquee-container {
-    width: 100%;
-    background-color: black;
-    overflow: hidden;
-    position: relative;
-    top: 0;
-    left: 0;
+  width: 100%;
+  background-color: black;
+  overflow: hidden;
+  position: relative;
+  top: 0;
+  left: 0;
+  display: flex; /* Flexbox para asegurar que el contenido esté alineado de manera efectiva */
+}
+
+.marquee-text {
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 100%; /* Inicia el texto fuera de la pantalla */
+  animation: marquee 20s linear infinite;
+  color: white;
+  margin: 0;
+}
+
+@keyframes marquee {
+  0% {
+      transform: translateX(100%); /* Desplaza el texto desde el lado derecho */
   }
-  
+  100% {
+      transform: translateX(-100%); /* Desplaza el texto hasta el lado izquierdo */
+  }
+}
+
+/* Opcional: si quieres hacer que el texto sea más dinámico en pantallas pequeñas */
+@media (max-width: 768px) {
   .marquee-text {
-    display: inline-block;
-    white-space: nowrap;
-    padding-left: 100%;
-    animation: marquee 20s linear infinite;
-    color: white;
-    margin: 1px;
+      font-size: 14px; /* Ajuste de tamaño de fuente en pantallas pequeñas */
   }
-  
-  @keyframes marquee {
-    0% { transform: translate(100%, 0); }
-    100% { transform: translate(-100%, 0); }
-  }
-  
+}

@@ -95,6 +95,9 @@ ul li:hover::after {
         flex-direction: column;
         display: none;
         width: 100%;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s, opacity 0.3s ease-in-out; /* Añadido para transición suave */
     }
 
     .navbar2 ul li {
@@ -106,12 +109,19 @@ ul li:hover::after {
         margin-top: 10px;
         justify-content: center;
     }
-}
 
-/* Botón de menú para moviles */
-@media (max-width: 768px) {
+    /* Botón de menú para móviles */
     .menu-toggle {
         display: inline-block;
         cursor: pointer;
+        font-size: 24px;
+        color: #847c74;
+    }
+
+    .menu-toggle.active + ul {
+        display: flex;
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 0.3s ease-in-out; /* Activar el menú con transición */
     }
 }

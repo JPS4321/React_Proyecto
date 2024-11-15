@@ -7,15 +7,16 @@
   border-radius: 8px;
   padding: 15px;
   margin-bottom: 12px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Suavizar la sombra */
   cursor: pointer; 
   max-width: 190px;
-  transition: transform 0.3s ease; /* Transición para agrandar la tarjeta */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición para agrandar y sombra */
   position: relative; /* Necesario para la superposición de las imágenes */
 }
 
 .card:hover {
-  transform: scale(1.05); /* Efecto de agrandamiento al hacer hover */
+  transform: scale(1.05); /* Efecto de agrandamiento */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumentar sombra al hacer hover */
 }
 
 .card-image {
@@ -24,30 +25,30 @@
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 2px;
-  transition: opacity 0.3s ease; /* Transición de opacidad para el hover */
+  transition: opacity 0.3s ease; /* Transición de opacidad */
   position: relative;
-  z-index: 1; /* La imagen principal debe estar debajo de la imagen hover */
+  z-index: 1;
 }
 
 .hover-image {
-  position: absolute; /* Coloca la imagen hover sobre la imagen principal */
-  top: 0; /* Superposición completa con la imagen principal */
+  position: absolute; 
+  top: 0; 
   left: 0;
   width: 100%;
   max-height: 150px; 
   object-fit: cover;
   border-radius: 8px;
-  opacity: 0; /* Por defecto oculta la imagen hover */
-  transition: opacity 0.3s ease; /* Transición de opacidad para el hover */
-  z-index: 2; /* Asegúrate de que esté sobre la imagen principal */
+  opacity: 0; /* Imagen hover oculta por defecto */
+  transition: opacity 0.3s ease; 
+  z-index: 2; /* Imagen hover por encima de la imagen principal */
 }
 
 .card:hover .card-image {
-  opacity: 0; /* Oculta la imagen principal al hacer hover */
+  opacity: 0; /* Ocultar imagen principal */
 }
 
 .card:hover .hover-image {
-  opacity: 1; /* Muestra la imagen hover al hacer hover */
+  opacity: 1; /* Mostrar imagen hover */
 }
 
 .card-content {
@@ -58,15 +59,27 @@
   margin: 10px 0;
   font-size: 1.2rem;
   font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Cortar texto si es demasiado largo */
+  white-space: nowrap; /* Evitar que el texto se divida en varias líneas */
 }
 
 .original-price {
   text-decoration: line-through;
-  color: #888; 
+  color: #888;
   margin-right: 10px;
+  font-size: 0.9rem; /* Ajustar tamaño de precio original */
 }
 
 .discounted-price {
   color: #333; 
   font-weight: bold;
+  font-size: 1.1rem; /* Aumentar ligeramente el tamaño del precio con descuento */
+}
+
+/* Responsividad: Asegurarse de que la tarjeta se ajuste en pantallas pequeñas */
+@media (max-width: 600px) {
+  .card {
+    max-width: 100%; /* Hacer que la tarjeta ocupe todo el ancho disponible */
+  }
 }

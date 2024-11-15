@@ -1,24 +1,50 @@
 .order-summary {
-    margin-top: 20px;
-  }
-  
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f9f9f9; /* Fondo suave para resaltar la sección */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.price-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Añadido espacio entre los detalles */
+  font-size: 1.1em; /* Tamaño de fuente más grande para claridad */
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: red;
+  font-size: 1em;
+  margin-right: 10px;
+  opacity: 0.7; /* Menos opacidad para hacerlo menos destacado */
+}
+
+.discounted-price {
+  font-weight: bold;
+  color: green;
+  font-size: 1.2em; /* Resaltar el precio con descuento */
+}
+
+.final-price {
+  font-weight: bold;
+  font-size: 1.4em;
+  color: #333; /* Color más oscuro para el precio final */
+}
+
+.final-price, .discounted-price {
+  margin-top: 10px; /* Espacio extra entre el precio con descuento y el final */
+}
+
+/* Asegurarse de que la sección se vea bien en pantallas pequeñas */
+@media (max-width: 768px) {
   .price-details {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .original-price {
-    text-decoration: line-through;
-    color: red;
-    margin-right: 10px;
-  }
-  
-  .discounted-price {
-    font-weight: bold;
-    color: green;
+      font-size: 1em; /* Reducir el tamaño en pantallas más pequeñas */
+      gap: 8px; /* Ajustar el espacio entre elementos */
   }
   
   .final-price {
-    font-weight: bold;
+      font-size: 1.2em; /* Ajustar el tamaño del precio final */
   }
-  
+}

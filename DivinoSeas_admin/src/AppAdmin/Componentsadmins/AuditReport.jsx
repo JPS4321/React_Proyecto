@@ -7,13 +7,12 @@ const AuditReport = ({ onClose }) => {
 
   return (
     <div className="audit-report-container">
-      <h2>Reporte de Trazabilidad de Inventario</h2>
       <button onClick={onClose} className="close-button">Cerrar</button>
 
       {loading ? (
-        <p>Cargando datos de auditoría...</p>
+        <p className="loading-message">Cargando datos de auditoría...</p>
       ) : error ? (
-        <p style={{ color: "red" }}>{error}</p>
+        <p className="error-message">{error}</p>
       ) : (
         Array.isArray(auditData) && auditData.length > 0 ? (
           <table className="audit-table">
@@ -23,7 +22,7 @@ const AuditReport = ({ onClose }) => {
                 <th>Acción</th>
                 <th>Producto</th>
                 <th>Cantidad</th>
-                <th>Talla</th> {/* Nueva columna para mostrar la talla */}
+                <th>Talla</th>
                 <th>Fecha</th>
               </tr>
             </thead>
@@ -34,14 +33,14 @@ const AuditReport = ({ onClose }) => {
                   <td>{entry.accion === 'suma' ? 'Ajuste de inventario (suma)' : 'Ajuste de inventario (resta)'}</td>
                   <td>{entry.producto}</td>
                   <td>{entry.cantidad}</td>
-                  <td>{entry.size}</td> {/* Mostrar talla */}
+                  <td>{entry.size}</td>
                   <td>{new Date(entry.fecha).toLocaleDateString()}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         ) : (
-          <p>No se encontraron datos de auditoría.</p>
+          <p className="no-data-message">No se encontraron datos de auditoría.</p>
         )
       )}
     </div>

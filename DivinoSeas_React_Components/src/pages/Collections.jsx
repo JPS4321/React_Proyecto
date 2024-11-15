@@ -6,26 +6,33 @@ import FilterToggle from '../Components/FilterTogle/FilterToggle';
 import styles from './pages_css/Collections.module.css'; 
 import RangeSlider from '../Components/RangeSlider/RangeSlider';
 import Footer from '../Components/Footer/Footer';
-import useProduct from '../Hooks/useProduct'; // Importa el hook que creaste
+import useProduct from '../Hooks/useProduct'; // Importa el hook actualizado
+import axios from 'axios';
 
 function Collections() {
     const [minPrice, setMinPrice] = useState(0); 
     const [maxPrice, setMaxPrice] = useState(1000); 
     const [inStockFilter, setInStockFilter] = useState(false);
     const [outOfStockFilter, setOutOfStockFilter] = useState(false);
-
-    const { getAllProducts, loading, error } = useProduct();
+    const [token, setToken] = useState(null); // Estado para almacenar el token
+    const { getAllProducts, loading, error } = useProduct(token);
     const [products, setProducts] = useState([]);
-    const [visibleProducts, setVisibleProducts] = useState(6); // Controla cuántos productos se muestran inicialmente
+    const [visibleProducts, setVisibleProducts] = useState(6); 
 
-    // Cargar los productos cuando el componente se monte
     useEffect(() => {
-        const fetchProducts = async () => {
-            const fetchedProducts = await getAllProducts();
-            setProducts(fetchedProducts);
+        const fetchTokenAndProducts = async () => {
+            try {
+                const response = await axios.post('http://localhost:3000/auth/generate-token');
+                const newToken = response.data.token;
+                setToken(newToken); // Guarda el token en el estado
+                const fetchedProducts = await getAllProducts();
+                setProducts(fetchedProducts);
+            } catch (err) {
+                console.error('Error al cargar el token o los productos:', err);
+            }
         };
 
-        fetchProducts();
+        fetchTokenAndProducts();
     }, []);
 
     const handleAvailabilityChange = (inStock, outOfStock) => {
@@ -34,15 +41,12 @@ function Collections() {
     };
 
     const filteredProducts = products.filter(product => {
-        // Calcular el precio final
         const finalPrice = product.discount > 0 
             ? product.precio - (product.precio * product.discount) / 100 
             : product.precio;
 
-        // Verificar si el precio está en el rango
         const matchesPrice = finalPrice >= minPrice && finalPrice <= maxPrice;
 
-        // Verificar la existencia
         const hasStock = 
             product.cantidad_xs > 0 || 
             product.cantidad_s > 0 || 
@@ -58,11 +62,18 @@ function Collections() {
     });
 
     const loadMoreProducts = () => {
-        setVisibleProducts(prevVisible => prevVisible + 6); // Muestra 6 productos más al hacer clic en "Cargar más"
+        setVisibleProducts(prevVisible => prevVisible + 6);
     };
 
     if (loading) return <p>Cargando productos...</p>;
-    if (error) return <p>Error al cargar productos: {error}</p>;
+    if (error) {
+        return (
+            <div>
+                <p>Error al cargar productos: {error.message || 'Error desconocido'}</p>
+                <button onClick={() => window.location.reload()}>Reintentar</button>
+            </div>
+        );
+    }
 
     return (
         <div className='container'>

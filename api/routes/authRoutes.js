@@ -39,4 +39,18 @@ router.post('/login', async (req, res) => {
     }
 });
 
+router.post('/generate-token', async (req, res) => {
+    try {
+      const token = jwt.sign(
+        { id_user: "test_user", username: "guest", email: "guest@example.com" },
+        process.env.JWT_SECRET,
+        { expiresIn: "1h" }
+      );
+      res.json({ token });
+    } catch (error) {
+      res.status(500).json({ message: "Error al generar el token", error: error.message });
+    }
+  });
+  
+
 export default router;

@@ -4,13 +4,45 @@ import axios from 'axios';
 const useOrder = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [token, setToken] = useState(null);
+
+  // Función para obtener un nuevo token desde la ruta `/auth/generate-token`
+  const fetchToken = async () => {
+    try {
+      const response = await axios.post('http://localhost:3000/auth/generate-token');
+      const newToken = response.data.token;
+      setToken(newToken);
+      return newToken;
+    } catch (err) {
+      console.error('Error al obtener el token:', err.response?.data || err.message);
+      setError('Error al obtener el token');
+      return null;
+    }
+  };
+
+  // Función auxiliar para asegurar que siempre haya un token válido
+  const ensureToken = async () => {
+    if (!token) {
+      const newToken = await fetchToken();
+      if (!newToken) {
+        throw new Error('No se pudo obtener un token válido');
+      }
+      return newToken;
+    }
+    return token;
+  };
 
   // Agregar un nuevo cliente
   const addClient = async (clientData) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.post('http://localhost:3000/clientes', clientData);
+      const currentToken = await ensureToken();
+      const response = await axios.post('http://localhost:3000/clientes', clientData, {
+        headers: {
+          Authorization: `Bearer ${currentToken}`,
+        },
+      });
       setLoading(false);
       return response.data;
     } catch (err) {
@@ -26,7 +58,12 @@ const useOrder = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.post('http://localhost:3000/ordenes', orderData);
+      const currentToken = await ensureToken();
+      const response = await axios.post('http://localhost:3000/ordenes', orderData, {
+        headers: {
+          Authorization: `Bearer ${currentToken}`,
+        },
+      });
       setLoading(false);
       return response.data;
     } catch (err) {
@@ -42,7 +79,12 @@ const useOrder = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.post('http://localhost:3000/ordenes-detalles', orderDetailsData);
+      const currentToken = await ensureToken();
+      const response = await axios.post('http://localhost:3000/ordenes-detalles', orderDetailsData, {
+        headers: {
+          Authorization: `Bearer ${currentToken}`,
+        },
+      });
       setLoading(false);
       return response.data;
     } catch (err) {
@@ -58,7 +100,12 @@ const useOrder = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.post('http://localhost:3000/pagos', paymentData);
+      const currentToken = await ensureToken();
+      const response = await axios.post('http://localhost:3000/pagos', paymentData, {
+        headers: {
+          Authorization: `Bearer ${currentToken}`,
+        },
+      });
       setLoading(false);
       return response.data;
     } catch (err) {
@@ -74,7 +121,12 @@ const useOrder = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.post('http://localhost:3000/envios', shippingData);
+      const currentToken = await ensureToken();
+      const response = await axios.post('http://localhost:3000/envios', shippingData, {
+        headers: {
+          Authorization: `Bearer ${currentToken}`,
+        },
+      });
       setLoading(false);
       return response.data;
     } catch (err) {

@@ -158,14 +158,20 @@ router.delete("/:id", authMiddleware, async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-    const { email, password } = req.body;
-    const result = await loginUser(email, password);
+  const { email, password } = req.body;
+  const result = await loginUser(email, password);
 
-    if (result.success) {
-        res.json({ token: result.token, user: result.user });
-    } else {
-        res.status(401).json({ message: result.message || "Error de autenticación" });
-    }
+  if (result.success) {
+    const { id_user, username, email, role } = result.user; // Asegúrate de incluir `id_user`
+    const token = result.token;
+
+    console.log("Datos enviados al cliente:", { id_user, username, email, role }); // Debug
+    res.json({ token, user: { id_user, username, email, role } }); // Devuelve el objeto completo
+  } else {
+    res.status(401).json({ message: result.message || "Error de autenticación" });
+  }
 });
+
+
 
 export default router;

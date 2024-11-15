@@ -7,7 +7,8 @@ const useUser = (userId) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log("userId en useUser:", userId); // Verifica si userId está definido
+    console.log("userId en useUser:", userId); 
+    console.log("userId en useUser:", userId);
     const fetchUser = async () => {
       try {
         setLoading(true);

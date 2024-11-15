@@ -9,6 +9,7 @@ const AuthProvider = ({ children }) => {
   // Cargar estado de autenticación desde localStorage al montar el componente
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
+    console.log("Usuario cargado desde localStorage:", storedUser);
     const token = localStorage.getItem('token');
     if (storedUser && token) {
       setIsAuthenticated(true);

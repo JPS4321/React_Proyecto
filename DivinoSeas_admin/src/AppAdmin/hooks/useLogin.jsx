@@ -8,30 +8,34 @@ const useLogin = () => {
   const loginUser = async (email, password) => {
     setLoading(true);
     setError(null);
-
+  
     try {
       const response = await axios.post('http://localhost:3000/usuarios/login', {
         email,
         password,
       });
-
-      // Almacenar el token en localStorage
-      const token = response.data?.token;
-      if (token) {
+  
+      console.log("Respuesta del servidor:", response.data); // Imprime la respuesta completa
+  
+      const { token, user } = response.data; // Extrae token y user
+      if (token && user) {
         localStorage.setItem("token", token); // Guarda el token
-        localStorage.setItem("user", JSON.stringify(response.data.user)); // Guarda la información del usuario
+        localStorage.setItem("user", JSON.stringify(user)); // Guarda el usuario
+        console.log("Usuario guardado en localStorage:", user); // Confirma los datos almacenados
       } else {
-        console.error("No se recibió un token del servidor.");
+        throw new Error("La respuesta del servidor no contiene un token o usuario válido.");
       }
-
+  
       setLoading(false);
       return response.data;
     } catch (err) {
+      console.error("Error durante el login:", err);
       setError('Credenciales incorrectas. Intente de nuevo.');
       setLoading(false);
       return null;
     }
   };
+  
 
   return { loginUser, loading, error };
 };

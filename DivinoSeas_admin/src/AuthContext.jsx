@@ -13,15 +13,15 @@ const AuthProvider = ({ children }) => {
     const token = localStorage.getItem('token');
     if (storedUser && token) {
       setIsAuthenticated(true);
-      setUser(JSON.parse(storedUser));
+      setUser(JSON.parse(storedUser)); // Aquí `id_user` permanece intacto
     }
   }, []);
 
   const login = (userData, token) => {
-    console.log("Datos recibidos en login:", userData); // Debug para ver qué llega del backend
+    console.log("Datos recibidos en login:", userData); // Aquí debería mostrarse `id_user`
     setIsAuthenticated(true);
-    setUser(userData); // Guardar todos los datos del usuario en el estado
-    localStorage.setItem('user', JSON.stringify(userData)); // Guardar todos los datos del usuario en localStorage
+    setUser(userData); // Guardar `id_user` directamente
+    localStorage.setItem('user', JSON.stringify(userData)); // Guardar `user` con `id_user` en localStorage
     localStorage.setItem('token', token); // Guardar el token en localStorage
   };
 

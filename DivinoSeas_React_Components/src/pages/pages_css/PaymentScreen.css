@@ -1,9 +1,11 @@
+/* === Contenedor General === */
 .container {
-  min-height: calc(100vh - 100px); 
+  min-height: calc(100vh - 100px);
   display: flex;
   flex-direction: column;
 }
 
+/* === Pantallo de Pago === */
 .payment-screen {
   font-family: 'Helvetica Neue', Arial, sans-serif;
   color: #000;
@@ -15,7 +17,7 @@
   border-radius: 10px;
 }
 
-/* PaymentHeader styles */
+/* === Header de pago === */
 .payment-header {
   text-align: center;
   margin-bottom: 30px;
@@ -27,7 +29,7 @@
   margin: 0;
 }
 
-/* PaymentOptions styles */
+/* === Opciones de pago === */
 .payment-options {
   display: flex;
   justify-content: center;
@@ -39,39 +41,42 @@
   background-color: #fff;
   border: 2px solid #000;
   padding: 12px 25px;
-  cursor: pointer;
   font-weight: bold;
-  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  cursor: pointer;
   border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
 .payment-options .payment-button:hover {
   background-color: #000;
   color: #fff;
-  transform: scale(1);
+  transform: scale(1.05); /* Efecto más visible en hover */
 }
 
-/* Form styles for ContactForm and ShippingForm */
-.contact-form, .shipping-form {
+/* === Estilo de forma === */
+.contact-form,
+.shipping-form {
   display: flex;
   flex-direction: column;
   gap: 12px;
   margin-bottom: 25px;
 }
 
-.contact-form input, .shipping-form input {
+.contact-form input,
+.shipping-form input {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s ease;
 }
 
-.contact-form input:focus, .shipping-form input:focus {
+.contact-form input:focus,
+.shipping-form input:focus {
   border-color: #000;
   outline: none;
 }
 
-/* OrderSummary styles */
+/* === Resumen de orden === */
 .order-summary {
   border-top: 2px solid #000;
   padding-top: 15px;
@@ -84,7 +89,7 @@
   font-size: 16px;
 }
 
-/* PromoCodeInput styles */
+/* === Codigo Promocional === */
 .promo-code {
   display: flex;
   gap: 10px;
@@ -96,7 +101,7 @@
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s ease;
 }
 
 .promo-code input:focus {
@@ -109,17 +114,17 @@
   background-color: #fff;
   border: 2px solid #000;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s, transform 0.3s;
   border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
 .promo-code button:hover {
   background-color: #000;
   color: #fff;
-  transform: scale(1);
+  transform: scale(1.05); /* Aumentar ligeramente para efecto de interacción */
 }
 
-/* SubmitButton styles */
+/* === Botón de submit === */
 .submit-button button {
   width: 100%;
   padding: 15px;
@@ -127,8 +132,8 @@
   color: #fff;
   border: none;
   cursor: pointer;
-  transition: opacity 0.3s, transform 0.3s;
   border-radius: 5px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .submit-button button:hover {
@@ -136,14 +141,13 @@
   transform: scale(1.02);
 }
 
-/* Error message styling */
+/* === Estili/s/z/ar Errores === */
 .error-message {
   color: red;
   margin-top: 10px;
+  font-size: 0.9em;
 }
 
-/* Error input styling */
 .error {
   border-color: red;
 }
-

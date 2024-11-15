@@ -15,7 +15,10 @@ import orderDetailRouter from "./routes/orderDetailRoute.js";
 import userRouter from "./routes/userRoutes.js";
 import clientRouter from "./routes/clientRoute.js"
 import auditRoutes from './routes/auditRoute.js';
+import authRoutes from './routes/authRoutes.js';
+import dotenv from 'dotenv';
 
+dotenv.config();
 const app = express();
 
 // Usa el puerto de la variable de entorno PORT si está definido, de lo contrario usa el puerto 3000
@@ -37,8 +40,10 @@ app.use("/pagos", paymentRouter);
 app.use("/ordenes", orderRouter)
 app.use("/ordenes-detalles", orderDetailRouter)
 app.use("/usuarios", userRouter);
-app.use("/clientes", clientRouter)
+app.use("/clientes", clientRouter);
 app.use('/api/audit', auditRoutes);
+app.use('/auth', authRoutes);
+
 
 app.get("/", (req, res) => {
   res.send("API de Productos Bikini");

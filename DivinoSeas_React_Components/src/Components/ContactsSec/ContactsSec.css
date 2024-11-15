@@ -1,15 +1,18 @@
+/* === Estilo General === */
 .contact-section {
   width: 70%;
   margin: 0 auto;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
-.contact-section h2, .contact-section p {
+.contact-section h2, 
+.contact-section p {
   margin-bottom: 20px;
 }
 
+/* === Estilo Contenedor del input === */
 .input-flex-container {
   display: flex;
   justify-content: space-between;
@@ -23,24 +26,11 @@
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s ease;
 }
 
-.input-flex-container input.input-error {
-  border-color: red;
-}
-
-textarea {
-  width: 100%;
-  max-width: 1000px;
-  height: 150px;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  transition: border-color 0.3s;
-}
-
+/* Estilo de rrores de imput */
+.input-flex-container input.input-error,
 textarea.input-error {
   border-color: red;
 }
@@ -49,6 +39,19 @@ textarea.input-error {
   color: red;
 }
 
+/* === Estilo del área de texto === */
+textarea {
+  width: 100%;
+  max-width: 1000px;
+  height: 150px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+/* === Estilo botón submit === */
 .submit-button {
   width: 100%;
   padding: 10px;
@@ -56,14 +59,15 @@ textarea.input-error {
   color: white;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
+  border-radius: 4px;
 }
 
 .submit-button:hover {
   background-color: #333;
 }
 
-/* Ajustes Responsive */
+/* === Ajustes Responsive === */
 @media (max-width: 768px) {
   .contact-section {
     width: 90%;

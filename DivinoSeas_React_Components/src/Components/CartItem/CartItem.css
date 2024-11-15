@@ -1,41 +1,45 @@
+/* ===Estilo General === */
 .cart-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px;
     border-bottom: 1px solid black;
-}
-
-.cart-item-image {
+  }
+  
+  /* === Estolo Imagen === */
+  .cart-item-image {
     width: 80px;
     height: 80px;
     object-fit: cover;
     border-radius: 4px;
-    margin-right: 20px; /* Añade espacio entre la imagen en los detalles */
-}
-
-.cart-item-details {
+    margin-right: 20px; /* Espacio entre la imagen y los detalles */
+  }
+  
+  /* === Sección de Detalles === */
+  .cart-item-details {
     flex-grow: 1;
     padding: 0 20px;
-}
-
-.cart-item-name {
+  }
+  
+  .cart-item-name {
     font-size: 1.2em;
     margin: 0;
-}
-
-.cart-item-price {
+  }
+  
+  .cart-item-price {
     font-size: 1.1em;
     color: gray;
     margin: 5px 0;
-}
-
-.cart-item-quantity {
+  }
+  
+  /* === Controles de cuantidad === */
+  .cart-item-quantity {
     display: flex;
     align-items: center;
-}
-
-.quantity-button {
+  }
+  
+  .quantity-button {
     background-color: black;
     color: white;
     border: none;
@@ -43,27 +47,54 @@
     cursor: pointer;
     font-size: 1em;
     transition: background-color 0.3s ease;
-}
-
-.quantity-button:hover {
+    border-radius: 3px;
+  }
+  
+  .quantity-button:hover {
     background-color: gray;
-}
-
-.quantity-value {
+  }
+  
+  .quantity-value {
     margin: 0 10px;
     font-size: 1.1em;
-}
-
-.remove-button {
+  }
+  
+  /* === Botón de remover === */
+  .remove-button {
     background-color: transparent;
     color: black;
     border: 1px solid black;
     padding: 5px 10px;
     cursor: pointer;
+    font-size: 0.9em;
     transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.remove-button:hover {
+    border-radius: 3px;
+  }
+  
+  .remove-button:hover {
     background-color: black;
     color: white;
-}
+  }
+  
+  /* === Diseño Responsive === */
+  @media (max-width: 768px) {
+    .cart-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .cart-item-image {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  
+    .cart-item-details {
+      padding: 0;
+    }
+  
+    .quantity-button, .remove-button {
+      font-size: 0.8em;
+      padding: 5px 8px;
+    }
+  }
+  

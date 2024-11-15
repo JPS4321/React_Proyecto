@@ -122,6 +122,7 @@ CREATE TABLE IF NOT EXISTS InventoryAudit (
     id_user INT,
     accion VARCHAR(50), -- "suma" o "resta"
     cantidad INT NOT NULL,
+    size VARCHAR(2), -- Columna para almacenar la talla (e.g., "XS", "S", "M", "L")
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_producto) REFERENCES DivinoSeas_Productos(id_producto) ON DELETE CASCADE,
     FOREIGN KEY (id_user) REFERENCES Users(id_user) ON DELETE SET NULL

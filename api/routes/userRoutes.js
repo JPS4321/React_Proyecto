@@ -54,50 +54,59 @@ router.get("/:id", authMiddleware, async (req, res) => {
 });
 
 // Crear un nuevo usuario
+// Crear un nuevo usuario (ruta de registro)
+// userRoutes.js
 router.post(
-  "/",
-  authMiddleware,
-  upload.single("imagen"),
-  validacionUsuario,
-  async (req, res) => {
-    const { username, email, password_hashed, is_admin, role } = req.body;
-    const imagen = req.file ? req.file.buffer : null; // Obtener la imagen si está disponible
-
-    try {
-      const isAdminValue = is_admin ? 1 : 0;
-      const { success, result, error } = await createUser(
-        username,
-        email,
-        password_hashed,
-        isAdminValue,
-        role,
-        imagen
-      );
-
-      if (success) {
-        return res.status(201).json({
-          success: true,
-          message: "Usuario creado con éxito",
-          userId: result.insertId,
-        });
-      } else {
-        console.error("Error al crear el usuario", error);
-        return res
-          .status(500)
-          .json({
+    "/",
+    upload.single("imagen"),
+    validacionUsuario,
+    async (req, res) => {
+      const { username, email, password_hashed, is_admin, role } = req.body;
+      const imagen = req.file ? req.file.buffer : null; // Obtener la imagen si está disponible
+  
+      try {
+        const isAdminValue = is_admin ? 1 : 0;
+        const { success, id_user, error } = await createUser(
+          username,
+          email,
+          password_hashed,
+          isAdminValue,
+          role,
+          imagen
+        );
+  
+        if (success) {
+          // Generar token con los datos del nuevo usuario
+          const token = jwt.sign(
+            { id_user, username, email },
+            process.env.JWT_SECRET,
+            { expiresIn: "1h" }
+          );
+  
+          return res.status(201).json({
+            success: true,
+            message: "Usuario creado con éxito",
+            userId: id_user,
+            token, // Retorna el token en la respuesta
+          });
+        } else {
+          console.error("Error al crear el usuario", error);
+          return res.status(500).json({
             success: false,
             message: "Error al crear el usuario",
             error,
           });
+        }
+      } catch (error) {
+        console.error(error);
+        return res
+          .status(500)
+          .json({ success: false, message: "Error Interno del Servidor" });
       }
-    } catch (error) {
-      console.error(error);
-      return res
-        .status(500)
-        .json({ success: false, message: "Error Interno del Servidor" });
     }
-  }
-);
+  );
+  
+  
 
 // Actualizar un usuario existente
 router.put(

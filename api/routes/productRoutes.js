@@ -1,7 +1,6 @@
 import express from "express";
 import multer from "multer";
-import authMiddleware from "../authMiddleware.js";
-
+import authMiddleware from "../authMiddleware.js"; // Asegúrate de tener este middleware configurado correctamente
 import {
   getAllProductos,
   createProducto,

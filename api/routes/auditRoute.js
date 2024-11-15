@@ -13,6 +13,7 @@ router.get('/inventory', async (req, res) => {
         a.accion, 
         p.nombre AS producto, 
         a.cantidad, 
+        a.size,         -- Incluir la talla
         a.fecha
       FROM InventoryAudit a
       JOIN Users u ON a.id_user = u.id_user
@@ -25,5 +26,6 @@ router.get('/inventory', async (req, res) => {
     res.status(500).json({ error: "Error fetching audit data" });
   }
 });
+
 
 export default router;

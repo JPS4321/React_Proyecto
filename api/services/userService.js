@@ -27,37 +27,41 @@ export async function getUserById(id_user) {
   }
 }
 
+// userService.js
 export async function createUser(
-  username,
-  email,
-  password,
-  is_admin,
-  role,
-  imagen
-) {
-  try {
-    // Verificar si el correo ya existe
-    const [existingUser] = await conn.query(
-      "SELECT * FROM Users WHERE email = ?",
-      [email]
-    );
-    if (existingUser.length > 0) {
-      return { success: false, error: "El correo ya está registrado" };
+    username,
+    email,
+    password,
+    is_admin,
+    role,
+    imagen
+  ) {
+    try {
+      // Verificar si el correo ya existe
+      const [existingUser] = await conn.query(
+        "SELECT * FROM Users WHERE email = ?",
+        [email]
+      );
+      if (existingUser.length > 0) {
+        return { success: false, error: "El correo ya está registrado" };
+      }
+  
+      // Hashear la contraseña
+      const hashedPassword = await bcrypt.hash(password, 10);
+  
+      const [result] = await conn.query(
+        "INSERT INTO Users (username, email, password_hashed, is_admin, role, imagen) VALUES (?, ?, ?, ?, ?, ?)",
+        [username, email, hashedPassword, is_admin, role, imagen]
+      );
+  
+      // Retorna el ID del usuario recién creado
+      return { success: true, id_user: result.insertId };
+    } catch (e) {
+      console.log(e);
+      return { success: false, error: e };
     }
-
-    // Hashear la contraseña
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const [result] = await conn.query(
-      "INSERT INTO Users (username, email, password_hashed, is_admin, role, imagen) VALUES (?, ?, ?, ?, ?, ?)",
-      [username, email, hashedPassword, is_admin, role, imagen]
-    );
-    return { success: true, result };
-  } catch (e) {
-    console.log(e);
-    return { success: false, error: e };
   }
-}
+  
 
 export async function getUserByEmail(email) {
   try {

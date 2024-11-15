@@ -7,23 +7,21 @@ const useUser = (userId) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    console.log("userId en useUser:", userId); // Verifica si userId está definido
     const fetchUser = async () => {
       try {
         setLoading(true);
-        
-        // Obtener el token del localStorage
         const token = localStorage.getItem('token');
         if (!token) {
           throw new Error('No se encontró el token de autenticación');
         }
-
-        // Hacer la solicitud con el token en el encabezado de autorización
+  
         const response = await axios.get(`http://localhost:3000/usuarios/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-
+  
         setUser(response.data);
         setLoading(false);
       } catch (err) {
@@ -31,11 +29,12 @@ const useUser = (userId) => {
         setLoading(false);
       }
     };
-
+  
     if (userId) {
       fetchUser();
     }
   }, [userId]);
+  
 
   return { user, loading, error };
 };

@@ -17,10 +17,11 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const login = (userData, token) => {
+    console.log("Datos recibidos en login:", userData); // Debug para ver qué llega del backend
     setIsAuthenticated(true);
-    setUser(userData);
-    localStorage.setItem('user', JSON.stringify(userData)); // Guardar usuario en localStorage
-    localStorage.setItem('token', token); // Guardar token en localStorage
+    setUser(userData); // Guardar todos los datos del usuario en el estado
+    localStorage.setItem('user', JSON.stringify(userData)); // Guardar todos los datos del usuario en localStorage
+    localStorage.setItem('token', token); // Guardar el token en localStorage
   };
 
   const logout = () => {

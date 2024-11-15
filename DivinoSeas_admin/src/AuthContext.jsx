@@ -9,27 +9,35 @@ const AuthProvider = ({ children }) => {
   // Cargar estado de autenticación desde localStorage al montar el componente
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
-    console.log("Usuario cargado desde localStorage:", storedUser);
     const token = localStorage.getItem('token');
-    if (storedUser && token) {
+
+    // Limpia `localStorage` si hay datos inconsistentes
+    if (!storedUser || !token) {
+      clearLocalStorage();
+    } else {
+      console.log("Usuario cargado desde localStorage:", storedUser);
       setIsAuthenticated(true);
-      setUser(JSON.parse(storedUser)); // Aquí `id_user` permanece intacto
+      setUser(JSON.parse(storedUser));
     }
   }, []);
 
   const login = (userData, token) => {
-    console.log("Datos recibidos en login:", userData); // Aquí debería mostrarse `id_user`
+    console.log("Datos recibidos en login:", userData);
     setIsAuthenticated(true);
-    setUser(userData); // Guardar `id_user` directamente
-    localStorage.setItem('user', JSON.stringify(userData)); // Guardar `user` con `id_user` en localStorage
-    localStorage.setItem('token', token); // Guardar el token en localStorage
+    setUser(userData);
+    localStorage.setItem('user', JSON.stringify(userData)); // Sobrescribe `user`
+    localStorage.setItem('token', token); // Sobrescribe el `token`
   };
 
   const logout = () => {
     setIsAuthenticated(false);
     setUser(null);
-    localStorage.removeItem('user'); // Limpiar usuario de localStorage
-    localStorage.removeItem('token'); // Limpiar token de localStorage
+    clearLocalStorage();
+  };
+
+  const clearLocalStorage = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
   };
 
   return (

@@ -26,7 +26,7 @@ const UserProfile = () => {
   };
 
   const handlePermissionChange = (e) => {
-    if (userData?.role === "Administrador" || userData?.role === "Supervisora de Tienda") {
+    if (userData?.role === "Administrador" || userData?.role === "Supervisora de Tienda" || userData?.role === "user") {
       setPermissions({
         ...permissions,
         [e.target.name]: e.target.checked
@@ -34,7 +34,7 @@ const UserProfile = () => {
     }
   };
 
-  const isEditable = userData?.role === "Administrador" || userData?.role === "Supervisora de Tienda";
+  const isEditable = userData?.role === "Administrador" || userData?.role === "Supervisora de Tienda" || userData?.role === "user";
 
   if (loading) {
     return <div>Cargando...</div>;

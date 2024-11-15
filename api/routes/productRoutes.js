@@ -47,13 +47,13 @@ function validacionProducto(req, res, next) {
 }
 
 // Obtener todos los productos
-router.get("/", async (req, res) => {
+router.get("/", authMiddleware, async (req, res) => {
   const productos = await getAllProductos();
   res.status(200).json(productos);
 });
 
 // Obtener un producto por ID
-router.get("/:id", async (req, res) => {
+router.get("/:id", authMiddleware, async (req, res) => {
   const { id } = req.params;
   const producto = await getProductoById(id);
   if (producto) {

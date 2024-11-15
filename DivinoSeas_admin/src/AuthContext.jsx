@@ -1,19 +1,30 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState(null); // Aquí almacenaremos los datos del usuario
+  const [user, setUser] = useState(null);
+
+  // Cargar estado de autenticación desde localStorage al montar el componente
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setIsAuthenticated(true);
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
 
   const login = (userData) => {
     setIsAuthenticated(true);
-    setUser(userData); // Guardamos los datos del usuario al hacer login
+    setUser(userData);
+    localStorage.setItem('user', JSON.stringify(userData)); // Guardar en localStorage
   };
 
   const logout = () => {
     setIsAuthenticated(false);
-    setUser(null); // Al cerrar sesión, limpiamos los datos del usuario
+    setUser(null);
+    localStorage.removeItem('user'); // Limpiar localStorage al cerrar sesión
   };
 
   return (

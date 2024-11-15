@@ -23,10 +23,14 @@ router.post('/login', async (req, res) => {
 
         // Genera el token JWT
         const token = jwt.sign(
-            { id_user: user.id_user, username: user.username, email: user.email, role: user.role },
+            { id_user: user.id_user, username: user.username, email: user.email },
             process.env.JWT_SECRET,
             { expiresIn: '1h' }
-        );
+          );
+
+        console.log("Creating token with data:", { id_user: user.id_user, username: user.username, email: user.email });
+
+          
 
         res.json({ token, user: { id_user: user.id_user, username: user.username, email: user.email, role: user.role } });
     } catch (error) {

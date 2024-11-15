@@ -10,11 +10,24 @@ const useUser = (userId) => {
     const fetchUser = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`http://localhost:3000/usuarios/${userId}`); 
+        
+        // Obtener el token del localStorage
+        const token = localStorage.getItem('token');
+        if (!token) {
+          throw new Error('No se encontró el token de autenticación');
+        }
+
+        // Hacer la solicitud con el token en el encabezado de autorización
+        const response = await axios.get(`http://localhost:3000/usuarios/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
         setUser(response.data);
         setLoading(false);
       } catch (err) {
-        setError('Error fetching user data');
+        setError(err.response?.data?.message || 'Error al obtener los datos del usuario');
         setLoading(false);
       }
     };

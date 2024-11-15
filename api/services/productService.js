@@ -92,7 +92,6 @@ export async function createProducto(
   }
 }
 
-
 export async function updateProducto(
   id_producto,
   nombre,
@@ -108,7 +107,7 @@ export async function updateProducto(
   cantidad_s,
   cantidad_m,
   cantidad_l,
-  id_user // Añadir ID del usuario que realiza la actualización
+  id_user // ID del usuario que realiza la actualización
 ) {
   try {
     // Obtener el producto actual para comparar las cantidades
@@ -117,18 +116,19 @@ export async function updateProducto(
       [id_producto]
     );
 
+    // Lista de ajustes (suma/resta de cantidades)
     const adjustments = [];
     if (existingProduct[0].cantidad_xs !== cantidad_xs) {
-      adjustments.push({ accion: cantidad_xs > existingProduct[0].cantidad_xs ? "suma" : "resta", cantidad: Math.abs(cantidad_xs - existingProduct[0].cantidad_xs), size: "XS" });
+      adjustments.push({ accion: cantidad_xs > existingProduct[0].cantidad_xs ? "suma" : "resta", cantidad: Math.abs(cantidad_xs - existingProduct[0].cantidad_xs) });
     }
     if (existingProduct[0].cantidad_s !== cantidad_s) {
-      adjustments.push({ accion: cantidad_s > existingProduct[0].cantidad_s ? "suma" : "resta", cantidad: Math.abs(cantidad_s - existingProduct[0].cantidad_s), size: "S" });
+      adjustments.push({ accion: cantidad_s > existingProduct[0].cantidad_s ? "suma" : "resta", cantidad: Math.abs(cantidad_s - existingProduct[0].cantidad_s) });
     }
     if (existingProduct[0].cantidad_m !== cantidad_m) {
-      adjustments.push({ accion: cantidad_m > existingProduct[0].cantidad_m ? "suma" : "resta", cantidad: Math.abs(cantidad_m - existingProduct[0].cantidad_m), size: "M" });
+      adjustments.push({ accion: cantidad_m > existingProduct[0].cantidad_m ? "suma" : "resta", cantidad: Math.abs(cantidad_m - existingProduct[0].cantidad_m) });
     }
     if (existingProduct[0].cantidad_l !== cantidad_l) {
-      adjustments.push({ accion: cantidad_l > existingProduct[0].cantidad_l ? "suma" : "resta", cantidad: Math.abs(cantidad_l - existingProduct[0].cantidad_l), size: "L" });
+      adjustments.push({ accion: cantidad_l > existingProduct[0].cantidad_l ? "suma" : "resta", cantidad: Math.abs(cantidad_l - existingProduct[0].cantidad_l) });
     }
 
     // Actualizar el producto
@@ -150,7 +150,7 @@ export async function updateProducto(
 
     await conn.query(query, params);
 
-    // Insertar los ajustes en la tabla de auditoría
+    // Insertar los ajustes en la tabla de auditoría sin incluir la talla
     for (const adjustment of adjustments) {
       await conn.query(
         `INSERT INTO InventoryAudit (id_producto, id_user, accion, cantidad) VALUES (?, ?, ?, ?)`,

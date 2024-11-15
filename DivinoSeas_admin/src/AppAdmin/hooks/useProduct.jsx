@@ -5,134 +5,97 @@ const useProduct = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Función para obtener el token de autenticación
-  const getToken = () => {
-    return localStorage.getItem('token'); // Asegúrate de que el token esté guardado en `localStorage`
-  };
+  const getToken = () => localStorage.getItem('token');
 
-  // Crear un producto
   const createProduct = async (productData) => {
     setLoading(true);
     setError(null);
 
     const formData = new FormData();
-    formData.append('nombre', productData.nombre);
-    formData.append('descripcion', productData.descripcion);
-    formData.append('precio', productData.precio);
-    formData.append('id_categoria', productData.id_categoria);
-    formData.append('imagen', productData.imagen);
-    formData.append('secondimage', productData.secondimage);
-    formData.append('cantidad_xs', productData.cantidad_xs);
-    formData.append('cantidad_s', productData.cantidad_s);
-    formData.append('cantidad_m', productData.cantidad_m);
-    formData.append('cantidad_l', productData.cantidad_l);
-
-    if (productData.id_color) {
-      formData.append('id_color', productData.id_color);
-    }
-    if (productData.id_coleccion) {
-      formData.append('id_coleccion', productData.id_coleccion);
-    }
-    if (productData.id_promocion) {
-      formData.append('id_promocion', productData.id_promocion);
-    }
+    Object.keys(productData).forEach((key) => {
+      if (productData[key] !== undefined) {
+        formData.append(key, productData[key]);
+      }
+    });
 
     try {
       const response = await axios.post('http://localhost:3000/productos', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          'Authorization': `Bearer ${getToken()}`, // Incluye el token en las cabeceras
+          Authorization: `Bearer ${getToken()}`,
         },
       });
       setLoading(false);
       return response.data;
     } catch (err) {
       console.error('Error al crear el producto:', err);
-      setError(err.response?.data || 'Error al crear el producto');
+      setError(err.response?.data?.message || 'Error al crear el producto');
       setLoading(false);
       return null;
     }
   };
 
-  // Obtener todos los productos
   const getAllProducts = async () => {
     setLoading(true);
     setError(null);
     try {
       const response = await axios.get('http://localhost:3000/productos', {
         headers: {
-          'Authorization': `Bearer ${getToken()}`, // Incluye el token en las cabeceras
+          Authorization: `Bearer ${getToken()}`,
         },
       });
       setLoading(false);
       return response.data;
     } catch (err) {
       console.error('Error al obtener productos:', err);
-      setError(err.response?.data || 'Error al obtener productos');
+      setError(err.response?.data?.message || 'Error al obtener productos');
       setLoading(false);
       return [];
     }
   };
 
-  // Obtener producto por ID
   const getProductById = async (id) => {
     setLoading(true);
     setError(null);
     try {
       const response = await axios.get(`http://localhost:3000/productos/${id}`, {
         headers: {
-          'Authorization': `Bearer ${getToken()}`, // Incluye el token en las cabeceras
+          Authorization: `Bearer ${getToken()}`,
         },
       });
       setLoading(false);
       return response.data;
     } catch (err) {
       console.error('Error al obtener producto:', err);
-      setError(err.response?.data || 'Error al obtener producto');
+      setError(err.response?.data?.message || 'Error al obtener producto');
       setLoading(false);
       return null;
     }
   };
 
-  // Actualizar un producto
   const updateProduct = async (id, productData) => {
     setLoading(true);
     setError(null);
 
     const formData = new FormData();
-    formData.append('nombre', productData.nombre);
-    formData.append('descripcion', productData.descripcion);
-    formData.append('precio', productData.precio);
-    formData.append('id_categoria', productData.id_categoria);
-    formData.append('imagen', productData.imagen);
-    formData.append('secondimage', productData.secondimage);
-    formData.append('cantidad_xs', productData.cantidad_xs);
-    formData.append('cantidad_s', productData.cantidad_s);
-    formData.append('cantidad_m', productData.cantidad_m);
-    formData.append('cantidad_l', productData.cantidad_l);
-
-    if (productData.id_color) {
-      formData.append('id_color', productData.id_color);
-    }
-    if (productData.id_coleccion) {
-      formData.append('id_coleccion', productData.id_coleccion);
-    }
-    if (productData.id_promocion) {
-      formData.append('id_promocion', productData.id_promocion);
-    }
+    Object.keys(productData).forEach((key) => {
+      if (productData[key] !== undefined) {
+        formData.append(key, productData[key]);
+      }
+    });
 
     try {
       const response = await axios.put(`http://localhost:3000/productos/${id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          'Authorization': `Bearer ${getToken()}`, // Incluye el token en las cabeceras
+          Authorization: `Bearer ${getToken()}`,
         },
       });
       setLoading(false);
       return response.data;
     } catch (err) {
       console.error('Error al actualizar el producto:', err);
-      setError(err.response?.data || 'Error al actualizar el producto');
+      setError(err.response?.data?.message || 'Error al actualizar el producto');
       setLoading(false);
       return null;
     }

@@ -19,6 +19,10 @@ import authRoutes from './routes/authRoutes.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
+
+const JWT_SECRET = process.env.JWT_SECRET;
+
+console.log("JWT_SECRET:", process.env.JWT_SECRET);
 const app = express();
 
 // Usa el puerto de la variable de entorno PORT si está definido, de lo contrario usa el puerto 3000

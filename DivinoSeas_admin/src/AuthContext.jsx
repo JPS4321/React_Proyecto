@@ -9,22 +9,25 @@ const AuthProvider = ({ children }) => {
   // Cargar estado de autenticación desde localStorage al montar el componente
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
-    if (storedUser) {
+    const token = localStorage.getItem('token');
+    if (storedUser && token) {
       setIsAuthenticated(true);
       setUser(JSON.parse(storedUser));
     }
   }, []);
 
-  const login = (userData) => {
+  const login = (userData, token) => {
     setIsAuthenticated(true);
     setUser(userData);
-    localStorage.setItem('user', JSON.stringify(userData)); // Guardar en localStorage
+    localStorage.setItem('user', JSON.stringify(userData)); // Guardar usuario en localStorage
+    localStorage.setItem('token', token); // Guardar token en localStorage
   };
 
   const logout = () => {
     setIsAuthenticated(false);
     setUser(null);
-    localStorage.removeItem('user'); // Limpiar localStorage al cerrar sesión
+    localStorage.removeItem('user'); // Limpiar usuario de localStorage
+    localStorage.removeItem('token'); // Limpiar token de localStorage
   };
 
   return (

@@ -14,6 +14,16 @@ const useLogin = () => {
         email,
         password,
       });
+
+      // Almacenar el token en localStorage
+      const token = response.data?.token;
+      if (token) {
+        localStorage.setItem("token", token); // Guarda el token
+        localStorage.setItem("user", JSON.stringify(response.data.user)); // Guarda la información del usuario
+      } else {
+        console.error("No se recibió un token del servidor.");
+      }
+
       setLoading(false);
       return response.data;
     } catch (err) {
@@ -26,4 +36,4 @@ const useLogin = () => {
   return { loginUser, loading, error };
 };
 
-export default useLogin;  
+export default useLogin;

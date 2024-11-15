@@ -1,23 +1,38 @@
+import express from 'express';
+import { getUserByEmail } from '../services/userService.js'; // Asegúrate de que este sea el archivo correcto
+import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { getUserByUsername, verifyPassword } from '../services/userService'; // Asegúrate de que estas funciones existan y funcionen correctamente
 
-const loginController = async (req, res) => {
-  const { username, password } = req.body;
+const router = express.Router();
 
-  // Verifica el usuario y la contraseña en la base de datos
-  const user = await getUserByUsername(username);
-  if (!user || !verifyPassword(password, user.password)) {
-    return res.status(401).json({ message: "Credenciales inválidas" });
-  }
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
 
-  // Genera el token JWT
-  const token = jwt.sign(
-    { id_user: user.id_user, username: user.username, email: user.email },
-    process.env.JWT_SECRET,
-    { expiresIn: '1h' } // Configura el tiempo de expiración que prefieras
-  );
+    try {
+        const user = await getUserByEmail(email);
 
-  res.json({ token });
-};
+        if (!user) {
+            return res.status(404).json({ message: "Usuario no encontrado" });
+        }
 
-export default loginController;
+        // Verifica la contraseña
+        const isPasswordCorrect = await bcrypt.compare(password, user.password_hashed);
+        if (!isPasswordCorrect) {
+            return res.status(401).json({ message: "Contraseña incorrecta" });
+        }
+
+        // Genera el token JWT
+        const token = jwt.sign(
+            { id_user: user.id_user, username: user.username, email: user.email, role: user.role },
+            process.env.JWT_SECRET,
+            { expiresIn: '1h' }
+        );
+
+        res.json({ token, user: { id_user: user.id_user, username: user.username, email: user.email, role: user.role } });
+    } catch (error) {
+        console.error("Error en el login:", error);
+        res.status(500).json({ message: "Error interno del servidor" });
+    }
+});
+
+export default router;

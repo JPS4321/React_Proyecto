@@ -1,5 +1,7 @@
 import express from "express";
 import multer from "multer";
+import authMiddleware from "../authMiddleware.js";
+
 import {
   getAllProductos,
   createProducto,
@@ -66,6 +68,7 @@ router.get("/:id", authMiddleware, async (req, res) => {
 // Crear un nuevo producto
 router.post(
   "/",
+  authMiddleware,
   upload.fields([
     { name: "imagen", maxCount: 1 },
     { name: "secondimage", maxCount: 1 },
@@ -130,6 +133,7 @@ router.post(
 // Actualizar un producto existente
 router.put(
   "/:id",
+  authMiddleware,
   upload.fields([
     { name: "imagen", maxCount: 1 },
     { name: "secondimage", maxCount: 1 },
@@ -170,7 +174,8 @@ router.put(
         cantidad_xs,
         cantidad_s,
         cantidad_m,
-        cantidad_l
+        cantidad_l,
+        req.user.id_user // Adjunta el ID del usuario desde req.user
       );
       if (result.success) {
         return res.status(200).json({
@@ -189,7 +194,7 @@ router.put(
 );
 
 // Eliminar un producto
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", authMiddleware, async (req, res) => {
   const { id } = req.params;
   try {
     await deleteProducto(id);

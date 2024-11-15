@@ -5,6 +5,11 @@ const useProduct = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // Función para obtener el token de autenticación
+  const getToken = () => {
+    return localStorage.getItem('token'); // Asegúrate de que el token esté guardado en `localStorage`
+  };
+
   // Crear un producto
   const createProduct = async (productData) => {
     setLoading(true);
@@ -22,7 +27,6 @@ const useProduct = () => {
     formData.append('cantidad_m', productData.cantidad_m);
     formData.append('cantidad_l', productData.cantidad_l);
 
-    // Agregar ID de color, colección y promoción si están presentes
     if (productData.id_color) {
       formData.append('id_color', productData.id_color);
     }
@@ -37,6 +41,7 @@ const useProduct = () => {
       const response = await axios.post('http://localhost:3000/productos', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer ${getToken()}`, // Incluye el token en las cabeceras
         },
       });
       setLoading(false);
@@ -54,7 +59,11 @@ const useProduct = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get('http://localhost:3000/productos');
+      const response = await axios.get('http://localhost:3000/productos', {
+        headers: {
+          'Authorization': `Bearer ${getToken()}`, // Incluye el token en las cabeceras
+        },
+      });
       setLoading(false);
       return response.data;
     } catch (err) {
@@ -70,7 +79,11 @@ const useProduct = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get(`http://localhost:3000/productos/${id}`);
+      const response = await axios.get(`http://localhost:3000/productos/${id}`, {
+        headers: {
+          'Authorization': `Bearer ${getToken()}`, // Incluye el token en las cabeceras
+        },
+      });
       setLoading(false);
       return response.data;
     } catch (err) {
@@ -98,7 +111,6 @@ const useProduct = () => {
     formData.append('cantidad_m', productData.cantidad_m);
     formData.append('cantidad_l', productData.cantidad_l);
 
-    // Agregar ID de color, colección y promoción si están presentes
     if (productData.id_color) {
       formData.append('id_color', productData.id_color);
     }
@@ -113,6 +125,7 @@ const useProduct = () => {
       const response = await axios.put(`http://localhost:3000/productos/${id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer ${getToken()}`, // Incluye el token en las cabeceras
         },
       });
       setLoading(false);
